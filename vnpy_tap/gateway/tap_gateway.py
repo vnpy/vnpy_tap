@@ -113,7 +113,9 @@ commodity_infos: Dict[str, "CommodityInfo"] = {}
 contract_infos: Dict[Tuple[str, "Exchange"], "ContractInfo"] = {}
 
 class TapGateway(BaseGateway):
-    """vn.py用于对接易盛9.0外盘的交易接口"""
+    """
+    vn.py用于对接易盛9.0外盘的交易接口。
+    """
 
     default_setting: Dict[str, Any] = {
         "行情账号": "",

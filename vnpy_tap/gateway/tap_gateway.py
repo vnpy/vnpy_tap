@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Any, Dict, Tuple, List
 import pytz
 
 from ..api import MdApi, TdApi
@@ -27,6 +27,34 @@ from vnpy.trader.object import (
     AccountData
 )
 
+# 委托状态映射
+STATUS_TAP2VT: Dict[str, Status] = {
+    "0": Status.SUBMITTING,
+    "1": Status.SUBMITTING,
+    "4": Status.NOTTRADED,
+    "5": Status.PARTTRADED,
+    "6": Status.ALLTRADED,
+    "9": Status.CANCELLED,
+    "A": Status.CANCELLED,
+    "B": Status.REJECTED,
+}
+
+# 多空方向映射
+DIRECTION_TAP2VT: Dict[str, Direction] = {
+    "N": Direction.NET,
+    "B": Direction.LONG,
+    "S": Direction.SHORT,
+}
+DIRECTION_VT2TAP: Dict[Direction, str] = {v: k for k, v in DIRECTION_TAP2VT.items()}
+
+# 委托类型映射
+ORDERTYPE_TAP2VT: Dict[str, OrderType] = {
+    "1": OrderType.MARKET,
+    "2": OrderType.LIMIT
+}
+ORDERTYPE_VT2TAP = {v: k for k, v in ORDERTYPE_TAP2VT.items()}
+
+# 产品类型映射
 PRODUCT_TYPE_TAP2VT: Dict[str, Product] = {
     "P": Product.SPOT,
     "F": Product.FUTURES,
@@ -35,6 +63,7 @@ PRODUCT_TYPE_TAP2VT: Dict[str, Product] = {
     "T": Product.EQUITY,
 }
 
+# 交易所映射
 EXCHANGE_TAP2VT: Dict[str, Exchange] = {
     "SGX": Exchange.SGX,
     "INE": Exchange.INE,
@@ -54,34 +83,12 @@ EXCHANGE_TAP2VT: Dict[str, Exchange] = {
 }
 EXCHANGE_VT2TAP: Dict[Exchange, str] = {v: k for k, v in EXCHANGE_TAP2VT.items()}
 
-DIRECTION_TAP2VT: Dict[str, Direction] = {
-    "N": Direction.NET,
-    "B": Direction.LONG,
-    "S": Direction.SHORT,
-}
-DIRECTION_VT2TAP: Dict[Direction, str] = {v: k for k, v in DIRECTION_TAP2VT.items()}
-
-STATUS_TAP2VT: Dict[str, Status] = {
-    "0": Status.SUBMITTING,
-    "1": Status.SUBMITTING,
-    "4": Status.NOTTRADED,
-    "5": Status.PARTTRADED,
-    "6": Status.ALLTRADED,
-    "9": Status.CANCELLED,
-    "A": Status.CANCELLED,
-    "B": Status.REJECTED,
-}
-
-ORDERTYPE_TAP2VT: Dict[str, OrderType] = {
-    "1": OrderType.MARKET,
-    "2": OrderType.LIMIT
-}
-ORDERTYPE_VT2TAP = {v: k for k, v in ORDERTYPE_TAP2VT.items()}
-
+# 错误类型映射
 ERROR_VT2TAP: Dict[str, int] = {
     "TAPIERROR_SUCCEED": 0
 }
 
+# 日志级别映射
 LOGLEVEL_VT2TAP: Dict[str, str] = {
     "APILOGLEVEL_NONE": "N",
     "APILOGLEVEL_ERROR": "E",
@@ -89,9 +96,7 @@ LOGLEVEL_VT2TAP: Dict[str, str] = {
     "APILOGLEVEL_DEBUG": "D"
 }
 
-commodity_infos: Dict[str, "CommodityInfo"] = {}
-contract_infos: Dict[Tuple[str, "Exchange"], "ContractInfo"] = {}
-
+# 标示类型映射
 FLAG_VT2TAP: Dict[str, str] = {
     "APIYNFLAG_YES": "Y",
     "APIYNFLAG_NO": "N",
@@ -100,13 +105,19 @@ FLAG_VT2TAP: Dict[str, str] = {
     "TAPI_CALLPUT_FLAG_NONE": "N"
 }
 
+# 其他常量
 CHINA_TZ = pytz.timezone("Asia/Shanghai")
 
+# 合约数据全局缓存字典
+commodity_infos: Dict[str, "CommodityInfo"] = {}
+contract_infos: Dict[Tuple[str, "Exchange"], "ContractInfo"] = {}
 
 class TapGateway(BaseGateway):
-    """vn.py用于对接易盛9.0外盘的交易接口"""
+    """
+    vn.py用于对接易盛9.0外盘的交易接口。
+    """
 
-    default_setting = {
+    default_setting: Dict[str, Any] = {
         "行情账号": "",
         "行情密码": "",
         "行情服务器": "",
@@ -118,7 +129,7 @@ class TapGateway(BaseGateway):
         "授权码": ""
     }
 
-    exchanges = list(EXCHANGE_VT2TAP.keys())
+    exchanges: List[str] = list(EXCHANGE_VT2TAP.keys())
 
     def __init__(self, event_engine: EventEngine):
         """构造函数"""
@@ -129,15 +140,15 @@ class TapGateway(BaseGateway):
 
     def connect(self, setting: dict) -> None:
         """连接交易接口"""
-        quote_username = setting["行情账号"]
-        quote_password = setting["行情密码"]
-        quote_host = setting["行情服务器"]
-        quote_port = setting["行情端口"]
-        trade_username = setting["交易账号"]
-        trade_password = setting["交易密码"]
-        trade_host = setting["交易服务器"]
-        trade_port = setting["交易端口"]
-        auth_code = setting["授权码"]
+        quote_username: str = setting["行情账号"]
+        quote_password: str = setting["行情密码"]
+        quote_host: str = setting["行情服务器"]
+        quote_port: int = setting["行情端口"]
+        trade_username: str = setting["交易账号"]
+        trade_password: str = setting["交易密码"]
+        trade_host: str = setting["交易服务器"]
+        trade_port: int = setting["交易端口"]
+        auth_code: str = setting["授权码"]
 
         self.md_api.connect(
             quote_username,
@@ -182,7 +193,7 @@ class TapGateway(BaseGateway):
 class QuoteApi(MdApi):
     """行情API"""
 
-    def __init__(self, gateway: TapGateway):
+    def __init__(self, gateway: TapGateway) -> None:
         """构造函数"""
         super().__init__()
 
@@ -198,7 +209,6 @@ class QuoteApi(MdApi):
 
     def onAPIReady(self) -> None:
         """API状态通知回报"""
-        # self.qryCommodity()
         pass
 
     def onDisconnect(self, reason: int) -> None:
@@ -259,7 +269,7 @@ class QuoteApi(MdApi):
             self.gateway.write_log("查询交易合约信息失败")
             return
 
-        exchange = EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)
+        exchange: Exchange = EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)
         key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
         commodity_info: CommodityInfo = commodity_infos.get(key, None)
 
@@ -308,7 +318,7 @@ class QuoteApi(MdApi):
             self.gateway.write_log(f"行情合约信息无法匹配：{symbol}和{exchange}")
             return
 
-        tick = TickData(
+        tick: TickData = TickData(
             symbol=symbol,
             exchange=exchange,
             datetime=generate_datetime(data["DateTimeStamp"]),
@@ -389,7 +399,7 @@ class QuoteApi(MdApi):
                 f"找不到匹配的合约：{req.symbol}和{req.exchange.value}")
             return
 
-        tap_contract = {
+        tap_contract: dict = {
             "ExchangeNo": EXCHANGE_VT2TAP[req.exchange],
             "CommodityType": contract_info.commodity_type,
             "CommodityNo": contract_info.commodity_no,
@@ -404,19 +414,19 @@ class QuoteApi(MdApi):
 class TradeApi(TdApi):
     """交易API"""
 
-    def __init__(self, gateway: TapGateway):
+    def __init__(self, gateway: TapGateway) -> None:
         """构造函数"""
         super().__init__()
 
         self.gateway: TapGateway = gateway
         self.gateway_name: str = gateway.gateway_name
 
-        self.account_no = ""        # 委托下单时使用
-        self.cancel_reqs = {}       # 存放未成交订单
+        self.account_no: str = ""        # 委托下单时使用
+        self.cancel_reqs: Dict[str, CancelRequest] = {}       # 存放未成交订单
 
-        self.sys_local_map = {}
-        self.local_sys_map = {}
-        self.sys_server_map = {}
+        self.sys_local_map: Dict[str, str] = {}
+        self.local_sys_map: Dict[str, str] = {}
+        self.sys_server_map: Dict[str, str] = {}
 
     def onConnect(self) -> None:
         """服务器连接成功回报"""

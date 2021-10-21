@@ -112,6 +112,7 @@ CHINA_TZ = pytz.timezone("Asia/Shanghai")
 commodity_infos: Dict[str, "CommodityInfo"] = {}
 contract_infos: Dict[Tuple[str, "Exchange"], "ContractInfo"] = {}
 
+
 class TapGateway(BaseGateway):
     """
     vn.py用于对接易盛9.0外盘的交易接口。

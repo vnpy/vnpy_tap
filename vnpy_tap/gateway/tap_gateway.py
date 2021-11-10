@@ -370,13 +370,13 @@ class QuoteApi(MdApi):
 
         # API基本设置
         path: Path = get_folder_path(self.gateway_name.lower())
-        self.setTapQuoteAPIDataPath(str(path))
+        self.setTapQuoteAPIDataPath(str(path).encode("GBK"))
         self.setTapQuoteAPILogLevel(LOGLEVEL_VT2TAP["APILOGLEVEL_NONE"])
 
         # 创建API
         req: dict = {
             "AuthCode": auth_code,
-            "KeyOperationLogPath": str(path)
+            "KeyOperationLogPath": str(path).encode("GBK")
         }
         self.createTapQuoteAPI(req, 0)
 
@@ -731,13 +731,13 @@ class TradeApi(TdApi):
 
         # API基本设置
         path: Path = get_folder_path(self.gateway_name.lower())
-        self.setITapTradeAPIDataPath(str(path))
+        self.setITapTradeAPIDataPath(str(path).encode("GBK"))
         self.setITapTradeAPILogLevel(LOGLEVEL_VT2TAP["APILOGLEVEL_NONE"])
 
         # 创建API
         req: dict = {
             "AuthCode": auth_code,
-            "KeyOperationLogPath": str(path)
+            "KeyOperationLogPath": str(path).encode("GBK")
         }
         self.createITapTradeAPI(req, 0)
 

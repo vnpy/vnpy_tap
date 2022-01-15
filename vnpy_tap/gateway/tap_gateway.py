@@ -448,8 +448,6 @@ class TradeApi(TdApi):
 
     def onAPIReady(self, code: int) -> None:
         """API状态通知回报"""
-        self.query_account()
-
         self.qryCommodity()
 
     def onRspQryCommodity(

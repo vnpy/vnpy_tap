@@ -123,11 +123,13 @@ class TapGateway(BaseGateway):
         "行情密码": "",
         "行情服务器": "",
         "行情端口": 0,
+        "行情授权码": "",
         "交易账号": "",
         "交易密码": "",
         "交易服务器": "",
         "交易端口": 0,
-        "授权码": ""
+        "交易授权码": "",
+        "子账号": ""
     }
 
     exchanges: List[str] = list(EXCHANGE_VT2TAP.keys())
@@ -145,25 +147,28 @@ class TapGateway(BaseGateway):
         quote_password: str = setting["行情密码"]
         quote_host: str = setting["行情服务器"]
         quote_port: int = setting["行情端口"]
+        md_authcode: str = setting["行情授权码"]
         trade_username: str = setting["交易账号"]
         trade_password: str = setting["交易密码"]
         trade_host: str = setting["交易服务器"]
         trade_port: int = setting["交易端口"]
-        auth_code: str = setting["授权码"]
+        td_authcode: str = setting["交易授权码"]
+        client_id: str = setting["子账号"]
 
         self.md_api.connect(
             quote_username,
             quote_password,
             quote_host,
             quote_port,
-            auth_code
+            md_authcode
         )
         self.td_api.connect(
             trade_username,
             trade_password,
             trade_host,
             trade_port,
-            auth_code
+            td_authcode,
+            client_id
         )
 
     def close(self) -> None:
@@ -423,6 +428,7 @@ class TradeApi(TdApi):
         self.gateway_name: str = gateway.gateway_name
 
         self.account_no: str = ""        # 委托下单时使用
+        self.client_id: str = ""         # 子账号，没有可不填
         self.cancel_reqs: Dict[str, CancelRequest] = {}       # 存放未成交订单
 
         self.sys_local_map: Dict[str, str] = {}
@@ -442,8 +448,6 @@ class TradeApi(TdApi):
 
     def onAPIReady(self, code: int) -> None:
         """API状态通知回报"""
-        self.query_account()
-
         self.qryCommodity()
 
     def onRspQryCommodity(
@@ -724,9 +728,11 @@ class TradeApi(TdApi):
         password: str,
         host: str,
         port: int,
-        auth_code: str
+        auth_code: str,
+        client_id: str
     ) -> None:
         """连接服务器"""
+        self.client_id = client_id
         self.init()
 
         # API基本设置
@@ -774,9 +780,14 @@ class TradeApi(TdApi):
             "OrderSide": DIRECTION_VT2TAP[req.direction],
             "OrderPrice": req.price,
             "OrderQty": int(req.volume),
+            "ClientID": self.client_id
         }
 
-        error_id, sesion, order_id = self.insertOrder(order_req)
+        error_id, session, order_id = self.insertOrder(order_req)
+
+        if self.client_id in order_id:
+            order_id = order_id.replace(f"#{self.client_id}#", "")
+
         order: OrderData = req.create_order_data(
             order_id,
             self.gateway_name

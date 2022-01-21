@@ -238,82 +238,6 @@ class QuoteApi(MdApi):
         """行情数据推送"""
         self.update_tick(data)
 
-    def onRspQryCommodity(
-        self,
-        session: int,
-        error: int,
-        last: str,
-        data: dict,
-    ) -> None:
-        """交易品种查询回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
-            self.gateway.write_log("查询交易品种信息失败")
-            return
-
-        commodity_info: CommodityInfo = CommodityInfo(
-            name=data["CommodityEngName"],
-            size=int(data["ContractSize"]),
-            pricetick=data["CommodityTickSize"]
-        )
-        key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
-        commodity_infos[key] = commodity_info
-
-        if last == "Y":
-            self.gateway.write_log("查询交易品种信息成功")
-            req = {}
-            self.qryContract(req)
-
-    def onRspQryContract(
-        self,
-        session: int,
-        error: int,
-        last: str,
-        data: dict
-    ) -> None:
-        """交易合约查询回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
-            self.gateway.write_log("查询交易合约信息失败")
-            return
-
-        exchange: Exchange = EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)
-        key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
-        commodity_info: CommodityInfo = commodity_infos.get(key, None)
-
-        if not data or not exchange or not commodity_info:
-            return
-
-        if data["CommodityType"] == "F":
-            symbol: str = data["CommodityNo"] + data["ContractNo1"]
-
-            if commodity_info.name:
-                name: str = f"{commodity_info.name} {data['ContractNo1']}"
-            else:
-                name: str = symbol
-
-            contract: ContractData = ContractData(
-                symbol=symbol,
-                exchange=exchange,
-                name=name,
-                product=Product.FUTURES,
-                size=commodity_info.size,
-                pricetick=commodity_info.pricetick,
-                net_position=True,
-                gateway_name=self.gateway.gateway_name
-            )
-            self.gateway.on_contract(contract)
-
-            contract_info: ContractInfo = ContractInfo(
-                name=contract.name,
-                exchange_no=data["ExchangeNo"],
-                contract_no=data["ContractNo1"],
-                commodity_type=data["CommodityType"],
-                commodity_no=data["CommodityNo"],
-            )
-            contract_infos[(contract.symbol, contract.exchange)] = contract_info
-
-        if last == "Y":
-            self.gateway.write_log("查询交易合约信息成功")
-
     def update_tick(self, data: dict) -> None:
         """切片数据类型转换"""
         symbol: str = data["CommodityNo"] + data["ContractNo1"]
@@ -467,7 +391,8 @@ class TradeApi(TdApi):
             size=int(data["ContractSize"]),
             pricetick=data["CommodityTickSize"]
         )
-        commodity_infos[data["CommodityNo"]] = commodity_info
+        key: tuple = (data["CommodityNo"], data["CommodityType"])
+        commodity_infos[key] = commodity_info
 
         if last == "Y":
             self.gateway.write_log("查询交易品种信息成功")
@@ -487,7 +412,8 @@ class TradeApi(TdApi):
             return
 
         exchange: Exchange = EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)
-        commodity_info: CommodityInfo = commodity_infos.get(data["CommodityNo"], None)
+        key: tuple = (data["CommodityNo"], data["CommodityType"])
+        commodity_info: CommodityInfo = commodity_infos.get(key, None)
 
         if not data or not exchange or not commodity_info:
             return

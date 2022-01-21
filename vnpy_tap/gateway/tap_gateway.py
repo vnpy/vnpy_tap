@@ -54,15 +54,6 @@ ORDERTYPE_TAP2VT: Dict[str, OrderType] = {
 }
 ORDERTYPE_VT2TAP = {v: k for k, v in ORDERTYPE_TAP2VT.items()}
 
-# 产品类型映射
-PRODUCT_TYPE_TAP2VT: Dict[str, Product] = {
-    "P": Product.SPOT,
-    "F": Product.FUTURES,
-    "O": Product.OPTION,
-    "Z": Product.INDEX,
-    "T": Product.EQUITY,
-}
-
 # 交易所映射
 EXCHANGE_TAP2VT: Dict[str, Exchange] = {
     "SGX": Exchange.SGX,

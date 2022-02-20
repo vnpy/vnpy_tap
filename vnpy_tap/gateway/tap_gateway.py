@@ -106,7 +106,7 @@ contract_infos: Dict[Tuple[str, "Exchange"], "ContractInfo"] = {}
 
 class TapGateway(BaseGateway):
     """
-    vn.py用于对接易盛9.0外盘的交易接口。
+    VeighNa用于对接易盛9.0外盘的交易接口。
     """
 
     default_name: str = "TAP"

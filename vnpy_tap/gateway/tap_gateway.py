@@ -12,7 +12,8 @@ from vnpy.trader.constant import (
     Product,
     Direction,
     Status,
-    OrderType
+    OrderType,
+    Currency
 )
 from vnpy.trader.gateway import BaseGateway
 from vnpy.trader.object import (
@@ -553,7 +554,6 @@ class TradeApi(TdApi):
         if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
             self.gateway.write_log("查询资金信息失败")
             return
-
         self.update_account(data)
 
         if last == "Y":
@@ -650,12 +650,17 @@ class TradeApi(TdApi):
     def update_account(self, data: dict) -> None:
         """更新并推送资金"""
         self.account_no: str = data["AccountNo"]
-
+        currency_no = data['CurrencyNo']
+        try:
+            currency = Currency[currency_no]
+        except:
+            currency = Currency.OTHERS
         account: AccountData = AccountData(
             accountid=data["AccountNo"],
             balance=data["Balance"],
             frozen=data["Balance"] - data["Available"],
-            gateway_name=self.gateway_name
+            gateway_name=self.gateway_name,
+            currency=currency
         )
         self.gateway.on_account(account)
 

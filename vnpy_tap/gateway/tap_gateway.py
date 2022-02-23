@@ -245,6 +245,8 @@ class QuoteApi(MdApi):
         if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
             self.gateway.write_log("查询交易品种信息失败")
             return
+        if data["CommodityType"] != 'F':
+            return
 
         commodity_info: CommodityInfo = CommodityInfo(
             name=data["CommodityEngName"],

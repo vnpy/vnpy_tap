@@ -4,7 +4,6 @@ from pathlib import Path
 from typing import Any, Dict, Tuple, List
 import pytz
 
-from ..api import MdApi, TdApi
 from vnpy.event import EventEngine
 from vnpy.trader.utility import get_folder_path
 from vnpy.trader.constant import (
@@ -26,6 +25,9 @@ from vnpy.trader.object import (
     PositionData,
     AccountData
 )
+
+from ..api import MdApi, TdApi
+
 
 # 委托状态映射
 STATUS_TAP2VT: Dict[str, Status] = {
@@ -389,8 +391,7 @@ class TradeApi(TdApi):
 
         if last == "Y":
             self.gateway.write_log("查询交易品种信息成功")
-            req = {}
-            self.qryContract(req)
+            self.qryContract({})
 
     def onRspQryContract(
         self,
@@ -417,7 +418,7 @@ class TradeApi(TdApi):
             if commodity_info.name:
                 name: str = f"{commodity_info.name} {data['ContractNo1']}"
             else:
-                name = symbol
+                name: str = symbol
 
             contract: ContractData = ContractData(
                 symbol=symbol,
@@ -443,10 +444,6 @@ class TradeApi(TdApi):
         if last == "Y":
             self.gateway.write_log("查询交易合约信息成功")
             self.query_account()
-
-    def onRtnPositionProfit(self, data: dict) -> None:
-        """持仓利润更新推送"""
-        pass
 
     def onRspQryAccount(
         self,
@@ -733,7 +730,6 @@ class TradeApi(TdApi):
             "OrderNo": order_no,
             "ServerFlag": server_flag,
         }
-
         self.cancelOrder(cancel_req)
 
     def query_account(self) -> None:
@@ -757,13 +753,13 @@ def generate_datetime(timestamp: str) -> datetime:
     """生成datetime格式时间"""
     if "-" in timestamp:
         if "." in timestamp:
-            dt = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S.%f")
+            dt: datetime = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S.%f")
         else:
-            dt = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+            dt: datetime = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
     else:
-        dt = datetime.strptime(timestamp, "%y%m%d%H%M%S.%f")
+        dt: datetime = datetime.strptime(timestamp, "%y%m%d%H%M%S.%f")
 
-    dt = CHINA_TZ.localize(dt)
+    dt: datetime = CHINA_TZ.localize(dt)
     return dt
 
 

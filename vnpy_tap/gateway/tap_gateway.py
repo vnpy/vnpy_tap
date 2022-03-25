@@ -106,8 +106,10 @@ contract_infos: Dict[Tuple[str, "Exchange"], "ContractInfo"] = {}
 
 class TapGateway(BaseGateway):
     """
-    vn.py用于对接易盛9.0外盘的交易接口。
+    VeighNa用于对接易盛9.0外盘的交易接口。
     """
+
+    default_name: str = "TAP"
 
     default_setting: Dict[str, Any] = {
         "行情账号": "",
@@ -125,9 +127,9 @@ class TapGateway(BaseGateway):
 
     exchanges: List[str] = list(EXCHANGE_VT2TAP.keys())
 
-    def __init__(self, event_engine: EventEngine):
+    def __init__(self, event_engine: EventEngine, gateway_name: str):
         """构造函数"""
-        super().__init__(event_engine, "TAP")
+        super().__init__(event_engine, gateway_name)
 
         self.md_api: "QuoteApi" = QuoteApi(self)
         self.td_api: "TradeApi" = TradeApi(self)

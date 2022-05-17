@@ -201,6 +201,7 @@ class QuoteApi(MdApi):
 
         self.gateway: TapGateway = gateway
         self.gateway_name: str = gateway.gateway_name
+        self.connect_settings = {}
 
     def onRspLogin(self, error: int, data: dict) -> None:
         """用户登陆请求回报"""
@@ -216,6 +217,9 @@ class QuoteApi(MdApi):
     def onDisconnect(self, reason: int) -> None:
         """服务器连接断开回报"""
         self.gateway.write_log(f"行情服务器连接断开，原因：{reason}")
+        if int(reason) == 13:
+            self.gateway.write_log('尝试重新连接...')
+            self.connect(**self.connect_settings)
 
     def onRspSubscribeQuote(
         self,
@@ -369,6 +373,12 @@ class QuoteApi(MdApi):
         auth_code: str
     ) -> None:
         """连接服务器"""
+        self.connect_settings['username'] = username
+        self.connect_settings['password'] = password
+        self.connect_settings['host'] = host
+        self.connect_settings['port'] = port
+        self.connect_settings['auth_code'] = auth_code
+
         self.init()
 
         # API基本设置

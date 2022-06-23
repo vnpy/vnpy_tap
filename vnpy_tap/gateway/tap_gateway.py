@@ -166,7 +166,8 @@ class TapGateway(BaseGateway):
 
     def close(self) -> None:
         """关闭接口"""
-        pass
+        self.md_api.close()
+        self.td_api.close()
 
     def subscribe(self, req: SubscribeRequest) -> None:
         """订阅行情"""
@@ -199,11 +200,14 @@ class QuoteApi(MdApi):
         self.gateway: TapGateway = gateway
         self.gateway_name: str = gateway.gateway_name
 
+        self.connect_status: bool = False
+
     def onRspLogin(self, error: int, data: dict) -> None:
         """用户登陆请求回报"""
         if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
             self.gateway.write_log(f"行情服务器登录失败：{error}")
         else:
+            self.connect_status = True
             self.gateway.write_log("行情服务器登录成功")
 
     def onAPIReady(self) -> None:
@@ -212,6 +216,7 @@ class QuoteApi(MdApi):
 
     def onDisconnect(self, reason: int) -> None:
         """服务器连接断开回报"""
+        self.connect_status = False
         self.gateway.write_log(f"行情服务器连接断开，原因：{reason}")
 
     def onRspSubscribeQuote(
@@ -288,6 +293,10 @@ class QuoteApi(MdApi):
         auth_code: str
     ) -> None:
         """连接服务器"""
+        # 禁止重复发起连接，会导致异常崩溃
+        if self.connect_status:
+            return
+
         self.init()
 
         # API基本设置
@@ -333,6 +342,12 @@ class QuoteApi(MdApi):
 
         self.subscribeQuote(tap_contract)
 
+    def close(self):
+        """关闭连接"""
+        if self.connect_status:
+            self.disconnect()
+            self.exit()
+
 
 class TradeApi(TdApi):
     """交易API"""
@@ -344,6 +359,7 @@ class TradeApi(TdApi):
         self.gateway: TapGateway = gateway
         self.gateway_name: str = gateway.gateway_name
 
+        self.connect_status: bool = False
         self.account_no: str = ""        # 委托下单时使用
         self.client_id: str = ""         # 子账号，没有可不填
         self.cancel_reqs: Dict[str, CancelRequest] = {}       # 存放未成交订单
@@ -354,6 +370,7 @@ class TradeApi(TdApi):
 
     def onConnect(self) -> None:
         """服务器连接成功回报"""
+        self.connect_status = True
         self.gateway.write_log("交易服务器连接成功")
 
     def onRspLogin(self, error: int, data: dict) -> None:
@@ -651,6 +668,10 @@ class TradeApi(TdApi):
         client_id: str
     ) -> None:
         """连接服务器"""
+        # 禁止重复发起连接，会导致异常崩溃
+        if self.connect_status:
+            return
+
         self.client_id = client_id
         self.init()
 
@@ -751,6 +772,12 @@ class TradeApi(TdApi):
     def query_trade(self) -> None:
         """当日成交查询"""
         self.qryFill({})
+
+    def close(self):
+        """关闭连接"""
+        if self.connect_status:
+            self.disconnect()
+            self.exit()
 
 
 def generate_datetime(timestamp: str) -> datetime:

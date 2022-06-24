@@ -55,15 +55,6 @@ ORDERTYPE_TAP2VT: Dict[str, OrderType] = {
 }
 ORDERTYPE_VT2TAP = {v: k for k, v in ORDERTYPE_TAP2VT.items()}
 
-# 产品类型映射
-PRODUCT_TYPE_TAP2VT: Dict[str, Product] = {
-    "P": Product.SPOT,
-    "F": Product.FUTURES,
-    "O": Product.OPTION,
-    "Z": Product.INDEX,
-    "T": Product.EQUITY,
-}
-
 # 交易所映射
 EXCHANGE_TAP2VT: Dict[str, Exchange] = {
     "SGX": Exchange.SGX,
@@ -116,29 +107,34 @@ contract_infos: Dict[Tuple[str, "Exchange"], "ContractInfo"] = {}
 
 class TapGateway(BaseGateway):
     """
-    vn.py用于对接易盛9.0外盘的交易接口。
+    VeighNa用于对接易盛9.0外盘的交易接口。
     """
+
+    default_name: str = "TAP"
 
     default_setting: Dict[str, Any] = {
         "行情账号": "",
         "行情密码": "",
         "行情服务器": "",
         "行情端口": 0,
+        "行情授权码": "",
         "交易账号": "",
         "交易密码": "",
         "交易服务器": "",
         "交易端口": 0,
-        "授权码": ""
+        "交易授权码": "",
+        "子账号": ""
     }
 
     exchanges: List[str] = list(EXCHANGE_VT2TAP.keys())
 
-    def __init__(self, event_engine: EventEngine):
+    def __init__(self, event_engine: EventEngine, gateway_name: str = "TAP"):
         """构造函数"""
-        super().__init__(event_engine, "TAP")
+        super().__init__(event_engine, gateway_name)
 
         self.md_api: "QuoteApi" = QuoteApi(self)
         self.td_api: "TradeApi" = TradeApi(self)
+        self.td_params = ()
 
     def connect(self, setting: dict) -> None:
         """连接交易接口"""
@@ -146,30 +142,37 @@ class TapGateway(BaseGateway):
         quote_password: str = setting["行情密码"]
         quote_host: str = setting["行情服务器"]
         quote_port: int = setting["行情端口"]
+        md_authcode: str = setting["行情授权码"]
         trade_username: str = setting["交易账号"]
         trade_password: str = setting["交易密码"]
         trade_host: str = setting["交易服务器"]
         trade_port: int = setting["交易端口"]
-        auth_code: str = setting["授权码"]
+        td_authcode: str = setting["交易授权码"]
+        client_id: str = setting["子账号"]
 
         self.md_api.connect(
             quote_username,
             quote_password,
             quote_host,
             quote_port,
-            auth_code
+            md_authcode
         )
-        self.td_api.connect(
+        self.td_params = (
             trade_username,
             trade_password,
             trade_host,
             trade_port,
-            auth_code
+            td_authcode,
+            client_id
+        )
+        self.td_api.connect(
+            *self.td_params
         )
 
     def close(self) -> None:
         """关闭接口"""
-        pass
+        self.md_api.close()
+        self.td_api.close()
 
     def subscribe(self, req: SubscribeRequest) -> None:
         """订阅行情"""
@@ -184,8 +187,15 @@ class TapGateway(BaseGateway):
         self.td_api.cancel_order(req)
 
     def query_account(self) -> None:
-        """查询资金"""
-        pass
+        """查询资金
+        不需要主动查询，借助定时触发，定时检查td状态，断开连接就重新初始化API并发起信的连接
+        """
+        if self.td_api.connect_status is False:
+            self.td_api.close()
+            self.td_api: "TradeApi" = TradeApi(self)
+            self.td_api.connect(
+                *self.td_params
+            )
 
     def query_position(self) -> None:
         """查询持仓"""
@@ -203,11 +213,14 @@ class QuoteApi(MdApi):
         self.gateway_name: str = gateway.gateway_name
         self.connect_settings = {}
 
+        self.connect_status: bool = False
+
     def onRspLogin(self, error: int, data: dict) -> None:
         """用户登陆请求回报"""
         if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
             self.gateway.write_log(f"行情服务器登录失败：{error}")
         else:
+            self.connect_status = True
             self.gateway.write_log("行情服务器登录成功")
 
     def onAPIReady(self) -> None:
@@ -216,10 +229,8 @@ class QuoteApi(MdApi):
 
     def onDisconnect(self, reason: int) -> None:
         """服务器连接断开回报"""
+        self.connect_status = False
         self.gateway.write_log(f"行情服务器连接断开，原因：{reason}")
-        if int(reason) == 13:
-            self.gateway.write_log('尝试重新连接...')
-            self.connect(**self.connect_settings)
 
     def onRspSubscribeQuote(
         self,
@@ -373,12 +384,17 @@ class QuoteApi(MdApi):
         auth_code: str
     ) -> None:
         """连接服务器"""
+
+
+
+        # 禁止重复发起连接，会导致异常崩溃
+        if self.connect_status:
+            return
         self.connect_settings['username'] = username
         self.connect_settings['password'] = password
         self.connect_settings['host'] = host
         self.connect_settings['port'] = port
         self.connect_settings['auth_code'] = auth_code
-
         self.init()
 
         # API基本设置
@@ -424,6 +440,12 @@ class QuoteApi(MdApi):
 
         self.subscribeQuote(tap_contract)
 
+    def close(self):
+        """关闭连接"""
+        if self.connect_status:
+            self.disconnect()
+            self.exit()
+
 
 class TradeApi(TdApi):
     """交易API"""
@@ -435,7 +457,9 @@ class TradeApi(TdApi):
         self.gateway: TapGateway = gateway
         self.gateway_name: str = gateway.gateway_name
 
+        self.connect_status: bool = False
         self.account_no: str = ""        # 委托下单时使用
+        self.client_id: str = ""         # 子账号，没有可不填
         self.cancel_reqs: Dict[str, CancelRequest] = {}       # 存放未成交订单
 
         self.sys_local_map: Dict[str, str] = {}
@@ -444,6 +468,7 @@ class TradeApi(TdApi):
 
     def onConnect(self) -> None:
         """服务器连接成功回报"""
+        self.connect_status = True
         self.gateway.write_log("交易服务器连接成功")
 
     def onRspLogin(self, error: int, data: dict) -> None:
@@ -455,8 +480,6 @@ class TradeApi(TdApi):
 
     def onAPIReady(self, code: int) -> None:
         """API状态通知回报"""
-        self.query_account()
-
         self.qryCommodity()
 
     def onRspQryCommodity(
@@ -476,7 +499,8 @@ class TradeApi(TdApi):
             size=int(data["ContractSize"]),
             pricetick=data["CommodityTickSize"]
         )
-        commodity_infos[data["CommodityNo"]] = commodity_info
+        key: tuple = (data["CommodityNo"], data["CommodityType"])
+        commodity_infos[key] = commodity_info
 
         if last == "Y":
             self.gateway.write_log("查询交易品种信息成功")
@@ -496,7 +520,8 @@ class TradeApi(TdApi):
             return
 
         exchange: Exchange = EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)
-        commodity_info: CommodityInfo = commodity_infos.get(data["CommodityNo"], None)
+        key: tuple = (data["CommodityNo"], data["CommodityType"])
+        commodity_info: CommodityInfo = commodity_infos.get(key, None)
 
         if not data or not exchange or not commodity_info:
             return
@@ -741,9 +766,15 @@ class TradeApi(TdApi):
         password: str,
         host: str,
         port: int,
-        auth_code: str
+        auth_code: str,
+        client_id: str
     ) -> None:
         """连接服务器"""
+        # 禁止重复发起连接，会导致异常崩溃
+        if self.connect_status:
+            return
+
+        self.client_id = client_id
         self.init()
 
         # API基本设置
@@ -791,9 +822,14 @@ class TradeApi(TdApi):
             "OrderSide": DIRECTION_VT2TAP[req.direction],
             "OrderPrice": req.price,
             "OrderQty": int(req.volume),
+            "ClientID": self.client_id
         }
 
-        error_id, sesion, order_id = self.insertOrder(order_req)
+        error_id, session, order_id = self.insertOrder(order_req)
+
+        if self.client_id in order_id:
+            order_id = order_id.replace(f"#{self.client_id}#", "")
+
         order: OrderData = req.create_order_data(
             order_id,
             self.gateway_name
@@ -838,6 +874,12 @@ class TradeApi(TdApi):
     def query_trade(self) -> None:
         """当日成交查询"""
         self.qryFill({})
+
+    def close(self):
+        """关闭连接"""
+        if self.connect_status:
+            self.disconnect()
+            self.exit()
 
 
 def generate_datetime(timestamp: str) -> datetime:

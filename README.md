@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-    <img src ="https://img.shields.io/badge/version-9.0.1-blueviolet.svg"/>
+    <img src ="https://img.shields.io/badge/version-9.0.2-blueviolet.svg"/>
     <img src ="https://img.shields.io/badge/platform-windows-yellow.svg"/>
     <img src ="https://img.shields.io/badge/python-3.7|3.8|3.9|3.10-blue.svg" />
     <img src ="https://img.shields.io/github/license/vnpy/vnpy.svg?color=orange"/>
@@ -13,11 +13,11 @@
 
 ## 说明
 
-基于易盛的北斗星交易API的9.0接口封装开发的windows的接口，适用于香港、新加坡以及其他境外交易所行情/交易。
+基于易盛的北斗星交易API的9.0接口封装开发的Windows的接口，适用于香港、新加坡以及其他境外交易所行情/交易。
 
 ## 安装
 
-安装环境推荐基于3.0.0版本以上的【[**VeighNa Studio**](https://www.vnpy.com)】。
+安装需要基于3.0.0版本以上的[VeighNa Studio](https://www.vnpy.com)。
 
 直接使用pip命令：
 

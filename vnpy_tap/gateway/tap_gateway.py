@@ -2,10 +2,9 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Tuple, List
-import pytz
 
 from vnpy.event import EventEngine
-from vnpy.trader.utility import get_folder_path
+from vnpy.trader.utility import get_folder_path, ZoneInfo
 from vnpy.trader.constant import (
     Exchange,
     Product,
@@ -99,7 +98,7 @@ FLAG_VT2TAP: Dict[str, str] = {
 }
 
 # 其他常量
-CHINA_TZ = pytz.timezone("Asia/Shanghai")
+CHINA_TZ = ZoneInfo("Asia/Shanghai")
 
 # 合约数据全局缓存字典
 commodity_infos: Dict[str, "CommodityInfo"] = {}
@@ -786,7 +785,7 @@ def generate_datetime(timestamp: str) -> datetime:
     else:
         dt: datetime = datetime.strptime(timestamp, "%y%m%d%H%M%S.%f")
 
-    dt: datetime = CHINA_TZ.localize(dt)
+    dt: datetime = dt.replace(tzinfo=CHINA_TZ)
     return dt
 
 

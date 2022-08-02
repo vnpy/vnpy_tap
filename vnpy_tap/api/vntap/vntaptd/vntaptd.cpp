@@ -2990,7 +2990,7 @@ pybind11::tuple TdApi::insertOrder(const dict &req)
 
 	int i = this->api->InsertOrder(&session, &ClientOrderNo, &myreq);
 
-	pybind11::tuple result = pybind11::make_tuple(i, session, ClientOrderNo);
+	pybind11::tuple result = pybind11::make_tuple(i, session, pybind11::bytes(ClientOrderNo));
 	return result;
 }
 

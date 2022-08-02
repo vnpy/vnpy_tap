@@ -719,7 +719,8 @@ class TradeApi(TdApi):
             "ClientID": self.client_id
         }
 
-        error_id, session, order_id = self.insertOrder(order_req)
+        error_id, session, byte_id = self.insertOrder(order_req)    # byte_id是bytes类型数据
+        order_id = byte_id.decode()
 
         if self.client_id in order_id:
             order_id = order_id.replace(f"#{self.client_id}#", "")

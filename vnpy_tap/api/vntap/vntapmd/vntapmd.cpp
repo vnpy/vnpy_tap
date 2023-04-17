@@ -536,8 +536,9 @@ int MdApi::setTapQuoteAPIDataPath(string path)
 
 int MdApi::setTapQuoteAPILogLevel(string level)
 {
-	int i = SetTapQuoteAPILogLevel((char)level.c_str());
-	return i;
+	// int i = SetTapQuoteAPILogLevel((char)level.c_str());
+	// return i;
+	return 0;
 }
 
 int MdApi::setHostAddress(string IP, int port)

@@ -2871,14 +2871,16 @@ string TdApi::getITapTradeAPIVersion()
 
 int TdApi::setITapTradeAPIDataPath(string path)
 {
-	int i = SetITapTradeAPIDataPath(path.c_str());
-	return i;
+	// int i = SetITapTradeAPIDataPath(path.c_str());
+	// return i;
+	return 0;
 };
 
 int TdApi::setITapTradeAPILogLevel(string level)
 {
-	int i = SetITapTradeAPILogLevel((char)level.c_str());
-	return i;
+	// int i = SetITapTradeAPILogLevel((char*)level.c_str());
+	// return i;
+	return 0;
 }
 
 int TdApi::setHostAddress(string IP, int port)

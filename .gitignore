@@ -352,3 +352,4 @@ MigrationBackup/
 dist/
 build/
 *.egg-info/
+.vscode/settings.json

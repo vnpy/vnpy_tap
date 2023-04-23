@@ -720,12 +720,7 @@ class TradeApi(TdApi):
         }
 
         error_id, session, byte_id = self.insertOrder(order_req)    # byte_id是bytes类型数据
-
-        try:
-            order_id = byte_id.decode()
-        except UnicodeDecodeError:
-            print("TAP接口返回的本地委托号字符串解析出错：", byte_id)
-            raise
+        order_id = byte_id.decode()
 
         if self.client_id in order_id:
             order_id = order_id.replace(f"#{self.client_id}#", "")

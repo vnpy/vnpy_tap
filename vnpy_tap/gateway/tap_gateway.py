@@ -101,7 +101,7 @@ FLAG_VT2TAP: Dict[str, str] = {
 CHINA_TZ = ZoneInfo("Asia/Shanghai")
 
 # 合约数据全局缓存字典
-commodity_infos: Dict[str, "CommodityInfo"] = {}
+commodity_infos: Dict[tuple[str, str, str], "CommodityInfo"] = {}
 contract_infos: Dict[Tuple[str, "Exchange"], "ContractInfo"] = {}
 
 
@@ -402,7 +402,7 @@ class TradeApi(TdApi):
             size=int(data["ContractSize"]),
             pricetick=data["CommodityTickSize"]
         )
-        key: tuple = (data["CommodityNo"], data["CommodityType"])
+        key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
         commodity_infos[key] = commodity_info
 
         if last == "Y":
@@ -422,7 +422,7 @@ class TradeApi(TdApi):
             return
 
         exchange: Exchange = EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)
-        key: tuple = (data["CommodityNo"], data["CommodityType"])
+        key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
         commodity_info: CommodityInfo = commodity_infos.get(key, None)
 
         if not data or not exchange or not commodity_info:

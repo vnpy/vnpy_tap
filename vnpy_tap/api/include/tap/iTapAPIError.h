@@ -1,581 +1,827 @@
-ï»¿#ifndef ITAP_API_ERROR_H
+#ifndef ITAP_API_ERROR_H
 #define ITAP_API_ERROR_H
 
 //=============================================================================
 /**
- *    \addtogroup G_ERR_INNER_API        ITapAPIå†…éƒ¨è¿”å›žçš„é”™è¯¯ç å®šä¹‰ã€‚
- *    @{
+ *	\addtogroup G_ERR_INNER_API		ITapAPIÄÚ²¿·µ»ØµÄ´íÎóÂë¶¨Òå¡£
+ *	@{
  */
 //=============================================================================
-//! æˆåŠŸ
+//! ³É¹¦
 namespace ITapTrade
 {
+	//=============================================================================
+	/**
+	*	\addtogroup G_ERR_LOGIN		µÇÂ¼¹ý³Ì´íÎó
+	*	@{
+	*/
+	//=============================================================================
+    //! µÇÂ¼¹ý³ÌÖ´ÐÐ´íÎó
+	const int			TAPIERROR_LOGIN										= 10001;
+    //! µÇÂ¼ÓÃ»§²»´æÔÚ
+	const int			TAPIERROR_LOGIN_USER								= 10002;
+    //! ÐèÒª½øÐÐ¶¯Ì¬ÈÏÖ¤
+	const int			TAPIERROR_LOGIN_DDA									= 10003;
+    //! µÇÂ¼ÓÃ»§Î´ÊÚÈ¨
+	const int			TAPIERROR_LOGIN_LICENSE 							= 10004;
+    //! µÇÂ¼Ä£¿é²»ÕýÈ·
+	const int			TAPIERROR_LOGIN_MODULE								= 10005;
+    //! ÐèÒªÇ¿ÖÆÐÞ¸ÄÃÜÂë
+	const int			TAPIERROR_LOGIN_FORCE 								= 10006;
+    //! µÇÂ¼×´Ì¬½ûÖ¹µÇÂ¼
+	const int			TAPIERROR_LOGIN_STATE 								= 10007;
+    //! µÇÂ¼ÃÜÂë²»ÕýÈ·
+	const int			TAPIERROR_LOGIN_PASS 								= 10008;
+    //! Ã»ÓÐ¸ÃÄ£¿éµÇÂ¼È¨ÏÞ
+	const int			TAPIERROR_LOGIN_RIGHT 								= 10009;
+    //! µÇÂ¼ÊýÁ¿³¬ÏÞ
+	const int			TAPIERROR_LOGIN_COUNT 								= 10010;
+    //! µÇÂ¼ÓÃ»§²»ÔÚ·þÎñÆ÷±êÊ¶ÏÂ¿ÉµÇÂ¼ÓÃ»§ÁÐ±íÖÐ
+	const int			TAPIERROR_LOGIN_NOTIN_SERVERFLAGUSRES 				= 10011;
+	//! µÇÂ¼ÓÃ»§ÒÑ±»¶³½á
+	const int			TAPIERROR_LOGIN_FREEZE 								= 10012;
+	//! ÃÜÂë´íÎó£¬ÓÃ»§¶³½á
+	const int			TAPIERROR_LOGIN_TOFREEZE 							= 10013;
+	//! ¿Í»§×´Ì¬²»ÔÊÐíµÇÂ¼
+	const int			TAPIERROR_LOGIN_ACCOUNTSTATE 						= 10014;
+	//! ÐèÒª½øÐÐ¶þ´ÎÈÏÖ¤
+	const int			TAPIERROR_LOGIN_SECCERTIFI 							= 10015;
+
+	//Î´°ó¶¨¶þ´ÎÈÏÖ¤ÐÅÏ¢
+	const int			TAPIERROR_LOGIN_NOSECONDSET 						= 10016;
+	//²»ÊÜÐÅÈÎµÄ¼ÆËã»úµÇÂ¼
+	const int			TAPIERROR_LOGIN_NOTURSTHOST 						= 10017;
+	//·Ç±¾½»Ò×ÖÐÐÄ¿Í»§
+	const int			TAPIERROR_LOGIN_NOTINTRADECENTER 					= 10019;
+	//°æ±¾ºÍºóÌ¨°æ±¾²»²»Ò»ÖÂ
+	const int			TAPIERROR_LOGIN_INCONSISTENT 						= 10020;
+	//¿Í»§ËùÊô½»Ò×ÖÐÐÄÇ°ÖÃµØÖ·Î´ÅäÖÃ
+	const int			TAPIERROR_LOGIN_NOCENTERFRONTADDRESS 				= 10021;
+	//²»ÔÊÐí´ËÕËºÅÀàÐÍµÇÂ¼
+	const int			TAPIERROR_LOGIN_PROHIBITACCOUNTTYPE 				= 10022;
+
+	//ÐèÒªÐÅÏ¢²É¼¯-Ö±Á¬
+	const int			TAPIERROR_LOGIN_GATHERINFO_DIRECT 					= 10023;
+	//ÐèÒªÐÅÏ¢²É¼¯-ÖÐ¼Ì
+	const int			TAPIERROR_LOGIN_GATHERINFO_RELAY 					= 10024;
+
+	//ÔÊÐíÖØÖÃÃÜÂë
+	const int			TAPIERROR_LOGIN_RESET_PASSWORD						= 10025;
+	//ÖØÖÃÃÜÂëÁ´½Ó´ÎÊý³¬ÏÞ
+	const int			TAPIERROR_LOGIN_RESET_PASSWORD_EXCEEDED				= 10026;
+	//²»Ö§³Ö²Ù×÷Ô±ÖØÖÃÃÜÂë
+	const int			TAPIERROR_LOGIN_OPERATOR_UNALLOWED_RESET			= 10027;
+	//¶³½áÖØÖÃÃÜÂë
+	const int			TAPIERROR_LOGIN_RESET_PASSWORD_FROZEN				= 10028;
+
+	//Éí·ÝÑéÖ¤Ê§°Ü
+	const int			TAPIERROR_LOGIN_VERIFYIDENTITY_FAILED				= 10029;
+	//Éí·ÝÑéÖ¤´ÎÊý³¬ÏÞ
+	const int			TAPIERROR_LOGIN_VERIFYIDENTITY_EXCEED				= 10030;
+	//ÊÚÈ¨ÒÑµ½ÆÚ
+	const int			TAPIERROR_LOGIN_LICENSE_EXPIRED						= 10031;
+
+	//²»ÔÊÐíÖØÖÃÃÜÂë-Ã»ÓÐÉèÖÃ·¢ËÍ·½Ê½
+	const int			TAPIERROR_LOGIN_PROHIBITRESETPASSWORD				= 10032;
+	//ÔÊÐí¶³½á×´Ì¬½â¶³
+	const int			TAPIERROR_LOGIN_UNFREEZE							= 10033;
+	//¶³½á×´Ì¬½â¶³½áÁ´½ÓÊýÁ¿³¬ÏÞ
+	const int			TAPIERROR_LOGIN_UNFREEZE_EXCEEDED					= 10034;
+	//²»ÔÊÐí½â¶³-Ã»ÓÐÉèÖÃ·¢ËÍ·½Ê½
+	const int			TAPIERROR_LOGIN_PROHIBIT_UNFREEZE					= 10035;
+	//²»ÐèÒª½â¶³-µÇÂ¼Î´¶³½á
+	const int			TAPIERROR_LOGIN_NONEED_UNFREEZE						= 10036;
+
+	//!	¶þ´ÎÑéÖ¤Ê§°Ü
+	const int			TAPIERROR_SECONDCERTIFICATION_FAIL 					= 14001;
+	//!	¶þ´ÎÑéÖ¤³¬Ê±
+	const int			TAPIERROR_SECONDCERTIFICATION_TIMEOVER 				= 14002;
+	//!¶þ´ÎÈÏÖ¤´íÎó´ÎÊý³¬ÏÞ£¬ÖØÐÂµÇÂ¼
+	const int			TAPIERROR_SECONDCERTIFICATION_RELOGIN 				= 14003;
+	//!¶þ´ÎÈÏÖ¤´íÎó´ÎÊý³¬ÏÞ£¬ÓÃ»§¶³½á
+	const int			TAPIERROR_SECONDCERTIFICATION_FREEZE 				= 14004;
+	//=============================================================================
+    //! ÉèÖÃÖØ¸´
+	const int			TAPIERROR_DATA_REPEAT								= 1062;
+    //! Êý¾Ý¿âÁ¬½ÓÊ§°Ü
+	const int			TAPIERROR_CONN_DATABASE 							= 11000;
+    //! Êý¾Ý¿â²Ù×÷Ê§°Ü
+	const int			TAPIERROR_OPER_DATABASE 							= 11001;
+    //! ²»ÔÊÐíÒ»¶Ô¶à
+	const int			TAPIERROR_NEED_ONETOONE 							= 11002;
+    //! É¾³ýÊ§°Ü-´æÔÚ¹ØÁªÐÅÏ¢£¬
+	const int			TAPIERROR_EXIST_RELATEINFO 							= 11003;
+	//! É¾³ý·Ö×éÊ§°Ü-·Ö×éÓÐÏÂÊô»òÔÚ²Ù×÷Ô±ÏÂÊôÖÐ
+	const int			TAPIERROR_EXIST_RELATEINFOOFGROUP 					= 11004;
+
+	//ÉóºË×´Ì¬²»ÓèÐíÐÞ¸Ä
+	const int			TAPIERROR_CHECK_FAILED 								= 11006;
+	//²»ÔÊÐí´æÔÚÖØ¸´3.0Íâ²¿Æ·ÖÖ±àºÅ
+	const int			TAPIERROR_EXIST_OUTSIDECOMMODITYNO 					= 11007;
+	//¿Í»§½áËãµ¥²»´æÔÚ
+	const int			TAPIERROR_NOTEXIST_BILL 							= 11008;
+	//²»ÔÊÐíÔö¼Ó´ËÀàÐÍÕËºÅ
+	const int			TAPIERROR_LOGIN_PROHIBITADDACCOUNTTYPE 				= 11009;
+	//ÕËºÅÀàÐÍ²»ÔÊÐíÎª¿Õ
+	const int			TAPIERROR_ACCOUNTINFO_NOTEXPTY 						= 11010;
+	//Ö÷ÕËºÅ²»ÔÊÐíÎª¿Õ
+	const int			TAPIERROR_ACCOUNTINFO_SuperiorNOTEMPTY 				= 11011;
+	//³¬¹ýÐÅÈÎÉè±¸°ó¶¨ÊýÁ¿ÉÏÏÞ
+	const int			TAPIERROR_USERTRUSTDEVICE_ADDLIMITE					= 11012;
+	//·Ç·¨Ó³Éä
+	const int			TAPIERROR_UPPERACCOUNTMAPPING_NOTALLOW				= 11013;
+
+    //! µÇÂ¼ÓÃ»§ÃÜÂëÐÞ¸ÄÊ§°Ü-Ô­Ê¼ÃÜÂë´íÎó
+	const int			TAPIERROR_USERPASSWORD_MOD_SOURCE 					= 12001;
+    //! µÇÂ¼ÓÃ»§ÃÜÂëÐÞ¸ÄÊ§°Ü-²»ÄÜÓëÇ°n´ÎÃÜÂëÏàÍ¬
+	const int			TAPIERROR_USERPASSWORD_MOD_SAME 					= 12002;
+    //! µÇÂ¼ÓÃ»§ÃÜÂëÐÞ¸ÄÊ§°Ü-ÐÂÃÜÂë²»·ûºÏÃÜÂë¸´ÔÓ¶ÈÒªÇó
+	const int			TAPIERROR_USERPASSWORD_MOD_COMPLEXITY 				= 12003;
+
+    //! Ò»¸ö±ÒÖÖ×éÖ»ÄÜÉèÖÃÒ»¸ö»ù±Ò
+	const int			TAPIERROR_CURRENCY_ONLY_ONEBASE 					= 13001;
+    //! »ù±ÒÖ»ÄÜÊÇÃÀÔª»ò¸Û±Ò
+	const int			TAPIERROR_CURRENCY_ONLY_USDHKD 						= 13002;
+
+	//! ÓÃ»§²É¼¯ÐÅÏ¢ÃÜÔ¿Î´ÕÒµ½
+	const int			TAPIERROR_GATHERINFO_NO_AUTHKEY						= 17001;
+	//! APPIDÈÏÖ¤Ê§°Ü
+	const int			TAPIERROR_GATHERINFO_AUTH_FAILED					= 17002;
+	//=============================================================================
+	/**
+	*	\addtogroup G_ERR_TRADE_SERVICE		½»Ò×·þÎñ´íÎó´úÂë¶¨Òå
+	*	@{
+	*/
+	//=============================================================================
+
+    //! ×Ê½ðÕËºÅ²»´æÔÚ
+	const int			TAPIERROR_ORDERINSERT_ACCOUNT 						= 60001;
+    //! ×Ê½ðÕËºÅ×´Ì¬²»ÕýÈ·
+	const int			TAPIERROR_ORDERINSERT_ACCOUNT_STATE 				= 60002;
+	//! ×Ê½ðÕËºÅ½»Ò×ÖÐÐÄ²»Ò»ÖÂ
+	const int			TAPIERROR_ORDERINSERT_TRADECENT_ERROR 				= 60003;
+	//Ö÷ÕËºÅ²»ÔÊÐíÏÂµ¥
+	const int			TAPIERROR_ORDERINT_MAINACCOUNT_ERROR 				= 60004;
+	//Ö÷ÕËºÅÐÅÏ¢´íÎó
+	const int			TAPIERROR_ORDERINT_MAINACCINFO_ERROR 				= 60005;
+	//ÕËºÅ½ûÖ¹ÆÚÈ¨ÊÐ¼ÛÏÂµ¥
+	const int			TAPIERROR_ORDERINT_NO_OPTMARKET_ERROR 				= 60006;
+	//Ä¿Ç°²»Ö§³ÖµÄÖ¸Áî
+	const int			TAPIERROR_ORDERINT_UN_SUPPORT_ERROR 				= 60007;
+    //! ÏÂµ¥ÎÞÐ§µÄºÏÔ¼
+	const int			TAPIERROR_ORDERINSERT_CONTRACT 						= 60011;
+    //! LMEÎ´×¼±¸¾ÍÐ÷
+	const int			TAPIERROR_ORDERINSERT_LME_NOTREADY 					= 60012;
+	//!²»Ö§³ÖµÄÏÂµ¥ÀàÐÍ
+	const int			TAPIERROR_ORDERINSERT_ERROR_ORDER_TYPE 				= 60013;
+	//!´íÎóµÄÂñµ¥ÀàÐÍ
+	const int			TAPIERROR_ORDERINSERT_READY_TYPE_ERROR 				= 60014;
+	//!²»ºÏ·¨µÄÎ¯ÍÐÀàÐÍ
+	const int			TAPIERROR_ORDERINSERT_ORDER_TYPE_ERROR 				= 60015;
+	//ÏÂµ¥ºÏÔ¼±êµÄºÏÔ¼²»´æÔÚ
+	const int			TAPIERROR_ORDERINSERT_SUBCONTRACT 					= 60016;
+	//ÏÖ»õÏÂµ¥ÂòÈëÊýÁ¿´íÎó
+	const int			TAPIERROR_ORDERINSERT_SPOTBUYQTY 					= 60017;
+	//·ÇÈÏ¹ºÆÚÈ¨²»ÔÊÐí±¸¶Ò
+	const int			TAPIERROR_ORDERINSERT_RESERVE_PUT 					= 60018;
+	//ÂòÈë¿ª²Ö²»ÔÊÐí±¸¶Ò
+	const int			TAPIERROR_ORDERINSERT_RESERVE_B_OPEN 				= 60019;
+	//Âô³öÆ½²Ö²»ÔÊÐí±¸¶Ò
+	const int			TAPIERROR_ORDERINSERT_RESERVE_S_COVER 				= 60020;
+    //! ¿Í»§È¨ÏÞ½ûÖ¹½»Ò×
+	const int			TAPIERROR_ORDER_NOTRADE_ACCOUNT 					= 60021;
+    //! ¿Í»§Æ·ÖÖ·Ö×é½ûÖ¹½»Ò×
+	const int			TAPIERROR_ORDER_NOTRADE_COM_GROUP 					= 60022;
+    //! ¿Í»§ºÏÔ¼ÌØÉè½ûÖ¹½»Ò×
+	const int			TAPIERROR_ORDER_NOTRADE_ACC_CONTRACT 				= 60023;
+    //! ÏµÍ³È¨ÏÞ½ûÖ¹½»Ò×
+	const int			TAPIERROR_ORDER_NOTRADE_SYSTEM 						= 60024;
+    //! ¿Í»§È¨ÏÞÖ»¿ÉÆ½²Ö
+	const int			TAPIERROR_ORDER_CLOSE_ACCOUNT 						= 60025;
+    //! ¿Í»§ºÏÔ¼ÌØÉèÖ»¿ÉÆ½²Ö
+	const int			TAPIERROR_ORDER_CLOSE_ACC_CONTRACT 					= 60026;
+    //! ÏµÍ³È¨ÏÞÖ»¿ÉÆ½²Ö
+	const int			TAPIERROR_ORDER_CLOSE_SYSTEM 						= 60027;
+	//! Ö»¿ÉÆ½²ÖÌáÇ°ÌìÊýÏÞÖÆÖ»¿ÉÆ½²Ö
+	const int			TAPIERROR_ORDER_CLOSE_DAYS 							= 60028;
+	//! ¿Í»§Æ·ÖÖ·ç¿ØÈ¨ÏÞ½ûÖ¹½»Ò×
+	const int			TAPIERROR_ORDER_NOTRADE_RISK 						= 60029;
+	//! ¿Í»§Æ·ÖÖ·ç¿ØÈ¨ÏÞÖ»¿ÉÆ½²Ö
+	const int			TAPIERROR_ORDER_CLOSE_RISK 							= 60030;
+
+    //! ³Ö²ÖÁ¿³¬¹ý×î´óÏÞÖÆ
+	const int			TAPIERROR_ORDERINSERT_POSITIONMAX 					= 60031;
+    //! ÏÂµ¥³¬¹ýµ¥±Ê×î´óÁ¿
+	const int			TAPIERROR_ORDERINSERT_ONCEMAX 						= 60032;
+    //! ÏÂµ¥ºÏÔ¼ÎÞ½»Ò×Â·ÓÉ
+	const int			TAPIERROR_ORDERINSERT_TRADEROUTE 					= 60033;
+	//! Î¯ÍÐ¼Û¸ñ³¬³öÆ«Àë·¶Î§
+	const int			TAPIERROR_ORDER_IN_MOD_PRICE_ERROR 					= 60034;
+	//! ³¬¹ýGiveUp×î´ó³Ö²ÖÁ¿
+	const int			TAPIERROR_ORDER_IN_GIVEUP_POS_MAX 					= 60035;
+	//³Ö²ÖÁ¿³¬¹ýETF×Ü³Ö²ÖÏÞÖÆ
+	const int			TAIERROR_ORDER_ETF_POSITIONMAX 						= 60036;
+	//³Ö²ÖÁ¿³¬¹ýETFÈ¨Àû²ÖÏÞÖÆ
+	const int			TAIERROR_ORDER_ETF_BUYPOSITIONMAX 					= 60037;
+	//³Ö²ÖÁ¿³¬¹ýETFµ¥ÈÕÂòÈë¿ª²ÖÏÞÖÆ
+	const int			TAIERROR_ORDER_ETF_BUYONEDAYPOSITIONMAX 			= 60038;
+	//¿ÉÓÃËø¶¨ÏÖ»õ²»×ã
+	const int			TAIERROR_ORDERINSERT_NOTENOUGHSPOT 					= 60039;
+	//ÏÖ»õ²»Ö§³Ö±¸¶Ò
+	const int			TAIERROR_ORDERINSERT_RESERVE_SPOT 					= 60040;
 
 
-    //=============================================================================
-    /**
-    *    \addtogroup G_ERR_LOGIN        ç™»å½•è¿‡ç¨‹é”™è¯¯
-    *    @{
-    */
-    //=============================================================================
-    //! ç™»å½•è¿‡ç¨‹æ‰§è¡Œé”™è¯¯
-    const int            TAPIERROR_LOGIN = 10001;
-    //! ç™»å½•ç”¨æˆ·ä¸å­˜åœ¨
-    const int            TAPIERROR_LOGIN_USER = 10002;
-    //! éœ€è¦è¿›è¡ŒåŠ¨æ€è®¤è¯
-    const int            TAPIERROR_LOGIN_DDA = 10003;
-    //! ç™»å½•ç”¨æˆ·æœªæŽˆæƒ
-    const int            TAPIERROR_LOGIN_LICENSE = 10004;
-    //! ç™»å½•æ¨¡å—ä¸æ­£ç¡®
-    const int            TAPIERROR_LOGIN_MODULE = 10005;
-    //! éœ€è¦å¼ºåˆ¶ä¿®æ”¹å¯†ç 
-    const int            TAPIERROR_LOGIN_FORCE = 10006;
-    //! ç™»å½•çŠ¶æ€ç¦æ­¢ç™»é™†
-    const int            TAPIERROR_LOGIN_STATE = 10007;
-    //! ç™»å½•å¯†ç ä¸æ­£ç¡®
-    const int            TAPIERROR_LOGIN_PASS = 10008;
-    //! æ²¡æœ‰è¯¥æ¨¡å—ç™»å½•æƒé™
-    const int            TAPIERROR_LOGIN_RIGHT = 10009;
-    //! ç™»å½•æ•°é‡è¶…é™
-    const int            TAPIERROR_LOGIN_COUNT = 10010;
-    //! ç™»å½•ç”¨æˆ·ä¸åœ¨æœåŠ¡å™¨æ ‡è¯†ä¸‹å¯ç™»å½•ç”¨æˆ·åˆ—è¡¨ä¸­
-    const int            TAPIERROR_LOGIN_NOTIN_SERVERFLAGUSRES = 10011;
-    //! ç™»å½•ç”¨æˆ·å·²è¢«å†»ç»“
-    const int            TAPIERROR_LOGIN_FREEZE = 10012;
-    //! å¯†ç é”™è¯¯ï¼Œç”¨æˆ·å†»ç»“
-    const int            TAPIERROR_LOGIN_TOFREEZE = 10013;
-    //! å®¢æˆ·çŠ¶æ€ä¸å…è®¸ç™»å½•
-    const int            TAPIERROR_LOGIN_ACCOUNTSTATE = 10014;
-    //! éœ€è¦è¿›è¡ŒäºŒæ¬¡è®¤è¯
-    const int            TAPIERROR_LOGIN_SECCERTIFI = 10015;
+    //! Î´µÇÂ¼Íø¹Ø
+	const int          TAPIERROR_UPPERCHANNEL_NOT_LOGIN 					= 60041;
+	//! Î´ÕÒµ½Íø¹ØÐÅÏ¢
+	const int          TAPIERROR_UPPERCHANNEL_NOT_FOUND 					= 60042;
+	//´ËÆ·ÖÖ²»Ö§³Ö½âËø»òËø¶¨
+	const int          TAPIERROR_COMMODITY_LOCK 							= 60043;
+	//ÏÖ»õÎ´ÉèÖÃ¶ÔÓ¦ÆÚÈ¨Æ·ÖÖ
+	const int          TAPIERROR_SPOT_ROOT_COMMODITY 						= 60044;
+	//ÏÖ»õ¶ÔÓ¦ÆÚÈ¨ÎÞ½»Ò×Â·ÓÉ
+	const int			TAIERROR_SPOT_ROOTCOM_TRADEROUTE 					= 60045;
 
-    //æœªç»‘å®šäºŒæ¬¡è®¤è¯ä¿¡æ¯
-    const int          TAPIERROR_LOGIN_NOSECONDSET = 10016;
-    //ä¸å—ä¿¡ä»»çš„è®¡ç®—æœºç™»å½•
-    const int          TAPIERROR_LOGIN_NOTURSTHOST = 10017;
-    //!    äºŒæ¬¡éªŒè¯å¤±è´¥
-    const int          TAPITAPIERROR_SECONDCERTIFICATION_FAIL = 14001;
-    //!    äºŒæ¬¡éªŒè¯è¶…æ—¶
-    const int          TAPITAPIERROR_SECONDCERTIFICATION_TIMEOVER = 14002;
+    //! ÏÂµ¥×Ê½ð²»×ã
+	const int			TAPIERROR_ORDERINSERT_NOTENOUGHFUND 				= 60051;
+    //! ÊÖÐø·Ñ²ÎÊý´íÎó
+	const int			TAPIERROR_ORDERINSERT_FEE 							= 60052;
+    //! ±£Ö¤½ð²ÎÊý´íÎó
+	const int			TAPIERROR_ORDERINSERT_MARGIN 						= 60053;
+    //! ×Ü»ù±Ò×Ê½ð²»×ã
+	const int			TAPIERROR_ORDERINSERT_BASENOFUND 					= 60054;
 
-    //=============================================================================
-    //! æ•°æ®åº“è¿žæŽ¥å¤±è´¥
-    const int            TAPIERROR_CONN_DATABASE = 11000;
-    //! æ•°æ®åº“æ“ä½œå¤±è´¥
-    const int            TAPIERROR_OPER_DATABASE = 11001;
-    //! ä¸å…è®¸ä¸€å¯¹å¤š
-    const int            TAPIERROR_NEED_ONETOONE = 11002;
-    //! åˆ é™¤å¤±è´¥-å­˜åœ¨å…³è”ä¿¡æ¯ï¼Œ
-    const int            TAPIERROR_EXIST_RELATEINFO = 11003;
-    //! åˆ é™¤åˆ†ç»„å¤±è´¥-åˆ†ç»„æœ‰ä¸‹å±žæˆ–åœ¨æ“ä½œå‘˜ä¸‹å±žä¸­
-    const int            TAPIERROR_EXIST_RELATEINFOOFGROUP = 11004;
+	//! ³¬¹ý±£Ö¤½ð¶î¶È
+	const int			TAPIERROR_ORDERINSERT_MARGINAMOUNT 					= 60055;
+	//! ×Ü»ù±Ò³¬¹ý¿ª²Ö±ÈÀýÏÞÖÆ
+	const int			TAPIERROR_ORDERINSERT_OPENRATIO 					= 60056;
+	//! ¶ÀÁ¢±ÒÖÖ×é³¬¹ý¿ª²Ö±ÈÀýÏÞÖÆ
+	const int			TAPIERROR_ORDERINSERT_GROUP_OPENRATIO 				= 60057;
+	//! ·çÏÕÕóÁÐ²ÎÊý´íÎó
+	const int			TAPIERROR_ORDERINSERT_RISKARRAY 					= 60058;
+	//×Ü»ù±Ò³¬¹ýÏÞ¹º¶î¶ÈÏÞÖÆ
+	const int			TAIERROR_ORDERINSERT_BUYLIMITE 						= 60059;
+	//¶ÀÁ¢±ÒÖÖ×é³¬¹ýÏÞ¹º¶î¶ÈÏÞÖÆ
+	const int			TAIERROR_ORDERINSERT_GROUP_BUYLIMITE 				= 60060;
+    //! ³·µ¥ÎÞ´ËÏµÍ³ºÅ
+	const int          TAPIERROR_ORDERDELETE_NOT_SYSNO 						= 60061;
+    //! ´Ë×´Ì¬²»ÔÊÐí³·µ¥
+	const int          TAPIERROR_ORDERDELETE_NOT_STATE 						= 60062;
+	//! Â¼µ¥²»ÔÊÐí³·µ¥
+	const int          TAPIERROR_ORDERDELETE_NO_INPUT 						= 60063;
+	//²»ÔÊÐí³·ÏúËø¶¨/½âËøÖ¸Áî
+	const int          TAPIERROR_ORDERDELETE_NO_TRADE 						= 60064;
 
-    //! ç™»å½•ç”¨æˆ·å¯†ç ä¿®æ”¹å¤±è´¥-åŽŸå§‹å¯†ç é”™è¯¯
-    const int            TAPIERROR_USERPASSWORD_MOD_SOURCE = 12001;
-    //! ç™»å½•ç”¨æˆ·å¯†ç ä¿®æ”¹å¤±è´¥-ä¸èƒ½ä¸Žå‰næ¬¡å¯†ç ç›¸åŒ
-    const int            TAPIERROR_USERPASSWORD_MOD_SAME = 12002;
+    //! ´Ë×´Ì¬²»ÔÊÐí¸Äµ¥
+	const int			TAPIERROR_ORDERMODIFY_NOT_STATE 					= 60071;
+    //! ÈË¹¤µ¥²»ÔÊÐí¸Äµ¥
+	const int			TAPIERROR_ORDERMODIFY_BACK_INPUT 					= 60072;
+	//! ·çÏÕ±¨µ¥²»ÔÊÐí¸Äµ¥
+	const int			TAPIERROR_ORDERMODIFY_RISK_ORDER 					= 60073;
+	//! ³É½»Á¿´óÓÚ¸Äµ¥Á¿
+	const int			TAPIERROR_ORDERMODIFY_ERROR_QTY 					= 60074;
+	//! Ô¤Âñµ¥²»ÔÊÐí¸Äµ¥
+	const int			TAPIERROR_ORDERMODIFY_ERROR_READY 					= 60075;
 
-    //! ç™»å½•ç”¨æˆ·å¯†ç ä¿®æ”¹å¤±è´¥-æ–°å¯†ç ä¸ç¬¦åˆå¯†ç å¤æ‚åº¦è¦æ±‚
-    const int          TAPIERROR_USERPASSWORD_MOD_COMPLEXITY = 12003;
+    //! ÒÑÉ¾³ý±¨µ¥²»ÄÜ×ªÒÆ
+	const int			TAPIERROR_ORDERINPUT_CANNOTMOVE 					= 60081;
 
-    //! ä¸€ä¸ªå¸ç§ç»„åªèƒ½è®¾ç½®ä¸€ä¸ªåŸºå¸
-    const int            TAPIERROR_CURRENCY_ONLY_ONEBASE = 13001;
-    //! åŸºå¸åªèƒ½æ˜¯ç¾Žå…ƒæˆ–æ¸¯å¸
-    const int            TAPIERROR_CURRENCY_ONLY_USDHKD = 13002;
+    //! Â¼µ¥ÖØ¸´
+	const int			TAPIERROR_ORDERINPUT_REPEAT 						= 60091;
 
+	//! ºÏÔ¼ÐÐÇé¼Û¸ñÐÞ¸ÄÊ§°Ü
+	const int			TAPIERROR_CONTRACT_QUOTE 							= 60101;
 
-    //=============================================================================
-    /**
-    *    \addtogroup G_ERR_TRADE_SERVICE        äº¤æ˜“æœåŠ¡é”™è¯¯ä»£ç å®šä¹‰
-    *    @{
-    */
-    //=============================================================================
+	//! ÏÂµ¥³¬¹ýÉÏÊÖµ¥±Ê×î´óÁ¿
+	const int			TAPIERROR_UPPER_ONCEMAX 							= 60111;
+	//! ÏÂµ¥³¬¹ýÉÏÊÖ×î´ó³Ö²ÖÁ¿
+	const int			TAPIERROR_UPPER_POSITIONMAX 						= 60112;
+	//Æ·ÖÖ×Ü²Ö²ã×î´ó³Ö²ÖÁ¿³¬ÏÞ
+	const int			TAPIERROR_ORDERINSERT_POSMAX_COM					= 60113;
+	//Æ·ÖÖ¾»²Ö²ã×î´ó³Ö²ÖÁ¿³¬ÏÞ
+	const int			TAPIERROR_ORDERINSERT_POSMAX_COM_NET				= 60114;
 
-    //! èµ„é‡‘è´¦å·ä¸å­˜åœ¨
-    const int            TAPIERROR_ORDERINSERT_ACCOUNT = 60001;
-    //! èµ„é‡‘è´¦å·çŠ¶æ€ä¸æ­£ç¡®
-    const int            TAPIERROR_ORDERINSERT_ACCOUNT_STATE = 60002;
-    //! èµ„é‡‘è´¦å·äº¤æ˜“ä¸­å¿ƒä¸ä¸€è‡´
-    const int            TAPIERROR_ORDERINSERT_TRADECENT_ERROR = 60003;
+	//! ¿ªÆ½·½Ê½´íÎó
+	const int			TAPIERROR_ORDERINSERT_CLOSEMODE 					= 60121;
+	//! Î¯ÍÐÆ½²Ö³Ö²Ö²»×ã
+	const int			TAPIERROR_CLOSE_ORDER 								= 60122;
+	//! ³É½»Æ½²ÖÊ§°Ü
+	const int			TAPIERROR_CLOSE_MATCH 								= 60123;
+	//ÏÖ»õÆ½²Ö³¬¹ýËø¶¨Á¿
+	const int			TAPIERROR_CLOSE_SPOT_OUT_LOCK						= 60124;
+	//ÏÖ»õ±¸¶Ò»ùÊýÎª¿Õ
+	const int			TAPIERROR_CLOSE_SPOT_OUT_NULL						= 60125;
 
-    //! ä¸‹å•æ— æ•ˆçš„åˆçº¦
-    const int            TAPIERROR_ORDERINSERT_CONTRACT = 60011;
-    //! LMEæœªå‡†å¤‡å°±ç»ª
-    const int            TAPIERROR_ORDERINSERT_LME_NOTREADY = 60012;
-    //!ä¸æ”¯æŒçš„ä¸‹å•ç±»åž‹
-    const int            TAPIERROR_ORDERINSERT_ERROR_ORDER_TYPE = 60013;
-    //!é”™è¯¯çš„åŸ‹å•ç±»åž‹
-    const int            TAPIERROR_ORDERINSERT_READY_TYPE_ERROR = 60014;
-    //!ä¸åˆæ³•çš„å§”æ‰˜ç±»åž‹
-    const int            TAPIERROR_ORDERINSERT_ORDER_TYPE_ERROR = 60015;
+	//! Î´ÕÒµ½±¾µØÎ¯ÍÐ
+	const int			TAPIERROR_MOD_DEL_NO_ORDER 							= 60131;
+	//! ÓëÍø¹Ø¶Ï¿ªÁ¬½Ó
+	const int			TAPIERROR_MOD_DEL_GATEWAY_DISCON 					= 60132;
 
-    //! å®¢æˆ·æƒé™ç¦æ­¢äº¤æ˜“
-    const int            TAPIERROR_ORDER_NOTRADE_ACCOUNT = 60021;
-    //! å®¢æˆ·å“ç§åˆ†ç»„ç¦æ­¢äº¤æ˜“
-    const int            TAPIERROR_ORDER_NOTRADE_COM_GROUP = 60022;
-    //! å®¢æˆ·åˆçº¦ç‰¹è®¾ç¦æ­¢äº¤æ˜“
-    const int            TAPIERROR_ORDER_NOTRADE_ACC_CONTRACT = 60023;
-    //! ç³»ç»Ÿæƒé™ç¦æ­¢äº¤æ˜“
-    const int            TAPIERROR_ORDER_NOTRADE_SYSTEM = 60024;
-    //! å®¢æˆ·æƒé™åªå¯å¹³ä»“
-    const int            TAPIERROR_ORDER_CLOSE_ACCOUNT = 60025;
-    //! å®¢æˆ·åˆçº¦ç‰¹è®¾åªå¯å¹³ä»“
-    const int            TAPIERROR_ORDER_CLOSE_ACC_CONTRACT = 60026;
-    //! ç³»ç»Ÿæƒé™åªå¯å¹³ä»“
-    const int            TAPIERROR_ORDER_CLOSE_SYSTEM = 60027;
-    //! åªå¯å¹³ä»“æå‰å¤©æ•°é™åˆ¶åªå¯å¹³ä»“
-    const int            TAPIERROR_ORDER_CLOSE_DAYS = 60028;
-    //! å®¢æˆ·å“ç§é£ŽæŽ§æƒé™ç¦æ­¢äº¤æ˜“
-    const int            TAPIERROR_ORDER_NOTRADE_RISK = 60029;
-    //! å®¢æˆ·å“ç§é£ŽæŽ§æƒé™åªå¯å¹³ä»“
-    const int            TAPIERROR_ORDER_CLOSE_RISK = 60030;
+	//! Â¼µ¥³É½»ÖØ¸´
+	const int			TAPIERROR_MATCHINPUT_REPEAT 						= 60141;
+	//! Â¼µ¥³É½»Î´ÕÒµ½¶ÔÓ¦Î¯ÍÐ
+	const int			TAPIERROR_MATCHINPUT_NO_ORDER 						= 60142;
+	//! Â¼µ¥³É½»ºÏÔ¼²»´æÔÚ
+	const int			TAPIERROR_MATCHINPUT_NO_CONTRACT 					= 60143;
+	//! Â¼µ¥³É½»²ÎÊý´íÎó
+	const int			TAPIERROR_MATCHINPUT_PARM_ERROR 					= 60144;
+	//! Â¼µ¥³É½»Î¯ÍÐ×´Ì¬´íÎó
+	const int			TAPIERROR_MATCHINPUT_OSTATE_ERROR 					= 60145;
+	//Â¼µ¥³É½»¿ªÆ½±êÖ¾´íÎó
+	const int			TAPIERROR_MATCHINPUT_OCMODE_ERROR					= 60146;
 
-    //! æŒä»“é‡è¶…è¿‡æœ€å¤§é™åˆ¶
-    const int            TAPIERROR_ORDERINSERT_POSITIONMAX = 60031;
-    //! ä¸‹å•è¶…è¿‡å•ç¬”æœ€å¤§é‡
-    const int            TAPIERROR_ORDERINSERT_ONCEMAX = 60032;
-    //! ä¸‹å•åˆçº¦æ— äº¤æ˜“è·¯ç”±
-    const int            TAPIERROR_ORDERINSERT_TRADEROUTE = 60033;
-    //! å§”æ‰˜ä»·æ ¼è¶…å‡ºåç¦»èŒƒå›´
-    const int            TAPIERROR_ORDER_IN_MOD_PRICE_ERROR = 60034;
-    //! è¶…è¿‡GiveUpæœ€å¤§æŒä»“é‡
-    const int            TAPIERROR_ORDER_IN_GIVEUP_POS_MAX = 60035;
+	//! ³É½»É¾³ýÎ´ÕÒµ½³É½»
+	const int			TAPIERROR_MATCHREMOVE_NO_MATCH 						= 60151;
+	//! ´Ë×´Ì¬³É½»²»¿ÉÉ¾
+	const int			TAPIERROR_MATCHREMOVE_STATE_ERROR 					= 60152;
+	//! ³É½»ºÏÔ¼ÐÅÏ¢´íÎó
+	const int			TAPIERROR_MATCHINFO_CONTRACT_ERROR					= 60153;
 
+	//! ²»ÔÊÐíÂ¼Èë´Ë×´Ì¬¶©µ¥
+	const int			TAPIERROR_ORDERINPUT_STATE_ERROR 					= 60161;
+	//! ´íÎóµÄÐÞ¸Ä¶©µ¥ÇëÇó
+	const int			TAPIERROR_ORDERINPUT_MOD_ERROR 						= 60162;
+	//! ¶©µ¥²»¿ÉÉ¾£¬´æÔÚ¶ÔÓ¦³É½»
+	const int			TAPIERROR_ORDERREMOVE_ERROR 						= 60163;
+	//! ²»ºÏ·¨µÄÎ¯ÍÐ×´Ì¬
+	const int			TAPIERROR_ORDERINPUT_MOD_STATE_ERROR 				= 60164;
+	//! ´Ë×´Ì¬²»ÔÊÐí¶©µ¥×ªÒÆ
+	const int			TAPIERROR_ORDEREXCHANGE_STATE_ERROR 				= 60165;
+	//! ¶©µ¥²»ÔÊÐíÉ¾³ý
+	const int			TAPIERROR_ORDERREMOVE_NOT_ERROR 					= 60166;
 
-    //! æœªç™»å½•ç½‘å…³
-    const int          TAPIERROR_UPPERCHANNEL_NOT_LOGIN = 60041;
-    //! æœªæ‰¾åˆ°ç½‘å…³ä¿¡æ¯
-    const int          TAPIERROR_UPPERCHANNEL_NOT_FOUND = 60042;
+	//! ×öÊÐÉÌË«±ß³·µ¥Î´ÕÒµ½Î¯ÍÐ
+	const int			TAPIERROR_ORDERMARKET_DELETE_NOTFOUND 				= 60171;
+	//! ×öÊÐÉÌË«±ß³·µ¥¿Í»§²»Ò»ÖÂ
+	const int			TAPIERROR_ORDERMARKET_DEL_ACCOUNT_NE 				= 60172;
+	//! ×öÊÐÉÌË«±ß³·µ¥Æ·ÖÖ²»Ò»ÖÂ
+	const int			TAPIERROR_ORDERMARKET_DEL_COMMODITY_NE 				= 60173;
+	//! ×öÊÐÉÌË«±ß³·µ¥ºÏÔ¼²»Ò»ÖÂ
+	const int			TAPIERROR_ORDERMARKET_DEL_CONTRACT_NE 				= 60174;
+	//! ×öÊÐÉÌË«±ß³·µ¥ÂòÂô·½ÏòÏàÍ¬
+	const int			TAPIERROR_ORDERMARKET_DEL_SIDE_EQ 					= 60175;
+	//! ×öÊÐÉÌË«±ß³·µ¥ÂòÂô·½Ïò´íÎó
+	const int			TAPIERROR_ORDERMARKET_DEL_SIDE_ERROR 				= 60176;
+	//! ×öÊÐÉÌµ¥±ß¼ì²éÎ´Í¨¹ý
+	const int			TAPIERROR_ORDERMARKET_OTHER_SIDE_ERROR 				= 60177;
+	//×öÊÐÉÌË«±ß³·µ¥ÏµÍ³ºÅ´íÎó
+	const int			TAPIERROR_ORDERMARKET_DEL_SYSTEMNO_ERROR			= 60178;
 
-    //! ä¸‹å•èµ„é‡‘ä¸è¶³
-    const int            TAPIERROR_ORDERINSERT_NOTENOUGHFUND = 60051;
-    //! æ‰‹ç»­è´¹å‚æ•°é”™è¯¯
-    const int            TAPIERROR_ORDERINSERT_FEE = 60052;
-    //! ä¿è¯é‡‘å‚æ•°é”™è¯¯
-    const int            TAPIERROR_ORDERINSERT_MARGIN = 60053;
-    //! æ€»åŸºå¸èµ„é‡‘ä¸è¶³
-    const int            TAPIERROR_ORDERINSERT_BASENOFUND = 60054;
+	//! Âñµ¥¼¤»îÊ§°Ü£¬¶©µ¥Î´ÕÒµ½
+	const int			TAPIERROR_ORDERACTIVATE_NOTFOUND_ERROR 				= 60181;
+	//! Âñµ¥¼¤»îÊ§°Ü£¬·ÇÓÐÐ§×´Ì¬
+	const int			TAPIERROR_ORDERACTIVATE_STATE_ERROR 				= 60182;
+	//¹ÒÆð¼¤»îÊ§°Ü£¬Íø¹Ø²»Ö§³Ö
+	const int			TAPIERROR_ORDERACTIVATE_GATEWAY_ERROR				= 60183;
+	
+	//²Ù×÷Ô±ÎÞ¿çÖÐÐÄÏÂµ¥È¨ÏÞ
+	const int			TAPIERROR_TRANSIT_ORDERINSERT_RIGHT 				= 60191;
+	//Î´Á¬½ÓÖÐ×ª·þÎñ
+	const int			TAPIERROR_TRANSIT_ORDERINSERT_DISCON 				= 60192;
+	//ÏÂµ¥Î´Á¬½ÓÄ¿±ê½»Ò×ÖÐÐÄ
+	const int			TAPIERROR_TRANSIT_ORDERINSERT_DISCON_DEST 			= 60193;
+	//³·µ¥Î´Á¬½ÓÄ¿±ê½»Ò×ÖÐÐÄ
+	const int			TAPIERROR_TRANSIT_ORDERDELETE_DISCON_DEST 			= 60194;
+	//¸Äµ¥Î´Á¬½ÓÄ¿±ê½»Ò×ÖÐÐÄ
+	const int			TAPIERROR_TRANSIT_ORDERMODIFY_DISCON_DEST 			= 60195;
+	//´íÎóµÄÖÐ×ª¶©µ¥²Ù×÷
+	const int			TAPIERROR_TRANSIT_ORDER_OPERATOR 					= 60196;
 
-    //! è¶…è¿‡ä¿è¯é‡‘é¢åº¦
-    const int            TAPIERROR_ORDERINSERT_MARGINAMOUNT = 60055;
-    //! æ€»åŸºå¸è¶…è¿‡å¼€ä»“æ¯”ä¾‹é™åˆ¶
-    const int            TAPIERROR_ORDERINSERT_OPENRATIO = 60056;
-    //! ç‹¬ç«‹å¸ç§ç»„è¶…è¿‡å¼€ä»“æ¯”ä¾‹é™åˆ¶
-    const int            TAPIERROR_ORDERINSERT_GROUP_OPENRATIO = 60057;
-    //! é£Žé™©é˜µåˆ—å‚æ•°é”™è¯¯
-    const int            TAPIERROR_ORDERINSERT_RISKARRAY = 60058;
+	//¿Í»§È¨ÏÞ½ûÖ¹ÂòÈë
+	const int			TAPIERROR_ORDER_DISALLOWBUY_ACCOUNT 				= 60201;
+	//¿Í»§È¨ÏÞ½ûÖ¹Âô³ö
+	const int			TAPIERROR_ORDER_DISALLOWSELL_ACCOUNT 				= 60202;
+	//ÏµÍ³È¨ÏÞ½ûÖ¹ÂòÈë
+	const int			TAPIERROR_ORDER_DISALLOWBUY_SYSTEM 					= 60203;
+	//ÏµÍ³È¨ÏÞ½ûÖ¹Âô³ö
+	const int			TAPIERROR_ORDER_DISALLOWSELL_SYSTEM 				= 60204;
+	//¿Í»§È¨ÏÞ½ûÖ¹Âô¿ª²ÖÆÚÈ¨ -½öÍâÅÌÏµÍ³
+	const int			TAPIERROR_ORDER_DIS_SELLOPTION_ACCOUNT				= 60205;
+	//ÏµÍ³È¨ÏÞ½ûÖ¹Âô¿ª²ÖÆÚÈ¨ -½öÍâÅÌÏµÍ³
+	const int			TAPIERROR_ORDER_DIS_SELLOPTION_SYSTEM				= 60206;
+	//·Ç±ê×¼ºÏÔ¼Ö»¿ÉÆ½²Ö
+	const int			TAPIERROR_ORDER_CONTRACT_CLOSE						= 60207;
+	//·ç¿ØÈ¨ÏÞÖ»¿ÉÏÂÇ¿Æ½µ¥
+	const int			TAPIERROR_ORDER_INSERT_RISK_CLOSE					= 60208;
 
-    //! æ’¤å•æ— æ­¤ç³»ç»Ÿå·
-    const int          TAPIERROR_ORDERDELETE_NOT_SYSNO = 60061;
-    //! æ­¤çŠ¶æ€ä¸å…è®¸æ’¤å•
-    const int          TAPIERROR_ORDERDELETE_NOT_STATE = 60062;
-    //! å½•å•ä¸å…è®¸æ’¤å•
-    const int          TAPIERROR_ORDERDELETE_NO_INPUT = 60063;
+	//³¬³ö´û¿îÏÞ¶î
+	const int			TAPIERROR_ORDERINSERT_LOANAMOUNT					= 60211;
+	//´ËÆ·ÖÖ²»Ö§³Ö×éºÏ²ßÂÔ
+	const int			TAPIERROR_COMBINE_COMMODITY							= 60220;
+	//×éºÏÉê±¨ºÏÔ¼ÆÚÈ¨ÀàÐÍ²»·ûºÏÒªÇó
+	const int			TAPIERROR_COMBINE_CALLORPUT							= 60221;
+	//²ð·ÖµÄ×éºÏ³Ö²Ö²»´æÔÚ
+	const int			TAPIERROR_COMBINE_COMPOSITION						= 60222;
+	//²ð·ÖµÄ×éºÏ³Ö²ÖÊýÁ¿²»×ã
+	const int			TAPIERROR_COMBINE_COMPOSITION_QTY					= 60223;
+	//×éºÏÉê±¨ºÏÔ¼±¸¶Ò±êÊ¶²»·ûºÏÒªÇó
+	const int			TAPIERROR_COMBINE_HEDGEFLAG							= 60224;
+	//×éºÏÉê±¨ºÏÔ¼ÂòÂô·½Ïò²»·ûºÏÒªÇó
+	const int			TAPIERROR_COMBINE_ORDERSIDE							= 60225;
+	//×éºÏÉê±¨ºÏÔ¼´óÐ¡²»·ûºÏÒªÇó
+	const int			TAPIERROR_COMBINE_CONTRACTSIZE						= 60226;
+	//×éºÏÉê±¨ºÏÔ¼µ½ÆÚÈÕ²»·ûºÏÒªÇó
+	const int			TAPIERROR_COMBINE_CONTRACTDAYS						= 60227;
+	//×éºÏÉê±¨ºÏÔ¼ÐÐÈ¨¼Û²»·ûºÏÒªÇó
+	const int			TAPIERROR_COMBINE_STRIKEPRICE						= 60228;
+	//ÏàÍ¬ºÏÔ¼²»ÔÊÐí×éºÏ
+	const int			TAPIERROR_COMBINE_CONTRACT_SAME						= 60229;
 
-    //! æ­¤çŠ¶æ€ä¸å…è®¸æ”¹å•
-    const int            TAPIERROR_ORDERMODIFY_NOT_STATE = 60071;
-    //! äººå·¥å•ä¸å…è®¸æ”¹å•
-    const int            TAPIERROR_ORDERMODIFY_BACK_INPUT = 60072;
-    //! é£Žé™©æŠ¥å•ä¸å…è®¸æ”¹å•
-    const int            TAPIERROR_ORDERMODIFY_RISK_ORDER = 60073;
-    //! æˆäº¤é‡å¤§äºŽæ”¹å•é‡
-    const int            TAPIERROR_ORDERMODIFY_ERROR_QTY = 60074;
-    //! é¢„åŸ‹å•ä¸å…è®¸æ”¹å•
-    const int            TAPIERROR_ORDERMODIFY_ERROR_READY = 60075;
+	//±¸¶Ò½âËøÁ¿²»×ã
+	const int			TAPIERROR_ORDERINSERT_UNLOCK_NOE					= 60230;
+	//ÆÚÈ¨¿ª²Ö±¸¶ÒÁ¿²»×ã	
+	const int			TAPIERROR_ORDEROPEN_OPT_SPOT_NOE					= 60231;
+	//ÆÚÈ¨Æ½²Ö±¸¶ÒÁ¿²»×ã
+	const int			TAPIERROR_ORDERCLOSE_OPT_SPOT_NOE					= 60232;
+	//ÎÞÐ§µÄ±¸¶Ò¶©µ¥
+	const int			TAPIERROR_ORDERINSERT_COVERED_UNVLD					= 60233;
+	//ÕýÔÚ¶©ÔÄÐÐÇé£¬ÇëÖØÊÔ
+	const int			TAPIERROR_ORDERINSERT_QUOTE_PRICE					= 60240;
+	//²»ÔÊÐíÖØ¸´Éê¹º
+	const int          	TAPIERROR_ACCOUNTIPO_REPEAT							= 60250;
+	//Î´ÕÒµ½ÓÐÐ§Éê¹ºÐÅÏ¢
+	const int          	TAPIERROR_ACCOUNTIPO_NOT_EXIST						= 60251;
 
-    //! å·²åˆ é™¤æŠ¥å•ä¸èƒ½è½¬ç§»
-    const int            TAPIERROR_ORDERINPUT_CANNOTMOVE = 60081;
+	//Ö÷ÕËºÅ±£Ö¤½ð²ÎÊý´íÎó
+	const int			TAPIERROR_ORDERINSERT_MAIN_MARGIN					= 60261;
+	//=============================================================================
+	/**
+	*	\addtogroup G_ERR_GATE_WAY		Íø¹Ø´íÎó´úÂë¶¨Òå
+	*	@{
+	*/
+	//=============================================================================
 
-    //! å½•å•é‡å¤
-    const int            TAPIERROR_ORDERINPUT_REPEAT = 60091;
+    //! Íø¹ØÎ´¾ÍÐ÷£¬Î´Á¬½ÓÉÏÊÖ
+	const int			TAPIERROR_GW_NOT_READY 								= 80001;
+    //! Æ·ÖÖ´íÎó
+	const int			TAPIERROR_GW_INVALID_COMMODITY 						= 80002;
+    //! ºÏÔ¼´íÎó
+	const int			TAPIERROR_GW_INVALID_CONTRACT 						= 80003;
+    //! ±¨µ¥×Ö¶ÎÓÐÎó
+	const int			TAPIERROR_GW_INVALID_FIELD 							= 80004;
+    //! ¼Û¸ñ²»ºÏ·¨
+	const int		    TAPIERROR_GW_INVALID_PRICE 							= 80005;
+    //! ÊýÁ¿²»ºÏ·¨
+	const int			TAPIERROR_GW_INVALID_VOLUME 						= 80006;
+    //! ±¨µ¥ÀàÐÍ²»ºÏ·¨
+	const int			TAPIERROR_GW_INVALID_TYPE 							= 80007;
+    //! Î¯ÍÐÄ£Ê½²»ºÏ·¨
+	const int			TAPIERROR_GW_INVALID_MODE 							= 80008;
+    //! Î¯ÍÐ²»´æÔÚ£¨¸Äµ¥¡¢³·µ¥£©
+	const int			TAPIERROR_GW_ORDER_NOT_EXIST 						= 80009;
+    //! ·¢ËÍ±¨µ¥Ê§°Ü
+	const int			TAPIERROR_GW_SEND_FAIL 								= 80010;
+    //! ±»ÉÏÊÖ¾Ü¾ø
+	const int			TAPIERROR_GW_REJ_BYUPPER 							= 80011;
 
-    //! åˆçº¦è¡Œæƒ…ä»·æ ¼ä¿®æ”¹å¤±è´¥
-    const int            TAPIERROR_CONTRACT_QUOTE = 60101;
+	//=============================================================================
+	/**
+	*	\addtogroup G_ERR_FRONT_SERVICE		Ç°ÖÃ·µ»Ø´íÎó
+	*	@{
+	*/
+	//=============================================================================
 
-    //! ä¸‹å•è¶…è¿‡ä¸Šæ‰‹å•ç¬”æœ€å¤§é‡
-    const int            TAPIERROR_UPPER_ONCEMAX = 60111;
-    //! ä¸‹å•è¶…è¿‡ä¸Šæ‰‹æœ€å¤§æŒä»“é‡
-    const int            TAPIERROR_UPPER_POSITIONMAX = 60112;
+    //! Ç°ÖÃ²»ÔÊÐí¸ÃÄ£¿éµÇÂ¼
+	const int			TAPIERROR_TRADEFRONT_MODULETYPEERR 					= 90001;
+    //! Ò»´ÎÇëÇóÌ«¶àÊý¾Ý
+	const int			TAPIERROR_TRADEFRONT_TOOMANYDATA 					= 90002;
+    //! Ç°ÖÃÃ»ÓÐËùÒªÊý¾Ý
+	const int			TAPIERROR_TRADEFRONT_NODATA 						= 90003;
+	//! Ëù²éÑ¯µÄ²Ù×÷Ô±ÐÅÏ¢²»´æÔÚ
+	const int			TAPIERROT_TRADEFRONT_NOUSER 						= 90004;
 
-    //! å¼€å¹³æ–¹å¼é”™è¯¯
-    const int            TAPIERROR_ORDERINSERT_CLOSEMODE = 60121;
-    //! å§”æ‰˜å¹³ä»“æŒä»“ä¸è¶³
-    const int            TAPIERROR_CLOSE_ORDER = 60122;
-    //! æˆäº¤å¹³ä»“å¤±è´¥
-    const int            TAPIERROR_CLOSE_MATCH = 60123;
+    //! Ç°ÖÃÓë½»Ò×¶Ï¿ª
+	const int			TAPIERROR_TRADEFRONT_DISCONNECT_TRADE 				= 90011;
+    //! Ç°ÖÃÓë¹ÜÀí¶Ï¿ª
+	const int			TAPIERROR_TRADEFRONT_DISCONNECT_MANAGE 				= 90012;
 
-    //! æœªæ‰¾åˆ°æœ¬åœ°å§”æ‰˜
-    const int            TAPIERROR_MOD_DEL_NO_ORDER = 60131;
-    //! ä¸Žç½‘å…³æ–­å¼€è¿žæŽ¥
-    const int            TAPIERROR_MOD_DEL_GATEWAY_DISCON = 60132;
-
-    //! å½•å•æˆäº¤é‡å¤
-    const int            TAPIERROR_MATCHINPUT_REPEAT = 60141;
-    //! å½•å•æˆäº¤æœªæ‰¾åˆ°å¯¹åº”å§”æ‰˜
-    const int            TAPIERROR_MATCHINPUT_NO_ORDER = 60142;
-    //! å½•å•æˆäº¤åˆçº¦ä¸å­˜åœ¨
-    const int            TAPIERROR_MATCHINPUT_NO_CONTRACT = 60143;
-    //! å½•å•æˆäº¤å‚æ•°é”™è¯¯
-    const int            TAPIERROR_MATCHINPUT_PARM_ERROR = 60144;
-    //! å½•å•æˆäº¤å§”æ‰˜çŠ¶æ€é”™è¯¯
-    const int            TAPIERROR_MATCHINPUT_OSTATE_ERROR = 60145;
-
-    //! æˆäº¤åˆ é™¤æœªæ‰¾åˆ°æˆäº¤
-    const int            TAPIERROR_MATCHREMOVE_NO_MATCH = 60151;
-    //! æ­¤çŠ¶æ€æˆäº¤ä¸å¯åˆ 
-    const int            TAPIERROR_MATCHREMOVE_STATE_ERROR = 60152;
-
-    //! ä¸å…è®¸å½•å…¥æ­¤çŠ¶æ€è®¢å•
-    const int            TAPIERROR_ORDERINPUT_STATE_ERROR = 60161;
-    //! é”™è¯¯çš„ä¿®æ”¹è®¢å•è¯·æ±‚
-    const int            TAPIERROR_ORDERINPUT_MOD_ERROR = 60162;
-    //! è®¢å•ä¸å¯åˆ ï¼Œå­˜åœ¨å¯¹åº”æˆäº¤
-    const int            TAPIERROR_ORDERREMOVE_ERROR = 60163;
-    //! ä¸åˆæ³•çš„å§”æ‰˜çŠ¶æ€
-    const int            TAPIERROR_ORDERINPUT_MOD_STATE_ERROR = 60164;
-    //! æ­¤çŠ¶æ€ä¸å…è®¸è®¢å•è½¬ç§»
-    const int            TAPIERROR_ORDEREXCHANGE_STATE_ERROR = 60165;
-    //! è®¢å•ä¸å…è®¸åˆ é™¤
-    const int            TAPIERROR_ORDERREMOVE_NOT_ERROR = 60166;
-
-    //! åšå¸‚å•†åŒè¾¹æ’¤å•æœªæ‰¾åˆ°å§”æ‰˜
-    const int            TAPIERROR_ORDERMARKET_DELETE_NOTFOUND = 60171;
-    //! åšå¸‚å•†åŒè¾¹æ’¤å•å®¢æˆ·ä¸ä¸€è‡´
-    const int            TAPIERROR_ORDERMARKET_DEL_ACCOUNT_NE = 60172;
-    //! åšå¸‚å•†åŒè¾¹æ’¤å•å“ç§ä¸ä¸€è‡´
-    const int            TAPIERROR_ORDERMARKET_DEL_COMMODITY_NE = 60173;
-    //! åšå¸‚å•†åŒè¾¹æ’¤å•åˆçº¦ä¸ä¸€è‡´
-    const int            TAPIERROR_ORDERMARKET_DEL_CONTRACT_NE = 60174;
-    //! åšå¸‚å•†åŒè¾¹æ’¤å•ä¹°å–æ–¹å‘ç›¸åŒ
-    const int            TAPIERROR_ORDERMARKET_DEL_SIDE_EQ = 60175;
-    //! åšå¸‚å•†åŒè¾¹æ’¤å•ä¹°å–æ–¹å‘é”™è¯¯
-    const int            TAPIERROR_ORDERMARKET_DEL_SIDE_ERROR = 60176;
-    //! åšå¸‚å•†å•è¾¹æ£€æŸ¥æœªé€šè¿‡
-    const int            TAPIERROR_ORDERMARKET_OTHER_SIDE_ERROR = 60177;
-
-    //! åŸ‹å•æ¿€æ´»å¤±è´¥ï¼Œè®¢å•æœªæ‰¾åˆ°
-    const int            TAPIERROR_ORDERACTIVATE_NOTFOUND_ERROR = 60181;
-    //! åŸ‹å•æ¿€æ´»å¤±è´¥ï¼Œéžæœ‰æ•ˆçŠ¶æ€
-    const int            TAPIERROR_ORDERACTIVATE_STATE_ERROR = 60182;
-    //=============================================================================
-    /**
-    *    \addtogroup G_ERR_GATE_WAY        ç½‘å…³é”™è¯¯ä»£ç å®šä¹‰
-    *    @{
-    */
-    //=============================================================================
-
-    //! ç½‘å…³æœªå°±ç»ªï¼Œæœªè¿žæŽ¥ä¸Šæ‰‹
-    const int            TAPIERROR_GW_NOT_READY = 80001;
-    //! å“ç§é”™è¯¯
-    const int            TAPIERROR_GW_INVALID_COMMODITY = 80002;
-    //! åˆçº¦é”™è¯¯
-    const int            TAPIERROR_GW_INVALID_CONTRACT = 80003;
-    //! æŠ¥å•å­—æ®µæœ‰è¯¯
-    const int            TAPIERROR_GW_INVALID_FIELD = 80004;
-    //! ä»·æ ¼ä¸åˆæ³•
-    const int            TAPIERROR_GW_INVALID_PRICE = 80005;
-    //! æ•°é‡ä¸åˆæ³•
-    const int            TAPIERROR_GW_INVALID_VOLUME = 80006;
-    //! æŠ¥å•ç±»åž‹ä¸åˆæ³•
-    const int            TAPIERROR_GW_INVALID_TYPE = 80007;
-    //! å§”æ‰˜æ¨¡å¼ä¸åˆæ³•
-    const int            TAPIERROR_GW_INVALID_MODE = 80008;
-    //! å§”æ‰˜ä¸å­˜åœ¨ï¼ˆæ”¹å•ã€æ’¤å•ï¼‰
-    const int            TAPIERROR_GW_ORDER_NOT_EXIST = 80009;
-    //! å‘é€æŠ¥å•å¤±è´¥
-    const int            TAPIERROR_GW_SEND_FAIL = 80010;
-    //! è¢«ä¸Šæ‰‹æ‹’ç»
-    const int            TAPIERROR_GW_REJ_BYUPPER = 80011;
-
-    //=============================================================================
-    /**
-    *    \addtogroup G_ERR_FRONT_SERVICE        å‰ç½®è¿”å›žé”™è¯¯
-    *    @{
-    */
-    //=============================================================================
-
-    //! å‰ç½®ä¸å…è®¸è¯¥æ¨¡å—ç™»å½•
-    const int            TAPIERROR_TRADEFRONT_MODULETYPEERR = 90001;
-    //! ä¸€æ¬¡è¯·æ±‚å¤ªå¤šæ•°æ®
-    const int            TAPIERROR_TRADEFRONT_TOOMANYDATA = 90002;
-    //! å‰ç½®æ²¡æœ‰æ‰€è¦æ•°æ®
-    const int            TAPIERROR_TRADEFRONT_NODATA = 90003;
-    //! æ‰€æŸ¥è¯¢çš„æ“ä½œå‘˜ä¿¡æ¯ä¸å­˜åœ¨
-    const int            TAPIERROT_TRADEFRONT_NOUSER = 90004;
-
-    //! å‰ç½®ä¸Žäº¤æ˜“æ–­å¼€
-    const int            TAPIERROR_TRADEFRONT_DISCONNECT_TRADE = 90011;
-    //! å‰ç½®ä¸Žç®¡ç†æ–­å¼€
-    const int            TAPIERROR_TRADEFRONT_DISCONNECT_MANAGE = 90012;
-
-    //! ä¸‹å±žèµ„é‡‘è´¦å·ä¸å­˜åœ¨
-    const int            TAPIERROR_TRADEFRONT_ACCOUNT = 90021;
-    //! è¯¥æ“ä½œå‘˜ä¸å…è®¸äº¤æ˜“
-    const int            TAPIERROR_TRADEFRONT_ORDER = 90022;
-    //! æŸ¥è¯¢é¢‘çŽ‡è¿‡å¿«
-    const int            TAPIERROR_TRADEFRONT_FREQUENCY = 90023;
-    //! è¯¥æŽˆæƒä¸äºˆè®¸ç™»å½•
-    const int            TAPIERROR_TRADEFRONT_RUFUSE = 90024;
-    //! è‡ªæˆäº¤éªŒè¯ä¸é€šè¿‡
-    const int            TAPIERROR_TRADEFRONT_SELFMATCH = 90025;
+    //! ÏÂÊô×Ê½ðÕËºÅ²»´æÔÚ
+	const int			TAPIERROR_TRADEFRONT_ACCOUNT 						= 90021;
+	//! ¸Ã²Ù×÷Ô±²»ÔÊÐí½»Ò×
+	const int			TAPIERROR_TRADEFRONT_ORDER 							= 90022;
+	//! ²éÑ¯ÆµÂÊ¹ý¿ì
+	const int			TAPIERROR_TRADEFRONT_FREQUENCY 						= 90023;
+	//! ¸ÃÊÚÈ¨²»ÓèÐíµÇÂ¼
+	const int			TAPIERROR_TRADEFRONT_RUFUSE 						= 90024;
+	//! ×Ô³É½»ÑéÖ¤²»Í¨¹ý
+	const int			TAPIERROR_TRADEFRONT_SELFMATCH 						= 90025;
+	//µ¥¿Í»§²»ÓèÐí³·Ç¿Æ½µ¥
+	const int			TAPIERROR_TRADEFRONT_DELETEFORCE					= 90026;
     
     const int TAPIERROR_SUCCEED                                            = 0;
-    //! è¿žæŽ¥æœåŠ¡å¤±è´¥
+    //! Á¬½Ó·þÎñÊ§°Ü
     const int TAPIERROR_ConnectFail                                        = -1;
-    //! é“¾è·¯è®¤è¯å¤±è´¥
+    //! Á´Â·ÈÏÖ¤Ê§°Ü
     const int TAPIERROR_LinkAuthFail                                       = -2;
-    //! ä¸»æœºåœ°å€ä¸å¯ç”¨
+    //! Ö÷»úµØÖ·²»¿ÉÓÃ
     const int TAPIERROR_HostUnavailable                                    = -3;
-    //! å‘é€æ•°æ®é”™è¯¯
+    //! ·¢ËÍÊý¾Ý´íÎó
     const int TAPIERROR_SendDataError                                      = -4;
-    //! æµ‹è¯•ç¼–å·ä¸åˆæ³•
+    //! ²âÊÔ±àºÅ²»ºÏ·¨
     const int TAPIERROR_TestIDError                                        = -5;
-    //! æ²¡å‡†å¤‡å¥½æµ‹è¯•ç½‘ç»œ
+    //! Ã»×¼±¸ºÃ²âÊÔÍøÂç
     const int TAPIERROR_NotReadyTestNetwork                                = -6;
-    //! å½“å‰ç½‘ç»œæµ‹è¯•è¿˜æ²¡ç»“æŸ
+    //! µ±Ç°ÍøÂç²âÊÔ»¹Ã»½áÊø
     const int TAPIERROR_CurTestNotOver                                     = -7;
-    //! æ²¡ç”¨å¯ç”¨çš„æŽ¥å…¥å‰ç½®
+    //! Ã»ÓÃ¿ÉÓÃµÄ½ÓÈëÇ°ÖÃ
     const int TAPIERROR_NOFrontAvailable                                   = -8;
-    //! æ•°æ®è·¯å¾„ä¸å¯ç”¨
+    //! Êý¾ÝÂ·¾¶²»¿ÉÓÃ
     const int TAPIERROR_DataPathAvaiable                                   = -9;
-    //! é‡å¤ç™»å½•
+    //! ÖØ¸´µÇÂ¼
     const int TAPIERROR_RepeatLogin                                        = -10;
-    //! å†…éƒ¨é”™è¯¯    
+    //! ÄÚ²¿´íÎó	
     const int TAPIERROR_InnerError                                         = -11;
-    //! ä¸Šä¸€æ¬¡è¯·æ±‚è¿˜æ²¡æœ‰ç»“æŸ    
+    //! ÉÏÒ»´ÎÇëÇó»¹Ã»ÓÐ½áÊø	
     const int TAPIERROR_LastReqNotFinish                                   = -12;
-    //! è¾“å…¥å‚æ•°éžæ³•    
+    //! ÊäÈë²ÎÊý·Ç·¨	
     const int TAPIERROR_InputValueError                                    = -13;
-    //! æŽˆæƒç ä¸åˆæ³•    
+    //! ÊÚÈ¨Âë²»ºÏ·¨	
     const int TAPIERROR_AuthCode_Invalid                                   = -14;
-    //! æŽˆæƒç è¶…æœŸ    
+    //! ÊÚÈ¨Âë³¬ÆÚ	
     const int TAPIERROR_AuthCode_Expired                                   = -15;
-    //! æŽˆæƒç ç±»åž‹ä¸åŒ¹é…    
+    //! ÊÚÈ¨ÂëÀàÐÍ²»Æ¥Åä	
     const int TAPIERROR_AuthCode_TypeNotMatch                              = -16;
-    //! APIè¿˜æ²¡æœ‰å‡†å¤‡å¥½
+    //! API»¹Ã»ÓÐ×¼±¸ºÃ
     const int TAPIERROR_API_NotReady                                       = -17;
-    //! UDPç«¯å£ç›‘å¬å¤±è´¥
+    //! UDP¶Ë¿Ú¼àÌýÊ§°Ü
     const int TAPIERROR_UDP_LISTEN_FAILED                                  = -18;
-    //! UDPæ­£åœ¨ç›‘å¬
+    //! UDPÕýÔÚ¼àÌý
     const int TAPIERROR_UDP_LISTENING                                      = -19;
-    //! æŽ¥å£æœªå®žçŽ°
+    //! ½Ó¿ÚÎ´ÊµÏÖ
     const int TAPIERROR_NotImplemented                                     = -20;
-    //! æ¯æ¬¡ç™»é™†åªå…è®¸è°ƒç”¨ä¸€æ¬¡
-    const int TAPIERROR_CallOneTimeOnly                                        = -21;
-    //! è¶…è¿‡ä¸‹å•é¢‘çŽ‡ã€‚
-    const int TAPIERROR_ORDER_FREQUENCY                                        = -22;
-    //! æŸ¥è¯¢é¢‘çŽ‡å¤ªå¿«ã€‚
-    const int TAPIERROR_RENTQRY_TOOFAST                                        = -23;
+    //! Ã¿´ÎµÇÂ¼Ö»ÔÊÐíµ÷ÓÃÒ»´Î
+	const int TAPIERROR_CallOneTimeOnly										= -21;
+	//! ³¬¹ýÏÂµ¥ÆµÂÊ¡£
+	const int TAPIERROR_ORDER_FREQUENCY						 				= -22;
+	//! ²éÑ¯ÆµÂÊÌ«¿ì¡£
+	const int TAPIERROR_RENTQRY_TOOFAST										= -23;
+	//! ²»·ûºÏµ÷ÓÃÌõ¼þ¡£
+	const int TAPIERROR_CALL_NOCONDITION									= -24;
+	//! ¸Äµ¥³·µ¥Ê±Ã»ÓÐÕÒµ½¶ÔÓ¦¶©µ¥¡£
+	const int TAPIERROR_ORDER_NOTFOUND										= -25;
 
-    //! ä¸ç¬¦åˆè°ƒç”¨æ¡ä»¶ã€‚
-    const int TAPIERROR_CALL_NOCONDITION                                    = -24;
+	//! ÈÕÖ¾Â·¾¶Îª¿Õ¡£
+	const int TAPIERROR_LOGPATH_EMPTY										= -26;
+	//! ´ò¿ªÈÕÖ¾ÎÄ¼þÊ§°Ü
+	const int TAPIERROR_LOGPATH_FAILOPEN									= -27;
+	//! Ã»ÓÐ½»Ò×Ô±µÇÂ¼È¨ÏÞ
+	const int TAPIERROR_RIGHT_TRADER 										= -28;
+	//! Ã»ÓÐ¶©µ¥Â¼Èë»òÕß³É½»Â¼ÈëÈ¨ÏÞ
+	const int TAPIERROR_RIGHT_ORDERINPUT									= -29;
+	//! Ã»ÓÐ¶©µ¥ÐÞ¸ÄºÍ¶©µ¥É¾³ýÈ¨ÏÞ£¬³É½»É¾³ýÈ¨ÏÞ
+	const int TAPIERROR_RIGHT_LOCALOPERATION 								= -30;
+	//! Ã»ÓÐ¶©µ¥×ªÒÆÈ¨ÏÞ
+	const int TAPIERROR_RIGHT_ORDERTRANSFER 								= -31;
+	//! ³É½»Â¼ÈëÊ±ÏµÍ³ºÅÎª¿Õ
+	const int TAPIERROR_FILLINPUT_SYSTEMNO 									= -32;
+	//! ³É½»É¾³ýÊ±³É½»ºÅÎª¿Õ¡£
+	const int TAPIERROR_FILLREMOVE_MATCHNO 									= -33;
+
+	//! ³É½»É¾³ýÊ±Ã»ÓÐÕÒµ½¶ÔÓ¦µÄ³É½»
+	const int TAPIERROR_FILLREQMOVE_NOFUND 									= -34;
+	//! ¶©µ¥ÐÞ¸ÄÊ±¿Í»§ÕËºÅ±ä¶¯¡£
+	const int TAPIERROR_LOCALMODIFY_ACCOUNT 								= -35;
+	//! ¶©µ¥×ªÒÆÊ±¿Í»§ÕËºÅÃ»ÓÐ±ä¶¯
+	const int TAPIERROR_LOCALTRANSFER_ACCOUNT 								= -36;
+	//! ÐÞ¸ÄµÄµç»°ÃÜÂëÎ»Êý²»¶Ô»òÕß°üº¬ÌØÊâ×Ö·û¡£
+	const int TAPIERROR_INPUTERROR_PHONE 									= -37;
+
+	//!	Î´°ó¶¨µÄ¶þ´ÎÈÏÖ¤ÐÅÏ¢
+	const int TAPIERROR_ERROR_CONTACT										= -38;
+	//! ¶þ´ÎÈÏÖ¤ÓÐÐ§ÆÚÄÚ²»ÄÜÔÙÉêÇë¶þ´ÎÈÏÖ¤Âë
+	const int TAPIERROR_ERROR_REJESTVERTIFICATE 							= -39;
+	//! ·¢ËÍ¶þ´ÎÈÏÖ¤ÂëµÄÑéÖ¤ÇëÇóÖ®Ç°£¬ÐèÒªÏÈ·¢ËÍÇëÇó¶þ´ÎÈÏÖ¤Âë
+	const int TAPIERROR_ERROR_NOTREQUESTSECONDCODE 							= -44;
+
+	//! Ã»ÓÐÉèÖÃ¿Í»§ÃÜÂëµÄÈ¨ÏÞ¡£
+	const int TAPIERROR_RIGHT_SETPASSWORD 									= -40;
+	//! ·çÏÕ±£µ¥µ¥¿Í»§ÎÞ·¨³·Ïú»ò¸ü¸Ä
+	const int TAPIERROR_RISK_OPERERROR										= -41;
+	//! ¸Äµ¥ÊÇ¿Í»§ÕËºÅÌîÐ´Óë¶©µ¥¿Í»§ÕËºÅ²»Ò»ÖÂ
+	const int TAPIERROR_ORDER_MODACCOUNT									= -42;
+	//! ÄÚ´æÉêÇëÊ§°Ü
+	const int TAPIERROR_MEMORY_ALLOCFAILED									= -43;
+
+	//! ÓÃ»§ÊÚÈ¨ÐÅÏ¢Ã»ÓÐ¸ÃÆ·ÖÖÏÂµ¥È¨ÏÞ
+	const int TAPIERROR_ERROR_LICENSECOMMODITY								= -45;
+	//! ±±¶·ÐÇÏµÍ³²»¿Éµ÷ÓÃ
+	const int TAPIERROR_ERROR_SYSTEMTYPE									= -56;
+	//! ÕýÔÚÖØÁ¬£¬ÎÞ·¨½øÐÐ´Ë²Ù×÷
+	const int TAPIERROR_ERROR_RECONNECTING									= -57;
+	//! ×ÔÖú½â¶³³É¹¦£¬ÇëÖØÐÂµÇÂ¼
+	const int TAPIERROR_UNFREEZE_SUCCESS									= -58;
+	//! ²éÑ¯ÀúÊ·Êý¾ÝµÄÊ±¼äÇø¼ä×î¶à31Ìì
+	const int TAPIERROR_HISDATA_DAYS										= -59;
+
+	//=============================================================================
+	/**
+	 * \addtogroup G_ERR_STOCK_CHECK ETFÏµÍ³´íÎóºÅ
+	 *	@{
+	 */
+	 //=============================================================================
+	//! ·ÇÖÐ¼ÌÄ£Ê½½ûÖ¹µ÷ÓÃ¸Ã½Ó¿Ú
+	const int TAPIERROR_GATHERINFO_NORELAY									= -46;
+	//! ÓÃ»§²É¼¯ÐÅÏ¢²»È«£¨²»Ó°ÏìµÇÂ¼£©
+	const int TAPIERROR_GATHERINFO_PARTY									= -47;
+	//! ¿´´©Ê½ÐÅÏ¢²É¼¯¿â¼ÓÔØÊ§°Ü
+	const int TAPIERROR_GATHERINFO_DATALOAD									= -48;
+
+	//=============================================================================
+	/**
+	 * \addtogroup G_ERR_STOCK_CHECK ¸Û¹ÉÏµÍ³´íÎóºÅ
+	 *	@{
+	 */
+	 //=============================================================================
+	//! ÊäÈë¼Û¸ñ²»·ûºÏ½×ÌÝ×îÐ¡±ä¶¯¼Û¹æÔò
+	const int TAPIERROR_ERROR_PRICETICK										= -50;
+	//! ³¬¹ý×î¸ßÈÚ×Ê±ÈÀý
+	const int TAPIERROR_OVER_MAXLOANRATIO									= -52;
+	//! ³¬¹ý×î¸ßÈÚ×Ê½ð¶î
+	const int TAPIERROR_OVER_MAXLOANVALUE									= -53;
+	//! Éê¹ºÊýÁ¿²»·ûºÏÒªÇó
+	const int TAPIERROR_OVER_APPLYQTY										= -54;
+	//! Î´ÕÒµ½IPOÐÅÏ¢
+	const int TAPIERROR_NULL_IPOINFO										= -55;
 
 
-    //! æ”¹å•æ’¤å•æ—¶æ²¡æœ‰æ‰¾åˆ°å¯¹åº”è®¢å•ã€‚
-    const int TAPIERROR_ORDER_NOTFOUND                                        = -25;
 
-    //! æ—¥å¿—è·¯å¾„ä¸ºç©ºã€‚
-    const int TAPIERROR_LOGPATH_EMPTY                                        = -26;
-    //! æ‰“å¼€æ—¥å¿—æ–‡ä»¶å¤±è´¥
-    const int TAPIERROR_LOGPATH_FAILOPEN                                    = -27;
-    //! æ²¡æœ‰äº¤æ˜“å‘˜ç™»å½•æƒé™
-    const int TAPIERROR_RIGHT_TRADER = -28;
-    //! æ²¡æœ‰è®¢å•å½•å…¥æˆ–è€…æˆäº¤å½•å…¥
-    const int TAPIERROR_RIGHT_ORDERINPUT = -29;
-    //! æ²¡æœ‰è®¢å•ä¿®æ”¹å’Œè®¢å•åˆ é™¤æƒé™ï¼Œæˆäº¤åˆ é™¤æƒé™
-    const int TAPIERROR_RIGHT_LOCALOPERATION = -30;
-    //! æ²¡æœ‰è®¢å•è½¬ç§»æƒé™
-    const int TAPIERROR_RIGHT_ORDERTRANSFER = -31;
-    //! æˆäº¤å½•å…¥æ—¶ç³»ç»Ÿå·ä¸ºç©º
-    const int TAPIERROR_FILLINPUT_SYSTEMNO = -32;
-    //! æˆäº¤åˆ é™¤æ—¶æˆäº¤å·ä¸ºç©ºã€‚
-    const int TAPIERROR_FILLREMOVE_MATCHNO = -33;
-
-    //! æˆäº¤åˆ é™¤æ—¶æ²¡æœ‰æ‰¾åˆ°å¯¹åº”çš„æˆäº¤
-    const int TAPIERROR_FILLREQMOVE_NOFUND = -34;
-
-    //! è®¢å•ä¿®æ”¹æ—¶å®¢æˆ·è´¦å·å˜åŠ¨ã€‚
-    const int TAPIERROR_LOCALMODIFY_ACCOUNT = -35;
-
-    //! è®¢å•è½¬ç§»æ—¶å®¢æˆ·è´¦å·æ²¡æœ‰å˜åŠ¨
-    const int TAPIERROR_LOCALTRANSFER_ACCOUNT = -36;
-
-    //! ä¿®æ”¹çš„ç”µè¯å¯†ç ä½æ•°ä¸å¯¹æˆ–è€…åŒ…å«ç‰¹æ®Šå­—ç¬¦ã€‚
-    const int TAPIERROR_INPUTERROR_PHONE = -37;
-
-    //!    æœªç»‘å®šçš„äºŒæ¬¡è®¤è¯ä¿¡æ¯
-    const int TAPIERROR_ERROR_CONTACT = -38;
-
-    //! äºŒæ¬¡è®¤è¯æœ‰æ•ˆæœŸå†…ä¸èƒ½å†ç”³è¯·äºŒæ¬¡è®¤è¯ç 
-    const int TAPIERROR_ERROR_REJESTVERTIFICATE = -39;
-
-    //! æ²¡æœ‰è®¾ç½®å®¢æˆ·å¯†ç çš„æƒé™ã€‚
-    const int TAPIERROR_RIGHT_SETPASSWORD = -40;
-    //! é£Žé™©ä¿å•å•å®¢æˆ·æ— æ³•æ’¤é”€æˆ–æ›´æ”¹
-    const int TAPIERROR_RISK_OPERERROR = -41;
-    //! æ”¹å•æ˜¯å®¢æˆ·è´¦å·å¡«å†™ä¸Žè®¢å•å®¢æˆ·è´¦å·ä¸ä¸€è‡´
-    const int TAPIERROR_ORDER_MODACCOUNT = -42;
 
     /** @}*/
 
 
     //=============================================================================
     /**
-     *    \addtogroup G_ERR_INPUT_CHECK        è¾“å…¥å‚æ•°æ£€æŸ¥é”™è¯¯
-     *    @{
+     *	\addtogroup G_ERR_INPUT_CHECK		ÊäÈë²ÎÊý¼ì²é´íÎó
+     *	@{
      */
     //=============================================================================
-    //! è¾“å…¥æ•°æ®ä¸ºNULL
+    //! ÊäÈëÊý¾ÝÎªNULL
     const int TAPIERROR_INPUTERROR_NULL                                    = -10000;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIYNFLAG
+    //! ÊäÈë´íÎóµÄ:TAPIYNFLAG
     const int TAPIERROR_INPUTERROR_TAPIYNFLAG                              = -10001;
-    //! è¾“å…¥é”™è¯¯çš„:TAPILOGLEVEL
+    //! ÊäÈë´íÎóµÄ:TAPILOGLEVEL
     const int TAPIERROR_INPUTERROR_TAPILOGLEVEL                            = -10002;
-    //! è¾“å…¥é”™è¯¯çš„:TAPICommodityType
+    //! ÊäÈë´íÎóµÄ:TAPICommodityType
     const int TAPIERROR_INPUTERROR_TAPICommodityType                       = -10003;
-    //! è¾“å…¥é”™è¯¯çš„:TAPICallOrPutFlagType
+    //! ÊäÈë´íÎóµÄ:TAPICallOrPutFlagType
     const int TAPIERROR_INPUTERROR_TAPICallOrPutFlagType                   = -10004;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIBucketDateFlag
+    //! ÊäÈë´íÎóµÄ:TAPIBucketDateFlag
     const int TAPIERROR_INPUTERROR_TAPIBucketDateFlag                      = -11001;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIHisQuoteType
+    //! ÊäÈë´íÎóµÄ:TAPIHisQuoteType
     const int TAPIERROR_INPUTERROR_TAPIHisQuoteType                        = -11002;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIAccountType
+    //! ÊäÈë´íÎóµÄ:TAPIAccountType
     const int TAPIERROR_INPUTERROR_TAPIAccountType                         = -12001;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIUserTypeType
+    //! ÊäÈë´íÎóµÄ:TAPIUserTypeType
     const int TAPIERROR_INPUTERROR_TAPIUserTypeType                        = -12002;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIAccountState
+    //! ÊäÈë´íÎóµÄ:TAPIAccountState
     const int TAPIERROR_INPUTERROR_TAPIAccountState                        = -12003;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIAccountFamilyType
+    //! ÊäÈë´íÎóµÄ:TAPIAccountFamilyType
     const int TAPIERROR_INPUTERROR_TAPIAccountFamilyType                   = -12004;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIOrderTypeType
+    //! ÊäÈë´íÎóµÄ:TAPIOrderTypeType
     const int TAPIERROR_INPUTERROR_TAPIOrderTypeType                       = -12005;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIOrderSourceType
+    //! ÊäÈë´íÎóµÄ:TAPIOrderSourceType
     const int TAPIERROR_INPUTERROR_TAPIOrderSourceType                     = -12006;
-    //! è¾“å…¥é”™è¯¯çš„:TAPITimeInForceType
+    //! ÊäÈë´íÎóµÄ:TAPITimeInForceType
     const int TAPIERROR_INPUTERROR_TAPITimeInForceType                     = -12007;
-    //! è¾“å…¥é”™è¯¯çš„:TAPISideType
+    //! ÊäÈë´íÎóµÄ:TAPISideType
     const int TAPIERROR_INPUTERROR_TAPISideType                            = -12008;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIPositionEffectType
+    //! ÊäÈë´íÎóµÄ:TAPIPositionEffectType
     const int TAPIERROR_INPUTERROR_TAPIPositionEffectType                  = -12009;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIHedgeFlagType
+    //! ÊäÈë´íÎóµÄ:TAPIHedgeFlagType
     const int TAPIERROR_INPUTERROR_TAPIHedgeFlagType                       = -12010;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIOrderStateType
+    //! ÊäÈë´íÎóµÄ:TAPIOrderStateType
     const int TAPIERROR_INPUTERROR_TAPIOrderStateType                      = -12011;
-    //! è¾“å…¥é”™è¯¯çš„:TAPICalculateModeType
+    //! ÊäÈë´íÎóµÄ:TAPICalculateModeType
     const int TAPIERROR_INPUTERROR_TAPICalculateModeType                   = -12012;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIMatchSourceType
+    //! ÊäÈë´íÎóµÄ:TAPIMatchSourceType
     const int TAPIERROR_INPUTERROR_TAPIMatchSourceType                     = -12013;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIOpenCloseModeType
+    //! ÊäÈë´íÎóµÄ:TAPIOpenCloseModeType
     const int TAPIERROR_INPUTERROR_TAPIOpenCloseModeType                   = -12014;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIFutureAlgType
+    //! ÊäÈë´íÎóµÄ:TAPIFutureAlgType
     const int TAPIERROR_INPUTERROR_TAPIFutureAlgType                       = -12015;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIOptionAlgType
+    //! ÊäÈë´íÎóµÄ:TAPIOptionAlgType
     const int TAPIERROR_INPUTERROR_TAPIOptionAlgType                       = -12016;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIBankAccountLWFlagType
+    //! ÊäÈë´íÎóµÄ:TAPIBankAccountLWFlagType
     const int TAPIERROR_INPUTERROR_TAPIBankAccountLWFlagType               = -12017;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIBankAccountStateType
+    //! ÊäÈë´íÎóµÄ:TAPIBankAccountStateType
     const int TAPIERROR_INPUTERROR_TAPIBankAccountStateType                = -12018;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIBankAccountSwapStateType
+    //! ÊäÈë´íÎóµÄ:TAPIBankAccountSwapStateType
     const int TAPIERROR_INPUTERROR_TAPIBankAccountSwapStateType            = -12019;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIBankAccountTransferStateType
+    //! ÊäÈë´íÎóµÄ:TAPIBankAccountTransferStateType
     const int TAPIERROR_INPUTERROR_TAPIBankAccountTransferStateType        = -12020;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIMarginCalculateModeType
+    //! ÊäÈë´íÎóµÄ:TAPIMarginCalculateModeType
     const int TAPIERROR_INPUTERROR_TAPIMarginCalculateModeType             = -12021;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIOptionMarginCalculateModeType
+    //! ÊäÈë´íÎóµÄ:TAPIOptionMarginCalculateModeType
     const int TAPIERROR_INPUTERROR_TAPIOptionMarginCalculateModeType       = -12022;
-    //! è¾“å…¥é”™è¯¯çš„:TAPICmbDirectType
+    //! ÊäÈë´íÎóµÄ:TAPICmbDirectType
     const int TAPIERROR_INPUTERROR_TAPICmbDirectType                       = -12023;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIDeliveryModeType
+    //! ÊäÈë´íÎóµÄ:TAPIDeliveryModeType
     const int TAPIERROR_INPUTERROR_TAPIDeliveryModeType                    = -12024;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIContractTypeType
+    //! ÊäÈë´íÎóµÄ:TAPIContractTypeType
     const int TAPIERROR_INPUTERROR_TAPIContractTypeType                    = -12025;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIPartyTypeType
+    //! ÊäÈë´íÎóµÄ:TAPIPartyTypeType
     const int TAPIERROR_INPUTERROR_TAPIPartyTypeType                       = -12026;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIPartyCertificateTypeType
+    //! ÊäÈë´íÎóµÄ:TAPIPartyCertificateTypeType
     const int TAPIERROR_INPUTERROR_TAPIPartyCertificateTypeType            = -12027;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIMsgReceiverType
+    //! ÊäÈë´íÎóµÄ:TAPIMsgReceiverType
     const int TAPIERROR_INPUTERROR_TAPIMsgReceiverType                     = -12028;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIMsgTypeType
+    //! ÊäÈë´íÎóµÄ:TAPIMsgTypeType
     const int TAPIERROR_INPUTERROR_TAPIMsgTypeType                         = -12029;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIMsgLevelType
+    //! ÊäÈë´íÎóµÄ:TAPIMsgLevelType
     const int TAPIERROR_INPUTERROR_TAPIMsgLevelType                        = -12030;
-    //! è¾“å…¥é”™è¯¯çš„:TAPITransferDirectType
+    //! ÊäÈë´íÎóµÄ:TAPITransferDirectType
     const int TAPIERROR_INPUTERROR_TAPITransferDirectType                  = -12031;
-    //! è¾“å…¥é”™è¯¯çš„:TAPITransferStateType
+    //! ÊäÈë´íÎóµÄ:TAPITransferStateType
     const int TAPIERROR_INPUTERROR_TAPITransferStateType                   = -12032;
-    //! è¾“å…¥é”™è¯¯çš„:TAPITransferTypeType
+    //! ÊäÈë´íÎóµÄ:TAPITransferTypeType
     const int TAPIERROR_INPUTERROR_TAPITransferTypeType                    = -12033;
-    //! è¾“å…¥é”™è¯¯çš„:TAPITransferDeviceIDType
+    //! ÊäÈë´íÎóµÄ:TAPITransferDeviceIDType
     const int TAPIERROR_INPUTERROR_TAPITransferDeviceIDType                = -12034;
-    //! è¾“å…¥é”™è¯¯çš„:TAPITacticsTypeType
+    //! ÊäÈë´íÎóµÄ:TAPITacticsTypeType
     const int TAPIERROR_INPUTERROR_TAPITacticsTypeType                     = -12035;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIORDERACT
+    //! ÊäÈë´íÎóµÄ:TAPIORDERACT
     const int TAPIERROR_INPUTERROR_TAPIORDERACT                            = -12036;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIBillTypeType
+    //! ÊäÈë´íÎóµÄ:TAPIBillTypeType
     const int TAPIERROR_INPUTERROR_TAPIBillTypeType                        = -12037;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIBillFileTypeType
+    //! ÊäÈë´íÎóµÄ:TAPIBillFileTypeType
     const int TAPIERROR_INPUTERROR_TAPIBillFileTypeType                    = -12038;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIOFFFlagType
+    //! ÊäÈë´íÎóµÄ:TAPIOFFFlagType
     const int TAPIERROR_INPUTERROR_TAPIOFFFlagType                         = -12039;
-    //! è¾“å…¥é”™è¯¯çš„:TAPICashAdjustTypeType
+    //! ÊäÈë´íÎóµÄ:TAPICashAdjustTypeType
     const int TAPIERROR_INPUTERROR_TAPICashAdjustTypeType                  = -12040;
-    //! è¾“å…¥é”™è¯¯çš„:TAPITriggerConditionType
+    //! ÊäÈë´íÎóµÄ:TAPITriggerConditionType
     const int TAPIERROR_INPUTERROR_TAPITriggerConditionType                = -12041;
-    //! è¾“å…¥é”™è¯¯çš„:TAPITriggerPriceTypeType
+    //! ÊäÈë´íÎóµÄ:TAPITriggerPriceTypeType
     const int TAPIERROR_INPUTERROR_TAPITriggerPriceTypeType                = -12042;
-    //! è¾“å…¥é”™è¯¯çš„:TAPITradingStateType 
+    //! ÊäÈë´íÎóµÄ:TAPITradingStateType 
     const int TAPIERROR_INPUTERROR_TAPITradingStateType                    = -12043;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIMarketLevelType 
+    //! ÊäÈë´íÎóµÄ:TAPIMarketLevelType 
     const int TAPIERROR_INPUTERROR_TAPIMarketLevelType                     = -12044;
-    //! è¾“å…¥é”™è¯¯çš„:TAPIOrderQryTypeType 
+    //! ÊäÈë´íÎóµÄ:TAPIOrderQryTypeType 
     const int TAPIERROR_INPUTERROR_TAPIOrderQryTypeType                    = -12045;
-    //! è¾“å…¥é”™è¯¯çš„: ClientIDï¼ŒClientIDåŒ…å«ç‰¹æ®Šå­—ç¬¦ã€‚
-    const int TAPIERROR_INPUTERROR_TAPIClientID                            = -12046;
-    //! åŽ†å²è¡Œæƒ…æŸ¥è¯¢å‚æ•°ä¸åˆæ³•
+	//! ÊäÈë´íÎóµÄ: ClientID£¬ClientID°üº¬ÌØÊâ×Ö·û¡£
+	const int TAPIERROR_INPUTERROR_TAPIClientID                            = -12046;
+    //! ÀúÊ·ÐÐÇé²éÑ¯²ÎÊý²»ºÏ·¨
     const int TAPIERROR_INPUTERROR_QryHisQuoteParam                        = -13001;
-    //! ä»·æ ¼å’Œæ•°é‡ä¸­åŒ…å«NANæˆ–è€…INFä¸åˆæ³•çš„æ•°å€¼
-    const int TAPIERROR_INPUTERROR_TAPIIncludeNAN                            = -13002;
-    //! è¾“å…¥é”™è¯¯çš„åˆ°æœŸæ—¥
-    const  int TAPIERROR_INPUTERROR_TAPIExpireTime                            = -12047;
-    //! é”™è¯¯çš„å¯†ç ç±»åž‹
-    const int TAPIERROR_INPUTERROR_TAPIPasswordType                            = -12048;
-        //! é”™è¯¯çš„ç»“ç®—æ•°æ®ç±»åž‹
-        const int TAPIERROR_INPUTERROR_TAPISettleFlagType                                               =-12049;
-
-
+	//! ¼Û¸ñºÍÊýÁ¿ÖÐ°üº¬NAN»òÕßINF²»ºÏ·¨µÄÊýÖµ
+	const int TAPIERROR_INPUTERROR_TAPIIncludeNAN							= -13002;
+	//! ÊäÈë´íÎóµÄµ½ÆÚÈÕ
+	const  int TAPIERROR_INPUTERROR_TAPIExpireTime							= -12047;
+	//! ´íÎóµÄÃÜÂëÀàÐÍ
+	const int TAPIERROR_INPUTERROR_TAPIPasswordType							= -12048;
+    //! ´íÎóµÄ½áËãÊý¾ÝÀàÐÍ
+    const int TAPIERROR_INPUTERROR_TAPISettleFlagType                       = -12049;
+	//! ÊäÈë´íÎóµÄ:TAPILoginTypeType
+	const int TAPIERROR_INPUTERROR_TAPILoginTypeType						= -12050;
+	//! ÊäÈë´íÎóµÄ:TapAPISpecialOrderTypeType			
+	const int TAPIERROR_INPUTERROR_TapAPISpecialOrderTypeType				= -12051;
+	//! ÊäÈë´íÎóµÄ:TapAPISpecialOrderTypeType
+	const int TAPIERROR_INPUTERROR_TapAPICombineStrategyType				= -12052;
+	//! ÊäÈë´íÎóµÄ:TAPIClientIDType
+	const int TAPIERROR_INPUTERROR_TAPIClientIDType							= -12053;
+	//! ÊäÈë´íÎóµÄ:TAPIClientLocationIDType
+	const int TAPIERROR_INPUTERROR_TAPIClientLocationIDType					= -12054;
+	//! ÊäÈë´íÎóµÄ:TapAPIApplyTypeType
+	const int TAPIERROR_INPUTERROR_TapAPIApplyTypeType						= -12055;
+	//! ÊäÈë´íÎóµÄ:TAPIDATE
+	const int TAPIERROR_INPUTERROR_TAPIDATE									= -12056;
+	
+	
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_ERR_DISCONNECT_REASON    ç½‘ç»œæ–­å¼€é”™è¯¯ä»£ç å®šä¹‰
-     *    @{
+     *	\addtogroup G_ERR_DISCONNECT_REASON	ÍøÂç¶Ï¿ª´íÎó´úÂë¶¨Òå
+     *	@{
      */
     //=============================================================================
-    //! ä¸»åŠ¨æ–­å¼€
+    //! Ö÷¶¯¶Ï¿ª
     const int TAPIERROR_DISCONNECT_CLOSE_INIT                              = 1;
-    //! è¢«åŠ¨æ–­å¼€
+    //! ±»¶¯¶Ï¿ª
     const int TAPIERROR_DISCONNECT_CLOSE_PASS                              = 2;
-    //! è¯»é”™è¯¯
+    //! ¶Á´íÎó
     const int TAPIERROR_DISCONNECT_READ_ERROR                              = 3;
-    //! å†™é”™è¯¯
+    //! Ð´´íÎó
     const int TAPIERROR_DISCONNECT_WRITE_ERROR                             = 4;
-    //! ç¼“å†²åŒºæ»¡
+    //! »º³åÇøÂú
     const int TAPIERROR_DISCONNECT_BUF_FULL                                = 5;
-    //! å¼‚æ­¥æ“ä½œé”™è¯¯
+    //! Òì²½²Ù×÷´íÎó
     const int TAPIERROR_DISCONNECT_IOCP_ERROR                              = 6;
-    //! è§£æžæ•°æ®é”™è¯¯
+    //! ½âÎöÊý¾Ý´íÎó
     const int TAPIERROR_DISCONNECT_PARSE_ERROR                             = 7;
-    //! è¿žæŽ¥è¶…æ—¶
+    //! Á¬½Ó³¬Ê±
     const int TAPIERROR_DISCONNECT_CONNECT_TIMEOUT                         = 8;
-    //! åˆå§‹åŒ–å¤±è´¥
+    //! ³õÊ¼»¯Ê§°Ü
     const int TAPIERROR_DISCONNECT_INIT_ERROR                              = 9;
-    //! å·²ç»è¿žæŽ¥
+    //! ÒÑ¾­Á¬½Ó
     const int TAPIERROR_DISCONNECT_HAS_CONNECTED                           = 10;
-    //! å·¥ä½œçº¿ç¨‹å·²ç»“æŸ
+    //! ¹¤×÷Ïß³ÌÒÑ½áÊø
     const int TAPIERROR_DISCONNECT_HAS_EXIT                                = 11;
-    //! æ“ä½œæ­£åœ¨è¿›è¡Œï¼Œè¯·ç¨åŽé‡è¯•
+    //! ²Ù×÷ÕýÔÚ½øÐÐ£¬ÇëÉÔºóÖØÊÔ
     const int TAPIERROR_DISCONNECT_TRY_LATER                               = 12;
 
     /** @}*/
 }
 #endif //! TAP_API_ERROR_H
+
+ 

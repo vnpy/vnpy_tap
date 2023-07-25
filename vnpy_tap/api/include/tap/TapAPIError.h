@@ -1,389 +1,470 @@
-ï»¿#ifndef TAP_API_ERROR_H
+#ifndef TAP_API_ERROR_H
 #define TAP_API_ERROR_H
 
 //=============================================================================
 /**
- *	\addtogroup G_ERR_INNER_API		TapAPIå†…éƒ¨è¿”å›žçš„é”™è¯¯ç å®šä¹‰ã€‚
+ *	\addtogroup G_ERR_INNER_API		TapAPIÄÚ²¿·µ»ØµÄ´íÎóÂë¶¨Òå¡£
  *	@{
  */
 //=============================================================================
-//! æˆåŠŸ
+//! ³É¹¦
 const int TAPIERROR_SUCCEED                                            = 0;
-//! è¿žæŽ¥æœåŠ¡å¤±è´¥
+//! Á¬½Ó·þÎñÊ§°Ü
 const int TAPIERROR_ConnectFail                                        = -1;
-//! é“¾è·¯è®¤è¯å¤±è´¥
+//! Á´Â·ÈÏÖ¤Ê§°Ü
 const int TAPIERROR_LinkAuthFail                                       = -2;
-//! ä¸»æœºåœ°å€ä¸å¯ç”¨
+//! Ö÷»úµØÖ·²»¿ÉÓÃ
 const int TAPIERROR_HostUnavailable                                    = -3;
-//! å‘é€æ•°æ®é”™è¯¯
+//! ·¢ËÍÊý¾Ý´íÎó
 const int TAPIERROR_SendDataError                                      = -4;
-//! æµ‹è¯•ç¼–å·ä¸åˆæ³•
+//! ²âÊÔ±àºÅ²»ºÏ·¨
 const int TAPIERROR_TestIDError                                        = -5;
-//! æ²¡å‡†å¤‡å¥½æµ‹è¯•ç½‘ç»œ
+//! Ã»×¼±¸ºÃ²âÊÔÍøÂç
 const int TAPIERROR_NotReadyTestNetwork                                = -6;
-//! å½“å‰ç½‘ç»œæµ‹è¯•è¿˜æ²¡ç»“æŸ
+//! µ±Ç°ÍøÂç²âÊÔ»¹Ã»½áÊø
 const int TAPIERROR_CurTestNotOver                                     = -7;
-//! æ²¡ç”¨å¯ç”¨çš„æŽ¥å…¥å‰ç½®
+//! Ã»ÓÃ¿ÉÓÃµÄ½ÓÈëÇ°ÖÃ
 const int TAPIERROR_NOFrontAvailable                                   = -8;
-//! æ•°æ®è·¯å¾„ä¸å¯ç”¨
+//! Êý¾ÝÂ·¾¶²»¿ÉÓÃ
 const int TAPIERROR_DataPathAvaiable                                   = -9;
-//! é‡å¤ç™»å½•
+//! ÖØ¸´µÇÂ¼
 const int TAPIERROR_RepeatLogin                                        = -10;
-//! å†…éƒ¨é”™è¯¯	
+//! ÄÚ²¿´íÎó	
 const int TAPIERROR_InnerError                                         = -11;
-//! ä¸Šä¸€æ¬¡è¯·æ±‚è¿˜æ²¡æœ‰ç»“æŸ	
+//! ÉÏÒ»´ÎÇëÇó»¹Ã»ÓÐ½áÊø	
 const int TAPIERROR_LastReqNotFinish                                   = -12;
-//! è¾“å…¥å‚æ•°éžæ³•	
+//! ÊäÈë²ÎÊý·Ç·¨	
 const int TAPIERROR_InputValueError                                    = -13;
-//! æŽˆæƒç ä¸åˆæ³•	
+//! ÊÚÈ¨Âë²»ºÏ·¨	
 const int TAPIERROR_AuthCode_Invalid                                   = -14;
-//! æŽˆæƒç è¶…æœŸ	
+//! ÊÚÈ¨Âë³¬ÆÚ	
 const int TAPIERROR_AuthCode_Expired                                   = -15;
-//! æŽˆæƒç ç±»åž‹ä¸åŒ¹é…	
+//! ÊÚÈ¨ÂëÀàÐÍ²»Æ¥Åä	
 const int TAPIERROR_AuthCode_TypeNotMatch                              = -16;
-//! APIè¿˜æ²¡æœ‰å‡†å¤‡å¥½
+//! API»¹Ã»ÓÐ×¼±¸ºÃ
 const int TAPIERROR_API_NotReady                                       = -17;
-//! UDPç«¯å£ç›‘å¬å¤±è´¥
+//! UDP¶Ë¿Ú¼àÌýÊ§°Ü
 const int TAPIERROR_UDP_LISTEN_FAILED                                  = -18;
-//! UDPæ­£åœ¨ç›‘å¬
+//! UDPÕýÔÚ¼àÌý
 const int TAPIERROR_UDP_LISTENING                                      = -19;
-//! æŽ¥å£æœªå®žçŽ°
+//! ½Ó¿ÚÎ´ÊµÏÖ
 const int TAPIERROR_NotImplemented                                     = -20;
-//! æ¯æ¬¡ç™»é™†åªå…è®¸è°ƒç”¨ä¸€æ¬¡
+//! Ã¿´ÎµÇÂ½Ö»ÔÊÐíµ÷ÓÃÒ»´Î
 const int TAPIERROR_CallOneTimeOnly                                    = -21;
-//! æŸ¥è¯¢é¢‘çŽ‡å¤ªé«˜
+//! ²Ù×÷ÆµÂÊÌ«¸ß
 const int TAPIERROR_Frequently                                         = -22;
-
+//! ÐÅÏ¢²É¼¯´íÎó
+const int TAPIERROR_DataCollect                                        = -23;
+//! ÐÅÏ¢²É¼¯¿â¼ÓÔØÊ§°Ü
+const int TAPIERROR_DataLoad                                           = -24;
+//! ·ÇÖÐ¼ÌÄ£Ê½½ûÖ¹µ÷ÓÃ¸Ã½Ó¿Ú
+const int TAPIERROR_NoRelay                                            = -25;
 /** @}*/
 
 
 //=============================================================================
 /**
- *	\addtogroup G_ERR_INPUT_CHECK		è¾“å…¥å‚æ•°æ£€æŸ¥é”™è¯¯
+ *	\addtogroup G_ERR_INPUT_CHECK		ÊäÈë²ÎÊý¼ì²é´íÎó
  *	@{
  */
 //=============================================================================
-//! è¾“å…¥æ•°æ®ä¸ºNULL
+//! ÊäÈëÊý¾ÝÎªNULL
 const int TAPIERROR_INPUTERROR_NULL                                    = -10000;
-//! è¾“å…¥é”™è¯¯çš„:TAPIYNFLAG
+//! ÊäÈë´íÎóµÄ:TAPIYNFLAG
 const int TAPIERROR_INPUTERROR_TAPIYNFLAG                              = -10001;
-//! è¾“å…¥é”™è¯¯çš„:TAPILOGLEVEL
+//! ÊäÈë´íÎóµÄ:TAPILOGLEVEL
 const int TAPIERROR_INPUTERROR_TAPILOGLEVEL                            = -10002;
-//! è¾“å…¥é”™è¯¯çš„:TAPICommodityType
+//! ÊäÈë´íÎóµÄ:TAPICommodityType
 const int TAPIERROR_INPUTERROR_TAPICommodityType                       = -10003;
-//! è¾“å…¥é”™è¯¯çš„:TAPICallOrPutFlagType
+//! ÊäÈë´íÎóµÄ:TAPICallOrPutFlagType
 const int TAPIERROR_INPUTERROR_TAPICallOrPutFlagType                   = -10004;
-//! è¾“å…¥é”™è¯¯çš„:TAPIAccountType
+//! ÊäÈë´íÎóµÄ:TAPIAccountType
 const int TAPIERROR_INPUTERROR_TAPIAccountType                         = -12001;
-//! è¾“å…¥é”™è¯¯çš„:TAPIAccountState
+//! ÊäÈë´íÎóµÄ:TAPIAccountState
 const int TAPIERROR_INPUTERROR_TAPIAccountState                        = -12003;
-//! è¾“å…¥é”™è¯¯çš„:TAPIAccountFamilyType
+//! ÊäÈë´íÎóµÄ:TAPIAccountFamilyType
 const int TAPIERROR_INPUTERROR_TAPIAccountFamilyType                   = -12004;
-//! è¾“å…¥é”™è¯¯çš„:TAPIOrderTypeType
+//! ÊäÈë´íÎóµÄ:TAPIOrderTypeType
 const int TAPIERROR_INPUTERROR_TAPIOrderTypeType                       = -12005;
-//! è¾“å…¥é”™è¯¯çš„:TAPIOrderSourceType
+//! ÊäÈë´íÎóµÄ:TAPIOrderSourceType
 const int TAPIERROR_INPUTERROR_TAPIOrderSourceType                     = -12006;
-//! è¾“å…¥é”™è¯¯çš„:TAPITimeInForceType
+//! ÊäÈë´íÎóµÄ:TAPITimeInForceType
 const int TAPIERROR_INPUTERROR_TAPITimeInForceType                     = -12007;
-//! è¾“å…¥é”™è¯¯çš„:TAPISideType
+//! ÊäÈë´íÎóµÄ:TAPISideType
 const int TAPIERROR_INPUTERROR_TAPISideType                            = -12008;
-//! è¾“å…¥é”™è¯¯çš„:TAPIPositionEffectType
+//! ÊäÈë´íÎóµÄ:TAPIPositionEffectType
 const int TAPIERROR_INPUTERROR_TAPIPositionEffectType                  = -12009;
-//! è¾“å…¥é”™è¯¯çš„:TAPIHedgeFlagType
+//! ÊäÈë´íÎóµÄ:TAPIHedgeFlagType
 const int TAPIERROR_INPUTERROR_TAPIHedgeFlagType                       = -12010;
-//! è¾“å…¥é”™è¯¯çš„:TAPIOrderStateType
+//! ÊäÈë´íÎóµÄ:TAPIOrderStateType
 const int TAPIERROR_INPUTERROR_TAPIOrderStateType                      = -12011;
-//! è¾“å…¥é”™è¯¯çš„:TAPICalculateModeType
+//! ÊäÈë´íÎóµÄ:TAPICalculateModeType
 const int TAPIERROR_INPUTERROR_TAPICalculateModeType                   = -12012;
-//! è¾“å…¥é”™è¯¯çš„:TAPIMatchSourceType
+//! ÊäÈë´íÎóµÄ:TAPIMatchSourceType
 const int TAPIERROR_INPUTERROR_TAPIMatchSourceType                     = -12013;
-//! è¾“å…¥é”™è¯¯çš„:TAPIOpenCloseModeType
+//! ÊäÈë´íÎóµÄ:TAPIOpenCloseModeType
 const int TAPIERROR_INPUTERROR_TAPIOpenCloseModeType                   = -12014;
-//! è¾“å…¥é”™è¯¯çš„:TAPIFutureAlgType
+//! ÊäÈë´íÎóµÄ:TAPIFutureAlgType
 const int TAPIERROR_INPUTERROR_TAPIFutureAlgType                       = -12015;
-//! è¾“å…¥é”™è¯¯çš„:TAPIOptionAlgType
+//! ÊäÈë´íÎóµÄ:TAPIOptionAlgType
 const int TAPIERROR_INPUTERROR_TAPIOptionAlgType                       = -12016;
-//! è¾“å…¥é”™è¯¯çš„:TAPIBankAccountLWFlagType
+//! ÊäÈë´íÎóµÄ:TAPIBankAccountLWFlagType
 const int TAPIERROR_INPUTERROR_TAPIBankAccountLWFlagType               = -12017;
-//! è¾“å…¥é”™è¯¯çš„:TAPIMarginCalculateModeType
+//! ÊäÈë´íÎóµÄ:TAPIMarginCalculateModeType
 const int TAPIERROR_INPUTERROR_TAPIMarginCalculateModeType             = -12021;
-//! è¾“å…¥é”™è¯¯çš„:TAPIOptionMarginCalculateModeType
+//! ÊäÈë´íÎóµÄ:TAPIOptionMarginCalculateModeType
 const int TAPIERROR_INPUTERROR_TAPIOptionMarginCalculateModeType       = -12022;
-//! è¾“å…¥é”™è¯¯çš„:TAPICmbDirectType
+//! ÊäÈë´íÎóµÄ:TAPICmbDirectType
 const int TAPIERROR_INPUTERROR_TAPICmbDirectType                       = -12023;
-//! è¾“å…¥é”™è¯¯çš„:TAPIDeliveryModeType
+//! ÊäÈë´íÎóµÄ:TAPIDeliveryModeType
 const int TAPIERROR_INPUTERROR_TAPIDeliveryModeType                    = -12024;
-//! è¾“å…¥é”™è¯¯çš„:TAPIContractTypeType
+//! ÊäÈë´íÎóµÄ:TAPIContractTypeType
 const int TAPIERROR_INPUTERROR_TAPIContractTypeType                    = -12025;
-//! è¾“å…¥é”™è¯¯çš„:TAPITacticsTypeType
+//! ÊäÈë´íÎóµÄ:TAPITacticsTypeType
 const int TAPIERROR_INPUTERROR_TAPITacticsTypeType                     = -12035;
-//! è¾“å…¥é”™è¯¯çš„:TAPIORDERACT
+//! ÊäÈë´íÎóµÄ:TAPIORDERACT
 const int TAPIERROR_INPUTERROR_TAPIORDERACT                            = -12036;
-//! è¾“å…¥é”™è¯¯çš„:TAPITriggerConditionType
+//! ÊäÈë´íÎóµÄ:TAPITriggerConditionType
 const int TAPIERROR_INPUTERROR_TAPITriggerConditionType                = -12041;
-//! è¾“å…¥é”™è¯¯çš„:TAPITriggerPriceTypeType
+//! ÊäÈë´íÎóµÄ:TAPITriggerPriceTypeType
 const int TAPIERROR_INPUTERROR_TAPITriggerPriceTypeType                = -12042;
-//! è¾“å…¥é”™è¯¯çš„:TAPITradingStateType 
+//! ÊäÈë´íÎóµÄ:TAPITradingStateType 
 const int TAPIERROR_INPUTERROR_TAPITradingStateType                    = -12043;
-//! è¾“å…¥é”™è¯¯çš„:TAPIMarketLevelType 
+//! ÊäÈë´íÎóµÄ:TAPIMarketLevelType 
 const int TAPIERROR_INPUTERROR_TAPIMarketLevelType                     = -12044;
-//! è¾“å…¥é”™è¯¯çš„:TAPIOrderQryTypeType 
+//! ÊäÈë´íÎóµÄ:TAPIOrderQryTypeType 
 const int TAPIERROR_INPUTERROR_TAPIOrderQryTypeType                    = -12045;
 
 /** @}*/
 
 //=============================================================================
 /**
- *	\addtogroup G_ERR_DISCONNECT_REASON	ç½‘ç»œæ–­å¼€é”™è¯¯ä»£ç å®šä¹‰
+ *	\addtogroup G_ERR_DISCONNECT_REASON	ÍøÂç¶Ï¿ª´íÎó´úÂë¶¨Òå
  *	@{
  */
 //=============================================================================
-//! ä¸»åŠ¨æ–­å¼€
+//! Ö÷¶¯¶Ï¿ª
 const int TAPIERROR_DISCONNECT_CLOSE_INIT                              = 1;
-//! è¢«åŠ¨æ–­å¼€
+//! ±»¶¯¶Ï¿ª
 const int TAPIERROR_DISCONNECT_CLOSE_PASS                              = 2;
-//! è¯»é”™è¯¯
+//! ¶Á´íÎó
 const int TAPIERROR_DISCONNECT_READ_ERROR                              = 3;
-//! å†™é”™è¯¯
+//! Ð´´íÎó
 const int TAPIERROR_DISCONNECT_WRITE_ERROR                             = 4;
-//! ç¼“å†²åŒºæ»¡
+//! »º³åÇøÂú
 const int TAPIERROR_DISCONNECT_BUF_FULL                                = 5;
-//! å¼‚æ­¥æ“ä½œé”™è¯¯
+//! Òì²½²Ù×÷´íÎó
 const int TAPIERROR_DISCONNECT_IOCP_ERROR                              = 6;
-//! è§£æžæ•°æ®é”™è¯¯
+//! ½âÎöÊý¾Ý´íÎó
 const int TAPIERROR_DISCONNECT_PARSE_ERROR                             = 7;
-//! è¿žæŽ¥è¶…æ—¶
+//! Á¬½Ó³¬Ê±
 const int TAPIERROR_DISCONNECT_CONNECT_TIMEOUT                         = 8;
-//! åˆå§‹åŒ–å¤±è´¥
+//! ³õÊ¼»¯Ê§°Ü
 const int TAPIERROR_DISCONNECT_INIT_ERROR                              = 9;
-//! å·²ç»è¿žæŽ¥
+//! ÒÑ¾­Á¬½Ó
 const int TAPIERROR_DISCONNECT_HAS_CONNECTED                           = 10;
-//! å·¥ä½œçº¿ç¨‹å·²ç»“æŸ
+//! ¹¤×÷Ïß³ÌÒÑ½áÊø
 const int TAPIERROR_DISCONNECT_HAS_EXIT                                = 11;
-//! æ“ä½œæ­£åœ¨è¿›è¡Œï¼Œè¯·ç¨åŽé‡è¯•
+//! ²Ù×÷ÕýÔÚ½øÐÐ£¬ÇëÉÔºóÖØÊÔ
 const int TAPIERROR_DISCONNECT_TRY_LATER                               = 12;
-//! å¿ƒè·³æ£€æµ‹å¤±è´¥
+//! ÐÄÌø¼ì²âÊ§°Ü
 const int TAPIERROR_DISCONNECT_HEARTBEAT_FAILED                        = 13;
 
 /** @}*/
 
 //=============================================================================
 /**
- *	\addtogroup G_ERR_LOGIN	ç™»é™†è¿‡ç¨‹è¿”å›žçš„é”™è¯¯ä»£ç å®šä¹‰
+ *	\addtogroup G_ERR_LOGIN	µÇÂ½¹ý³Ì·µ»ØµÄ´íÎó´úÂë¶¨Òå
  *	@{
  */
 //=============================================================================
-//! ç™»å½•è¿‡ç¨‹æ‰§è¡Œé”™è¯¯
+//! µÇÂ¼¹ý³ÌÖ´ÐÐ´íÎó
 const int TAPIERROR_LOGIN                                              = 10001;
-//! ç™»å½•ç”¨æˆ·ä¸å­˜åœ¨
+//! µÇÂ¼ÓÃ»§²»´æÔÚ
 const int TAPIERROR_LOGIN_USER                                         = 10002;
-//! éœ€è¦è¿›è¡ŒåŠ¨æ€è®¤è¯
+//! ÐèÒª½øÐÐ¶¯Ì¬ÈÏÖ¤
 const int TAPIERROR_LOGIN_DDA                                          = 10003;
-//! ç™»å½•ç”¨æˆ·æœªæŽˆæƒ
+//! µÇÂ¼ÓÃ»§Î´ÊÚÈ¨
 const int TAPIERROR_LOGIN_LICENSE                                      = 10004;
-//! ç™»å½•æ¨¡å—ä¸æ­£ç¡®
+//! µÇÂ¼Ä£¿é²»ÕýÈ·
 const int TAPIERROR_LOGIN_MODULE                                       = 10005;
-//! éœ€è¦å¼ºåˆ¶ä¿®æ”¹å¯†ç 
+//! ÐèÒªÇ¿ÖÆÐÞ¸ÄÃÜÂë
 const int TAPIERROR_LOGIN_FORCE                                        = 10006;
-//! ç™»å½•çŠ¶æ€ç¦æ­¢ç™»é™†
+//! µÇÂ¼×´Ì¬½ûÖ¹µÇÂ½
 const int TAPIERROR_LOGIN_STATE                                        = 10007;
-//! ç™»å½•å¯†ç ä¸æ­£ç¡®
+//! µÇÂ¼ÃÜÂë²»ÕýÈ·
 const int TAPIERROR_LOGIN_PASS                                         = 10008;
-//! æ²¡æœ‰è¯¥æ¨¡å—ç™»å½•æƒé™
+//! Ã»ÓÐ¸ÃÄ£¿éµÇÂ¼È¨ÏÞ
 const int TAPIERROR_LOGIN_RIGHT                                        = 10009;
-//! ç™»å½•æ•°é‡è¶…é™
+//! µÇÂ¼ÊýÁ¿³¬ÏÞ
 const int TAPIERROR_LOGIN_COUNT                                        = 10010;
-//! ç™»å½•ç”¨æˆ·ä¸åœ¨æœåŠ¡å™¨æ ‡è¯†ä¸‹å¯ç™»å½•ç”¨æˆ·åˆ—è¡¨ä¸­
+//! µÇÂ¼ÓÃ»§²»ÔÚ·þÎñÆ÷±êÊ¶ÏÂ¿ÉµÇÂ¼ÓÃ»§ÁÐ±íÖÐ
 const int TAPIERROR_LOGIN_NOTIN_SERVERFLAGUSRES                        = 10011;
-//! ç™»é™†ç”¨æˆ·ä¸åœ¨æœ‰æ•ˆæœŸ
+//! µÇÂ½ÓÃ»§²»ÔÚÓÐÐ§ÆÚ
 const int TAPIERROR_LOGIN_USER_EXPIRED                                 = 10012;
-//! ç™»é™†ç”¨æˆ·æ— ä¸‹å±žå®¢æˆ·
+//! µÇÂ½ÓÃ»§ÎÞÏÂÊô¿Í»§
 const int TAPIERROR_LOGIN_NO_ACCOUNT                                   = 10013;
-//! ç™»å½•ç”¨æˆ·æ˜¯å­å¸å·ä¸”æŽˆæƒä¸­æœªåŒ…å«æœºæž„é€šæ ‡è®°
+//! µÇÂ¼ÓÃ»§ÊÇ×ÓÕÊºÅÇÒÊÚÈ¨ÖÐÎ´°üº¬»ú¹¹Í¨±ê¼Ç
 const int TAPIERROR_LOGIN_NO_JGT                                       = 10014;
-//! ç™»å½•ç”¨æˆ·å¯†ç é”™è¯¯æ¬¡æ•°è¶…é™ï¼Œç¦æ­¢ç™»é™†
+//! µÇÂ¼ÓÃ»§ÃÜÂë´íÎó´ÎÊý³¬ÏÞ£¬½ûÖ¹µÇÂ½
 const int TAPIERROR_LOGIN_ERROR_TIMES                                  = 10015;
-//! ç™»å½•ç”¨æˆ·æŽˆæƒç±»åž‹é”™è¯¯
+//! µÇÂ¼ÓÃ»§ÊÚÈ¨ÀàÐÍ´íÎó
 const int TAPIERROR_LOGIN_ERROR_AUTHTYPE                               = 10016;
-//! ç™»å½•ç”¨æˆ·æŽˆæƒåˆ°æœŸæˆ–åˆ°æœŸæ—¥é”™è¯¯
+//! µÇÂ¼ÓÃ»§ÊÚÈ¨µ½ÆÚ»òµ½ÆÚÈÕ´íÎó
 const int TAPIERROR_LOGIN_ERROR_AUTHEXPIRED                            = 10017;
-//! ç™»å½•ç”¨æˆ·å¯†ç è¶…è¿‡æœ‰æ•ˆå¤©æ•°
+//! µÇÂ¼ÓÃ»§ÃÜÂë³¬¹ýÓÐÐ§ÌìÊý
 const int TAPIERROR_LOGIN_ERROR_PASSWDEXPIRED                          = 10018;
+//! µÇÂ¼ÓÃ»§Î´ÊÚÈ¨µÄµÇÂ¼IPºÍMAC
+const int TAPIERROR_LOGIN_ERROR_USERTRUST                              = 10019;
+//! 8.2¿Í»§¶Ë½ûÖ¹µÇÂ¼ÇëÉý¼¶8.3
+const int TAPIERROR_LOGIN_ERROR_CLIENTVERSION                          = 10020;
+//! ÓÃ»§ÊÚÈ¨ÐÅÏ¢´íÎó
+const int TAPIERROR_LOGIN_ERROR_AUTHCODEINFO                           = 10021;
 
 /** @}*/
 
 //=============================================================================
 /**
- *	\addtogroup G_ERR_MANAGE ç®¡ç†ä¸šåŠ¡å¤„ç†è¿”å›žé”™è¯¯ç 	
+ *	\addtogroup G_ERR_MANAGE ¹ÜÀíÒµÎñ´¦Àí·µ»Ø´íÎóÂë	
  *	@{
  */
 //==============================================================================
-//! ç™»å½•ç”¨æˆ·ä¿¡æ¯æŸ¥è¯¢å¤±è´¥
+//! µÇÂ¼ÓÃ»§ÐÅÏ¢²éÑ¯Ê§°Ü
 const int TAPIERROR_USERINFO_QRY                                       = 10101;
-//! ç™»å½•ç”¨æˆ·ä¸‹å±žæ‰€æœ‰æƒé™æŸ¥è¯¢å¤±è´¥
+//! µÇÂ¼ÓÃ»§ÏÂÊôËùÓÐÈ¨ÏÞ²éÑ¯Ê§°Ü
 const int TAPIERROR_USERALLRIGHT_QRY                                   = 11001;
-//! ç™»å½•ç”¨æˆ·ä¸‹å±žæ‰€æœ‰èµ„é‡‘è´¦å·æŸ¥è¯¢å¤±è´¥
+//! µÇÂ¼ÓÃ»§ÏÂÊôËùÓÐ×Ê½ðÕËºÅ²éÑ¯Ê§°Ü
 const int TAPIERROR_USERALLACCOUNT_QRY                                 = 11501;
-//! ç™»å½•ç”¨æˆ·å¯†ç ä¿®æ”¹å¤±è´¥
+//! µÇÂ¼ÓÃ»§ÃÜÂëÐÞ¸ÄÊ§°Ü
 const int TAPIERROR_USERPASSWORD_MOD                                   = 11701;
-//! ç™»å½•ç”¨æˆ·å¯†ç ä¿®æ”¹å¤±è´¥â€”â€”åŽŸå§‹å¯†ç é”™è¯¯
+//! µÇÂ¼ÓÃ»§ÃÜÂëÐÞ¸ÄÊ§°Ü¡ª¡ªÔ­Ê¼ÃÜÂë´íÎó
 const int TAPIERROR_USERPASSWORD_MOD_SOURCE                            = 11702;
-//! ç™»å½•ç”¨æˆ·å¯†ç ä¿®æ”¹å¤±è´¥â€”â€”ä¸èƒ½ä¸Žå‰næ¬¡å¯†ç ç›¸åŒ
+//! µÇÂ¼ÓÃ»§ÃÜÂëÐÞ¸ÄÊ§°Ü¡ª¡ª²»ÄÜÓëÇ°n´ÎÃÜÂëÏàÍ¬
 const int TAPIERROR_USERPASSWORD_MOD_SAME                              = 11703;
-//! æ–°å¯†ç ä¸ç¬¦åˆå¯†ç å¤æ‚åº¦è¦æ±‚
+//! ÐÂÃÜÂë²»·ûºÏÃÜÂë¸´ÔÓ¶ÈÒªÇó
 const int TAPIERROR_USERPASSWORD_MOD_COMPLEXITY                        = 11704;
-//! èµ„é‡‘è´¦å·ä¿¡æ¯æŸ¥è¯¢å¤±è´¥
+//! ×Ê½ðÕËºÅÐÅÏ¢²éÑ¯Ê§°Ü
 const int TAPIERROR_ACCOUNTINFO_QRY                                    = 20201;
-//! å®¢æˆ·äº¤æ˜“ç¼–ç æŸ¥è¯¢å¤±è´¥
+//! ¿Í»§½»Ò×±àÂë²éÑ¯Ê§°Ü
 const int TAPIERROR_TRADENO_QRY                                        = 20701;
-//! åˆçº¦ä¿¡æ¯æŸ¥è¯¢å¤±è´¥
+//! ºÏÔ¼ÐÅÏ¢²éÑ¯Ê§°Ü
 const int TAPIERROR_CONTRACTINFO_QRY                                   = 22801;
-//! ç‰¹æ®ŠæœŸæƒæ ‡çš„æŸ¥è¯¢å¤±è´¥
+//! ÌØÊâÆÚÈ¨±êµÄ²éÑ¯Ê§°Ü
 const int TAPIERROR_SPECIALOPTIONFUTURE_QRY                            = 22901;
-//! å“ç§å§”æ‰˜ç±»åž‹æŸ¥è¯¢å¤±è´¥
+//! Æ·ÖÖÎ¯ÍÐÀàÐÍ²éÑ¯Ê§°Ü
 const int TAPIERROR_COMMODITYORDERTYPE_QRY                             = 25501;
-//! å“ç§å§”æ‰˜æ—¶é—´æœ‰æ•ˆæ€§æŸ¥è¯¢å¤±è´¥
+//! Æ·ÖÖÎ¯ÍÐÊ±¼äÓÐÐ§ÐÔ²éÑ¯Ê§°Ü
 const int TAPIERROR_ORDERTIMEINFORCE_QRY                               = 25601;
-//! ç”¨æˆ·ä¸‹å•é¢‘çŽ‡æŸ¥è¯¢å¤±è´¥
+//! ÓÃ»§ÏÂµ¥ÆµÂÊ²éÑ¯Ê§°Ü
 const int TAPIERROR_USER_ORDER_FREQUENCE_QRY                           = 28901;
+//! Ìá½»ÐÅÏ¢ÓÃ»§ÊÚÈ¨ÀàÐÍ´íÎó
+const int TAPIERROR_USERSUBMITAUTHTYPE_ERROR                           = 29591;
+//! ÓÃ»§²É¼¯ÖÕ¶ËÊý¾ÝÎª¿Õ
+const int TAPIERROR_USERSUBMITINFO_EMPTY                               = 29592;
+//! ÓÃ»§ÃÜÔ¿°æ±¾´íÎó
+const int TAPIERROR_USERAUTHKEYVERSION_ERROR                           = 29593;
+//! ÓÃ»§²É¼¯ÐÅÏ¢²»È«£¬È¨ÏÞ²»¹»
+const int TAPIERROR_USERSUBMITINFO_PARTY                               = 29594;
+//! ÓÃ»§²É¼¯ÐÅÏ¢²ÉÓÃ²âÊÔÃÜÔ¿¼ÓÃÜ
+const int TAPIERROR_USERSUBMITINFO_TESTKEY                             = 29595;
+//! ÓÃ»§²É¼¯ÐÅÏ¢ÓÃ»§²»´æÔÚ
+const int TAPIERROR_USERSUBMITINFO_USERNO                              = 29596;
 
 /** @}*/
 
 //=============================================================================
 /**
- *	\addtogroup G_ERR_TRADE äº¤æ˜“ä¸šåŠ¡å¤„ç†è¿”å›žé”™è¯¯ç 	
+ *	\addtogroup G_ERR_TRADE ½»Ò×ÒµÎñ´¦Àí·µ»Ø´íÎóÂë	
  *	@{
  */
 //==============================================================================
-//! èµ„é‡‘è´¦å·ä¸å­˜åœ¨
+//! ×Ê½ðÕËºÅ²»´æÔÚ
 const int TAPIERROR_ORDERINSERT_ACCOUNT                                = 60001;
-//! èµ„é‡‘è´¦å·çŠ¶æ€ä¸æ­£ç¡®
+//! ×Ê½ðÕËºÅ×´Ì¬²»ÕýÈ·
 const int TAPIERROR_ORDERINSERT_ACCOUNT_STATE		                   = 60002;
-//! èµ„é‡‘è´¦å·æ— å§”æ‰˜æ–¹å‘äº¤æ˜“æƒé™
+//! ×Ê½ðÕËºÅÎÞÎ¯ÍÐ·½Ïò½»Ò×È¨ÏÞ
 const int TAPIERROR_ORDERINSERT_SIDE_TRADE                             = 60003;
-//! èµ„é‡‘è´¦å·æ— æœŸæƒäº¤æ˜“æƒé™
+//! ×Ê½ðÕËºÅÎÞÆÚÈ¨½»Ò×È¨ÏÞ
 const int TAPIERROR_ORDERINSERT_OPTIONS_TRADE                          = 60004;
-//! èµ„é‡‘è´¦å·æ— å“ç§äº¤æ˜“æƒé™
+//! ×Ê½ðÕËºÅÎÞÆ·ÖÖ½»Ò×È¨ÏÞ
 const int TAPIERROR_ORDERINSERT_COMMODITY_TRADE                        = 60005;
-//! èµ„é‡‘è´¦å·æ— å¼€ä»“æƒé™
+//! ×Ê½ðÕËºÅÎÞ¿ª²ÖÈ¨ÏÞ
 const int TAPIERROR_ORDERINSERT_OPEN_RIGHT                             = 60006;
-//! èµ„é‡‘è´¦å·é£ŽæŽ§é¡¹æ£€æŸ¥å¤±è´¥
+//! ×Ê½ðÕËºÅ·ç¿ØÏî¼ì²éÊ§°Ü
 const int TAPIERROR_ORDERINSERT_RISK_CHECK                             = 60007;
-//! ä¸‹å•æ— æ•ˆçš„åˆçº¦
+//! ÏÂµ¥ÎÞÐ§µÄºÏÔ¼
 const int TAPIERROR_ORDERINSERT_CONTRACT                               = 60011;
-//! ä¸‹å•åˆçº¦æ— äº¤æ˜“è·¯ç”±
+//! ÏÂµ¥ºÏÔ¼ÎÞ½»Ò×Â·ÓÉ
 const int TAPIERROR_ORDERINSERT_TRADEROUTE                             = 60021;
-//! æŒä»“é‡è¶…è¿‡æœ€å¤§é™åˆ¶
+//! ³Ö²ÖÁ¿³¬¹ý×î´óÏÞÖÆ
 const int TAPIERROR_ORDERINSERT_POSITIONMAX                            = 60022;
-//! ç¦æ­¢äº¤æ˜“
+//! ½ûÖ¹½»Ò×
 const int TAPIERROR_ORDER_NOTRADE                                      = 60023;
-//! åªå¯å¹³ä»“
+//! Ö»¿ÉÆ½²Ö
 const int TAPIERROR_ORDER_CLOSE                                        = 60024;
-//! ä¸‹å•èµ„é‡‘ä¸è¶³
+//! ÏÂµ¥×Ê½ð²»×ã
 const int TAPIERROR_ORDERINSERT_NOTENOUGHFUND                          = 60031;
-//! ä¸æ”¯æŒçš„è®¢å•ç±»åž‹
+//! ²»Ö§³ÖµÄ¶©µ¥ÀàÐÍ
 const int TAPIERROR_ORDERINSERT_ORDERTYPE                              = 60032;
-//! ä¸æ”¯æŒçš„æ—¶é—´æœ‰æ•ˆç±»åž‹
+//! ²»Ö§³ÖµÄÊ±¼äÓÐÐ§ÀàÐÍ
 const int TAPIERROR_ORDERINSERT_TIMEINFORCE                            = 60033;
-//! ä¸æ”¯æŒçš„ç­–ç•¥å•ç±»åž‹
+//! ²»Ö§³ÖµÄ²ßÂÔµ¥ÀàÐÍ
 const int TAPIERROR_ORDERINSERT_NO_TACTICS                             = 60034;
-//! å¹³ä»“æ•°é‡è¶…è¿‡å·²æœ‰æŒä»“é‡
+//! Æ½²ÖÊýÁ¿³¬¹ýÒÑÓÐ³Ö²ÖÁ¿
 const int TAPIERROR_ORDERINSERT_POSITION_CANNOT_CLOSE                  = 60035;
-//! ä¸‹å•è‡ªåŠ¨å®¡æ ¸å¤±è´¥
+//! ÏÂµ¥×Ô¶¯ÉóºËÊ§°Ü
 const int TAPIERROR_ORDERINSERT_AUTOCHECK_FAIL                         = 60036;
-//! LMEæœªå‡†å¤‡å°±ç»ª
+//! LMEÎ´×¼±¸¾ÍÐ÷
 const int TAPIERROR_ORDERINSERT_LME_NOTREADY                           = 60037;
-//! å¹³ä»“æ–¹å¼é”™è¯¯
+//! Æ½²Ö·½Ê½´íÎó
 const int TAPIERROR_ORDERINSERT_CLOSEMODE                              = 60038;
-//! ä¸‹å•å¯¹åº”çš„çˆ¶è´¦å·èµ„é‡‘ä¸è¶³
+//! ÏÂµ¥¶ÔÓ¦µÄ¸¸ÕËºÅ×Ê½ð²»×ã
 const int TAPIERROR_ORDERINSERT_PARENTNOTENOUGHFUND                    = 60039;
-//! äº’æ¢å•çš„åˆçº¦æ ¼å¼é”™è¯¯
+//! »¥»»µ¥µÄºÏÔ¼¸ñÊ½´íÎó
 const int TAPIERROR_SWAP_CONTRACT                                      = 60040;
-//! å½“å‰å®¢æˆ·ä¸èƒ½ä½¿ç”¨æ­¤è´¦å·äº¤æ˜“
+//! Î¯ÍÐ¼Û¸ñ²»ºÏÀí
+const int TAPIERROR_ORDERINSERT_PRICE                                  = 60041;
+//! ¿ªÆ½±ê¼Ç²»ºÏÀí
+const int TAPIERROR_ORDERINSERT_EFFECT                                 = 60042;
+//! ¹ØÁªºÏÔ¼´íÎó
+const int TAPIERROR_ORDERINSERT_TARGETCONTRACT                         = 60043;
+//! µ±Ç°¿Í»§²»ÄÜÊ¹ÓÃ´ËÕËºÅ½»Ò×
 const int TAPIERROR_USERNO_NOTHAS_ACCOUNT                              = 60051;
-//! ä¸Šæ‰‹é€šé“çŠ¶æ€ä¸æ­£å¸¸
+//! ÉÏÊÖÍ¨µÀ×´Ì¬²»Õý³£
 const int TAPIERROR_UPPERCHANNEL_BROKEN                                = 60052;
-//! ä¸Šæ‰‹é€šé“æœªå¼€é€šEXIST
+//! ÉÏÊÖÍ¨µÀÎ´¿ªÍ¨EXIST
 const int TAPIERROR_UPPERCHANNEL_NOT_EXIST                             = 60053;
-//! æ’¤å•æ— æ­¤ç³»ç»Ÿå·
+//! ³·µ¥ÎÞ´ËÏµÍ³ºÅ
 const int TAPIERROR_ORDERDELETE_NOT_SYSNO                              = 60061;
-//! æ­¤çŠ¶æ€ä¸å…è®¸æ’¤å•
+//! ´Ë×´Ì¬²»ÔÊÐí³·µ¥
 const int TAPIERROR_ORDERDELETE_NOT_STATE                              = 60062;
-//! æ­¤çŠ¶æ€ä¸å…è®¸æ¿€æ´»
+//! ´Ë×´Ì¬²»ÔÊÐí¼¤»î
 const int TAPIERROR_ORDERACTIVE_NOT_STATE                              = 60063;
-//! æ­¤çŠ¶æ€ç¦æ­¢å®¡æ ¸
+//! Ö»ÔÊÐí³·Ïú±¾ºÏÔ¼×îÐÂÒ»´ÎÎ¯ÍÐ
+const int TAPIERROR_ORDERDELETE_NOT_LAST                                = 60064;
+//! ´Ë×´Ì¬½ûÖ¹ÉóºË
 const int TAPIERROR_ORDERCHECK_NOT_STATE                               = 60071;
-//! è®¢å•å®¡æ ¸å¤±è´¥
+//! ¶©µ¥ÉóºËÊ§°Ü
 const int TAPIERROR_ORDERCHECK_FAIL                                    = 60072;
-//! æ­¤çŠ¶æ€ä¸å…è®¸æ”¹å•
+//! ´Ë×´Ì¬²»ÔÊÐí¸Äµ¥
 const int TAPIERROR_ORDERMODIFY_NOT_STATE                              = 60081;
-//! äººå·¥å•ä¸å…è®¸æ”¹å•
+//! ÈË¹¤µ¥²»ÔÊÐí¸Äµ¥
 const int TAPIERROR_ORDERMODIFY_BACK_INPUT                             = 60082;
-//! æ‰‹ç»­è´¹å‚æ•°é”™è¯¯
+//! ÊÖÐø·Ñ²ÎÊý´íÎó
 const int TAPIERROR_ORDERINSERT_FEE                                    = 60091;
-//! ä¿è¯é‡‘å‚æ•°é”™è¯¯
+//! ±£Ö¤½ð²ÎÊý´íÎó
 const int TAPIERROR_ORDERINSERT_MARGIN                                 = 60092;
-//! æ“ä½œè´¦å·åªå¯æŸ¥è¯¢
+//! ²Ù×÷ÕËºÅÖ»¿É²éÑ¯
 const int TAPIERROR_ORDER_NO_PERMIT                                    = 60100;
-//! éžåšå¸‚å•†ä¸èƒ½åº”ä»·
+//! ·Ç×öÊÐÉÌ²»ÄÜÓ¦¼Û
 const int TAPIERROR_RSPQUOTE_NO_PERMIT                                 = 60101;
-//! å³ä½¿å­å¸å·åˆæ˜¯åšå¸‚å•†ä¸èƒ½åº”ä»·
+//! ¼´Ê¹×ÓÕÊºÅÓÖÊÇ×öÊÐÉÌ²»ÄÜÓ¦¼Û
 const int TAPIERROR_RSPQUOTE_CHILD_NO_PERMIT                           = 60102;
-//! ä¸‹å•æ‰¾ä¸åˆ°äº¤æ˜“ç¼–ç 
+//! ÏÂµ¥ÕÒ²»µ½½»Ò×±àÂë
 const int TAPIERROR_TRADENO_NOT_FIND                                   = 60103;
-//! æ“ä½œè´¦å·åªå¯å¼€ä»“
+//! ²Ù×÷ÕËºÅÖ»¿É¿ª²Ö
 const int TAPIERROR_ORDER_NO_CLOSE                                     = 60104;
-//! æ“ä½œè´¦å·æ²¡æœ‰ä¸ŠæœŸæŒ‚å•æŸ¥è¯¢æƒé™
+//! ²Ù×÷ÕËºÅÃ»ÓÐÉÏÆÚ¹Òµ¥²éÑ¯È¨ÏÞ
 const int TAPIERROR_QRY_QUOTE_NO_PERMIT                                = 60105;
-//! é™æœŸæœ‰æ•ˆå•ä¸èƒ½å°äºŽå½“å‰äº¤æ˜“æ—¥
+//! ÏÞÆÚÓÐÐ§µ¥²»ÄÜÐ¡ÓÚµ±Ç°½»Ò×ÈÕ
 const int TAPIERROR_EXPIREDATE_NO_PERMIT                               = 60106;
-//! è¯¥ç¼–ç ä¸å…è®¸ç”³è¯·æˆ–æ‹†åˆ†ç»„åˆ
+//! ¸Ã±àÂë²»ÔÊÐíÉêÇë»ò²ð·Ö×éºÏ
 const int TAPIERROR_CMB_NO_PERMIT                                      = 60107;
-//! éžæœ¬æœåŠ¡å™¨æ ‡è®°ä¸‹çš„è´¦å·ä¸å…è®¸æ“ä½œ
+//! ·Ç±¾·þÎñÆ÷±ê¼ÇÏÂµÄÕËºÅ²»ÔÊÐí²Ù×÷
 const int TAPIERROR_ORDERSERVER_NO_PERMIT                              = 60108;
-//! è¡Œæƒæˆ–å¼ƒæƒé‡è¶…è¿‡å¯ç”¨é‡
+//! ÐÐÈ¨»òÆúÈ¨Á¿³¬¹ý¿ÉÓÃÁ¿
 const int TAPIERROR_POSITION_CANNOT_EXEC_OR_ABANDON                    = 60109;
-//! æ²¡æœ‰è®¢å•å®¡æ ¸æƒé™
+//! Ã»ÓÐ¶©µ¥ÉóºËÈ¨ÏÞ
 const int TAPIERROR_ORDERCHECK_NO_PERMIT                               = 60110;
-//! è¶…è¿‡å½“æ—¥æœ€å¤§å¼€ä»“é‡
+//! ³¬¹ýµ±ÈÕ×î´ó¿ª²ÖÁ¿
 const int TAPIERROR_ORDERMAXOPENVOL_NO_PERMIT                          = 60111;
-//! éžå¤§è¿žåº”ä»·å•ä¸å…è®¸ä¸¤ç¬”å§”æ‰˜é‡ä¸ä¸€è‡´
+//! ÕÇµøÍ£¸½½ü½ûÖ¹·´Ïò¿ª²Ö
+const int TAPIERROR_ORDERLIMIT_OPEN_NO_PERMIT                          = 60112;
+//! ³¬¹ýµ¥±Ê×î´óÏÂµ¥Á¿
+const int TAPIERROR_ORDER_SINGLEVOL_NO_PERMIT                          = 60113;
+//! ³¬¹ý×î´ó³Ö²ÖÁ¿
+const int TAPIERROR_ORDER_POSITIONVOL_NO_PERMIT                        = 60114;
+//! ·Ç´óÁ¬Ó¦¼Ûµ¥²»ÔÊÐíÁ½±ÊÎ¯ÍÐÁ¿²»Ò»ÖÂ
 const int TAPIERROR_ORDER_QTY_NO_PERMIT                                = 60115;
-//! ç”³è¯·ä¸å…è®¸é‡å¤æäº¤
+//! ÉêÇë²»ÔÊÐíÖØ¸´Ìá½»
 const int TAPIERROR_ORDER_APPLY_NO_PERMIT                              = 60117;
-//! è¶…è¿‡è´¦å·ä¸‹å•é¢‘çŽ‡é™åˆ¶
+//! ³¬¹ýÕËºÅÏÂµ¥ÆµÂÊÏÞÖÆ
 const int TAPIERROR_ORDER_FREQ_OVERRUN                                 = 60118;
-//! ç»„åˆè¡¨ä¸å­˜åœ¨çš„ç»„åˆæ–¹å‘æˆ–æŠ•ä¿æ ‡å¿—
+//! ×éºÏ±í²»´æÔÚµÄ×éºÏ·½Ïò»òÍ¶±£±êÖ¾
 const int TAPIERROR_COMB_NO_SIDEORHEDGE                                = 60119;
-//! è®¢å•æ“ä½œé¢‘çŽ‡è¿‡é«˜
+//! µ±Ç°ÆÚÈ¨´æÔÚºÏÀí¼Û²î²»ÐèÒªÑ¯¼Û
+const int TAPIERROR_REQQUOTE_EXITREASONABLPRICE                        = 60120;
+//! Ó¦¼ÛÎ¯ÍÐ¼Û¸ñ²»ºÏÀí
+const int TAPIERROR_RSPQUOTE_PRICE                                     = 60121;
+//! ÆÕÍ¨¿Í»§²»ÔÊÐí³·ÏúÇ¿Æ½µ¥
+const int TAPIERROR_RISKORDER_CANCEL                                   = 60122;
+//! Ó¦¼ÛÎ¯ÍÐ¿ªÆ½±êÖ¾²»ÕýÈ·
+const int TAPIERROR_RSPQUOTE_EFFECT	                                   = 60123;
+//! ÂòÂô·½Ê½´íÎó
+const int TAPIERROR_ORDERINSERT_SIDEMODE                               = 60124;
+//! ×Ô¶¯µ¥³¬¹ý×î´óÎ¯ÍÐÊýÁ¿
+const int TAPIERROR_AUTOORDER_MAXCOUNT                                 = 60125;
+//! ÉÏÆÚËùÉî¶ÈÐÐÇé²éÑ¯ÇëÇó³¬¹ý×î´ó¶ÓÁÐÊý
+const int TAPIERROR_SHFEDEEPQUOTE_LIMIT                                = 60126;
+//! ÉÏÆÚËùÉî¶ÈÐÐÇé²éÑ¯ÇëÇóÃ»ÓÐÊý¾Ý
+const int TAPIERROR_SHFEDEEPQUOTE_NODATA                               = 60127;
+//! ´æÔÚ×Ô³É½»¿ÉÄÜ
+const int TAPIERROR_SELFMATCH                                          = 60128;
+//! ´íµ¥³¬¹ý×î´óÊýÁ¿
+const int TAPIERROR_ERRORORDER_MAXCOUNT                                = 60129;
+//! ³¬¹ýÏ¯Î»ÏÂµ¥ÆµÂÊÏÞÖÆ
+const int TAPIERROR_ORDER_UPPERFREQ_OVERRUN                            = 60130;
+//! ¶©µ¥²Ù×÷ÆµÂÊ¹ý¸ß
 const int TAPIERROR_ORDER_FREQUENCY                                    = 61001;
-//! å§”æ‰˜æŸ¥è¯¢è¿”å›žå‰ä¸èƒ½è¿›è¡Œä¸‹æ¬¡æŸ¥è¯¢
+//! Î¯ÍÐ²éÑ¯·µ»ØÇ°²»ÄÜ½øÐÐÏÂ´Î²éÑ¯
 const int TAPIERROR_ORDER_QUERYING                                     = 61002;
 
 /** @}*/
 
 //=============================================================================
 /**
- *	\addtogroup G_ERR_QUOTE è¡Œæƒ…ä¸šåŠ¡å¤„ç†è¿”å›žé”™è¯¯ç 	
+ *	\addtogroup G_ERR_QUOTE ÐÐÇéÒµÎñ´¦Àí·µ»Ø´íÎóÂë	
  *	@{
  */
 //=============================================================================
-//! è¶…è¿‡è¡Œæƒ…æœ€å¤§æ€»è®¢é˜…æ•°
+//! ³¬¹ýÐÐÇé×î´ó×Ü¶©ÔÄÊý
 const int TAPIERROR_SUBSCRIBEQUOTE_MAX                                 = 72001;
-//! è¶…è¿‡è¯¥äº¤æ˜“æ‰€è¡Œæƒ…æœ€å¤§è®¢é˜…æ•°
+//! ³¬¹ý¸Ã½»Ò×ËùÐÐÇé×î´ó¶©ÔÄÊý
 const int TAPIERROR_SUBSCRIBEQUOTE_EXCHANGE_MAX                        = 72002;
-//! æ²¡æœ‰è¯¥è¡Œæƒ…çš„è®¢é˜…æƒé™
+//! Ã»ÓÐ¸ÃÐÐÇéµÄ¶©ÔÄÈ¨ÏÞ
 const int TAPIERROR_SUBSCRIBEQUOTE_NO_RIGHT                            = 72101;
-//! æ²¡æœ‰è¯¥äº¤æ˜“æ‰€ä¸‹è¡Œæƒ…çš„è®¢é˜…æƒé™
+//! Ã»ÓÐ¸Ã½»Ò×ËùÏÂÐÐÇéµÄ¶©ÔÄÈ¨ÏÞ
 const int TAPIERROR_SUBSCRIBEQUOTE_NO_EXCHANGE_RIGHT                   = 72102;
-//! å“ç§ä¸å­˜åœ¨
+//! Æ·ÖÖ²»´æÔÚ
 const int TAPIERROR_SUBSCRIBEQUOTE_COMMODITY_NOT_EXIST                 = 72103;
-//! åˆçº¦å¯èƒ½ä¸å­˜åœ¨
+//! ºÏÔ¼¿ÉÄÜ²»´æÔÚ
 const int TAPIERROR_SUBSCRIBEQUOTE_CONTRACT_MAY_NOT_EXIST              = 72104;
-//! ä¸æ”¯æŒçš„è¡Œæƒ…åè®®
+//! ²»Ö§³ÖµÄÐÐÇéÐ­Òé
 const int TAPIERROR_QUOTEFRONT_UNKNOWN_PROTOCOL                        = 83001;
+//! ÐÐÇéÇ°ÖÃ×ÜµÇÂ¼Êý³¬ÏÞ
+const int TAPIERROR_QUOTEFRONT_LOGIN_TOTALCOUNT                        = 83002;
+//! ¶©ÔÄ³¬¹ý¶©ÔÄÊýÁ¿ÏÞÖÆ
+const int TAPIERROR_QUOTEFRONT_SUB_COUNT                               = 83003;
 
 /** @}*/
 
+//=============================================================================
+/**
+ *	\addtogroup G_ERR_GATEWAY Íø¹Ø·µ»Ø´íÎóÂë	
+ *	@{
+ */
+//=============================================================================
+//! ·¢ËÍÊý¾ÝÊ§°Ü
+const int TAPIERROR_ORDER_SEND                                         = 80001;
+//! ·¢ËÍ±¨µ¥Ê§°Ü£¬Íø¹ØÃ»Á¬½Óµ½½»Ò×Ëù
+const int TAPIERROR_DLG_NULL                                           = 80002;
+//! ±¨µ¥×Ö¶ÎÓÐÎó
+const int TAPIERROR_ORDER_FIELD                                        = 80003;
+//! ±»ÉÏÊÖ¾Ü¾ø
+const int TAPIERROR_TRADE_REJ_BYUPPER                                  = 80004;
+//! µ±Ç°Ê±¼ä²»ÔÊÐí·¢ËÍÐÐÈ¨ÉêÇë
+const int TAPIERROR_ORDER_FORBIDEXEC                                   = 80005;
+
+/** @}*/
 
 #endif //! TAP_API_ERROR_H

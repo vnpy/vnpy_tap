@@ -1,276 +1,297 @@
-ï»¿#ifndef ITAP_API_COMM_DEF_H
+#ifndef ITAP_API_COMM_DEF_H
 #define ITAP_API_COMM_DEF_H
 
 #pragma pack(push, 1)
 
 //=============================================================================
 /**
- *    \addtogroup G_DATATYPE_CHARS    åŸºæœ¬å­—ç¬¦ä¸²ç±»å‹å®šä¹‰
- *    @{
+ *	\addtogroup G_DATATYPE_CHARS	»ù±¾×Ö·û´®ÀàĞÍ¶¨Òå
+ *	@{
  */
 //=============================================================================
 namespace ITapTrade
 {
-    //! é•¿åº¦ä¸º10çš„å­—ç¬¦ä¸²
-    typedef char    TAPISTR_10[11];
-    //! é•¿åº¦ä¸º20çš„å­—ç¬¦ä¸²
-    typedef char    TAPISTR_20[21];
-    //! é•¿åº¦ä¸º30çš„å­—ç¬¦ä¸²
-    typedef char    TAPISTR_30[31];
-    //! é•¿åº¦ä¸º40çš„å­—ç¬¦ä¸²
-    typedef char    TAPISTR_40[41];
-    //! é•¿åº¦ä¸º50çš„å­—ç¬¦ä¸²
-    typedef char    TAPISTR_50[51];
-    //! é•¿åº¦ä¸º70çš„å­—ç¬¦ä¸²
-    typedef char    TAPISTR_70[71];
-    //! é•¿åº¦ä¸º100çš„å­—ç¬¦ä¸²
-    typedef char    TAPISTR_100[101];
-    //! é•¿åº¦ä¸º300çš„å­—ç¬¦ä¸²
-    typedef char    TAPISTR_300[301];
-    //! é•¿åº¦ä¸º500çš„å­—ç¬¦ä¸²
-    typedef char    TAPISTR_500[501];
-    //! é•¿åº¦ä¸º2000çš„å­—ç¬¦ä¸²
-    typedef char    TAPISTR_2000[2001];
-
+    //! ³¤¶ÈÎª10µÄ×Ö·û´®
+    typedef char	TAPISTR_10[11];
+    //! ³¤¶ÈÎª20µÄ×Ö·û´®
+    typedef char	TAPISTR_20[21];
+    //! ³¤¶ÈÎª30µÄ×Ö·û´®
+    typedef char	TAPISTR_30[31];
+    //! ³¤¶ÈÎª40µÄ×Ö·û´®
+    typedef char	TAPISTR_40[41];
+    //! ³¤¶ÈÎª50µÄ×Ö·û´®
+    typedef char	TAPISTR_50[51];
+    //! ³¤¶ÈÎª70µÄ×Ö·û´®
+    typedef char	TAPISTR_70[71];
+    //! ³¤¶ÈÎª100µÄ×Ö·û´®
+    typedef char	TAPISTR_100[101];
+    //! ³¤¶ÈÎª300µÄ×Ö·û´®
+    typedef char	TAPISTR_300[301];
+    //! ³¤¶ÈÎª500µÄ×Ö·û´®
+    typedef char	TAPISTR_500[501];
+    //! ³¤¶ÈÎª2000µÄ×Ö·û´®
+    typedef char	TAPISTR_2000[2001];
     //! Authorization Code
-    typedef char    TAPIAUTHCODE[513];
-
-    //! MACåœ°å€ç±»å‹.
-    typedef char    TAPIMACTYPE[13];
-    //! äºŒæ¬¡è®¤è¯åºå·
-    typedef char    TAPISecondSerialIDType[5];
-
-
-    //! å•å­—ç¬¦å®šä¹‰ï¼Œå¯ç”¨äºå®šä¹‰å…¶ä»–ç±»å‹
-    typedef char                TAPICHAR;
-
-    //å­è´¦æˆ·ç±»å‹
-    typedef char    TAPIClientIDType[16];
+    typedef char	TAPIAUTHCODE[513];
+    //! MACµØÖ·ÀàĞÍ.
+    typedef char	TAPIMACTYPE[13];
+	//! ¶ş´ÎÈÏÖ¤ĞòºÅ
+	typedef char	TAPISecondSerialIDType[5];	
+    //! µ¥×Ö·û¶¨Òå£¬¿ÉÓÃÓÚ¶¨ÒåÆäËûÀàĞÍ
+    typedef char	TAPICHAR;
+	//×ÓÕË»§ÀàĞÍ
+	typedef char	TAPIClientIDType[16];
+	//ÏÂµ¥ÈËµØÖ·   
+	typedef char	TAPIClientLocationIDType[6];
     /** @}*/
 
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_NUMBER    åŸºæœ¬æ•°å€¼ç±»å‹å®šä¹‰
-     *    @{
+     *	\addtogroup G_DATATYPE_NUMBER	»ù±¾ÊıÖµÀàĞÍ¶¨Òå
+     *	@{
      */
     //=============================================================================
 
     //! int 32
-    typedef int                    TAPIINT32;
+    typedef int					TAPIINT32;
     //! unsigned 32
-    typedef unsigned int        TAPIUINT32;
+    typedef unsigned int		TAPIUINT32;
     //! int 64
-    typedef long long            TAPIINT64;
+    typedef long long			TAPIINT64;
     //! unsigned 64
-    typedef unsigned long long    TAPIUINT64;
+    typedef unsigned long long	TAPIUINT64;
     //! unsigned 16
-    typedef unsigned short        TAPIUINT16;
+    typedef unsigned short		TAPIUINT16;
     //! unsigned 8
-    typedef unsigned char        TAPIUINT8;
+    typedef unsigned char		TAPIUINT8;
     //! real 64
-    typedef double                TAPIREAL64;
+    typedef double				TAPIREAL64;
 
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_YNFLAG    æ˜¯å¦æ ‡ç¤º
-     *    @{
+     *	\addtogroup G_DATATYPE_YNFLAG	ÊÇ·ñ±êÊ¾
+     *	@{
      */
     //=============================================================================
-    //! æ˜¯å¦æ ‡ç¤º
-    typedef TAPICHAR            TAPIYNFLAG;
-    //! æ˜¯
-    const TAPIYNFLAG            APIYNFLAG_YES    ='Y';
-    //! å¦
-    const TAPIYNFLAG            APIYNFLAG_NO    ='N';
+    //! ÊÇ·ñ±êÊ¾
+    typedef TAPICHAR			TAPIYNFLAG;
+    //! ÊÇ
+    const TAPIYNFLAG			APIYNFLAG_YES	='Y';
+    //! ·ñ
+    const TAPIYNFLAG			APIYNFLAG_NO	='N';
 
     /** @}*/
 
+	//=============================================================================
+	/**
+	*	\addtogroup G_DATATYPE_PASSWORDTYEP	ÃÜÂëÀàĞÍ±êÊ¶
+	*	@{
+	*/
+	//=============================================================================
+	//! ÃÜÂëÀàĞÍ
+	typedef TAPICHAR			TAPIPasswordType;
+	//! ½»Ò×ÃÜÂë
+	const TAPIPasswordType			APIPASSWORD_TRADE = 'T';
+	//! µç»°ÃÜÂë
+	const TAPIPasswordType			APIPASSWORD_PHONE = 'P';
+
+	/** @}*/
+
     //=============================================================================
     /**
-    *    \addtogroup G_DATATYPE_PASSWORDTYEP    å¯†ç ç±»å‹æ ‡è¯†
-    *    @{
-    */
-    //=============================================================================
-    //! å¯†ç ç±»å‹
-    typedef TAPICHAR            TAPIPasswordType;
-    //! äº¤æ˜“å¯†ç 
-    const TAPIPasswordType            APIPASSWORD_TRADE = 'T';
-    //! ç”µè¯å¯†ç 
-    const TAPIPasswordType            APIPASSWORD_PHONE = 'P';
-
-    /** @}*/
-
-    //=============================================================================
-    /**
-     *    \addtogroup G_DATATYPE_DATETIME    æ—¥æœŸæ—¶é—´ç±»å‹å®šä¹‰
-     *    @{
+     *	\addtogroup G_DATATYPE_DATETIME	ÈÕÆÚÊ±¼äÀàĞÍ¶¨Òå
+     *	@{
      */
     //=============================================================================
 
-    //! æ—¶é—´æˆ³ç±»å‹(æ ¼å¼ yyyy-MM-dd hh:nn:ss.xxx)
-    typedef char    TAPIDTSTAMP[24];
-    //! æ—¥æœŸå’Œæ—¶é—´ç±»å‹(æ ¼å¼ yyyy-MM-dd hh:nn:ss)
-    typedef char    TAPIDATETIME[20];
-    //! æ—¥æœŸç±»å‹(æ ¼å¼ yyyy-MM-dd)
-    typedef char    TAPIDATE[11];
-    //! æ—¶é—´ç±»å‹(æ ¼å¼ hh:nn:ss)
-    typedef char    TAPITIME[9];
+    //! Ê±¼ä´ÁÀàĞÍ(¸ñÊ½ yyyy-MM-dd hh:nn:ss.xxx)
+    typedef char	TAPIDTSTAMP[24];
+    //! ÈÕÆÚºÍÊ±¼äÀàĞÍ(¸ñÊ½ yyyy-MM-dd hh:nn:ss)
+    typedef char	TAPIDATETIME[20];
+    //! ÈÕÆÚÀàĞÍ(¸ñÊ½ yyyy-MM-dd)
+    typedef char	TAPIDATE[11];
+    //! Ê±¼äÀàĞÍ(¸ñÊ½ hh:nn:ss)
+    typedef char	TAPITIME[9];
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_LOG_LEVEL    æ—¥å¿—çº§åˆ«
-     *    @{
+     *	\addtogroup G_DATATYPE_LOG_LEVEL	ÈÕÖ¾¼¶±ğ
+     *	@{
      */
     //=============================================================================
-    //! æ—¥å¿—çº§åˆ«
-    typedef TAPICHAR            TAPILOGLEVEL;
-    //! æ— 
-    const TAPILOGLEVEL            APILOGLEVEL_NONE    ='N';
+    //! ÈÕÖ¾¼¶±ğ
+    typedef TAPICHAR			TAPILOGLEVEL;
+    //! Normal
+    const TAPILOGLEVEL			APILOGLEVEL_NONE	='N';
     //! Error
-    const TAPILOGLEVEL            APILOGLEVEL_ERROR    ='E';
+    const TAPILOGLEVEL			APILOGLEVEL_ERROR	='E';
     //! Warning
-    const TAPILOGLEVEL            APILOGLEVEL_WARNING    ='W';
+    const TAPILOGLEVEL			APILOGLEVEL_WARNING	='W';
     //! Debug
-    const TAPILOGLEVEL            APILOGLEVEL_DEBUG    ='D';
+    const TAPILOGLEVEL			APILOGLEVEL_DEBUG	='D';
     /** @}*/
+
+	//=============================================================================
+	/**
+	*	\addtogroup G_DATATYPE_OPTION_TYPE	ÆÚÈ¨ÀàĞÍ
+	*	@{
+	*/
+	//=============================================================================
+
+	typedef TAPICHAR					TAPIOptionType;
+	//!ÃÀÊ½ÆÚÈ¨ + È¨Àû½ğ·½Ê½
+	const TAPIOptionType				TAPI_OPTION_TYPE_AMERICAN = 'A';
+	//!ÃÀÊ½ÆÚÈ¨ + ÆÚ»õ·½Ê½
+	const TAPIOptionType				TAPI_OPTION_TYPE_AMERICAN2 = 'B';
+	//!Å·Ê½ÆÚÈ¨ + È¨Àû½ğ·½Ê½
+	const TAPIOptionType				TAPI_OPTION_TYPE_EUROPEAN = 'E';
+	//!Å·Ê½ÆÚÈ¨ + ÆÚ»õ·½Ê½
+	const TAPIOptionType				TAPI_OPTION_TYPE_EUROPEAN2 = 'F';
+	/** @}*/
 
     //=============================================================================
     /**
-    *    \addtogroup G_DATATYPE_OPTION_TYPE    æœŸæƒç±»å‹
-    *    @{
-    */
-    //=============================================================================
-
-    typedef TAPICHAR                    TAPIOptionType;
-    //!ç¾å¼æœŸæƒ + æƒåˆ©é‡‘æ–¹å¼
-    const TAPIOptionType                TAPI_OPTION_TYPE_AMERICAN = 'A';
-    //!ç¾å¼æœŸæƒ + æœŸè´§æ–¹å¼
-    const TAPIOptionType                TAPI_OPTION_TYPE_AMERICAN2 = 'B';
-    //!æ¬§å¼æœŸæƒ + æƒåˆ©é‡‘æ–¹å¼
-    const TAPIOptionType                TAPI_OPTION_TYPE_EUROPEAN = 'E';
-    //!æ¬§å¼æœŸæƒ + æœŸè´§æ–¹å¼
-    const TAPIOptionType                TAPI_OPTION_TYPE_EUROPEAN2 = 'F';
-    /** @}*/
-
-    //=============================================================================
-    /**
-     *    \addtogroup G_DATATYPE_COMMODITY_TYPE    å“ç§ç±»å‹
-     *    @{
+     *	\addtogroup G_DATATYPE_COMMODITY_TYPE	Æ·ÖÖÀàĞÍ
+     *	@{
      */
     //=============================================================================
 
-    //! å“ç§ç±»å‹
+    //! Æ·ÖÖÀàĞÍ
     typedef TAPICHAR               TAPICommodityType;
-    //! æ— 
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_NONE                = 'N';
-    //! ç°è´§
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_SPOT                = 'P';
-    //! æœŸè´§
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_FUTURES                = 'F';
-    //! æœŸæƒ
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_OPTION                = 'O';
-    //! è·¨æœŸå¥—åˆ©
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_SPREAD_MONTH        = 'S';
-    //! è·¨å“ç§å¥—åˆ©
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_SPREAD_COMMODITY    = 'M';
-    //! çœ‹æ¶¨å‚ç›´å¥—åˆ©
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_BUL                    = 'U';
-    //! çœ‹è·Œå‚ç›´å¥—åˆ©
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_BER                    = 'E';
-    //! è·¨å¼å¥—åˆ©
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_STD                    = 'D';
-    //! å®½è·¨å¼å¥—åˆ©
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_STG                    = 'G';
-    //! å¤‡å…‘ç»„åˆ
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_PRT                    = 'R';
-    //! å¤–æ±‡â€”â€”ç›´æ¥æ±‡ç‡
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_DIRECTFOREX            = 'X';
-    //! å¤–æ±‡â€”â€”é—´æ¥æ±‡ç‡
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_INDIRECTFOREX        = 'I';
-    //! å¤–æ±‡â€”â€”äº¤å‰æ±‡ç‡
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_CROSSFOREX            = 'C';
-    //! æŒ‡æ•°
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_INDEX                = 'Z';
-    //! è‚¡ç¥¨
-    const TAPICommodityType        TAPI_COMMODITY_TYPE_STOCK                = 'T';
+    //! ÎŞ
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_NONE				= 'N';
+    //! ÆÚ»õ
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_FUTURES				= 'F';
+    //! ÆÚÈ¨
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_OPTION				= 'O';
+    //! ¿çÆÚÌ×Àû
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_SPREAD_MONTH		= 'S';
+    //! ¿çÆ·ÖÖÌ×Àû
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_SPREAD_COMMODITY	= 'M';
+    //! ¿´ÕÇ´¹Ö±Ì×Àû
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_BUL					= 'U';
+    //! ¿´µø´¹Ö±Ì×Àû
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_BER					= 'E';
+    //! ¿çÊ½Ì×Àû
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_STD					= 'D';
+    //! ¿í¿çÊ½Ì×Àû
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_STG					= 'G';
+    //! ±¸¶Ò×éºÏ
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_PRT					= 'R';
+    //! Íâ»ã¡ª¡ªÖ±½Ó»ãÂÊ
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_DIRECTFOREX			= 'X';
+    //! Íâ»ã¡ª¡ª¼ä½Ó»ãÂÊ
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_INDIRECTFOREX		= 'I';
+    //! Íâ»ã¡ª¡ª½»²æ»ãÂÊ
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_CROSSFOREX			= 'C';
+    //! Ö¸Êı
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_INDEX				= 'Z';
+    //! ¹ÉÆ±/»ù½ğ
+    const TAPICommodityType		TAPI_COMMODITY_TYPE_STOCK				= 'T';
+	//! TAS
+	const TAPICommodityType		TAPI_COMMODITY_TYPE_TAS					= 'B';
+	//! ¸Û¹É--ÎÑÂÖ
+	const TAPICommodityType     TAPI_COMMODITY_TYPE_DERIVATIVE			= '0';
+	//! ¸Û¹É--Å£ĞÜÖ¤
+	const TAPICommodityType     TAPI_COMMODITY_TYPE_BULLBEAR			= '1';
+	//! ¸Û¹É--½çÄÚÖ¤
+	const TAPICommodityType     TAPI_COMMODITY_TYPE_INLINE				= '2';
+	//! ¸Û¹É--Õ®È¯
+	const TAPICommodityType     TAPI_COMMODITY_TYPE_DBET				= '3';
+	//! ¸Û¹É--»ù½ğ
+	const TAPICommodityType     TAPI_COMMODITY_TYPE_FUND				= '4';
+    //! ¶àÍÈÌ×Àû
+    const TAPICommodityType     TAPI_COMMODITY_TYPE_MULTI_LEG           = '5';
+
 
     /** @}*/
 
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_CALL_OR_PUT    çœ‹æ¶¨çœ‹è·Œæ ‡ç¤º
-     *    @{
+     *	\addtogroup G_DATATYPE_CALL_OR_PUT	¿´ÕÇ¿´µø±êÊ¾
+     *	@{
      */
     //=============================================================================
 
-    //! çœ‹æ¶¨çœ‹è·Œæ ‡ç¤º
-    typedef TAPICHAR            TAPICallOrPutFlagType;
-    //! ä¹°æƒ
-    const TAPICallOrPutFlagType        TAPI_CALLPUT_FLAG_CALL                = 'C';
-    //! å–æƒ
-    const TAPICallOrPutFlagType        TAPI_CALLPUT_FLAG_PUT                = 'P';
-    //! æ— 
-    const TAPICallOrPutFlagType        TAPI_CALLPUT_FLAG_NONE                = 'N';
+    //! ¿´ÕÇ¿´µø±êÊ¾
+    typedef TAPICHAR			TAPICallOrPutFlagType;
+    //! ÂòÈ¨
+    const TAPICallOrPutFlagType		TAPI_CALLPUT_FLAG_CALL				= 'C';
+    //! ÂôÈ¨
+    const TAPICallOrPutFlagType		TAPI_CALLPUT_FLAG_PUT				= 'P';
+    //! ÎŞ
+    const TAPICallOrPutFlagType		TAPI_CALLPUT_FLAG_NONE				= 'N';
 
     /** @}*/
 
-
-    //! Applicationä¿¡æ¯
+    //! ApplicationĞÅÏ¢
     struct TapAPIApplicationInfo
     {
-            TAPIAUTHCODE            AuthCode;                                ///< æˆæƒç 
-            TAPISTR_300                KeyOperationLogPath;                    ///< å…³é”®æ“ä½œæ—¥å¿—è·¯å¾„
+            TAPIAUTHCODE            AuthCode;								///< ÊÚÈ¨Âë
+            TAPISTR_300				KeyOperationLogPath;					///< ¹Ø¼ü²Ù×÷ÈÕÖ¾Â·¾¶ APIRunÈÕÖ¾
+			TAPILOGLEVEL			LogLevel;								///< ÈÕÖ¾¼¶±ğ
+			TAPISTR_30				APPID;									///< ¿´´©Ê½¼à¹ÜÊ¹ÓÃ,±±¶·ĞÇÏµÍ³²»Ê¹ÓÃ¸Ã×Ö¶Î		
+			TAPIINT32				ReConnectCount;							///< ÖØÁ¬´ÎÊı		
+			TAPIINT32				ReConnectSeconds;						///< ÖØÁ¬Ê±¼ä¼ä¸ô(Ãë)
     };
+	/*
+	* ¹ØÓÚ×Ô¶¯ÖØÁ¬µÄËµÃ÷£º
+	* 1¡¢¿ªÆôÖØÁ¬Ìõ¼ş£ºÖØÁ¬´ÎÊıºÍÖØÁ¬Ê±¼ä¼ä¸ô¾ù´óÓÚ0¡£
+	* 2¡¢ÖØÁ¬´ÎÊı£ºÈôÖ»ÉèÖÃÒ»¸öµØÖ·£¬¸ÃÉèÖÃÎŞÊµ¼Êº¬Òå¡£Èç¹ûÉèÖÃÁË¶à¸öµØÖ·£¬ÔòÒ»¸öµØÖ·ÖØÁ¬´ÎÊıµ½´ïÉèÖÃ´ÎÊıÊ±£¬×Ô¶¯ÇĞ»»ÏÂÒ»¸öµØÖ·¼ÌĞøÖØÁ¬¡£
+	* 3¡¢ÖØÁ¬Ê±¼ä¼ä¸ô£º³¢ÊÔÖØÁ¬Ê§°Üºó£¬¼ä¸ôÉèÖÃÃëÊı·¢ÆğÏÂÒ»´ÎÖØÁ¬¡£
+	* 4¡¢¶Ï¿ªºóÁ¢¿ÌÖØÁ¬Ò»´Î¡£ÖØÁ¬´ÎÊıÊÇÎŞÏŞµÄ£¬Ö±µ½Á¬½Ó³É¹¦ÎªÖ¹¡£
+	* 5¡¢¿ÉÒÔÔÚÖØÁ¬½øĞĞÊ±Ö÷¶¯µ÷ÓÃDisconnectÖÕÖ¹ÖØÁ¬£¬·ñÔòÖØÁ¬Ê±ÇëÎğ½øĞĞÆäËü²Ù×÷¡£
+	* 5¡¢ÖØÁ¬³É¹¦ºó×Ô¶¯½øĞĞµÇÂ¼ºÍ³õÊ¼»¯µÈ²Ù×÷¡£
+	*/
 
-
-    //! å“ç§ç¼–ç ç»“æ„
+    //! Æ·ÖÖ±àÂë½á¹¹
     struct TapAPICommodity
     {
-            TAPISTR_10              ExchangeNo;                             ///< äº¤æ˜“æ‰€ç¼–ç 
-            TAPICommodityType        CommodityType;                          ///< å“ç§ç±»å‹
-            TAPISTR_10                CommodityNo;                            ///< å“ç§ç¼–å·
+            TAPISTR_10              ExchangeNo;                             ///< ½»Ò×Ëù±àÂë
+            TAPICommodityType		CommodityType;                          ///< Æ·ÖÖÀàĞÍ
+            TAPISTR_10				CommodityNo;                            ///< Æ·ÖÖ±àºÅ
     };
 
-    //! åˆçº¦ç¼–ç ç»“æ„
+    //! ºÏÔ¼±àÂë½á¹¹
     struct TapAPIContract
     {
-            TapAPICommodity            Commodity;                                ///< å“ç§
-            TAPISTR_10                ContractNo1;                            ///< åˆçº¦ä»£ç 1
-            TAPISTR_10                StrikePrice1;                           ///< æ‰§è¡Œä»·1
-            TAPICallOrPutFlagType    CallOrPutFlag1;                         ///< çœ‹æ¶¨çœ‹è·Œæ ‡ç¤º1
-            TAPISTR_10                ContractNo2;                            ///< åˆçº¦ä»£ç 2
-            TAPISTR_10                StrikePrice2;                           ///< æ‰§è¡Œä»·2
-            TAPICallOrPutFlagType    CallOrPutFlag2;                         ///< çœ‹æ¶¨çœ‹è·Œæ ‡ç¤º2
+            TapAPICommodity			Commodity;								///< Æ·ÖÖ
+            TAPISTR_10				ContractNo1;                            ///< ºÏÔ¼´úÂë1
+            TAPISTR_10				StrikePrice1;                           ///< Ö´ĞĞ¼Û1
+            TAPICallOrPutFlagType	CallOrPutFlag1;                         ///< ¿´ÕÇ¿´µø±êÊ¾1
+            TAPISTR_10				ContractNo2;                            ///< ºÏÔ¼´úÂë2
+            TAPISTR_10				StrikePrice2;                           ///< Ö´ĞĞ¼Û2
+            TAPICallOrPutFlagType	CallOrPutFlag2;                         ///< ¿´ÕÇ¿´µø±êÊ¾2
 
     };
 
-    //! äº¤æ˜“æ‰€ä¿¡æ¯
+    //! ½»Ò×ËùĞÅÏ¢
     struct TapAPIExchangeInfo
     {
-            TAPISTR_10                ExchangeNo;                                ///< äº¤æ˜“æ‰€ç¼–ç 
-            TAPISTR_20                ExchangeName;                            ///< äº¤æ˜“æ‰€åç§°
+            TAPISTR_10				ExchangeNo;								///< ½»Ò×Ëù±àÂë
+            TAPISTR_20				ExchangeName;							///< ½»Ò×ËùÃû³Æ
     };
 
-    //! ä¿®æ”¹å¯†ç è¯·æ±‚
+    //! ĞŞ¸ÄÃÜÂëÇëÇó
     struct TapAPIChangePasswordReq
     {
-            TAPISTR_20                    AccountNo;
-            TAPIPasswordType            PasswordType;                            ///<å¯†ç ç±»å‹
-            TAPISTR_20                    OldPassword;                            ///< æ—§å¯†ç 
-            TAPISTR_20                    NewPassword;                            ///< æ–°å¯†ç 
+			TAPISTR_20					AccountNo;
+			TAPIPasswordType			PasswordType;							///<ÃÜÂëÀàĞÍ
+            TAPISTR_20					OldPassword;							///< ¾ÉÃÜÂë
+            TAPISTR_20					NewPassword;							///< ĞÂÃÜÂë
     };
-    //!    è®¤è¯å¯†ç è¯·æ±‚
-    struct TapAPIAuthPasswordReq
-    {
-        TAPISTR_20                        AccountNo;                                ///<å®¢æˆ·è´¦å·
-        TAPIPasswordType                PasswordType;                            ///<å¯†ç ç±»å‹
-        TAPISTR_20                        Password;                                ///<è´¦æˆ·å¯†ç 
-    };
+	//!	ÈÏÖ¤ÃÜÂëÇëÇó
+	struct TapAPIAuthPasswordReq
+	{
+		TAPISTR_20						AccountNo;								///<¿Í»§ÕËºÅ
+		TAPIPasswordType				PasswordType;							///<ÃÜÂëÀàĞÍ
+		TAPISTR_20						Password;								///<ÕË»§ÃÜÂë
+	};
 
 
     #pragma pack(pop)

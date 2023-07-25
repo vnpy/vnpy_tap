@@ -1,11 +1,12 @@
-void TdApi::OnConnect()
+void TdApi::OnConnect(const ITapTrade::TAPISTR_40 HostAddress)
 {
 	Task task = Task();
 	task.task_name = ONCONNECT;
+	task.task_string = HostAddress;
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspLogin(int errorCode, TapAPITradeLoginRspInfo *loginRspInfo)
+void TdApi::OnRspLogin(ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPITradeLoginRspInfo *loginRspInfo)
 {
 	Task task = Task();
 	task.task_name = ONRSPLOGIN;
@@ -19,7 +20,7 @@ void TdApi::OnRspLogin(int errorCode, TapAPITradeLoginRspInfo *loginRspInfo)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnContactInfo(int errorCode, char isLast, string ContactInfo)
+void TdApi::OnRtnContactInfo(ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TAPISTR_40 ContactInfo)
 {
 	Task task = Task();
 	task.task_name = ONRTNCONTACTINFO;
@@ -29,7 +30,7 @@ void TdApi::OnRtnContactInfo(int errorCode, char isLast, string ContactInfo)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspRequestVertificateCode(unsigned int sessionID, int errorCode, TapAPIRequestVertificateCodeRsp *rsp)
+void TdApi::OnRspRequestVertificateCode(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const TapAPIRequestVertificateCodeRsp *rsp)
 {
 	Task task = Task();
 	task.task_name = ONRSPREQUESTVERTIFICATECODE;
@@ -44,7 +45,7 @@ void TdApi::OnRspRequestVertificateCode(unsigned int sessionID, int errorCode, T
 	this->task_queue.push(task);
 };
 
-void TdApi::OnExpriationDate(string date, int days)
+void TdApi::OnExpriationDate(ITapTrade::TAPIDATE date, int days)
 {
 	Task task = Task();
 	task.task_name = ONEXPRIATIONDATE;
@@ -53,7 +54,7 @@ void TdApi::OnExpriationDate(string date, int days)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnAPIReady(int errorCode)
+void TdApi::OnAPIReady(ITapTrade::TAPIINT32 errorCode)
 {
 	Task task = Task();
 	task.task_name = ONAPIREADY;
@@ -61,7 +62,7 @@ void TdApi::OnAPIReady(int errorCode)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnDisconnect(int reasonCode)
+void TdApi::OnDisconnect(ITapTrade::TAPIINT32 reasonCode)
 {
 	Task task = Task();
 	task.task_name = ONDISCONNECT;
@@ -69,7 +70,7 @@ void TdApi::OnDisconnect(int reasonCode)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspChangePassword(unsigned int sessionID, int errorCode)
+void TdApi::OnRspChangePassword(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode)
 {
 	Task task = Task();
 	task.task_name = ONRSPCHANGEPASSWORD;
@@ -78,7 +79,7 @@ void TdApi::OnRspChangePassword(unsigned int sessionID, int errorCode)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspAuthPassword(unsigned int sessionID, int errorCode)
+void TdApi::OnRspAuthPassword(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode)
 {
 	Task task = Task();
 	task.task_name = ONRSPAUTHPASSWORD;
@@ -87,7 +88,7 @@ void TdApi::OnRspAuthPassword(unsigned int sessionID, int errorCode)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryTradingDate(unsigned int sessionID, int errorCode, TapAPITradingCalendarQryRsp *info)
+void TdApi::OnRspQryTradingDate(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPITradingCalendarQryRsp *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYTRADINGDATE;
@@ -102,7 +103,7 @@ void TdApi::OnRspQryTradingDate(unsigned int sessionID, int errorCode, TapAPITra
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspSetReservedInfo(unsigned int sessionID, int errorCode, string info)
+void TdApi::OnRspSetReservedInfo(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TAPISTR_50 info)
 {
 	Task task = Task();
 	task.task_name = ONRSPSETRESERVEDINFO;
@@ -112,7 +113,7 @@ void TdApi::OnRspSetReservedInfo(unsigned int sessionID, int errorCode, string i
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryAccount(unsigned int sessionID, unsigned int errorCode, char isLast, TapAPIAccountInfo *info)
+void TdApi::OnRspQryAccount(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIUINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIAccountInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYACCOUNT;
@@ -128,7 +129,7 @@ void TdApi::OnRspQryAccount(unsigned int sessionID, unsigned int errorCode, char
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryFund(unsigned int sessionID, int errorCode, char isLast, TapAPIFundData *info)
+void TdApi::OnRspQryFund(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIFundData *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYFUND;
@@ -144,7 +145,7 @@ void TdApi::OnRspQryFund(unsigned int sessionID, int errorCode, char isLast, Tap
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnFund(TapAPIFundData *info)
+void TdApi::OnRtnFund(const ITapTrade::TapAPIFundData *info)
 {
 	Task task = Task();
 	task.task_name = ONRTNFUND;
@@ -157,7 +158,7 @@ void TdApi::OnRtnFund(TapAPIFundData *info)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryExchange(unsigned int sessionID, int errorCode, char isLast, TapAPIExchangeInfo *info)
+void TdApi::OnRspQryExchange(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIExchangeInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYEXCHANGE;
@@ -173,7 +174,7 @@ void TdApi::OnRspQryExchange(unsigned int sessionID, int errorCode, char isLast,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryCommodity(unsigned int sessionID, int errorCode, char isLast, TapAPICommodityInfo *info)
+void TdApi::OnRspQryCommodity(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPICommodityInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYCOMMODITY;
@@ -189,7 +190,7 @@ void TdApi::OnRspQryCommodity(unsigned int sessionID, int errorCode, char isLast
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryContract(unsigned int sessionID, int errorCode, char isLast, TapAPITradeContractInfo *info)
+void TdApi::OnRspQryContract(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPITradeContractInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYCONTRACT;
@@ -205,7 +206,7 @@ void TdApi::OnRspQryContract(unsigned int sessionID, int errorCode, char isLast,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnContract(TapAPITradeContractInfo *info)
+void TdApi::OnRtnContract(const ITapTrade::TapAPITradeContractInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRTNCONTRACT;
@@ -218,7 +219,7 @@ void TdApi::OnRtnContract(TapAPITradeContractInfo *info)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspOrderAction(unsigned int sessionID, int errorCode, TapAPIOrderActionRsp *info)
+void TdApi::OnRspOrderAction(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIOrderActionRsp *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPORDERACTION;
@@ -233,7 +234,7 @@ void TdApi::OnRspOrderAction(unsigned int sessionID, int errorCode, TapAPIOrderA
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnOrder(TapAPIOrderInfoNotice *info)
+void TdApi::OnRtnOrder(const ITapTrade::TapAPIOrderInfoNotice *info)
 {
 	Task task = Task();
 	task.task_name = ONRTNORDER;
@@ -246,7 +247,7 @@ void TdApi::OnRtnOrder(TapAPIOrderInfoNotice *info)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryOrder(unsigned int sessionID, int errorCode, char isLast, TapAPIOrderInfo *info)
+void TdApi::OnRspQryOrder(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIOrderInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYORDER;
@@ -262,7 +263,7 @@ void TdApi::OnRspQryOrder(unsigned int sessionID, int errorCode, char isLast, Ta
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryOrderProcess(unsigned int sessionID, int errorCode, char isLast, TapAPIOrderInfo *info)
+void TdApi::OnRspQryOrderProcess(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIOrderInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYORDERPROCESS;
@@ -278,7 +279,7 @@ void TdApi::OnRspQryOrderProcess(unsigned int sessionID, int errorCode, char isL
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryFill(unsigned int sessionID, int errorCode, char isLast, TapAPIFillInfo *info)
+void TdApi::OnRspQryFill(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIFillInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYFILL;
@@ -294,7 +295,7 @@ void TdApi::OnRspQryFill(unsigned int sessionID, int errorCode, char isLast, Tap
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnFill(TapAPIFillInfo *info)
+void TdApi::OnRtnFill(const ITapTrade::TapAPIFillInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRTNFILL;
@@ -307,7 +308,7 @@ void TdApi::OnRtnFill(TapAPIFillInfo *info)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryPosition(unsigned int sessionID, int errorCode, char isLast, TapAPIPositionInfo *info)
+void TdApi::OnRspQryPosition(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIPositionInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYPOSITION;
@@ -323,7 +324,7 @@ void TdApi::OnRspQryPosition(unsigned int sessionID, int errorCode, char isLast,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnPosition(TapAPIPositionInfo *info)
+void TdApi::OnRtnPosition(const ITapTrade::TapAPIPositionInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRTNPOSITION;
@@ -336,7 +337,7 @@ void TdApi::OnRtnPosition(TapAPIPositionInfo *info)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryPositionSummary(unsigned int sessionID, int errorCode, char isLast, TapAPIPositionSummary *info)
+void TdApi::OnRspQryPositionSummary(TAPIUINT32 sessionID, TAPIINT32 errorCode, TAPIYNFLAG isLast, const TapAPIPositionSummary *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYPOSITIONSUMMARY;
@@ -352,7 +353,7 @@ void TdApi::OnRspQryPositionSummary(unsigned int sessionID, int errorCode, char 
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnPositionSummary(TapAPIPositionSummary *info)
+void TdApi::OnRtnPositionSummary(const TapAPIPositionSummary *info)
 {
 	Task task = Task();
 	task.task_name = ONRTNPOSITIONSUMMARY;
@@ -365,7 +366,7 @@ void TdApi::OnRtnPositionSummary(TapAPIPositionSummary *info)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnPositionProfit(TapAPIPositionProfitNotice *info)
+void TdApi::OnRtnPositionProfit(const ITapTrade::TapAPIPositionProfitNotice *info)
 {
 	Task task = Task();
 	task.task_name = ONRTNPOSITIONPROFIT;
@@ -378,7 +379,7 @@ void TdApi::OnRtnPositionProfit(TapAPIPositionProfitNotice *info)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryCurrency(unsigned int sessionID, int errorCode, char isLast, TapAPICurrencyInfo *info)
+void TdApi::OnRspQryCurrency(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPICurrencyInfo *info)
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYCURRENCY;
@@ -394,7 +395,7 @@ void TdApi::OnRspQryCurrency(unsigned int sessionID, int errorCode, char isLast,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryTradeMessage(unsigned int sessionID, int errorCode, char isLast, TapAPITradeMessage *info)
+void TdApi::OnRspQryTradeMessage(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPITradeMessage *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYTRADEMESSAGE;
@@ -410,7 +411,7 @@ void TdApi::OnRspQryTradeMessage(unsigned int sessionID, int errorCode, char isL
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRtnTradeMessage(TapAPITradeMessage *info)
+void TdApi::OnRtnTradeMessage(const ITapTrade::TapAPITradeMessage *info) 
 {
 	Task task = Task();
 	task.task_name = ONRTNTRADEMESSAGE;
@@ -423,7 +424,7 @@ void TdApi::OnRtnTradeMessage(TapAPITradeMessage *info)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryHisOrder(unsigned int sessionID, int errorCode, char isLast, TapAPIHisOrderQryRsp *info)
+void TdApi::OnRspQryHisOrder(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIHisOrderQryRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYHISORDER;
@@ -439,7 +440,7 @@ void TdApi::OnRspQryHisOrder(unsigned int sessionID, int errorCode, char isLast,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryHisOrderProcess(unsigned int sessionID, int errorCode, char isLast, TapAPIHisOrderProcessQryRsp *info)
+void TdApi::OnRspQryHisOrderProcess(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIHisOrderProcessQryRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYHISORDERPROCESS;
@@ -455,7 +456,7 @@ void TdApi::OnRspQryHisOrderProcess(unsigned int sessionID, int errorCode, char 
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryHisMatch(unsigned int sessionID, int errorCode, char isLast, TapAPIHisMatchQryRsp *info)
+void TdApi::OnRspQryHisMatch(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIHisMatchQryRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYHISMATCH;
@@ -471,7 +472,7 @@ void TdApi::OnRspQryHisMatch(unsigned int sessionID, int errorCode, char isLast,
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryHisPosition(unsigned int sessionID, int errorCode, char isLast, TapAPIHisPositionQryRsp *info)
+void TdApi::OnRspQryHisPosition(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIHisPositionQryRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYHISPOSITION;
@@ -487,7 +488,7 @@ void TdApi::OnRspQryHisPosition(unsigned int sessionID, int errorCode, char isLa
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryHisDelivery(unsigned int sessionID, int errorCode, char isLast, TapAPIHisDeliveryQryRsp *info)
+void TdApi::OnRspQryHisDelivery(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIHisDeliveryQryRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYHISDELIVERY;
@@ -503,7 +504,7 @@ void TdApi::OnRspQryHisDelivery(unsigned int sessionID, int errorCode, char isLa
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryAccountCashAdjust(unsigned int sessionID, int errorCode, char isLast, TapAPIAccountCashAdjustQryRsp *info)
+void TdApi::OnRspQryAccountCashAdjust(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIAccountCashAdjustQryRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYACCOUNTCASHADJUST;
@@ -519,7 +520,7 @@ void TdApi::OnRspQryAccountCashAdjust(unsigned int sessionID, int errorCode, cha
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryBill(unsigned int sessionID, int errorCode, char isLast, TapAPIBillQryRsp *info)
+void TdApi::OnRspQryBill(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIBillQryRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYBILL;
@@ -535,7 +536,7 @@ void TdApi::OnRspQryBill(unsigned int sessionID, int errorCode, char isLast, Tap
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryAccountFeeRent(unsigned int sessionID, int errorCode, char isLast, TapAPIAccountFeeRentQryRsp *info)
+void TdApi::OnRspQryAccountFeeRent(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIAccountFeeRentQryRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYACCOUNTFEERENT;
@@ -551,7 +552,7 @@ void TdApi::OnRspQryAccountFeeRent(unsigned int sessionID, int errorCode, char i
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryAccountMarginRent(unsigned int sessionID, int errorCode, char isLast, TapAPIAccountMarginRentQryRsp *info)
+void TdApi::OnRspQryAccountMarginRent(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIAccountMarginRentQryRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPQRYACCOUNTMARGINRENT;
@@ -567,7 +568,7 @@ void TdApi::OnRspQryAccountMarginRent(unsigned int sessionID, int errorCode, cha
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspHKMarketOrderInsert(unsigned int sessionID, int errorCode, TapAPIOrderMarketInsertRsp *info)
+void TdApi::OnRspHKMarketOrderInsert(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIOrderMarketInsertRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPHKMARKETORDERINSERT;
@@ -582,7 +583,7 @@ void TdApi::OnRspHKMarketOrderInsert(unsigned int sessionID, int errorCode, TapA
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspHKMarketOrderDelete(unsigned int sessionID, int errorCode, TapAPIOrderMarketDeleteRsp *info)
+void TdApi::OnRspHKMarketOrderDelete(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIOrderMarketDeleteRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPHKMARKETORDERDELETE;
@@ -597,7 +598,7 @@ void TdApi::OnRspHKMarketOrderDelete(unsigned int sessionID, int errorCode, TapA
 	this->task_queue.push(task);
 };
 
-void TdApi::OnHKMarketQuoteNotice(TapAPIOrderQuoteMarketNotice *info)
+void TdApi::OnHKMarketQuoteNotice(const ITapTrade::TapAPIOrderQuoteMarketNotice *info) 
 {
 	Task task = Task();
 	task.task_name = ONHKMARKETQUOTENOTICE;
@@ -610,7 +611,7 @@ void TdApi::OnHKMarketQuoteNotice(TapAPIOrderQuoteMarketNotice *info)
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspOrderLocalRemove(unsigned int sessionID, int errorCode, TapAPIOrderLocalRemoveRsp *info)
+void TdApi::OnRspOrderLocalRemove(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIOrderLocalRemoveRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPORDERLOCALREMOVE;
@@ -625,7 +626,7 @@ void TdApi::OnRspOrderLocalRemove(unsigned int sessionID, int errorCode, TapAPIO
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspOrderLocalInput(unsigned int sessionID, int errorCode, TapAPIOrderLocalInputRsp *info)
+void TdApi::OnRspOrderLocalInput(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIOrderLocalInputRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPORDERLOCALINPUT;
@@ -640,7 +641,7 @@ void TdApi::OnRspOrderLocalInput(unsigned int sessionID, int errorCode, TapAPIOr
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspOrderLocalModify(unsigned int sessionID, int errorCode, TapAPIOrderLocalModifyRsp *info)
+void TdApi::OnRspOrderLocalModify(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIOrderLocalModifyRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPORDERLOCALMODIFY;
@@ -655,7 +656,7 @@ void TdApi::OnRspOrderLocalModify(unsigned int sessionID, int errorCode, TapAPIO
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspOrderLocalTransfer(unsigned int sessionID, int errorCode, TapAPIOrderLocalTransferRsp *info)
+void TdApi::OnRspOrderLocalTransfer(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIOrderLocalTransferRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPORDERLOCALTRANSFER;
@@ -670,7 +671,7 @@ void TdApi::OnRspOrderLocalTransfer(unsigned int sessionID, int errorCode, TapAP
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspFillLocalInput(unsigned int sessionID, int errorCode, TapAPIFillLocalInputRsp *info)
+void TdApi::OnRspFillLocalInput(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIFillLocalInputRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPFILLLOCALINPUT;
@@ -685,7 +686,7 @@ void TdApi::OnRspFillLocalInput(unsigned int sessionID, int errorCode, TapAPIFil
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspFillLocalRemove(unsigned int sessionID, int errorCode, TapAPIFillLocalRemoveRsp *info)
+void TdApi::OnRspFillLocalRemove(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIFillLocalRemoveRsp *info) 
 {
 	Task task = Task();
 	task.task_name = ONRSPFILLLOCALREMOVE;
@@ -697,6 +698,309 @@ void TdApi::OnRspFillLocalRemove(unsigned int sessionID, int errorCode, TapAPIFi
 		*task_data = *info;
 		task.task_data = task_data;
 	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspQrySpotLock(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPISpotLockDataRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPQRYSPOTLOCK;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	task.task_last = isLast;
+	if (info)
+	{
+		TapAPISpotLockDataRsp *task_data = new TapAPISpotLockDataRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRtnSpotLock(const ITapTrade::TapAPISpotLockDataRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRTNSPOTLOCK;
+	if (info)
+	{
+		TapAPISpotLockDataRsp *task_data = new TapAPISpotLockDataRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspSubmitUserLoginInfo(TAPIUINT32 sessionID, TAPIINT32 errorCode, TAPIYNFLAG isLast, const TapAPISubmitUserLoginRspInfo * info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPSUBMITUSERLOGININFO;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	task.task_last = isLast;
+	if (info)
+	{
+		TapAPISubmitUserLoginRspInfo *task_data = new TapAPISubmitUserLoginRspInfo();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspSpecialOrderAction(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPISpecialOrderInfo *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPSPECIALORDERACTION;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	if (info)
+	{
+		TapAPISpecialOrderInfo *task_data = new TapAPISpecialOrderInfo();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRtnSpecialOrder(const ITapTrade::TapAPISpecialOrderInfo *info) 
+{
+	Task task = Task();
+	task.task_name = ONRTNSPECIALORDER;
+	if (info)
+	{
+		TapAPISpecialOrderInfo *task_data = new TapAPISpecialOrderInfo();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspQrySpecialOrder(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPISpecialOrderInfo *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPQRYSPECIALORDER;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	task.task_last = isLast;
+	if (info)
+	{
+		TapAPISpecialOrderInfo *task_data = new TapAPISpecialOrderInfo();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspQryCombinePosition(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const  ITapTrade::TapAPICombinePositionInfo *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPQRYCOMBINEPOSITION;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	task.task_last = isLast;
+	if (info)
+	{
+		TapAPICombinePositionInfo *task_data = new TapAPICombinePositionInfo();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRtnCombinePosition(const ITapTrade::TapAPICombinePositionInfo *info) 
+{
+	Task task = Task();
+	task.task_name = ONRTNCOMBINEPOSITION;
+	if (info)
+	{
+		TapAPICombinePositionInfo *task_data = new TapAPICombinePositionInfo();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspQryUserTrustDevice(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const  ITapTrade::TapAPIUserTrustDeviceQryRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPQRYUSERTRUSTDEVICE;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	task.task_last = isLast;
+	if (info)
+	{
+		TapAPIUserTrustDeviceQryRsp *task_data = new TapAPIUserTrustDeviceQryRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspAddUserTrustDevice(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIUserTrustDeviceAddRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPADDUSERTRUSTDEVICE;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	if (info)
+	{
+		TapAPIUserTrustDeviceAddRsp *task_data = new TapAPIUserTrustDeviceAddRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspDelUserTrustDevice(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIUserTrustDeviceDelRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPDELUSERTRUSTDEVICE;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	if (info)
+	{
+		TapAPIUserTrustDeviceDelRsp *task_data = new TapAPIUserTrustDeviceDelRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRtnAddUserTrustDevice(const ITapTrade::TapAPIUserTrustDeviceAddRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRTNADDUSERTRUSTDEVICE;
+	if (info)
+	{
+		TapAPIUserTrustDeviceAddRsp *task_data = new TapAPIUserTrustDeviceAddRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRtnDelUserTrustDevice(const ITapTrade::TapAPIUserTrustDeviceDelRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRTNDELUSERTRUSTDEVICE;
+	if (info)
+	{
+		TapAPIUserTrustDeviceDelRsp *task_data = new TapAPIUserTrustDeviceDelRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspQryIPOInfo(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIIPOInfoQryRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPQRYIPOINFO;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	task.task_last = isLast;
+	if (info)
+	{
+		TapAPIIPOInfoQryRsp *task_data = new TapAPIIPOInfoQryRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspQryIPOStockQty(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIAvailableApplyQryRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPQRYIPOSTOCKQTY;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	task.task_last = isLast;
+	if (info)
+	{
+		TapAPIAvailableApplyQryRsp *task_data = new TapAPIAvailableApplyQryRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspQryAccountIPO(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIAccountIPOQryRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPQRYACCOUNTIPO;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	task.task_last = isLast;
+	if (info)
+	{
+		TapAPIAccountIPOQryRsp *task_data = new TapAPIAccountIPOQryRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspAddAccountIPO(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIAccountIPOAddRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPADDACCOUNTIPO;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	if (info)
+	{
+		TapAPIAccountIPOAddRsp *task_data = new TapAPIAccountIPOAddRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspCancelAccountIPO(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPIAccountIPOCancelRsp *info) 
+{
+	Task task = Task();
+	task.task_name = ONRSPCANCELACCOUNTIPO;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
+	if (info)
+	{
+		TapAPIAccountIPOCancelRsp *task_data = new TapAPIAccountIPOCancelRsp();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRtnAddAccountIPO(const ITapTrade::TapAPIAccountIPOAddNotice *info) 
+{
+	Task task = Task();
+	task.task_name = ONRTNADDACCOUNTIPO;
+	if (info)
+	{
+		TapAPIAccountIPOAddNotice *task_data = new TapAPIAccountIPOAddNotice();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRtnCancelAccountIPO(const ITapTrade::TapAPIAccountIPOCancelNotice *info) 
+{
+	Task task = Task();
+	task.task_name = ONRTNCANCELACCOUNTIPO;
+	if (info)
+	{
+		TapAPIAccountIPOCancelNotice *task_data = new TapAPIAccountIPOCancelNotice();
+		*task_data = *info;
+		task.task_data = task_data;
+	}
+	this->task_queue.push(task);
+};
+
+void TdApi::OnRspUnFreezeVerificate(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode) 
+{
+	Task task = Task();
+	task.task_name = ONRSPUNFREEZEVERIFICATE;
+	task.task_id = sessionID;
+	task.task_int = errorCode;
 	this->task_queue.push(task);
 };
 

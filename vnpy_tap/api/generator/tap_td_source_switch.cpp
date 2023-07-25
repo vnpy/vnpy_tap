@@ -298,3 +298,129 @@ case ONRSPFILLLOCALREMOVE:
 	break;
 }
 
+case ONRSPQRYSPOTLOCK:
+{
+	this->processRspQrySpotLock(&task);
+	break;
+}
+
+case ONRTNSPOTLOCK:
+{
+	this->processRtnSpotLock(&task);
+	break;
+}
+
+case ONRSPSUBMITUSERLOGININFO:
+{
+	this->processRspSubmitUserLoginInfo(&task);
+	break;
+}
+
+case ONRSPSPECIALORDERACTION:
+{
+	this->processRspSpecialOrderAction(&task);
+	break;
+}
+
+case ONRTNSPECIALORDER:
+{
+	this->processRtnSpecialOrder(&task);
+	break;
+}
+
+case ONRSPQRYSPECIALORDER:
+{
+	this->processRspQrySpecialOrder(&task);
+	break;
+}
+
+case ONRSPQRYCOMBINEPOSITION:
+{
+	this->processRspQryCombinePosition(&task);
+	break;
+}
+
+case ONRTNCOMBINEPOSITION:
+{
+	this->processRtnCombinePosition(&task);
+	break;
+}
+
+case ONRSPQRYUSERTRUSTDEVICE:
+{
+	this->processRspQryUserTrustDevice(&task);
+	break;
+}
+
+case ONRSPADDUSERTRUSTDEVICE:
+{
+	this->processRspAddUserTrustDevice(&task);
+	break;
+}
+
+case ONRSPDELUSERTRUSTDEVICE:
+{
+	this->processRspDelUserTrustDevice(&task);
+	break;
+}
+
+case ONRTNADDUSERTRUSTDEVICE:
+{
+	this->processRtnAddUserTrustDevice(&task);
+	break;
+}
+
+case ONRTNDELUSERTRUSTDEVICE:
+{
+	this->processRtnDelUserTrustDevice(&task);
+	break;
+}
+
+case ONRSPQRYIPOINFO:
+{
+	this->processRspQryIPOInfo(&task);
+	break;
+}
+
+case ONRSPQRYIPOSTOCKQTY:
+{
+	this->processRspQryIPOStockQty(&task);
+	break;
+}
+
+case ONRSPQRYACCOUNTIPO:
+{
+	this->processRspQryAccountIPO(&task);
+	break;
+}
+
+case ONRSPADDACCOUNTIPO:
+{
+	this->processRspAddAccountIPO(&task);
+	break;
+}
+
+case ONRSPCANCELACCOUNTIPO:
+{
+	this->processRspCancelAccountIPO(&task);
+	break;
+}
+
+case ONRTNADDACCOUNTIPO:
+{
+	this->processRtnAddAccountIPO(&task);
+	break;
+}
+
+case ONRTNCANCELACCOUNTIPO:
+{
+	this->processRtnCancelAccountIPO(&task);
+	break;
+}
+
+case ONRSPUNFREEZEVERIFICATE:
+{
+	this->processRspUnFreezeVerificate(&task);
+	break;
+}
+

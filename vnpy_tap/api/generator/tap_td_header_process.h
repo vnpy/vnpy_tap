@@ -98,3 +98,45 @@ void processRspFillLocalInput(Task *task);
 
 void processRspFillLocalRemove(Task *task);
 
+void processRspQrySpotLock(Task *task);
+
+void processRtnSpotLock(Task *task);
+
+void processRspSubmitUserLoginInfo(Task *task);
+
+void processRspSpecialOrderAction(Task *task);
+
+void processRtnSpecialOrder(Task *task);
+
+void processRspQrySpecialOrder(Task *task);
+
+void processRspQryCombinePosition(Task *task);
+
+void processRtnCombinePosition(Task *task);
+
+void processRspQryUserTrustDevice(Task *task);
+
+void processRspAddUserTrustDevice(Task *task);
+
+void processRspDelUserTrustDevice(Task *task);
+
+void processRtnAddUserTrustDevice(Task *task);
+
+void processRtnDelUserTrustDevice(Task *task);
+
+void processRspQryIPOInfo(Task *task);
+
+void processRspQryIPOStockQty(Task *task);
+
+void processRspQryAccountIPO(Task *task);
+
+void processRspAddAccountIPO(Task *task);
+
+void processRspCancelAccountIPO(Task *task);
+
+void processRtnAddAccountIPO(Task *task);
+
+void processRtnCancelAccountIPO(Task *task);
+
+void processRspUnFreezeVerificate(Task *task);
+

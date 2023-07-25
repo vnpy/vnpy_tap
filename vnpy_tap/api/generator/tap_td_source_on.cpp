@@ -1,8 +1,8 @@
-void onConnect() override
+void onConnect(string HostAddress) override
 {
 	try
 	{
-		PYBIND11_OVERLOAD(void, TdApi, onConnect);
+		PYBIND11_OVERLOAD(void, TdApi, onConnect, HostAddress);
 	}
 	catch (const error_already_set &e)
 	{
@@ -130,11 +130,11 @@ void onRspSetReservedInfo(unsigned int session, int error, string info) override
 	}
 };
 
-void onRspQryAccount(unsigned int session, unsigned int session, char last, const dict &data) override
+void onRspQryAccount(unsigned int session, unsigned int error, char last, const dict &data) override
 {
 	try
 	{
-		PYBIND11_OVERLOAD(void, TdApi, onRspQryAccount, session, session, last, data);
+		PYBIND11_OVERLOAD(void, TdApi, onRspQryAccount, session, error, last, data);
 	}
 	catch (const error_already_set &e)
 	{
@@ -591,6 +591,258 @@ void onRspFillLocalRemove(unsigned int session, int error, const dict &data) ove
 	try
 	{
 		PYBIND11_OVERLOAD(void, TdApi, onRspFillLocalRemove, session, error, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspQrySpotLock(unsigned int session, int error, char last, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspQrySpotLock, session, error, last, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRtnSpotLock(const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRtnSpotLock, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspSubmitUserLoginInfo(unsigned int session, int error, char last, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspSubmitUserLoginInfo, session, error, last, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspSpecialOrderAction(unsigned int session, int error, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspSpecialOrderAction, session, error, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRtnSpecialOrder(const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRtnSpecialOrder, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspQrySpecialOrder(unsigned int session, int error, char last, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspQrySpecialOrder, session, error, last, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspQryCombinePosition(unsigned int session, int error, char last, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspQryCombinePosition, session, error, last, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRtnCombinePosition(const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRtnCombinePosition, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspQryUserTrustDevice(unsigned int session, int error, char last, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspQryUserTrustDevice, session, error, last, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspAddUserTrustDevice(unsigned int session, int error, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspAddUserTrustDevice, session, error, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspDelUserTrustDevice(unsigned int session, int error, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspDelUserTrustDevice, session, error, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRtnAddUserTrustDevice(const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRtnAddUserTrustDevice, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRtnDelUserTrustDevice(const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRtnDelUserTrustDevice, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspQryIPOInfo(unsigned int session, int error, char last, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspQryIPOInfo, session, error, last, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspQryIPOStockQty(unsigned int session, int error, char last, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspQryIPOStockQty, session, error, last, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspQryAccountIPO(unsigned int session, int error, char last, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspQryAccountIPO, session, error, last, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspAddAccountIPO(unsigned int session, int error, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspAddAccountIPO, session, error, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspCancelAccountIPO(unsigned int session, int error, const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspCancelAccountIPO, session, error, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRtnAddAccountIPO(const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRtnAddAccountIPO, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRtnCancelAccountIPO(const dict &data) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRtnCancelAccountIPO, data);
+	}
+	catch (const error_already_set &e)
+	{
+		cout << e.what() << endl;
+	}
+};
+
+void onRspUnFreezeVerificate(unsigned int session, int error) override
+{
+	try
+	{
+		PYBIND11_OVERLOAD(void, TdApi, onRspUnFreezeVerificate, session, error);
 	}
 	catch (const error_already_set &e)
 	{

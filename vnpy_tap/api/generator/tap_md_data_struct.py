@@ -97,3 +97,4 @@ TapAPIQuoteWhole = {
     "QTotalAskQty": "unsigned long long",
     "UnderlyContract": "dict",
 }
+

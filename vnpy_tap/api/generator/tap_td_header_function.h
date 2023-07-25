@@ -1,44 +1,44 @@
-int qryTradingDate(unsigned int session);
+int qryTradingDate();
 
-int qryAccount(unsigned int session, const dict &data);
+int qryAccount(const dict &data);
 
-int qryFund(unsigned int session, const dict &data);
+int qryFund(const dict &data);
 
-int qryExchange(unsigned int session);
+int qryExchange();
 
-int qryCommodity(unsigned int session);
+int qryCommodity();
 
-int qryContract(unsigned int session, const dict &data);
+int qryContract(const dict &data);
 
-int qryOrder(unsigned int session, const dict &data);
+int qryOrder(const dict &data);
 
-int qryOrderProcess(unsigned int session, const dict &data);
+int qryOrderProcess(const dict &data);
 
-int qryFill(unsigned int session, const dict &data);
+int qryFill(const dict &data);
 
-int qryPosition(unsigned int session, const dict &data);
+int qryPosition(const dict &data);
 
-int qryPositionSummary(unsigned int session, const dict &data);
+int qryPositionSummary(const dict &data);
 
-int qryCurrency(unsigned int session);
+int qryCurrency();
 
-int qryAccountCashAdjust(unsigned int session, const dict &data);
+int qryAccountCashAdjust(const dict &data);
 
-int qryTradeMessage(unsigned int session, const dict &data);
+int qryTradeMessage(const dict &data);
 
-int qryBill(unsigned int session, const dict &data);
+int qryBill(const dict &data);
 
-int qryHisOrder(unsigned int session, const dict &data);
+int qryHisOrder(const dict &data);
 
-int qryHisOrderProcess(unsigned int session, const dict &data);
+int qryHisOrderProcess(const dict &data);
 
-int qryHisMatch(unsigned int session, const dict &data);
+int qryHisMatch(const dict &data);
 
-int qryHisPosition(unsigned int session, const dict &data);
+int qryHisPosition(const dict &data);
 
-int qryHisDelivery(unsigned int session, const dict &data);
+int qryHisDelivery(const dict &data);
 
-int qryAccountFeeRent(unsigned int session, const dict &data);
+int qryAccountFeeRent(const dict &data);
 
-int qryAccountMarginRent(unsigned int session, const dict &data);
+int qryAccountMarginRent(const dict &data);
 

@@ -3,6 +3,9 @@ TapAPITradeLoginAuth = {
     "ISModifyPassword": "char",
     "Password": "string",
     "NewPassword": "string",
+    "LoginIP": "string",
+    "LoginMac": "string",
+    "DeviceName": "string",
 }
 
 TapAPITradeLoginRspInfo = {
@@ -17,12 +20,18 @@ TapAPITradeLoginRspInfo = {
     "TradeDate": "string",
     "LastSettleTime": "string",
     "StartTime": "string",
-    "InitTime": "string",
+    "NextSecondDate": "string",
+    "LastLoginInfo": "string",
 }
 
 TapAPIRequestVertificateCodeRsp = {
     "SecondSerialID": "string",
     "Effective": "int",
+}
+
+TapAPISecondCertificationReq = {
+    "VertificateCode": "string",
+    "LoginType": "char",
 }
 
 TapAPIAccQryReq = {
@@ -74,6 +83,7 @@ TapAPINewOrder = {
     "TriggerCondition": "char",
     "TriggerPriceType": "char",
     "AddOneIsValid": "char",
+    "ClientLocationID": "string",
 }
 
 TapAPIOrderInfo = {
@@ -142,6 +152,7 @@ TapAPIOrderInfo = {
     "IsBackInput": "char",
     "IsDeleted": "char",
     "IsAddOne": "char",
+    "ClientLocationID": "string",
 }
 
 TapAPIOrderInfoNotice = {
@@ -187,6 +198,7 @@ TapAPIOrderQryReq = {
     "IsBackInput": "char",
     "IsDeleted": "char",
     "IsAddOne": "char",
+    "OrderQryType": "char",
 }
 
 TapAPIOrderProcessQryReq = {
@@ -241,6 +253,7 @@ TapAPIFillInfo = {
     "FeeValue": "double",
     "IsManualFee": "char",
     "ClosePrositionPrice": "double",
+    "CloseProfit": "double",
 }
 
 TapAPICloseQryReq = {
@@ -408,6 +421,7 @@ TapAPICommodityInfo = {
     "AddOneTime": "string",
     "CommodityTimeZone": "int",
     "IsAddOne": "char",
+    "OptionType": "char",
 }
 
 TapAPITradeContractInfo = {
@@ -426,6 +440,7 @@ TapAPITradeContractInfo = {
     "ContractExpDate": "string",
     "LastTradeDate": "string",
     "FirstNoticeDate": "string",
+    "ContractSize": "double",
 }
 
 TapAPICurrencyInfo = {
@@ -439,7 +454,6 @@ TapAPICurrencyInfo = {
 
 TapAPITradeMessageReq = {
     "AccountNo": "string",
-    "AccountAttributeNo": "string",
     "BenginSendDateTime": "string",
     "EndSendDateTime": "string",
 }
@@ -473,7 +487,6 @@ TapAPIBillQryRsp = {
 
 TapAPIHisOrderQryReq = {
     "AccountNo": "string",
-    "AccountAttributeNo": "string",
     "BeginDate": "string",
     "EndDate": "string",
 }
@@ -545,10 +558,8 @@ TapAPIHisOrderQryRsp = {
 
 TapAPIHisMatchQryReq = {
     "AccountNo": "string",
-    "AccountAttributeNo": "string",
     "BeginDate": "string",
     "EndDate": "string",
-    "CountType": "char",
 }
 
 TapAPIHisMatchQryRsp = {
@@ -607,9 +618,7 @@ TapAPIHisOrderProcessQryReq = {
 TapAPIHisOrderProcessQryRsp = TapAPIHisOrderQryRsp
 TapAPIHisPositionQryReq = {
     "AccountNo": "string",
-    "AccountAttributeNo": "dict",
     "Date": "string",
-    "CountType": "dict",
     "SettleFlag": "char",
 }
 
@@ -642,14 +651,15 @@ TapAPIHisPositionQryRsp = {
     "UpperInitialMargin": "double",
     "UpperMaintenanceMargin": "double",
     "SettleGroupNo": "string",
+    "ServerFlag": "char",
+    "SuperiorAccount": "string",
 }
 
 TapAPIHisDeliveryQryReq = {
     "AccountNo": "string",
-    "AccountAttributeNo": "string",
     "BeginDate": "string",
     "EndDate": "string",
-    "CountType": "char",
+    "SettleFlag": "char",
 }
 
 TapAPIHisDeliveryQryRsp = {
@@ -688,12 +698,14 @@ TapAPIHisDeliveryQryRsp = {
     "OperatorNo": "string",
     "OperateTime": "string",
     "SettleGourpNo": "string",
+    "FutureContractNo": "string",
+    "OptionStrikePrice": "string",
+    "SuperiorAccount": "string",
 }
 
 TapAPIAccountCashAdjustQryReq = {
     "SerialID": "unsigned int",
     "AccountNo": "string",
-    "AccountAttributeNo": "string",
     "BeginDate": "string",
     "EndDate": "string",
 }
@@ -738,7 +750,6 @@ TapAPIAccountMarginRentQryReq = {
     "ExchangeNo": "string",
     "CommodityType": "char",
     "CommodityNo": "string",
-    "ContractNo": "string",
 }
 
 TapAPIAccountMarginRentQryRsp = {
@@ -888,6 +899,7 @@ TapAPIOrderLocalInputReq = {
     "OrderMatchQty2": "unsigned int",
     "OrderState": "char",
     "IsAddOne": "char",
+    "LowerAccount": "string",
 }
 
 TapAPIOrderLocalInputRsp = TapAPIOrderInfo
@@ -944,3 +956,249 @@ TapAPITradingCalendarQryRsp = {
     "PromptDate": "string",
     "LastPromptDate": "string",
 }
+
+TapAPISpotLockQryReq = {
+    "AccountNo": "string",
+}
+
+TapAPISpotLockQryRsp = TapAPISpotLockQryReq
+TapAPISpotLockDataRsp = {
+    "AccountNo": "string",
+    "ExchangeNo": "string",
+    "CommodityType": "char",
+    "CommodityNo": "string",
+    "LockQty": "unsigned int",
+    "FrozenQty": "unsigned int",
+    "CanUnLockQty": "unsigned int",
+}
+
+TapAPISpotLockDataNotice = TapAPISpotLockDataRsp
+TapAPISubmitUserLoginInfo = {
+    "UserNo": "string",
+    "GatherInfo": "string",
+    "ClientLoginIP": "string",
+    "ClientLoginPort": "unsigned int",
+    "ClientLoginDateTime": "string",
+    "ClientAppID": "string",
+    "AuthKeyVersion": "unsigned int",
+    "AbnormalNo": "char",
+}
+
+TapAPISubmitUserLoginRspInfo = {
+    "UserNo": "string",
+}
+
+TapAPISpecialOrderInsertReq = {
+    "AccountNo": "string",
+    "SpecialOrderType": "char",
+    "OrderSource": "char",
+    "CombineNo": "string",
+    "OrderQty": "unsigned int",
+    "ExchangeNo": "string",
+    "CommodityType": "char",
+    "CommodityNo": "string",
+    "ContractNo": "string",
+    "StrikePrice": "string",
+    "CallOrPutFlag": "char",
+    "OrderSide1": "char",
+    "HedgeFlag1": "char",
+    "ContractNo2": "string",
+    "StrikePrice2": "string",
+    "CallOrPutFlag2": "char",
+}
+
+TapAPISpecialOrderQryReq = {
+    "AccountNo": "string",
+    "OrderNo": "string",
+}
+
+TapAPISpecialOrderInfo = {
+    "SessionID": "unsigned int",
+    "ErrorCode": "unsigned int",
+    "ErrorText": "string",
+    "AccountNo": "string",
+    "ServerFlag": "char",
+    "OrderNo": "string",
+    "ClientOrderNo": "string",
+    "SpecialOrderType": "char",
+    "OrderSource": "char",
+    "CombineStrategy": "string",
+    "CombineNo": "string",
+    "OrderQty": "unsigned int",
+    "ExchangeNo": "string",
+    "CommodityType": "char",
+    "CommodityNo": "string",
+    "ContractNo": "string",
+    "StrikePrice": "string",
+    "CallOrPutFlag": "char",
+    "OrderSide1": "char",
+    "CombineQty1": "unsigned int",
+    "HedgeFlag1": "char",
+    "ContractNo2": "string",
+    "StrikePrice2": "string",
+    "CallOrPutFlag2": "char",
+    "OrderSide2": "char",
+    "CombineQty2": "unsigned int",
+    "HedgeFlag2": "char",
+    "LicenseNo": "string",
+    "ClientLocalIP": "string",
+    "ClientMac": "string",
+    "ClientIP": "string",
+    "OrderStreamID": "unsigned int",
+    "UpperNo": "string",
+    "UpperChannelNo": "string",
+    "OrderLocalNo": "string",
+    "OrderSystemNo": "string",
+    "OrderExchangeSystemNo": "string",
+    "OrderInsertUserNo": "string",
+    "OrderInsertTime": "string",
+    "OrderState": "char",
+}
+
+TapAPICombinePositionQryReq = {
+    "AccountNo": "string",
+}
+
+TapAPICombinePositionInfo = {
+    "AccountNo": "string",
+    "PositionStreamID": "unsigned int",
+    "ServerFlag": "char",
+    "UpperNo": "string",
+    "CombineStrategy": "string",
+    "CombineNo": "string",
+    "PositionQty": "unsigned int",
+    "ExchangeNo": "string",
+    "CommodityType": "char",
+    "CommodityNo": "string",
+    "ContractNo": "string",
+    "StrikePrice": "string",
+    "CallOrPutFlag": "char",
+    "OrderSide1": "char",
+    "CombineQty1": "unsigned int",
+    "HedgeFlag1": "char",
+    "ContractNo2": "string",
+    "StrikePrice2": "string",
+    "CallOrPutFlag2": "char",
+    "OrderSide2": "char",
+    "CombineQty2": "unsigned int",
+    "HedgeFlag2": "char",
+    "CommodityCurrencyGroup": "string",
+    "CommodityCurrency": "string",
+    "AccountInitialMargin": "double",
+    "AccountMaintenanceMargin": "double",
+    "UpperInitialMargin": "double",
+    "UpperMaintenanceMargin": "double",
+}
+
+TapAPIUserTrustDeviceQryReq = {
+}
+
+TapAPIUserTrustDeviceQryRsp = {
+    "UserNo": "string",
+    "LicenseNo": "string",
+    "Mac": "string",
+    "DeviceName": "string",
+    "OperatorNo": "string",
+    "OperateTime": "string",
+}
+
+TapAPIUserTrustDeviceAddReq = {
+}
+
+TapAPIUserTrustDeviceAddRsp = TapAPIUserTrustDeviceQryRsp
+TapAPIUserTrustDeviceDelReq = {
+    "LicenseNo": "string",
+    "Mac": "string",
+}
+
+TapAPIUserTrustDeviceDelRsp = TapAPIUserTrustDeviceDelReq
+TapAPIIPOInfoQryReq = {
+}
+
+TapAPIIPOInfoQryRsp = {
+    "ExchangeNo": "string",
+    "CommodityType": "char",
+    "CommodityNo": "string",
+    "CurrencyGroupNo": "string",
+    "CurrencyNo": "string",
+    "BeginDate": "string",
+    "EndDate": "string",
+    "IPODate": "string",
+    "ResultDate": "string",
+    "IPOFee": "double",
+    "FinancingFee": "double",
+    "LoanRatio": "double",
+    "FinancingDays": "unsigned int",
+    "MaxLoanRatio": "double",
+    "MaxLoanValue": "double",
+    "Price": "double",
+    "OperatorNo": "string",
+    "OperateTime": "string",
+}
+
+TapAPIAvailableApplyQryReq = {
+    "ExchangeNo": "string",
+    "CommodityType": "char",
+    "CommodityNo": "string",
+}
+
+TapAPIAvailableApplyQryRsp = {
+    "ExchangeNo": "string",
+    "CommodityType": "char",
+    "CommodityNo": "string",
+    "StockQty": "unsigned int",
+}
+
+TapAPIAccountIPOQryReq = {
+    "AccountNo": "string",
+}
+
+TapAPIAccountIPOQryRsp = {
+    "EndDate": "string",
+    "ResultDate": "string",
+    "IPODate": "string",
+    "AccountNo": "string",
+    "ExchangeNo": "string",
+    "CommodityType": "char",
+    "CommodityNo": "string",
+    "ApplyType": "char",
+    "ApplyQty": "unsigned int",
+    "ApplyCash": "double",
+    "LoanRatio": "double",
+    "LoanInterest": "double",
+    "ApplyFee": "double",
+    "ApplyStatus": "char",
+    "ResultQty": "unsigned int",
+    "OperatorNo": "string",
+    "OperateTime": "string",
+}
+
+TapAPIAccountIPOAddReq = {
+    "AccountNo": "string",
+    "ExchangeNo": "string",
+    "CommodityType": "char",
+    "CommodityNo": "string",
+    "ApplyType": "char",
+    "ApplyQty": "unsigned int",
+    "LoanRatio": "double",
+}
+
+TapAPIAccountIPOAddRsp = TapAPIAccountIPOQryRsp
+TapAPIAccountIPOCancelReq = {
+    "AccountNo": "string",
+    "ExchangeNo": "string",
+    "CommodityType": "char",
+    "CommodityNo": "string",
+}
+
+TapAPIAccountIPOCancelRsp = TapAPIAccountIPOQryRsp
+TapAPIAccountIPOAddNotice = TapAPIAccountIPOQryRsp
+TapAPIAccountIPOCancelNotice = TapAPIAccountIPOQryRsp
+TapAPIVerifyIdentityReq = {
+    "UserNo": "string",
+    "CertificateType": "dict",
+    "CertificateNo": "string",
+    "EMail": "string",
+    "PhoneNo": "string",
+}
+

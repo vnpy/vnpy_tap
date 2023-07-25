@@ -123,7 +123,8 @@ class TapGateway(BaseGateway):
         "交易服务器": "",
         "交易端口": 0,
         "交易授权码": "",
-        "子账号": ""
+        "子账号": "",
+        "区域代码": "CN"
     }
 
     exchanges: List[str] = list(EXCHANGE_VT2TAP.keys())
@@ -148,6 +149,7 @@ class TapGateway(BaseGateway):
         trade_port: int = setting["交易端口"]
         td_authcode: str = setting["交易授权码"]
         client_id: str = setting["子账号"]
+        country_state: str = setting["区域代码"]
 
         self.md_api.connect(
             quote_username,
@@ -162,7 +164,8 @@ class TapGateway(BaseGateway):
             trade_host,
             trade_port,
             td_authcode,
-            client_id
+            client_id,
+            country_state
         )
 
     def close(self) -> None:
@@ -363,13 +366,14 @@ class TradeApi(TdApi):
         self.connect_status: bool = False
         self.account_no: str = ""        # 委托下单时使用
         self.client_id: str = ""         # 子账号，没有可不填
+        self.country_state: str = ""     # 下单人所处区域
         self.cancel_reqs: Dict[str, CancelRequest] = {}       # 存放未成交订单
 
         self.sys_local_map: Dict[str, str] = {}
         self.local_sys_map: Dict[str, str] = {}
         self.sys_server_map: Dict[str, str] = {}
 
-    def onConnect(self) -> None:
+    def onConnect(self, address: str) -> None:
         """服务器连接成功回报"""
         self.connect_status = True
         self.gateway.write_log("交易服务器连接成功")
@@ -661,7 +665,8 @@ class TradeApi(TdApi):
         host: str,
         port: int,
         auth_code: str,
-        client_id: str
+        client_id: str,
+        country_state: str
     ) -> None:
         """连接服务器"""
         # 禁止重复发起连接，会导致异常崩溃
@@ -669,6 +674,7 @@ class TradeApi(TdApi):
             return
 
         self.client_id = client_id
+        self.country_state = country_state
         self.init()
 
         # API基本设置
@@ -716,14 +722,15 @@ class TradeApi(TdApi):
             "OrderSide": DIRECTION_VT2TAP[req.direction],
             "OrderPrice": req.price,
             "OrderQty": int(req.volume),
-            "ClientID": self.client_id
         }
+        if self.client_id:
+            order_req["ClientID"] = self.client_id
+            order_req["ClientLocationID"] = self.country_state
 
-        error_id, session, byte_id = self.insertOrder(order_req)    # byte_id是bytes类型数据
-        order_id = byte_id.decode()
+        error_id, session, order_id = self.insertOrder(order_req)
 
         if self.client_id in order_id:
-            order_id = order_id.replace(f"#{self.client_id}#", "")
+            order_id = order_id.replace(f"#{self.client_id}#{self.country_state}#", "")
 
         order: OrderData = req.create_order_data(
             order_id,

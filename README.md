@@ -6,14 +6,14 @@
 
 <p align="center">
     <img src ="https://img.shields.io/badge/version-9.3.9.1-blueviolet.svg"/>
-    <img src ="https://img.shields.io/badge/platform-windows-yellow.svg"/>
+    <img src ="https://img.shields.io/badge/platform-windows|linux-yellow.svg"/>
     <img src ="https://img.shields.io/badge/python-3.7|3.8|3.9|3.10-blue.svg" />
     <img src ="https://img.shields.io/github/license/vnpy/vnpy.svg?color=orange"/>
 </p>
 
 ## 说明
 
-基于易盛的北斗星交易API的9.0接口（iTapTradeApi9.3.8.7）封装开发的Windows的接口，适用于香港、新加坡以及其他境外交易所行情/交易。
+基于易盛的北斗星交易API的9.0接口（iTapTradeApi9.3.8.7）封装开发的接口，适用于香港、新加坡以及其他境外交易所行情/交易。
 
 ## 安装
 

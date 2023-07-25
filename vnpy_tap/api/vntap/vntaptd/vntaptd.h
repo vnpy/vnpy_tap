@@ -1081,6 +1081,8 @@ public:
 
 	string getITapTradeAPIVersion();
 
+	string getITapErrorDescribe(int error);
+
 	int setITapTradeAPIDataPath(string path);
 
 	int setITapTradeAPILogLevel(string level);

@@ -3880,6 +3880,12 @@ string TdApi::getITapTradeAPIVersion()
 	return i;
 };
 
+string TdApi::getITapErrorDescribe(int error)
+{
+	string i = GetITapErrorDescribe(error);
+	return toUtf(i);
+};
+
 int TdApi::setITapTradeAPIDataPath(string path)
 {
 	// int i = SetITapTradeAPIDataPath(path.c_str());
@@ -5007,6 +5013,7 @@ PYBIND11_MODULE(vntaptd, m)
 		.def("init", &TdApi::init)
 		.def("exit", &TdApi::exit)
 		.def("getITapTradeAPIVersion", &TdApi::getITapTradeAPIVersion)
+		.def("getITapErrorDescribe", &TdApi::getITapErrorDescribe)
 		.def("setITapTradeAPIDataPath", &TdApi::setITapTradeAPIDataPath)
 		.def("setITapTradeAPILogLevel", &TdApi::setITapTradeAPILogLevel)
 		.def("setHostAddress", &TdApi::setHostAddress)

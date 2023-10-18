@@ -149,21 +149,24 @@ class TapGateway(BaseGateway):
         td_authcode: str = setting["交易授权码"]
         client_id: str = setting["子账号"]
 
-        self.md_api.connect(
-            quote_username,
-            quote_password,
-            quote_host,
-            quote_port,
-            md_authcode
-        )
-        self.td_api.connect(
-            trade_username,
-            trade_password,
-            trade_host,
-            trade_port,
-            td_authcode,
-            client_id
-        )
+        if quote_host:
+            self.md_api.connect(
+                quote_username,
+                quote_password,
+                quote_host,
+                quote_port,
+                md_authcode
+            )
+
+        if trade_host:
+            self.td_api.connect(
+                trade_username,
+                trade_password,
+                trade_host,
+                trade_port,
+                td_authcode,
+                client_id
+            )
 
     def close(self) -> None:
         """关闭接口"""

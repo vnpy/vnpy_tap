@@ -372,6 +372,8 @@ class TradeApi(TdApi):
         self.local_sys_map: Dict[str, str] = {}
         self.sys_server_map: Dict[str, str] = {}
 
+        self.init_query: bool = True        # 初始化是否查询日内委托和成交
+
     def onConnect(self) -> None:
         """服务器连接成功回报"""
         self.connect_status = True
@@ -520,7 +522,9 @@ class TradeApi(TdApi):
 
         if last == "Y":
             self.gateway.write_log("查询持仓信息成功")
-            self.query_order()
+
+            if self.init_query:
+                self.query_order()
 
     def onRtnPositionSummary(self, data: dict) -> None:
         """持仓汇总更新推送"""
@@ -543,7 +547,9 @@ class TradeApi(TdApi):
 
         if last == "Y":
             self.gateway.write_log("查询委托信息成功")
-            self.query_trade()
+
+            if self.init_query:
+                self.query_trade()
 
     def onRtnOrder(self, data: dict) -> None:
         """委托查询推送"""
@@ -664,7 +670,8 @@ class TradeApi(TdApi):
         host: str,
         port: int,
         auth_code: str,
-        client_id: str
+        client_id: str,
+        init_query: bool = True
     ) -> None:
         """连接服务器"""
         # 禁止重复发起连接，会导致异常崩溃
@@ -672,6 +679,8 @@ class TradeApi(TdApi):
             return
 
         self.client_id = client_id
+        self.init_query = init_query
+
         self.init()
 
         # API基本设置

@@ -378,7 +378,7 @@ class TradeApi(TdApi):
 
         self.init_query: bool = True        # 初始化是否查询日内委托和成交
 
-    def onConnect(self) -> None:
+    def onConnect(self, address: str) -> None:
         """服务器连接成功回报"""
         self.connect_status = True
         self.gateway.write_log("交易服务器连接成功")

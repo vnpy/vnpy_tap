@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-    <img src ="https://img.shields.io/badge/version-9.3.9.1-blueviolet.svg"/>
+    <img src ="https://img.shields.io/badge/version-9.4.0-blueviolet.svg"/>
     <img src ="https://img.shields.io/badge/platform-windows|linux-yellow.svg"/>
     <img src ="https://img.shields.io/badge/python-3.7|3.8|3.9|3.10-blue.svg" />
     <img src ="https://img.shields.io/github/license/vnpy/vnpy.svg?color=orange"/>
@@ -17,7 +17,7 @@
 
 ## 安装
 
-安装需要基于3.8.0版本以上的[VeighNa Studio](https://www.vnpy.com)。
+安装需要基于3.9.0版本以上的[VeighNa Studio](https://www.vnpy.com)。
 
 直接使用pip命令：
 

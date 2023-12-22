@@ -26,33 +26,57 @@ from vnpy.trader.object import (
     AccountData
 )
 
-from ..api import MdApi, TdApi
+from ..api import (
+    MdApi,
+    TdApi,
+    APIYNFLAG_NO,
+    TAPI_CALLPUT_FLAG_CALL,
+    TAPI_CALLPUT_FLAG_PUT,
+    TAPI_CALLPUT_FLAG_NONE,
+    TAPIERROR_SUCCEED,
+    APILOGLEVEL_NONE,
+    TAPI_COMMODITY_TYPE_FUTURES,
+    TAPI_COMMODITY_TYPE_OPTION,
+    TAPI_ORDER_TYPE_MARKET,
+    TAPI_ORDER_TYPE_LIMIT,
+    TAPI_SIDE_NONE,
+    TAPI_SIDE_BUY,
+    TAPI_SIDE_SELL,
+    TAPI_ORDER_STATE_SUBMIT,
+    TAPI_ORDER_STATE_ACCEPT,
+    TAPI_ORDER_STATE_QUEUED,
+    TAPI_ORDER_STATE_PARTFINISHED,
+    TAPI_ORDER_STATE_FINISHED,
+    TAPI_ORDER_STATE_CANCELED,
+    TAPI_ORDER_STATE_LEFTDELETED,
+    TAPI_ORDER_STATE_FAIL
+)
 
 
 # 委托状态映射
 STATUS_TAP2VT: Dict[str, Status] = {
-    "0": Status.SUBMITTING,
-    "1": Status.SUBMITTING,
-    "4": Status.NOTTRADED,
-    "5": Status.PARTTRADED,
-    "6": Status.ALLTRADED,
-    "9": Status.CANCELLED,
-    "A": Status.CANCELLED,
-    "B": Status.REJECTED,
+    TAPI_ORDER_STATE_SUBMIT: Status.SUBMITTING,
+    TAPI_ORDER_STATE_ACCEPT: Status.SUBMITTING,
+    TAPI_ORDER_STATE_QUEUED: Status.NOTTRADED,
+    TAPI_ORDER_STATE_PARTFINISHED: Status.PARTTRADED,
+    TAPI_ORDER_STATE_FINISHED: Status.ALLTRADED,
+    TAPI_ORDER_STATE_CANCELED: Status.CANCELLED,
+    TAPI_ORDER_STATE_LEFTDELETED: Status.CANCELLED,
+    TAPI_ORDER_STATE_FAIL: Status.REJECTED,
 }
 
 # 多空方向映射
 DIRECTION_TAP2VT: Dict[str, Direction] = {
-    "N": Direction.NET,
-    "B": Direction.LONG,
-    "S": Direction.SHORT,
+    TAPI_SIDE_NONE: Direction.NET,
+    TAPI_SIDE_BUY: Direction.LONG,
+    TAPI_SIDE_SELL: Direction.SHORT,
 }
 DIRECTION_VT2TAP: Dict[Direction, str] = {v: k for k, v in DIRECTION_TAP2VT.items()}
 
 # 委托类型映射
 ORDERTYPE_TAP2VT: Dict[str, OrderType] = {
-    "1": OrderType.MARKET,
-    "2": OrderType.LIMIT
+    TAPI_ORDER_TYPE_MARKET: OrderType.MARKET,
+    TAPI_ORDER_TYPE_LIMIT: OrderType.LIMIT
 }
 ORDERTYPE_VT2TAP = {v: k for k, v in ORDERTYPE_TAP2VT.items()}
 
@@ -76,38 +100,16 @@ EXCHANGE_VT2TAP: Dict[Exchange, str] = {v: k for k, v in EXCHANGE_TAP2VT.items()
 
 # 产品类型映射
 Product_TAP2VT: Dict[str, Product] = {
-    "F": Product.FUTURES,
-    "O": Product.OPTION
+    TAPI_COMMODITY_TYPE_FUTURES: Product.FUTURES,
+    TAPI_COMMODITY_TYPE_OPTION: Product.OPTION
 }
 
 # 期权类型映射
 OPTIONTYPE_TAP2VT: Dict[str, OptionType] = {
-    "C": OptionType.CALL,
-    "P": OptionType.PUT
+    TAPI_CALLPUT_FLAG_CALL: OptionType.CALL,
+    TAPI_CALLPUT_FLAG_PUT: OptionType.PUT
 }
 OPTIONTYPE_VT2TAP: Dict[OptionType, str] = {v: k for k, v in OPTIONTYPE_TAP2VT.items()}
-
-# 错误类型映射
-ERROR_VT2TAP: Dict[str, int] = {
-    "TAPIERROR_SUCCEED": 0
-}
-
-# 日志级别映射
-LOGLEVEL_VT2TAP: Dict[str, str] = {
-    "APILOGLEVEL_NONE": "N",
-    "APILOGLEVEL_ERROR": "E",
-    "APILOGLEVEL_WARNING": "W",
-    "APILOGLEVEL_DEBUG": "D"
-}
-
-# 标示类型映射
-FLAG_VT2TAP: Dict[str, str] = {
-    "APIYNFLAG_YES": "Y",
-    "APIYNFLAG_NO": "N",
-    "TAPI_CALLPUT_FLAG_CALL": "C",
-    "TAPI_CALLPUT_FLAG_PUT": "P",
-    "TAPI_CALLPUT_FLAG_NONE": "N"
-}
 
 # 其他常量
 CHINA_TZ = ZoneInfo("Asia/Shanghai")
@@ -162,7 +164,7 @@ class TapGateway(BaseGateway):
         trade_port: int = setting["交易端口"]
         td_authcode: str = setting["交易授权码"]
         client_id: str = setting["子账号"]
-        country_state: str = setting["区域代码"]
+        client_location: str = setting["区域代码"]
 
         if quote_host:
             self.md_api.connect(
@@ -181,7 +183,7 @@ class TapGateway(BaseGateway):
                 trade_port,
                 td_authcode,
                 client_id,
-                country_state
+                client_location
             )
 
     def close(self) -> None:
@@ -224,7 +226,7 @@ class QuoteApi(MdApi):
 
     def onRspLogin(self, error: int, data: dict) -> None:
         """用户登陆请求回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log(f"行情服务器登录失败：{error}")
         else:
             self.connect_status = True
@@ -247,7 +249,7 @@ class QuoteApi(MdApi):
         data: dict
     ) -> None:
         """订阅行情回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log(f"订阅行情失败：{error}")
         else:
             self.update_tick(data)
@@ -322,7 +324,7 @@ class QuoteApi(MdApi):
         # API基本设置
         path: Path = get_folder_path(self.gateway_name.lower())
         self.setTapQuoteAPIDataPath(str(path).encode("GBK"))
-        self.setTapQuoteAPILogLevel(LOGLEVEL_VT2TAP["APILOGLEVEL_NONE"])
+        self.setTapQuoteAPILogLevel(APILOGLEVEL_NONE)
 
         # 创建API
         req: dict = {
@@ -334,12 +336,12 @@ class QuoteApi(MdApi):
         # 设置服务器地址
         self.setHostAddress(host, port)
 
-        # 登陆
+        # 登录账号
         data: dict = {
             "UserNo": username,
             "Password": password,
-            "ISModifyPassword": FLAG_VT2TAP["APIYNFLAG_NO"],
-            "ISDDA": FLAG_VT2TAP["APIYNFLAG_NO"]
+            "ISModifyPassword": APIYNFLAG_NO,
+            "ISDDA": APIYNFLAG_NO
         }
         self.login(data)
 
@@ -356,16 +358,19 @@ class QuoteApi(MdApi):
             "CommodityType": contract_info.commodity_type,
             "CommodityNo": contract_info.commodity_no,
             "ContractNo1": contract_info.contract_no,
-            "CallOrPutFlag2": FLAG_VT2TAP["TAPI_CALLPUT_FLAG_NONE"]
+            "CallOrPutFlag2": TAPI_CALLPUT_FLAG_NONE
         }
+
         if contract_info.commodity_type == "O":
             option_contract: ContractData = option_contract_map[req.symbol]
 
             tap_contract["StrikePrice1"] = option_contract.option_index
-            tap_contract["CallOrPutFlag1"] = OPTIONTYPE_VT2TAP.get(option_contract.option_type, "N")
-
+            tap_contract["CallOrPutFlag1"] = OPTIONTYPE_VT2TAP.get(
+                option_contract.option_type,
+                TAPI_CALLPUT_FLAG_NONE
+            )
         else:
-            tap_contract["CallOrPutFlag1"] = FLAG_VT2TAP["TAPI_CALLPUT_FLAG_NONE"]
+            tap_contract["CallOrPutFlag1"] = TAPI_CALLPUT_FLAG_NONE
 
         self.subscribeQuote(tap_contract)
 
@@ -389,8 +394,9 @@ class TradeApi(TdApi):
         self.connect_status: bool = False
         self.account_no: str = ""        # 委托下单时使用
         self.client_id: str = ""         # 子账号，没有可不填
-        self.country_state: str = ""     # 下单人所处区域
-        self.cancel_reqs: Dict[str, CancelRequest] = {}       # 存放未成交订单
+        self.client_location: str = ""     # 投资者所处国家区域
+
+        self.cancel_reqs: Dict[str, CancelRequest] = {}       # 撤单请求缓存
 
         self.sys_local_map: Dict[str, str] = {}
         self.local_sys_map: Dict[str, str] = {}
@@ -405,7 +411,7 @@ class TradeApi(TdApi):
 
     def onRspLogin(self, error: int, data: dict) -> None:
         """用户登陆请求回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log(f"交易服务器登录失败，错误码：{error}")
         else:
             self.gateway.write_log("交易服务器登录成功")
@@ -422,7 +428,7 @@ class TradeApi(TdApi):
         data: dict,
     ) -> None:
         """交易品种查询回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log("查询交易品种信息失败")
             return
 
@@ -446,7 +452,7 @@ class TradeApi(TdApi):
         data: dict
     ) -> None:
         """交易合约查询回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log("查询交易合约信息失败")
             return
 
@@ -460,11 +466,13 @@ class TradeApi(TdApi):
         product: Product = Product_TAP2VT.get(data["CommodityType"], None)
 
         if product and exchange:
+            # 生成合约代码
             if product == Product.FUTURES:
                 symbol: str = data["CommodityNo"] + data["ContractNo1"]
             else:
                 symbol: str = data["CommodityNo"] + data["ContractNo1"] + data["CallOrPutFlag1"] + data["StrikePrice1"]
 
+            # 获取合约名称
             if data["ContractName"]:
                 name = data["ContractName"]
             elif commodity_info.name:
@@ -472,6 +480,7 @@ class TradeApi(TdApi):
             else:
                 name: str = symbol
 
+            # 创建合约对象
             contract: ContractData = ContractData(
                 symbol=symbol,
                 exchange=exchange,
@@ -482,20 +491,22 @@ class TradeApi(TdApi):
                 net_position=True,
                 gateway_name=self.gateway.gateway_name
             )
-            if product == Product.OPTION:
-                underlying_symbol: str = data["CommodityNo"]
 
-                contract.option_portfolio = underlying_symbol + "_O"
+            # 期权字段处理
+            if product == Product.OPTION:
+                contract.option_portfolio = data["CommodityNo"] + "_O"
                 contract.option_type = OPTIONTYPE_TAP2VT.get(data["CallOrPutFlag1"], None)
                 contract.option_strike = float(data["StrikePrice1"])
                 contract.option_index = data["StrikePrice1"]
                 contract.option_expiry = datetime.strptime(data["ContractExpDate"], "%Y-%m-%d")
-                contract.option_underlying = underlying_symbol + "_" + data["ContractNo1"]
+                contract.option_underlying = data["CommodityNo"] + data["ContractNo1"]
 
                 option_contract_map[symbol] = contract
 
+            # 推送合约对象
             self.gateway.on_contract(contract)
 
+            # 合约数据缓存
             contract_info: ContractInfo = ContractInfo(
                 name=contract.name,
                 exchange_no=data["ExchangeNo"],
@@ -517,7 +528,7 @@ class TradeApi(TdApi):
         data: dict
     ) -> None:
         """账户查询回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log("查询账号信息失败")
             return
 
@@ -534,7 +545,7 @@ class TradeApi(TdApi):
         data: dict
     ) -> None:
         """账户资金查询回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log("查询资金信息失败")
             return
 
@@ -556,7 +567,7 @@ class TradeApi(TdApi):
         data: dict
     ) -> None:
         """持仓汇总查询回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log("查询持仓信息失败")
             return
 
@@ -581,7 +592,7 @@ class TradeApi(TdApi):
         data: dict
     ) -> None:
         """当日委托查询回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log("查询委托信息失败")
             return
 
@@ -596,7 +607,7 @@ class TradeApi(TdApi):
 
     def onRtnOrder(self, data: dict) -> None:
         """委托查询推送"""
-        if data["ErrorCode"] != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if data["ErrorCode"] != TAPIERROR_SUCCEED:
             self.gateway.write_log(f"委托下单失败，错误码: {data['ErrorCode']}")
             return
 
@@ -610,7 +621,7 @@ class TradeApi(TdApi):
         data: dict
     ) -> None:
         """当日成交查询回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log("查询成交信息失败")
             return
 
@@ -631,7 +642,7 @@ class TradeApi(TdApi):
         data: dict
     ) -> None:
         """撤单和修改委托回报"""
-        if error != ERROR_VT2TAP["TAPIERROR_SUCCEED"]:
+        if error != TAPIERROR_SUCCEED:
             self.gateway.write_log(f"委托操作失败：{error}")
             return
 
@@ -714,7 +725,7 @@ class TradeApi(TdApi):
         port: int,
         auth_code: str,
         client_id: str,
-        country_state: str,
+        client_location: str,
         init_query: bool = True
     ) -> None:
         """连接服务器"""
@@ -723,7 +734,7 @@ class TradeApi(TdApi):
             return
 
         self.client_id = client_id
-        self.country_state = country_state
+        self.client_location = client_location
         self.init_query = init_query
 
         self.init()
@@ -731,7 +742,7 @@ class TradeApi(TdApi):
         # API基本设置
         path: Path = get_folder_path(self.gateway_name.lower())
         self.setITapTradeAPIDataPath(str(path).encode("GBK"))
-        self.setITapTradeAPILogLevel(LOGLEVEL_VT2TAP["APILOGLEVEL_NONE"])
+        self.setITapTradeAPILogLevel(APILOGLEVEL_NONE)
 
         # 创建API
         req: dict = {
@@ -747,7 +758,7 @@ class TradeApi(TdApi):
         data: dict = {
             "UserNo": username,
             "Password": password,
-            "ISModifyPassword": FLAG_VT2TAP["APIYNFLAG_NO"],
+            "ISModifyPassword": APIYNFLAG_NO,
             "NoticeIgnoreFlag": "TAPI_NOTICE_IGNORE_POSITIONPROFIT"
         }
         self.login(data)
@@ -774,20 +785,24 @@ class TradeApi(TdApi):
             "OrderPrice": req.price,
             "OrderQty": int(req.volume),
         }
+
         if self.client_id:
             order_req["ClientID"] = self.client_id
-            order_req["ClientLocationID"] = self.country_state
+            order_req["ClientLocationID"] = self.client_location
 
         if contract_info.commodity_type == "O":
             option_contract: ContractData = option_contract_map[req.symbol]
-            
+
             order_req["StrikePrice"] = option_contract.option_index
-            order_req["CallOrPutFlag"] = OPTIONTYPE_VT2TAP.get(option_contract.option_type, "N")
+            order_req["CallOrPutFlag"] = OPTIONTYPE_VT2TAP.get(
+                option_contract.option_type,
+                TAPI_CALLPUT_FLAG_NONE
+            )
 
         error_id, session, order_id = self.insertOrder(order_req)
 
         if self.client_id in order_id:
-            order_id = order_id.replace(f"#{self.client_id}#{self.country_state}#", "")
+            order_id = order_id.replace(f"#{self.client_id}#{self.client_location}#", "")
 
         order: OrderData = req.create_order_data(
             order_id,

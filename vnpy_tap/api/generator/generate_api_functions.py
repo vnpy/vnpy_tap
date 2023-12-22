@@ -48,18 +48,12 @@ class ApiGenerator:
 
     def run(self):
         """运行生成"""
-        self.f_cpp = open(self.filename, "r", encoding="UTF-8")
+        self.f_cpp = open(self.filename, "r")
 
         for line in self.f_cpp:
             self.process_line(line)
 
         self.f_cpp.close()
-        # print("self.callbacks=",self.callbacks,"\n\n")
-        # print("self.functions=", self.functions,"\n\n")
-        # print("self.lines=", self.lines,"\n\n")
-
-        # print("self.structs=", self.structs,"\n\n")
-        # print("self.typedefs=", self.typedefs,"\n\n")
 
         self.generate_header_define()
         self.generate_header_process()
@@ -82,7 +76,7 @@ class ApiGenerator:
         line = line.replace("\t", "")
         line = line.replace("{}", "")
 
-        if "virtual void TAP_CDECL On" in line:
+        if "void TAP_CDECL" in line and "virtual" in line:
             self.process_callback(line)
         elif "virtual ITapTrade::TAPIINT32 TAP_CDECL Qry" in line:
             self.process_function(line)
@@ -90,56 +84,17 @@ class ApiGenerator:
             self.process_function(line)
 
     def process_callback(self, line: str):
-        """处理回掉函数"""
+        """处理回调函数"""
         name = line[line.index("On"):line.index("(")]
         line = line.replace("        ", "")
-        new_line = self.standard_format(line)
-        self.lines[name] = new_line
+        line = line.replace(" = 0", "")
+        line = line.replace(" TAP_CDECL", "")
+        if "virtual  void  " in line:
+            line = line.replace("virtual  void  ", "virtual void ")
+        self.lines[name] = line
 
         d = self.generate_arg_dict(line)
         self.callbacks[name] = d
-
-    def standard_format(self, line: str):
-        """"""
-        line = line.split("=")[0]
-        line = line.replace("virtual void TAP_CDECL", "virtual void")
-        header = line.split("(")[0]
-
-        args_str = line[line.index("(") + 1:line.index(")")]
-        if not args_str:
-            f_content = ""
-        else:
-            args = args_str.split(",")
-            content = ""
-            for arg in args:
-                words = arg.split(" ")
-                if len(words) > 2:
-                    tap_type = words[-2]
-                    name = words[-1]
-
-                    if "::" in tap_type:
-                        tap_type = tap_type.split("::")[1]
-
-                    cpp_type = self.typedefs.get(tap_type, "dict")
-                    if cpp_type == "dict":
-                        cpp_type = tap_type
-
-                    item = f"{cpp_type} {name}, "
-                    content = content + item
-                elif len(words) == 2:
-                    tap_type = words[0]
-                    name = words[1]
-
-                    if "::" in tap_type:
-                        tap_type = tap_type.split("::")[1]
-                    cpp_type = self.typedefs[tap_type]
-
-                    item = f"{cpp_type} {name}, "
-                    content = content + item
-            f_content = content[:-2]
-
-        new_line = f"{header}({f_content})"
-        return new_line
 
     def process_function(self, line: str):
         """处理主动函数"""
@@ -168,7 +123,10 @@ class ApiGenerator:
             cpp_type = self.typedefs.get(tap_type, tap_type)
             if cpp_type == "dict":
                 cpp_type = tap_type
+            elif not cpp_type:
+                cpp_type = "TapAPISubmitUserLoginRspInfo"
             d[name] = cpp_type
+
         return d
 
     def generate_header_define(self):
@@ -198,7 +156,10 @@ class ApiGenerator:
                 args_list = []
                 for name, type_ in d.items():
                     if type_ == "unsigned int":
-                        args_list.append("unsigned int session")
+                        if name != "sessionID":
+                            args_list.append("unsigned int error")
+                        else:
+                            args_list.append("unsigned int session")
                     elif type_ == "int":
                         if name == "errorCode":
                             args_list.append("int error")
@@ -228,7 +189,7 @@ class ApiGenerator:
                 args_list = []
                 for name, type_ in d.items():
                     if type_ == "unsigned int":
-                        args_list.append("unsigned int session")
+                        pass
                     else:
                         args_list.append("const dict &data")
 
@@ -340,16 +301,18 @@ class ApiGenerator:
 
                 length = len(d.keys())
                 if length == 1:
-                    f.write(f"int {self.class_name}::{req_name}(unsigned int session)\n")
+                    f.write(f"int {self.class_name}::{req_name}()\n")
                     f.write("{\n")
-                    f.write(f"\tint i = this->api->{name}(session);\n")
+                    f.write("\tTAPIUINT32 session;\n")
+                    f.write(f"\tint i = this->api->{name}(&session);\n")
                     f.write("\treturn i;\n")
                     f.write("};\n\n")
                 else:
                     type_ = list(d.values())[1]
                     f.write(
-                        f"int {self.class_name}::{req_name}(unsigned int session, const dict &req)\n")
+                        f"int {self.class_name}::{req_name}(const dict &req)\n")
                     f.write("{\n")
+                    f.write("\tTAPIUINT32 session;\n")
                     f.write(f"\t{type_} myreq = {type_}();\n")
                     f.write("\tmemset(&myreq, 0, sizeof(myreq));\n")
 
@@ -361,7 +324,7 @@ class ApiGenerator:
                             line = f"\tget{struct_type.capitalize()}(req, \"{struct_field}\", &myreq.{struct_field});\n"
                         f.write(line)
 
-                    f.write(f"\tint i = this->api->{name}(session, &myreq);\n")
+                    f.write(f"\tint i = this->api->{name}(&session, &myreq);\n")
                     f.write("\treturn i;\n")
                     f.write("};\n\n")
 
@@ -376,8 +339,12 @@ class ApiGenerator:
                 bind_args = ["void", self.class_name, on_name]
                 for field, type_ in d.items():
                     if type_ == "unsigned int":
-                        args.append("unsigned int session")
-                        bind_args.append("session")
+                        if field != "sessionID":
+                            args.append("unsigned int error")
+                            bind_args.append("error")
+                        else:
+                            args.append("unsigned int session")
+                            bind_args.append("session")
                     elif type_ == "char":
                         args.append("char last")
                         bind_args.append("last")

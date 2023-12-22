@@ -10,7 +10,8 @@ from vnpy.trader.constant import (
     Product,
     Direction,
     Status,
-    OrderType
+    OrderType,
+    OptionType
 )
 from vnpy.trader.gateway import BaseGateway
 from vnpy.trader.object import (
@@ -66,14 +67,25 @@ EXCHANGE_TAP2VT: Dict[str, Exchange] = {
     "CBOT": Exchange.CBOT,
     "HKEX": Exchange.HKFE,
     "CME": Exchange.CME,
-    "ZCE": Exchange.CZCE,
-    "DCE": Exchange.DCE,
     "TOCOM": Exchange.TOCOM,
     "KRX": Exchange.KRX,
     "ICUS": Exchange.ICE,
     "ICEU": Exchange.ICE
 }
 EXCHANGE_VT2TAP: Dict[Exchange, str] = {v: k for k, v in EXCHANGE_TAP2VT.items()}
+
+# 产品类型映射
+Product_TAP2VT: Dict[str, Product] = {
+    "F": Product.FUTURES,
+    "O": Product.OPTION
+}
+
+# 期权类型映射
+OPTIONTYPE_TAP2VT: Dict[str, OptionType] = {
+    "C": OptionType.CALL,
+    "P": OptionType.PUT
+}
+OPTIONTYPE_VT2TAP: Dict[OptionType, str] = {v: k for k, v in OPTIONTYPE_TAP2VT.items()}
 
 # 错误类型映射
 ERROR_VT2TAP: Dict[str, int] = {
@@ -103,6 +115,7 @@ CHINA_TZ = ZoneInfo("Asia/Shanghai")
 # 合约数据全局缓存字典
 commodity_infos: Dict[tuple[str, str, str], "CommodityInfo"] = {}
 contract_infos: Dict[Tuple[str, "Exchange"], "ContractInfo"] = {}
+option_contract_map: Dict[str, ContractData] = {}
 
 
 class TapGateway(BaseGateway):
@@ -123,7 +136,8 @@ class TapGateway(BaseGateway):
         "交易服务器": "",
         "交易端口": 0,
         "交易授权码": "",
-        "子账号": ""
+        "子账号": "",
+        "区域代码": "CN"
     }
 
     exchanges: List[str] = list(EXCHANGE_VT2TAP.keys())
@@ -148,6 +162,7 @@ class TapGateway(BaseGateway):
         trade_port: int = setting["交易端口"]
         td_authcode: str = setting["交易授权码"]
         client_id: str = setting["子账号"]
+        country_state: str = setting["区域代码"]
 
         if quote_host:
             self.md_api.connect(
@@ -165,7 +180,8 @@ class TapGateway(BaseGateway):
                 trade_host,
                 trade_port,
                 td_authcode,
-                client_id
+                client_id,
+                country_state
             )
 
     def close(self) -> None:
@@ -340,9 +356,16 @@ class QuoteApi(MdApi):
             "CommodityType": contract_info.commodity_type,
             "CommodityNo": contract_info.commodity_no,
             "ContractNo1": contract_info.contract_no,
-            "CallOrPutFlag1": FLAG_VT2TAP["TAPI_CALLPUT_FLAG_NONE"],
             "CallOrPutFlag2": FLAG_VT2TAP["TAPI_CALLPUT_FLAG_NONE"]
         }
+        if contract_info.commodity_type == "O":
+            option_contract: ContractData = option_contract_map[req.symbol]
+
+            tap_contract["StrikePrice1"] = option_contract.option_index
+            tap_contract["CallOrPutFlag1"] = OPTIONTYPE_VT2TAP.get(option_contract.option_type, "N")
+
+        else:
+            tap_contract["CallOrPutFlag1"] = FLAG_VT2TAP["TAPI_CALLPUT_FLAG_NONE"]
 
         self.subscribeQuote(tap_contract)
 
@@ -366,6 +389,7 @@ class TradeApi(TdApi):
         self.connect_status: bool = False
         self.account_no: str = ""        # 委托下单时使用
         self.client_id: str = ""         # 子账号，没有可不填
+        self.country_state: str = ""     # 下单人所处区域
         self.cancel_reqs: Dict[str, CancelRequest] = {}       # 存放未成交订单
 
         self.sys_local_map: Dict[str, str] = {}
@@ -374,7 +398,7 @@ class TradeApi(TdApi):
 
         self.init_query: bool = True        # 初始化是否查询日内委托和成交
 
-    def onConnect(self) -> None:
+    def onConnect(self, address: str) -> None:
         """服务器连接成功回报"""
         self.connect_status = True
         self.gateway.write_log("交易服务器连接成功")
@@ -430,13 +454,20 @@ class TradeApi(TdApi):
         key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
         commodity_info: CommodityInfo = commodity_infos.get(key, None)
 
-        if not data or not exchange or not commodity_info:
+        if not data or not commodity_info:
             return
 
-        if data["CommodityType"] == "F":
-            symbol: str = data["CommodityNo"] + data["ContractNo1"]
+        product: Product = Product_TAP2VT.get(data["CommodityType"], None)
 
-            if commodity_info.name:
+        if product and exchange:
+            if product == Product.FUTURES:
+                symbol: str = data["CommodityNo"] + data["ContractNo1"]
+            else:
+                symbol: str = data["CommodityNo"] + data["ContractNo1"] + data["CallOrPutFlag1"] + data["StrikePrice1"]
+
+            if data["ContractName"]:
+                name = data["ContractName"]
+            elif commodity_info.name:
                 name: str = f"{commodity_info.name} {data['ContractNo1']}"
             else:
                 name: str = symbol
@@ -445,12 +476,24 @@ class TradeApi(TdApi):
                 symbol=symbol,
                 exchange=exchange,
                 name=name,
-                product=Product.FUTURES,
+                product=product,
                 size=commodity_info.size,
                 pricetick=commodity_info.pricetick,
                 net_position=True,
                 gateway_name=self.gateway.gateway_name
             )
+            if product == Product.OPTION:
+                underlying_symbol: str = data["CommodityNo"]
+
+                contract.option_portfolio = underlying_symbol + "_O"
+                contract.option_type = OPTIONTYPE_TAP2VT.get(data["CallOrPutFlag1"], None)
+                contract.option_strike = float(data["StrikePrice1"])
+                contract.option_index = data["StrikePrice1"]
+                contract.option_expiry = datetime.strptime(data["ContractExpDate"], "%Y-%m-%d")
+                contract.option_underlying = underlying_symbol + "_" + data["ContractNo1"]
+
+                option_contract_map[symbol] = contract
+
             self.gateway.on_contract(contract)
 
             contract_info: ContractInfo = ContractInfo(
@@ -671,6 +714,7 @@ class TradeApi(TdApi):
         port: int,
         auth_code: str,
         client_id: str,
+        country_state: str,
         init_query: bool = True
     ) -> None:
         """连接服务器"""
@@ -679,6 +723,7 @@ class TradeApi(TdApi):
             return
 
         self.client_id = client_id
+        self.country_state = country_state
         self.init_query = init_query
 
         self.init()
@@ -728,14 +773,21 @@ class TradeApi(TdApi):
             "OrderSide": DIRECTION_VT2TAP[req.direction],
             "OrderPrice": req.price,
             "OrderQty": int(req.volume),
-            "ClientID": self.client_id
         }
+        if self.client_id:
+            order_req["ClientID"] = self.client_id
+            order_req["ClientLocationID"] = self.country_state
 
-        error_id, session, byte_id = self.insertOrder(order_req)    # byte_id是bytes类型数据
-        order_id = byte_id.decode()
+        if contract_info.commodity_type == "O":
+            option_contract: ContractData = option_contract_map[req.symbol]
+            
+            order_req["StrikePrice"] = option_contract.option_index
+            order_req["CallOrPutFlag"] = OPTIONTYPE_VT2TAP.get(option_contract.option_type, "N")
+
+        error_id, session, order_id = self.insertOrder(order_req)
 
         if self.client_id in order_id:
-            order_id = order_id.replace(f"#{self.client_id}#", "")
+            order_id = order_id.replace(f"#{self.client_id}#{self.country_state}#", "")
 
         order: OrderData = req.create_order_data(
             order_id,

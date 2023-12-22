@@ -1,4 +1,4 @@
-ï»¿//è¯¥æ–‡ä»¶å®šä¹‰äº†TapTradeAPI ä½¿ç”¨çš„æ•°æ®ç±»åž‹å’Œæ•°æ®ç»“æž„
+//¸ÃÎÄ¼þ¶¨ÒåÁËTapTradeAPI Ê¹ÓÃµÄÊý¾ÝÀàÐÍºÍÊý¾Ý½á¹¹
 #ifndef ITAP_TRADE_API_DATA_TYPE_H
 #define ITAP_TRADE_API_DATA_TYPE_H
 #include "iTapAPICommDef.h"
@@ -11,1052 +11,1091 @@ namespace ITapTrade
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIACCOUNTTYPE    è´¦å·ç±»åž‹
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIACCOUNTTYPE	ÕËºÅÀàÐÍ
+     *	@{
      */
     //=============================================================================
-    //! è´¦å·ç±»åž‹
-    typedef TAPICHAR            TAPIAccountType;
-    //! ä¸ªäººå®¢æˆ·
-    const TAPIAccountType        TAPI_ACCOUNT_TYPE_PERSON                = 'P';
-    //! æœºæž„å®¢æˆ·
-    const TAPIAccountType        TAPI_ACCOUNT_TYPE_ORGANIZATION            = 'O';
-    //! ä»£ç†äºº
-    const TAPIAccountType        TAPI_ACCOUNT_TYPE_AGENT = 'A';
+    //! ÕËºÅÀàÐÍ
+    typedef TAPICHAR			TAPIAccountType;
+    //! ¸öÈË¿Í»§
+    const TAPIAccountType		TAPI_ACCOUNT_TYPE_PERSON				= 'P';
+    //! »ú¹¹¿Í»§
+    const TAPIAccountType		TAPI_ACCOUNT_TYPE_ORGANIZATION		    = 'O';
+    //! ´úÀíÈË
+    const TAPIAccountType		TAPI_ACCOUNT_TYPE_AGENT					= 'A';
     //!Margin
-    const TAPIAccountType        TAPI_ACCOUNT_TYPE_MARGIN = 'M';
+    const TAPIAccountType		TAPI_ACCOUNT_TYPE_MARGIN				= 'M';
     //! Internal
-    const TAPIAccountType        TAPI_ACCOUNT_TYPE_HOUSE = 'H';
-    //! è‚¡ç¥¨è´¦æˆ·
-    const TAPIAccountType        TAPI_ACCOUNT_TYPE_STOCK = 'S';
+    const TAPIAccountType		TAPI_ACCOUNT_TYPE_HOUSE					= 'H';
+    //! ¹ÉÆ±ÕË»§
+    const TAPIAccountType		TAPI_ACCOUNT_TYPE_STOCK					= 'S';
     /** @}*/
 
     //=============================================================================
     /**
-    *    \addtogroup G_DATATYPE_T_TAPIRIGHTIDTYPE    æƒé™ç¼–ç ç±»åž‹
-    *    @{
+    *	\addtogroup G_DATATYPE_T_TAPIRIGHTIDTYPE	È¨ÏÞ±àÂëÀàÐÍ
+    *	@{
     */
     //=============================================================================
-    //! æƒé™ç¼–ç ç±»åž‹
-    typedef TAPIINT32            TAPIRightIDType;
-    //! ç³»ç»Ÿåˆ å•
-    const TAPIRightIDType        TAPI_RIGHT_ORDER_DEL    = 30001;
-    //! è®¢å•å®¡æ ¸
-    const TAPIRightIDType        TAPI_RIGHT_ORDER_CHECK    = 30002;
-    //! åªå¯æŸ¥è¯¢
-    const TAPIRightIDType        TAPI_RIGHT_ONLY_QRY        = 31000;
-    //! åªå¯å¼€ä»“
-    const TAPIRightIDType        TAPI_RIGHT_ONLY_OPEN    = 31001;
+    //! È¨ÏÞ±àÂëÀàÐÍ
+    typedef TAPIINT32			TAPIRightIDType;
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIUSERTYPETYPE    ç™»å½•ç”¨æˆ·èº«ä»½ç±»åž‹
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIUSERTYPETYPE	µÇÂ¼ÓÃ»§Éí·ÝÀàÐÍ
+     *	@{
      */
     //=============================================================================
-    //! ç™»å½•ç”¨æˆ·èº«ä»½ç±»åž‹
-    typedef TAPIINT32            TAPIUserTypeType;
-    //! æŠ•èµ„è€…ç”¨æˆ·
-    const TAPIUserTypeType        TAPI_USERTYPE_CLIENT                    =10000;
-    //! ç»çºªäºº
-    const TAPIUserTypeType        TAPI_USERTYPE_BROKER                    =20000;
-    //! äº¤æ˜“å‘˜
-    const TAPIUserTypeType        TAPI_USERTYPE_TRADER                    =30000;
-    //! é£ŽæŽ§
-    const TAPIUserTypeType        TAPI_USERTYPE_RISK                        =40000;
-    //! ç®¡ç†å‘˜
-    const TAPIUserTypeType        TAPI_USERTYPE_MANAGER                    =50000;
-    //! è¡Œæƒ…
-    const TAPIUserTypeType        TAPI_USERTYPE_QUOTE                        =60000;
+    //! µÇÂ¼ÓÃ»§Éí·ÝÀàÐÍ
+    typedef TAPIINT32			TAPIUserTypeType;
+    //! Í¶×ÊÕßÓÃ»§
+    const TAPIUserTypeType		TAPI_USERTYPE_CLIENT					=10000;
+    //! ¾­¼ÍÈË
+    const TAPIUserTypeType		TAPI_USERTYPE_BROKER					=20000;
+    //! ½»Ò×Ô±
+    const TAPIUserTypeType		TAPI_USERTYPE_TRADER					=30000;
+    //! ·ç¿Ø
+    const TAPIUserTypeType		TAPI_USERTYPE_RISK						=40000;
+    //! ¹ÜÀíÔ±
+    const TAPIUserTypeType		TAPI_USERTYPE_MANAGER					=50000;
+    //! ÐÐÇé
+    const TAPIUserTypeType		TAPI_USERTYPE_QUOTE						=60000;
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIACCOUNTSTATE    è´¦å·çŠ¶æ€
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIACCOUNTSTATE	ÕËºÅ×´Ì¬
+     *	@{
      */
     //=============================================================================
-    //! è´¦å·çŠ¶æ€
-    typedef TAPICHAR            TAPIAccountState;
-    //! æ­£å¸¸
-    const TAPIAccountState        TAPI_ACCOUNT_STATE_NORMAL                = 'N';
-    //! é”€æˆ·
-    const TAPIAccountState        TAPI_ACCOUNT_STATE_CANCEL                = 'C';
-    //! ä¼‘çœ 
-    const TAPIAccountState        TAPI_ACCOUNT_STATE_SLEEP               = 'S';
+    //! ÕËºÅ×´Ì¬
+    typedef TAPICHAR			TAPIAccountState;
+    //! Õý³£
+    const TAPIAccountState		TAPI_ACCOUNT_STATE_NORMAL				= 'N';
+    //! Ïú»§
+    const TAPIAccountState		TAPI_ACCOUNT_STATE_CANCEL				= 'C';
+    //! ÐÝÃß
+    const TAPIAccountState		TAPI_ACCOUNT_STATE_SLEEP				= 'S';
+	//£¡¶³½á
+	const TAPIAccountState		TAPI_ACCOUNT_STATE_FROZEN				= 'F';
     /** @}*/
 
 
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIACCOUNTRIGHTTYPE    è´¦æˆ·äº¤æ˜“çŠ¶æ€
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIACCOUNTRIGHTTYPE	ÕË»§½»Ò××´Ì¬
+     *	@{
      */
     //=============================================================================
-    //! å®¢æˆ·äº¤æ˜“çŠ¶æ€ç±»åž‹
-    typedef TAPICHAR            TAPIAccountRightType;
-    //! æ­£å¸¸äº¤æ˜“
-    const    TAPIAccountRightType    TAPI_ACCOUNT_TRADING_RIGHT_NORMAL = '0';
-    //! ç¦æ­¢äº¤æ˜“
-    const    TAPIAccountRightType    TAPI_ACCOUNT_TRADING_RIGHT_NOTRADE = '1';
-    //! åªå¯å¹³ä»“
-    const    TAPIAccountRightType    TAPI_ACCOUNT_TRADING_RIGHT_CLOSE = '2';
+    //! ¿Í»§½»Ò××´Ì¬ÀàÐÍ
+    typedef TAPICHAR			TAPIAccountRightType;
+    //! Õý³£½»Ò×
+    const	TAPIAccountRightType	TAPI_ACCOUNT_TRADING_RIGHT_NORMAL	= '0';
+    //! ½ûÖ¹½»Ò×	
+    const	TAPIAccountRightType	TAPI_ACCOUNT_TRADING_RIGHT_NOTRADE	= '1';
+    //! Ö»¿ÉÆ½²Ö
+    const	TAPIAccountRightType	TAPI_ACCOUNT_TRADING_RIGHT_CLOSE	= '2';
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIORDERTYPETYPE    å§”æ‰˜ç±»åž‹
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIORDERTYPETYPE	Î¯ÍÐÀàÐÍ
+     *	@{
      */
     //=============================================================================
-    //! å§”æ‰˜ç±»åž‹
-    typedef TAPICHAR                TAPIOrderTypeType;
-    //! å¸‚ä»·
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_MARKET                = '1';
-    //! é™ä»·
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_LIMIT                = '2';
-    //! å¸‚ä»·æ­¢æŸ
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_STOP_MARKET            = '3';
-    //! é™ä»·æ­¢æŸ
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_STOP_LIMIT            = '4';
-    //! æœŸæƒè¡Œæƒ
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_OPT_EXEC            = '5';
-    //! æœŸæƒå¼ƒæƒ
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_OPT_ABANDON            = '6';
-    //! è¯¢ä»·
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_REQQUOT                = '7';
-    //! åº”ä»·
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_RSPQUOT                = '8';
-    //! å†°å±±å•
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_ICEBERG                = '9';
-    //! å½±å­å•
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_GHOST                = 'A';
-    //æ¸¯äº¤æ‰€ç«žä»·å•
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_HKEX_AUCTION        = 'B';
-    //äº’æ¢
-    const TAPIOrderTypeType            TAPI_ORDER_TYPE_SWAP                = 'C';
+    //! Î¯ÍÐÀàÐÍ
+    typedef TAPICHAR				TAPIOrderTypeType;
+    //! ÊÐ¼Û
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_MARKET				= '1';
+    //! ÏÞ¼Û
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_LIMIT				= '2';
+    //! ÊÐ¼ÛÖ¹Ëð
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_STOP_MARKET			= '3';
+    //! ÏÞ¼ÛÖ¹Ëð
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_STOP_LIMIT			= '4';
+    //! ÆÚÈ¨ÐÐÈ¨
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_OPT_EXEC			= '5';
+    //! ÆÚÈ¨ÆúÈ¨
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_OPT_ABANDON			= '6';
+    //! Ñ¯¼Û
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_REQQUOT				= '7';
+    //! Ó¦¼Û
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_RSPQUOT				= '8';
+    //! ±ùÉ½µ¥
+	const TAPIOrderTypeType			TAPI_ORDER_TYPE_ICEBERG				= '9';
+	//! Ó°×Óµ¥
+	const TAPIOrderTypeType			TAPI_ORDER_TYPE_GHOST				= 'A';
+	//! ¸Û½»Ëù¾º¼Ûµ¥
+	const TAPIOrderTypeType			TAPI_ORDER_TYPE_HKEX_AUCTION		= 'B';
+	//! »¥»»
+	const TAPIOrderTypeType			TAPI_ORDER_TYPE_SWAP				= 'C';
+	//! Ö¤È¯Ëø¶¨
+	const TAPIOrderTypeType			TAPI_ORDER_TYPE_LOCK				= 'D';
+	//! Ö¤È¯½âËø
+	const TAPIOrderTypeType			TAPI_ORDER_TYPE_UNLOCK				= 'E';
+	//! ÔöÇ¿ÏÞ¼Ûµ¥
+	const TAPIOrderTypeType			TAPI_ORDER_TYPE_ENHANCE				= 'F';
+	//! ÌØ±ðÏÞ¼Ûµ¥
+	const TAPIOrderTypeType			TAPI_ORDER_TYPE_SPECIAL				= 'G';
+	//! ¾º¼ÛÏÞ¼Ûµ¥
+	const TAPIOrderTypeType			TAPI_ORDER_TYPE_LIMITAUCTION		= 'H';
+
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIORDERSOURCETYPE    å§”æ‰˜æ¥æº
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIORDERSOURCETYPE	Î¯ÍÐÀ´Ô´
+     *	@{
      */
     //=============================================================================
-    //! å§”æ‰˜æ¥æº
-    typedef TAPICHAR                TAPIOrderSourceType;
-    //! è‡ªåŠ©ç”µå­å•
-    const TAPIOrderSourceType        TAPI_ORDER_SOURCE_SELF_ETRADER            = '1';
-    //! ä»£ç†ç”µå­å•
-    const TAPIOrderSourceType        TAPI_ORDER_SOURCE_PROXY_ETRADER            = '2';
-    //! å¤–éƒ¨ç”µå­å•(å¤–éƒ¨ç”µå­ç³»ç»Ÿä¸‹å•ï¼Œæœ¬ç³»ç»Ÿå½•å…¥)
-    const TAPIOrderSourceType        TAPI_ORDER_SOURCE_JTRADER                = '3';
-    //! äººå·¥å½•å…¥å•(å¤–éƒ¨å…¶ä»–æ–¹å¼ä¸‹å•ï¼Œæœ¬ç³»ç»Ÿå½•å…¥)
-    const TAPIOrderSourceType        TAPI_ORDER_SOURCE_MANUAL                = '4';
-    //! carryå•
-    const TAPIOrderSourceType        TAPI_ORDER_SOURCE_CARRY                    = '5';
-    //! ç¨‹å¼åŒ–æŠ¥å•
-    const TAPIOrderSourceType        TAPI_ORDER_SOURCE_PROGRAM                = '6';
-    //! äº¤å‰²è¡Œæƒ
-    const TAPIOrderSourceType        TAPI_ORDER_SOURCE_DELIVERY                = '7';
-    //! æœŸæƒæ”¾å¼ƒ
-    const TAPIOrderSourceType        TAPI_ORDER_SOURCE_ABANDON                = '8';
-    //! é€šé“è´¹
-    const TAPIOrderSourceType        TAPI_ORDER_SOURCE_CHANNEL                = '9';
+    //! Î¯ÍÐÀ´Ô´
+    typedef TAPICHAR				TAPIOrderSourceType;
+    //! ×ÔÖúµç×Óµ¥
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_SELF_ETRADER			= '1';
+    //! ´úÀíµç×Óµ¥
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_PROXY_ETRADER			= '2';
+    //! Íâ²¿µç×Óµ¥(Íâ²¿µç×ÓÏµÍ³ÏÂµ¥£¬±¾ÏµÍ³Â¼Èë)
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_JTRADER				= '3';
+    //! ÈË¹¤Â¼Èëµ¥(Íâ²¿ÆäËû·½Ê½ÏÂµ¥£¬±¾ÏµÍ³Â¼Èë)
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_MANUAL				= '4';
+    //! carryµ¥
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_CARRY					= '5';
+    //! ³ÌÊ½»¯±¨µ¥
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_PROGRAM				= '6';
+    //! ½»¸îÐÐÈ¨
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_DELIVERY				= '7';
+    //! ÆÚÈ¨·ÅÆú
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_ABANDON				= '8';
+    //! Í¨µÀ·Ñ
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_CHANNEL				= '9';
+	//! ÁÙÊ±³É½»
+	const TAPIOrderSourceType		TAPI_ORDER_SOURCE_TEMPORARY				= 'J';
+	//! ³ÌÐò»¯ÊÖ¹¤µ¥
+	const TAPIOrderSourceType		TAPI_ORDER_SOURCE_PROGRAMMANUAL			= 'K';
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPITIMEINFORCETYPE    å§”æ‰˜æœ‰æ•ˆç±»åž‹
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPITIMEINFORCETYPE	Î¯ÍÐÓÐÐ§ÀàÐÍ
+     *	@{
      */
     //=============================================================================
-    //! å§”æ‰˜æœ‰æ•ˆç±»åž‹
-    typedef TAPICHAR                TAPITimeInForceType;
-    //! å½“æ—¥æœ‰æ•ˆ
-    const TAPITimeInForceType        TAPI_ORDER_TIMEINFORCE_GFD                    = '0';
-    //! å–æ¶ˆå‰æœ‰æ•ˆ
-    const TAPITimeInForceType        TAPI_ORDER_TIMEINFORCE_GTC                    = '1';
-    //! æŒ‡å®šæ—¥æœŸå‰æœ‰æ•ˆ
-    const TAPITimeInForceType        TAPI_ORDER_TIMEINFORCE_GTD                    = '2';
-    //! FAKæˆ–IOC
-    const TAPITimeInForceType        TAPI_ORDER_TIMEINFORCE_FAK                    = '3';
+    //! Î¯ÍÐÓÐÐ§ÀàÐÍ
+    typedef TAPICHAR				TAPITimeInForceType;
+    //! µ±ÈÕÓÐÐ§
+    const TAPITimeInForceType		TAPI_ORDER_TIMEINFORCE_GFD					= '0';
+    //! È¡ÏûÇ°ÓÐÐ§
+    const TAPITimeInForceType		TAPI_ORDER_TIMEINFORCE_GTC					= '1';
+    //! Ö¸¶¨ÈÕÆÚÇ°ÓÐÐ§
+    const TAPITimeInForceType		TAPI_ORDER_TIMEINFORCE_GTD					= '2';
+    //! FAK»òIOC
+    const TAPITimeInForceType		TAPI_ORDER_TIMEINFORCE_FAK					= '3';
     //! FOK
-    const TAPITimeInForceType        TAPI_ORDER_TIMEINFORCE_FOK                    = '4';
+    const TAPITimeInForceType		TAPI_ORDER_TIMEINFORCE_FOK					= '4';
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPISIDETYPE    ä¹°å–ç±»åž‹
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPISIDETYPE	ÂòÂôÀàÐÍ
+     *	@{
      */
     //=============================================================================
-    //! ä¹°å–ç±»åž‹
-    typedef TAPICHAR                TAPISideType;
-    //! æ— 
-    const TAPISideType                TAPI_SIDE_NONE                            = 'N';
-    //! ä¹°å…¥
-    const TAPISideType                TAPI_SIDE_BUY                            = 'B';
-    //! å–å‡º
-    const TAPISideType                TAPI_SIDE_SELL                            = 'S';
+    //! ÂòÂôÀàÐÍ
+    typedef TAPICHAR				TAPISideType;
+    //! ÎÞ
+    const TAPISideType				TAPI_SIDE_NONE							= 'N';
+    //! ÂòÈë
+    const TAPISideType				TAPI_SIDE_BUY							= 'B';
+    //! Âô³ö
+    const TAPISideType				TAPI_SIDE_SELL							= 'S';
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIPOSITIONEFFECTTYPE    å¼€å¹³ç±»åž‹
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIPOSITIONEFFECTTYPE	¿ªÆ½ÀàÐÍ
+     *	@{
      */
     //=============================================================================
-    //! å¼€å¹³ç±»åž‹
-    typedef TAPICHAR                TAPIPositionEffectType;
-    //! ä¸åˆ†å¼€å¹³
-    const TAPIPositionEffectType    TAPI_PositionEffect_NONE                = 'N';
-    //! å¼€ä»“
-    const TAPIPositionEffectType    TAPI_PositionEffect_OPEN                = 'O';
-    //! å¹³ä»“
-    const TAPIPositionEffectType    TAPI_PositionEffect_COVER            = 'C';
-    //! å¹³å½“æ—¥
-    const TAPIPositionEffectType    TAPI_PositionEffect_COVER_TODAY        = 'T';
+    //! ¿ªÆ½ÀàÐÍ
+    typedef TAPICHAR				TAPIPositionEffectType;
+    //! ²»·Ö¿ªÆ½
+    const TAPIPositionEffectType	TAPI_PositionEffect_NONE				= 'N';
+    //! ¿ª²Ö
+    const TAPIPositionEffectType	TAPI_PositionEffect_OPEN				= 'O';
+    //! Æ½²Ö
+    const TAPIPositionEffectType	TAPI_PositionEffect_COVER			= 'C';
+    //! Æ½µ±ÈÕ
+    const TAPIPositionEffectType	TAPI_PositionEffect_COVER_TODAY		= 'T';
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIHEDGEFLAGTYPE    æŠ•æœºä¿å€¼ç±»åž‹
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIHEDGEFLAGTYPE	Í¶»ú±£ÖµÀàÐÍ
+     *	@{
      */
     //=============================================================================
-    //! æŠ•æœºä¿å€¼ç±»åž‹
-    typedef TAPICHAR                TAPIHedgeFlagType;
-    //! æ— 
-    const TAPIHedgeFlagType            TAPI_HEDGEFLAG_NONE                    = 'N';
-    //! æŠ•æœº
-    const TAPIHedgeFlagType            TAPI_HEDGEFLAG_T                    = 'T';
-    //! ä¿å€¼
-    const TAPIHedgeFlagType            TAPI_HEDGEFLAG_B                    = 'B';
-    //! å¥—åˆ©
-    const TAPIHedgeFlagType            TAPI_HEDGEFLAG_L                    = 'L';
+    //! Í¶»ú±£ÖµÀàÐÍ
+    typedef TAPICHAR				TAPIHedgeFlagType;
+    //! ÎÞ
+    const TAPIHedgeFlagType			TAPI_HEDGEFLAG_NONE					= 'N';
+    //! Í¶»ú
+    const TAPIHedgeFlagType			TAPI_HEDGEFLAG_T					= 'T';
+    //! ±£Öµ
+    const TAPIHedgeFlagType			TAPI_HEDGEFLAG_B					= 'B';
+	//! ±¸¶Ò
+	const TAPIHedgeFlagType			TAPI_HEDGEFLAG_R					= 'R';
+
+
     /** @}*/
-
-
-
+    //=============================================================================
+    /**
+     *	\addtogroup G_DATATYPE_T_TAPIORDERSTATETYPE	Î¯ÍÐ×´Ì¬ÀàÐÍ
+     *	@{
+     */
+    //=============================================================================
+    //! Î¯ÍÐ×´Ì¬ÀàÐÍ
+	//£¡Î´½áÊøµÄÎ¯ÍÐÀàÐÍ£º01234578D
+    typedef TAPICHAR				TAPIOrderStateType;
+    //! ÖÕ¶ËÌá½»
+    const TAPIOrderStateType		TAPI_ORDER_STATE_SUBMIT				= '0';
+    //! ÒÑÊÜÀí
+    const TAPIOrderStateType		TAPI_ORDER_STATE_ACCEPT				= '1';
+    //! ²ßÂÔ´ý´¥·¢
+    const TAPIOrderStateType		TAPI_ORDER_STATE_TRIGGERING			= '2';
+    //! ½»Ò×Ëù´ý´¥·¢
+    const TAPIOrderStateType		TAPI_ORDER_STATE_EXCTRIGGERING		= '3';
+    //! ÒÑÅÅ¶Ó
+    const TAPIOrderStateType		TAPI_ORDER_STATE_QUEUED				= '4';
+    //! ²¿·Ö³É½»
+    const TAPIOrderStateType		TAPI_ORDER_STATE_PARTFINISHED		= '5';
+    //! ÍêÈ«³É½»
+    const TAPIOrderStateType		TAPI_ORDER_STATE_FINISHED			= '6';
+    //! ´ý³·Ïû(ÅÅ¶ÓÁÙÊ±×´Ì¬)
+    const TAPIOrderStateType		TAPI_ORDER_STATE_CANCELING			= '7';
+    //! ´ýÐÞ¸Ä(ÅÅ¶ÓÁÙÊ±×´Ì¬)
+    const TAPIOrderStateType		TAPI_ORDER_STATE_MODIFYING			= '8';
+    //! ÍêÈ«³·µ¥
+    const TAPIOrderStateType		TAPI_ORDER_STATE_CANCELED			= '9';
+    //! ÒÑ³·Óàµ¥
+    const TAPIOrderStateType		TAPI_ORDER_STATE_LEFTDELETED		= 'A';
+    //! Ö¸ÁîÊ§°Ü
+    const TAPIOrderStateType		TAPI_ORDER_STATE_FAIL				= 'B';
+    //! ²ßÂÔÉ¾³ý
+    const TAPIOrderStateType		TAPI_ORDER_STATE_DELETED			= 'C';
+    //! ÒÑ¹ÒÆð
+    const TAPIOrderStateType		TAPI_ORDER_STATE_SUPPENDED			= 'D';
+    //! µ½ÆÚÉ¾³ý
+    const TAPIOrderStateType		TAPI_ORDER_STATE_DELETEDFOREXPIRE	= 'E';
+    //! ÒÑÉúÐ§¡ª¡ªÑ¯¼Û³É¹¦
+    const TAPIOrderStateType		TAPI_ORDER_STATE_EFFECT				= 'F';
+    //! ÒÑÉêÇë¡ª¡ªÐÐÈ¨¡¢ÆúÈ¨¡¢Ì×ÀûµÈÉêÇë³É¹¦
+    const TAPIOrderStateType		TAPI_ORDER_STATE_APPLY				= 'G';
+    /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIORDERSTATETYPE    å§”æ‰˜çŠ¶æ€ç±»åž‹
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPICALCULATEMODETYPE	¼ÆËã·½Ê½
+     *	@{
      */
     //=============================================================================
-    //! å§”æ‰˜çŠ¶æ€ç±»åž‹
-    typedef TAPICHAR                TAPIOrderStateType;
-    //! ç»ˆç«¯æäº¤
-    const TAPIOrderStateType        TAPI_ORDER_STATE_SUBMIT                = '0';
-    //! å·²å—ç†
-    const TAPIOrderStateType        TAPI_ORDER_STATE_ACCEPT                = '1';
-    //! ç­–ç•¥å¾…è§¦å‘
-    const TAPIOrderStateType        TAPI_ORDER_STATE_TRIGGERING            = '2';
-    //! äº¤æ˜“æ‰€å¾…è§¦å‘
-    const TAPIOrderStateType        TAPI_ORDER_STATE_EXCTRIGGERING        = '3';
-    //! å·²æŽ’é˜Ÿ
-    const TAPIOrderStateType        TAPI_ORDER_STATE_QUEUED                = '4';
-    //! éƒ¨åˆ†æˆäº¤
-    const TAPIOrderStateType        TAPI_ORDER_STATE_PARTFINISHED        = '5';
-    //! å®Œå…¨æˆäº¤
-    const TAPIOrderStateType        TAPI_ORDER_STATE_FINISHED            = '6';
-    //! å¾…æ’¤æ¶ˆ(æŽ’é˜Ÿä¸´æ—¶çŠ¶æ€)
-    const TAPIOrderStateType        TAPI_ORDER_STATE_CANCELING            = '7';
-    //! å¾…ä¿®æ”¹(æŽ’é˜Ÿä¸´æ—¶çŠ¶æ€)
-    const TAPIOrderStateType        TAPI_ORDER_STATE_MODIFYING            = '8';
-    //! å®Œå…¨æ’¤å•
-    const TAPIOrderStateType        TAPI_ORDER_STATE_CANCELED            = '9';
-    //! å·²æ’¤ä½™å•
-    const TAPIOrderStateType        TAPI_ORDER_STATE_LEFTDELETED        = 'A';
-    //! æŒ‡ä»¤å¤±è´¥
-    const TAPIOrderStateType        TAPI_ORDER_STATE_FAIL                = 'B';
-    //! ç­–ç•¥åˆ é™¤
-    const TAPIOrderStateType        TAPI_ORDER_STATE_DELETED            = 'C';
-    //! å·²æŒ‚èµ·
-    const TAPIOrderStateType        TAPI_ORDER_STATE_SUPPENDED            = 'D';
-    //! åˆ°æœŸåˆ é™¤
-    const TAPIOrderStateType        TAPI_ORDER_STATE_DELETEDFOREXPIRE    = 'E';
-    //! å·²ç”Ÿæ•ˆâ€”â€”è¯¢ä»·æˆåŠŸ
-    const TAPIOrderStateType        TAPI_ORDER_STATE_EFFECT                = 'F';
-    //! å·²ç”³è¯·â€”â€”è¡Œæƒã€å¼ƒæƒã€å¥—åˆ©ç­‰ç”³è¯·æˆåŠŸ
-    const TAPIOrderStateType        TAPI_ORDER_STATE_APPLY                = 'G';
-    /** @}*/
-
-    //=============================================================================
-    /**
-     *    \addtogroup G_DATATYPE_T_TAPICALCULATEMODETYPE    è®¡ç®—æ–¹å¼
-     *    @{
-     */
-    //=============================================================================
-    //! è®¡ç®—æ–¹å¼
+    //! ¼ÆËã·½Ê½
     typedef TAPICHAR               TAPICalculateModeType;
     
-    //!æ¯”ä¾‹+å®šé¢ï¼ˆä»…é™æ‰‹ç»­è´¹ï¼‰å¤§äºŽ0.01éƒ¨åˆ†ä¸ºå®šé¢ï¼Œå°äºŽ0.01éƒ¨åˆ†ä¸ºæ¯”ä¾‹ï¼Œå¦‚ï¼š0.001ä¸ºæ¯”ä¾‹æ”¶å–1%ã€‚
-    const TAPICalculateModeType        TAPI_CALULATE_MODE_COMBINE                = '0';
-    //! æ¯”ä¾‹
-    const TAPICalculateModeType        TAPI_CALCULATE_MODE_PERCENTAGE          = '1';
-    //! å®šé¢
-    const TAPICalculateModeType        TAPI_CALCULATE_MODE_QUOTA               = '2';
-    //! å·®å€¼æ¯”ä¾‹    
-    const TAPICalculateModeType        TAPI_CALCULATE_MODE_CHAPERCENTAGE        = '3';
-    //! å·®å€¼å®šé¢
-    const TAPICalculateModeType        TAPI_CALCULATE_MODE_CHAQUOTA            = '4';
-    //! æŠ˜æ‰£
-    const TAPICalculateModeType        TAPI_CALCULATE_MODE_DISCOUNT            = '5';
+	//!±ÈÀý+¶¨¶î£¨½öÏÞÊÖÐø·Ñ£©´óÓÚ0.01²¿·ÖÎª¶¨¶î£¬Ð¡ÓÚ0.01²¿·ÖÎª±ÈÀý£¬Èç£º0.001Îª±ÈÀýÊÕÈ¡0.1%¡£
+	const TAPICalculateModeType		TAPI_CALULATE_MODE_COMBINE				= '0';
+	//! ±ÈÀý
+    const TAPICalculateModeType		TAPI_CALCULATE_MODE_PERCENTAGE          = '1';
+    //! ¶¨¶î
+    const TAPICalculateModeType		TAPI_CALCULATE_MODE_QUOTA               = '2';
+    //! ²îÖµ±ÈÀý	
+    const TAPICalculateModeType		TAPI_CALCULATE_MODE_CHAPERCENTAGE		= '3';
+    //! ²îÖµ¶¨¶î
+    const TAPICalculateModeType		TAPI_CALCULATE_MODE_CHAQUOTA			= '4';
+    //! ÕÛ¿Û
+    const TAPICalculateModeType		TAPI_CALCULATE_MODE_DISCOUNT			= '5';
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIMATCHSOURCETYPE    æˆäº¤æ¥æº
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIMATCHSOURCETYPE	³É½»À´Ô´
+     *	@{
      */
     //=============================================================================
-    //! æˆäº¤æ¥æº
-    typedef TAPICHAR                TAPIMatchSourceType;
-    //! å…¨éƒ¨
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_ALL                   = '0';
-    //! è‡ªåŠ©ç”µå­å•
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_SELF_ETRADER          = '1';
-    //! ä»£ç†ç”µå­å•
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_PROXY_ETRADER         = '2';
-    //! å¤–éƒ¨ç”µå­å•
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_JTRADER                = '3';
-    //! äººå·¥å½•å…¥å•
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_MANUAL                = '4';
-    //! carryå•
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_CARRY                    = '5';
-    //! ç¨‹å¼åŒ–å•
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_PROGRAM                = '6';
-    //! äº¤å‰²è¡Œæƒ
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_DELIVERY                = '7';
-    //! æœŸæƒæ”¾å¼ƒ
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_ABANDON                = '8';
-    //! é€šé“è´¹
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_CHANNEL                = '9';
-    //! æ˜“ç››API
-    const TAPIMatchSourceType        TAPI_MATCH_SOURCE_ESUNNY_API            = 'A';
+    //! ³É½»À´Ô´
+    typedef TAPICHAR				TAPIMatchSourceType;
+    //! È«²¿
+    const TAPIMatchSourceType		TAPI_MATCH_SOURCE_ALL                   = '0';
+    //! ×ÔÖúµç×Óµ¥
+    const TAPIMatchSourceType		TAPI_MATCH_SOURCE_SELF_ETRADER          = '1';
+    //! ´úÀíµç×Óµ¥
+    const TAPIMatchSourceType		TAPI_MATCH_SOURCE_PROXY_ETRADER         = '2';
+    //! Íâ²¿µç×Óµ¥
+    const TAPIMatchSourceType		TAPI_MATCH_SOURCE_JTRADER				= '3';
+    //! ÈË¹¤Â¼Èëµ¥
+    const TAPIMatchSourceType		TAPI_MATCH_SOURCE_MANUAL				= '4';
+    //! carryµ¥
+    const TAPIMatchSourceType		TAPI_MATCH_SOURCE_CARRY					= '5';
+    //! ³ÌÊ½»¯µ¥
+    const TAPIMatchSourceType		TAPI_MATCH_SOURCE_PROGRAM				= '6';
+    //! ½»¸îÐÐÈ¨
+    const TAPIMatchSourceType		TAPI_MATCH_SOURCE_DELIVERY				= '7';
+    //! ÆÚÈ¨·ÅÆú
+    const TAPIMatchSourceType		TAPI_MATCH_SOURCE_ABANDON				= '8';
+	//! Í¨µÀ·Ñ
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_CHANNEL				= '9';
+	//!BloombergÏÂµ¥
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_BLOOMBERG				= 'B';
+	//!×ÔÖúÊÖ»úµ¥
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_AUTOPHONE				= 'A';
+	//!GiveUp³É½»
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_GIVEUP				= 'C';
+	//!ÐÐÈ¨³É½»
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_EXERCISE				= 'E';
+	//!TakeUp³É½»
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_TAKEUP				= 'D';
+	//!¶©µ¥×ªÒÆµÄ³É½»É¾³ý
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_INPUT_DELETE			= '#';
+	//!´íµ¥µ÷Õû
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_ERRORADJUST			= 'F';
+	//!¾­¼Íµç×Óµ¥
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_BROKER_ETRADER		= 'G';
+	//! ÁÙÊ±³É½»
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_TEMPORARY				= 'J';
+	//! ³ÌÐò»¯ÊÖ¹¤µ¥
+	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_PROGRAMMANUAL			= 'K';
+
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIOPENCLOSEMODETYPE    å¼€å¹³æ–¹å¼
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIOPENCLOSEMODETYPE	¿ªÆ½·½Ê½
+     *	@{
      */
     //=============================================================================
-    //! å¼€å¹³æ–¹å¼
-    typedef TAPICHAR                TAPIOpenCloseModeType;
-    //! ä¸åŒºåˆ†å¼€å¹³
-    const TAPIOpenCloseModeType        TAPI_CLOSE_MODE_NONE                = 'N';
-    //! å¹³ä»“æœªäº†ç»“
-    const TAPIOpenCloseModeType        TAPI_CLOSE_MODE_UNFINISHED            = 'U';
-    //! åŒºåˆ†å¼€ä»“å’Œå¹³ä»“
-    const TAPIOpenCloseModeType        TAPI_CLOSE_MODE_OPENCOVER            = 'C';
-    //! åŒºåˆ†å¼€ä»“ã€å¹³ä»“å’Œå¹³ä»Š
-    const TAPIOpenCloseModeType        TAPI_CLOSE_MODE_CLOSETODAY            = 'T';
+    //! ¿ªÆ½·½Ê½
+    typedef TAPICHAR				TAPIOpenCloseModeType;
+    //! ²»Çø·Ö¿ªÆ½
+    const TAPIOpenCloseModeType		TAPI_CLOSE_MODE_NONE				= 'N';
+    //! Æ½²ÖÎ´ÁË½á
+    const TAPIOpenCloseModeType		TAPI_CLOSE_MODE_UNFINISHED			= 'U';
+    //! Çø·Ö¿ª²ÖºÍÆ½²Ö
+    const TAPIOpenCloseModeType		TAPI_CLOSE_MODE_OPENCOVER			= 'C';
+    //! Çø·Ö¿ª²Ö¡¢Æ½²ÖºÍÆ½½ñ
+    const TAPIOpenCloseModeType		TAPI_CLOSE_MODE_CLOSETODAY			= 'T';
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIFUTUREALGTYPE    æœŸè´§ç®—æ³•
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIFUTUREALGTYPE	±ÒÖÖ×é×Ê½ðÊÇ·ñ¹²Ïí
+     *	@{
      */
     //=============================================================================
-    //! æœŸè´§ç®—æ³•
-    typedef TAPICHAR                TAPIFutureAlgType;
-    //! é€ç¬”
-    const TAPIFutureAlgType            TAPI_FUTURES_ALG_ZHUBI                  = '1';
-    //! ç›¯å¸‚
-    const TAPIFutureAlgType            TAPI_FUTURES_ALG_DINGSHI                = '2';
+    //! ±ÒÖÖ×é×Ê½ðÊÇ·ñ¹²Ïí
+    typedef TAPICHAR				TAPIFutureAlgType;
+    //! ¶ÀÁ¢
+    const TAPIFutureAlgType			TAPI_FUTURES_ALG_ZHUBI					= 'Y';
+    //! ²»¶ÀÁ¢
+    const TAPIFutureAlgType			TAPI_FUTURES_ALG_DINGSHI				= 'N';
+
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIOPTIONALGTYPE    æœŸæƒç®—æ³•
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIOPTIONALGTYPE	ÊÇ·ñÊÇ»ù±Ò
+     *	@{
      */
     //=============================================================================
-    //! æœŸæƒç®—æ³•
-    typedef TAPICHAR                TAPIOptionAlgType;
-    //! æœŸè´§æ–¹å¼
+    //! ÊÇ·ñÊÇ»ù±Ò
+    typedef TAPICHAR				TAPIOptionAlgType;
+    //! ÊÇ»ù±Ò
     const TAPIOptionAlgType         TAPI_OPTION_ALG_FUTURES                 = '1';
-    //! æœŸæƒæ–¹å¼
+    //! ²»ÊÇ»ù±Ò
     const TAPIOptionAlgType         TAPI_OPTION_ALG_OPTION                  = '2';
     /** @}*/
 
 
-    //=============================================================================
-    /**
-    *    \addtogroup G_DATATYPE_T_CONTACTINFO    äºŒæ¬¡è®¤è¯æŽˆæƒç å‘é€ç±»åž‹
-    *    @{
-    */
-    //=============================================================================
-    //! äºŒæ¬¡è®¤è¯æŽˆæƒç è®¤è¯æ–¹å¼
-    typedef TAPICHAR                TAPISendType;
-    //! çŸ­ä¿¡è®¤è¯
-    const TAPISendType         SENDTYPE_SMS = 'S';
-    //! é‚®ä»¶è®¤è¯
-    const TAPISendType         SENDTYPE_MAIL = 'M';
-    /** @}*/
-
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIBANKACCOUNTLWFLAGTYPE    æœ¬å¤–å¸æ ‡è¯†
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIBANKACCOUNTLWFLAGTYPE	±¾Íâ±Ò±êÊ¶
+     *	@{
      */
     //=============================================================================
-    //! æœ¬å¤–å¸æ ‡è¯†
-    typedef TAPICHAR                TAPIBankAccountLWFlagType;
-    //! å¢ƒå†…äººæ°‘å¸è´¦æˆ·
-    const TAPIBankAccountLWFlagType    TAPI_LWFlag_L                    = 'L';
-    //! å®¢æˆ·å¢ƒå†…å¤–å¸è´¦æˆ·
-    const TAPIBankAccountLWFlagType    TAPI_LWFlag_W                    = 'W';
+    //! ±¾Íâ±Ò±êÊ¶
+    typedef TAPICHAR				TAPIBankAccountLWFlagType;
+    //! ¾³ÄÚÈËÃñ±ÒÕË»§
+    const TAPIBankAccountLWFlagType	TAPI_LWFlag_L					= 'L';
+    //! ¿Í»§¾³ÄÚÍâ±ÒÕË»§
+    const TAPIBankAccountLWFlagType	TAPI_LWFlag_W					= 'W';
     /** @}*/
 
 
     //=============================================================================
     /**
-    *    \addtogroup G_DATATYPE_T_TAPICASHADJUSTTYPETYPE    èµ„é‡‘è°ƒæ•´ç±»åž‹
-    *    @{
+    *	\addtogroup G_DATATYPE_T_TAPICASHADJUSTTYPETYPE	×Ê½ðµ÷ÕûÀàÐÍ
+    *	@{
     */
     //=============================================================================
-    //! èµ„é‡‘è°ƒæ•´ç±»åž‹
-    typedef TAPICHAR                        TAPICashAdjustTypeType;
-    //! æ‰‹ç»­è´¹è°ƒæ•´
-    const TAPICashAdjustTypeType            TAPI_CASHINOUT_MODE_FEEADJUST = '0';
-    //! ç›ˆäºè°ƒæ•´
-    const TAPICashAdjustTypeType            TAPI_CASHINOUT_MODE_YKADJUST = '1';
-    //! è´¨æŠ¼èµ„é‡‘
-    const TAPICashAdjustTypeType            TAPI_CASHINOUT_MODE_PLEDGE = '2';
-    //! åˆ©æ¯æ”¶å…¥
-    const TAPICashAdjustTypeType            TAPI_CASHINOUT_MODE_INTERESTREVENUE = '3';
-    //! ä»£æ‰£è´¹ç”¨
-    const TAPICashAdjustTypeType            TAPI_CASHINOUT_MODE_COLLECTIONCOST = '4';
-    //! å…¶å®ƒ
-    const TAPICashAdjustTypeType            TAPI_CASHINOUT_MODE_OTHER = '5';
-    //! å…¬å¸é—´æ‹¨è´¦
-    const TAPICashAdjustTypeType            TAPI_CASHINOUT_MODE_COMPANY = '6';
+    //! ×Ê½ðµ÷ÕûÀàÐÍ
+    typedef TAPICHAR						TAPICashAdjustTypeType;
+    //! ÊÖÐø·Ñµ÷Õû
+    const TAPICashAdjustTypeType			TAPI_CASHINOUT_MODE_FEEADJUST = '0';
+    //! Ó¯¿÷µ÷Õû
+    const TAPICashAdjustTypeType			TAPI_CASHINOUT_MODE_YKADJUST = '1';
+    //! ÖÊÑº×Ê½ð
+    const TAPICashAdjustTypeType			TAPI_CASHINOUT_MODE_PLEDGE = '2';
+    //! ÀûÏ¢ÊÕÈë
+    const TAPICashAdjustTypeType			TAPI_CASHINOUT_MODE_INTERESTREVENUE = '3';
+    //! ´ú¿Û·ÑÓÃ
+    const TAPICashAdjustTypeType			TAPI_CASHINOUT_MODE_COLLECTIONCOST = '4';
+    //! ÆäËü
+    const TAPICashAdjustTypeType			TAPI_CASHINOUT_MODE_OTHER = '5';
+    //! ¹«Ë¾¼ä²¦ÕË
+    const TAPICashAdjustTypeType			TAPI_CASHINOUT_MODE_COMPANY = '6';
     /** @}*/
 
 
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIMARGINCALCULATEMODETYPE    æœŸè´§ä¿è¯é‡‘æ–¹å¼
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIMARGINCALCULATEMODETYPE	ÆÚ»õ±£Ö¤½ð·½Ê½
+     *	@{
      */
     //=============================================================================
-    //! æœŸè´§ä¿è¯é‡‘æ–¹å¼
-    typedef TAPICHAR                TAPIMarginCalculateModeType;
-    //! åˆ†ç¬”
+    //! ÆÚ»õ±£Ö¤½ð·½Ê½
+    typedef TAPICHAR				TAPIMarginCalculateModeType;
+    //! ·Ö±Ê
     const TAPIMarginCalculateModeType TAPI_DEPOSITCALCULATE_MODE_FEN     = '1';
-    //! é”ä»“
+    //! Ëø²Ö
     const TAPIMarginCalculateModeType TAPI_DEPOSITCALCULATE_MODE_SUO     = '2';
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIOPTIONMARGINCALCULATEMODETYPE    æœŸæƒä¿è¯é‡‘å…¬å¼
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIOPTIONMARGINCALCULATEMODETYPE	ÆÚÈ¨±£Ö¤½ð¹«Ê½
+     *	@{
      */
     //=============================================================================
-    //! æœŸæƒä¿è¯é‡‘å…¬å¼,æ®æ­¤åˆ¤æ–­è¯¥å“ç§æœŸæƒé‡‡ç”¨ä½•ç§å†…ç½®è®¡ç®—å…¬å¼è®¡ç®—ä¿è¯é‡‘
-    typedef TAPICHAR                TAPIOptionMarginCalculateModeType;
+    //! ÆÚÈ¨±£Ö¤½ð¹«Ê½,¾Ý´ËÅÐ¶Ï¸ÃÆ·ÖÖÆÚÈ¨²ÉÓÃºÎÖÖÄÚÖÃ¼ÆËã¹«Ê½¼ÆËã±£Ö¤½ð
+    typedef TAPICHAR				TAPIOptionMarginCalculateModeType;
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPICMBDIRECTTYPE    ç»„åˆæ–¹å‘
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPICMBDIRECTTYPE	×éºÏ·½Ïò
+     *	@{
      */
     //=============================================================================
-    //! ç»„åˆæ–¹å‘,å“ç§ä¸¤è…¿ç»„åˆåˆçº¦çš„ä¹°å–æ–¹å‘å’Œç¬¬å‡ è…¿ç›¸åŒ
-    typedef TAPICHAR                TAPICmbDirectType;
-    //! å’Œç¬¬ä¸€è…¿ä¸€è‡´
+    //! ×éºÏ·½Ïò,Æ·ÖÖÁ½ÍÈ×éºÏºÏÔ¼µÄÂòÂô·½ÏòºÍµÚ¼¸ÍÈÏàÍ¬
+    typedef TAPICHAR				TAPICmbDirectType;
+    //! ºÍµÚÒ»ÍÈÒ»ÖÂ
     const TAPICmbDirectType         TAPI_CMB_DIRECT_FIRST                    = '1';
-    //! å’Œç¬¬äºŒè…¿ä¸€è‡´
+    //! ºÍµÚ¶þÍÈÒ»ÖÂ
     const TAPICmbDirectType         TAPI_CMB_DIRECT_SECOND                   = '2';
     /** @}*/
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIDELIVERYMODETYPE    äº¤å‰²è¡Œæƒæ–¹å¼
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIDELIVERYMODETYPE	½»¸îÐÐÈ¨·½Ê½
+     *	@{
      */
     //=============================================================================
-    //! äº¤å‰²è¡Œæƒæ–¹å¼,æœŸè´§å’ŒæœŸæƒäº†ç»“çš„æ–¹å¼
-    typedef TAPICHAR                TAPIDeliveryModeType;
-    //! å®žç‰©äº¤å‰²
-    const TAPIDeliveryModeType        TAPI_DELIVERY_MODE_GOODS            = 'G';
-    //! çŽ°é‡‘äº¤å‰²
-    const TAPIDeliveryModeType        TAPI_DELIVERY_MODE_CASH                = 'C';
-    //! æœŸæƒè¡Œæƒ
-    const TAPIDeliveryModeType        TAPI_DELIVERY_MODE_EXECUTE            = 'E';
-    //! æœŸæƒæ”¾å¼ƒ
-    const TAPIDeliveryModeType        TAPI_DELIVERY_MODE_ABANDON            = 'A';
-    //! æ¸¯äº¤æ‰€è¡Œæƒ
-    const TAPIDeliveryModeType        TAPI_DELIVERY_MODE_HKF                = 'H';
-    /** @}*/
-
-    //=============================================================================
-    /**
-     *    \addtogroup G_DATATYPE_T_TAPICONTRACTTYPETYPE    åˆçº¦ç±»åž‹
-     *    @{
-     */
-    //=============================================================================
-    //! åˆçº¦ç±»åž‹
-    typedef TAPICHAR                TAPIContractTypeType;
-    //! äº¤æ˜“è¡Œæƒ…åˆçº¦
-    const TAPIContractTypeType        TAPI_CONTRACT_TYPE_TRADEQUOTE        ='1';
-    //! è¡Œæƒ…åˆçº¦
-    const TAPIContractTypeType        TAPI_CONTRACT_TYPE_QUOTE            ='2';
-    /** @}*/
-
-    //=============================================================================
-    /**
-     *    \addtogroup G_DATATYPE_T_TAPITACTICSTYPETYPE    ç­–ç•¥å•ç±»åž‹
-     *    @{
-     */
-    //=============================================================================
-    //! ç­–ç•¥å•ç±»åž‹
-    typedef TAPICHAR                    TAPITacticsTypeType;
-    //! æ— 
-    const TAPITacticsTypeType            TAPI_TACTICS_TYPE_NONE                = 'N';
-    //! é¢„å¤‡å•(åŸ‹å•)
-    const TAPITacticsTypeType            TAPI_TACTICS_TYPE_READY                = 'M';
-    //! è‡ªåŠ¨å•
-    const TAPITacticsTypeType            TAPI_TACTICS_TYPE_ATUO                = 'A';
-    //! æ¡ä»¶å•
-    const TAPITacticsTypeType            TAPI_TACTICS_TYPE_CONDITION            = 'C';
-    /** @}*/
-
-    //=============================================================================
-    /**
-     *    \addtogroup G_DATATYPE_T_TAPIORDERACT    è®¢å•æ“ä½œç±»åž‹
-     *    @{
-     */
-    //=============================================================================
-    //! è®¢å•æ“ä½œç±»åž‹
-    typedef TAPICHAR        TAPIORDERACT;
-    //! æŠ¥å•
-    const TAPIORDERACT APIORDER_INSERT            = '1';
-    //! æ”¹å•
-    const TAPIORDERACT APIORDER_MODIFY            = '2';
-    //! æ’¤å•
-    const TAPIORDERACT APIORDER_DELETE            = '3';
-    //! æŒ‚èµ·
-    const TAPIORDERACT APIORDER_SUSPEND            = '4';
-    //! æ¿€æ´»
-    const TAPIORDERACT APIORDER_ACTIVATE        = '5';
-    //! åˆ é™¤
-    const TAPIORDERACT APIORDER_SYSTEM_DELETE    = '6';
-    /** @}*/
-
-    //=============================================================================
-    /**
-     *    \addtogroup G_DATATYPE_T_TAPITRIGGERCONDITIONTYPE    è§¦å‘æ¡ä»¶ç±»åž‹
-     *    @{
-     */
-    //=============================================================================
-    //! è§¦å‘æ¡ä»¶ç±»åž‹
-    typedef TAPICHAR                TAPITriggerConditionType;
-    //! æ— 
-    const TAPITriggerConditionType    TAPI_TRIGGER_CONDITION_NONE            = 'N';
-    //! å¤§äºŽç­‰äºŽ
-    const TAPITriggerConditionType    TAPI_TRIGGER_CONDITION_GREAT        = 'G';
-    //! å°äºŽç­‰äºŽ
-    const TAPITriggerConditionType    TAPI_TRIGGER_CONDITION_LITTLE        = 'L';
-    /** @}*/
-
-    //=============================================================================
-    /**
-     *    \addtogroup G_DATATYPE_T_TAPITRIGGERPRICETYPETYPE    è§¦å‘ä»·æ ¼ç±»åž‹
-     *    @{
-     */
-    //=============================================================================
-    //! è§¦å‘ä»·æ ¼ç±»åž‹
-    typedef TAPICHAR                TAPITriggerPriceTypeType;
-    //! æ— 
-    const TAPITriggerPriceTypeType    TAPI_TRIGGER_PRICE_NONE                = 'N';
-    //! ä¹°ä»·
-    const TAPITriggerPriceTypeType    TAPI_TRIGGER_PRICE_BUY                = 'B';
-    //! å–ä»·
-    const TAPITriggerPriceTypeType    TAPI_TRIGGER_PRICE_SELL                = 'S';
-    //! æœ€æ–°ä»·
-    const TAPITriggerPriceTypeType    TAPI_TRIGGER_PRICE_LAST                = 'L';
+    //! ½»¸îÐÐÈ¨·½Ê½,ÆÚ»õºÍÆÚÈ¨ÁË½áµÄ·½Ê½
+    typedef TAPICHAR				TAPIDeliveryModeType;
+    //! ÊµÎï½»¸î
+    const TAPIDeliveryModeType		TAPI_DELIVERY_MODE_GOODS			= 'G';
+    //! ÏÖ½ð½»¸î
+    const TAPIDeliveryModeType		TAPI_DELIVERY_MODE_CASH				= 'C';
+    //! ÆÚÈ¨ÐÐÈ¨
+    const TAPIDeliveryModeType		TAPI_DELIVERY_MODE_EXECUTE			= 'E';
+    //! ÆÚÈ¨·ÅÆú
+    const TAPIDeliveryModeType		TAPI_DELIVERY_MODE_ABANDON			= 'A';
+    //! ¸Û½»ËùÐÐÈ¨
+    const TAPIDeliveryModeType		TAPI_DELIVERY_MODE_HKF				= 'H';
     /** @}*/
 
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPITRADINGSTATETYPE    äº¤æ˜“çŠ¶æ€
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPICONTRACTTYPETYPE	ºÏÔ¼ÀàÐÍ
+     *	@{
      */
     //=============================================================================
-    //! äº¤æ˜“çŠ¶æ€
+    //! ºÏÔ¼ÀàÐÍ
+    typedef TAPICHAR				TAPIContractTypeType;
+    //! ½»Ò×ÐÐÇéºÏÔ¼
+    const TAPIContractTypeType		TAPI_CONTRACT_TYPE_TRADEQUOTE		='1';
+    //! ÐÐÇéºÏÔ¼
+    const TAPIContractTypeType		TAPI_CONTRACT_TYPE_QUOTE			='2';
+    /** @}*/
+
+    //=============================================================================
+    /**
+     *	\addtogroup G_DATATYPE_T_TAPITACTICSTYPETYPE	²ßÂÔµ¥ÀàÐÍ
+     *	@{
+     */
+    //=============================================================================
+    //! ²ßÂÔµ¥ÀàÐÍ
+    typedef TAPICHAR					TAPITacticsTypeType;
+    //! ÎÞ
+    const TAPITacticsTypeType			TAPI_TACTICS_TYPE_NONE				= 'N';
+    //! Ô¤±¸µ¥(Âñµ¥)
+    const TAPITacticsTypeType			TAPI_TACTICS_TYPE_READY				= 'M';
+    //! ×Ô¶¯µ¥
+    const TAPITacticsTypeType			TAPI_TACTICS_TYPE_ATUO				= 'A';
+    //! Ìõ¼þµ¥
+    const TAPITacticsTypeType			TAPI_TACTICS_TYPE_CONDITION			= 'C';
+    /** @}*/
+
+    //=============================================================================
+    /**
+     *	\addtogroup G_DATATYPE_T_TAPIORDERACT	¶©µ¥²Ù×÷ÀàÐÍ
+     *	@{
+     */
+    //=============================================================================
+    //! ¶©µ¥²Ù×÷ÀàÐÍ
+    typedef TAPICHAR		TAPIORDERACT;
+    //! ±¨µ¥
+    const TAPIORDERACT APIORDER_INSERT			= '1';
+    //! ¸Äµ¥
+    const TAPIORDERACT APIORDER_MODIFY			= '2';
+    //! ³·µ¥
+    const TAPIORDERACT APIORDER_DELETE			= '3';
+    //! ¹ÒÆð
+    const TAPIORDERACT APIORDER_SUSPEND			= '4';
+    //! ¼¤»î
+    const TAPIORDERACT APIORDER_ACTIVATE		= '5';
+    //! É¾³ý
+    const TAPIORDERACT APIORDER_SYSTEM_DELETE	= '6';
+    /** @}*/
+
+    //=============================================================================
+    /**
+     *	\addtogroup G_DATATYPE_T_TAPITRIGGERCONDITIONTYPE	´¥·¢Ìõ¼þÀàÐÍ
+     *	@{
+     */
+    //=============================================================================
+    //! ´¥·¢Ìõ¼þÀàÐÍ
+    typedef TAPICHAR				TAPITriggerConditionType;
+    //! ÎÞ
+    const TAPITriggerConditionType	TAPI_TRIGGER_CONDITION_NONE			= 'N';
+    //! ´óÓÚµÈÓÚ
+    const TAPITriggerConditionType	TAPI_TRIGGER_CONDITION_GREAT		= 'G';
+    //! Ð¡ÓÚµÈÓÚ
+    const TAPITriggerConditionType	TAPI_TRIGGER_CONDITION_LITTLE		= 'L';
+    /** @}*/
+
+    //=============================================================================
+    /**
+     *	\addtogroup G_DATATYPE_T_TAPITRIGGERPRICETYPETYPE	´¥·¢¼Û¸ñÀàÐÍ
+     *	@{
+     */
+    //=============================================================================
+    //! ´¥·¢¼Û¸ñÀàÐÍ
+    typedef TAPICHAR				TAPITriggerPriceTypeType;
+    //! ÎÞ
+    const TAPITriggerPriceTypeType	TAPI_TRIGGER_PRICE_NONE				= 'N';
+    //! Âò¼Û
+    const TAPITriggerPriceTypeType	TAPI_TRIGGER_PRICE_BUY				= 'B';
+    //! Âô¼Û
+    const TAPITriggerPriceTypeType	TAPI_TRIGGER_PRICE_SELL				= 'S';
+    //! ×îÐÂ¼Û
+    const TAPITriggerPriceTypeType	TAPI_TRIGGER_PRICE_LAST				= 'L';
+    /** @}*/
+
+
+    //=============================================================================
+    /**
+     *	\addtogroup G_DATATYPE_T_TAPITRADINGSTATETYPE	½»Ò××´Ì¬
+     *	@{
+     */
+    //=============================================================================
+    //! ½»Ò××´Ì¬
     typedef TAPICHAR               TAPITradingStateType;
-    //! é›†åˆç«žä»·
+    //! ¼¯ºÏ¾º¼Û
     const TAPITradingStateType      TAPI_TRADE_STATE_BID                = '1';
-    //! é›†åˆç«žä»·æ’®åˆ
+    //! ¼¯ºÏ¾º¼Û´éºÏ
     const TAPITradingStateType      TAPI_TRADE_STATE_MATCH              = '2';
-    //! è¿žç»­äº¤æ˜“
+    //! Á¬Ðø½»Ò×
     const TAPITradingStateType      TAPI_TRADE_STATE_CONTINUOUS         = '3';
-    //! äº¤æ˜“æš‚åœ
+    //! ½»Ò×ÔÝÍ£
     const TAPITradingStateType      TAPI_TRADE_STATE_PAUSED             = '4';
-    //! é—­å¸‚
+    //! ±ÕÊÐ
     const TAPITradingStateType      TAPI_TRADE_STATE_CLOSE              = '5';
-    //! é—­å¸‚å¤„ç†æ—¶é—´
+    //! ±ÕÊÐ´¦ÀíÊ±¼ä
     const TAPITradingStateType      TAPI_TRADE_STATE_DEALLAST           = '6';
-    //! ç½‘å…³æœªè¿ž
-    const TAPITradingStateType        TAPI_TRADE_STATE_GWDISCONNECT        = '0';
-    //! æœªçŸ¥çŠ¶æ€
-    const TAPITradingStateType        TAPI_TRADE_STATE_UNKNOWN            = 'N';
-    //! æ­£åˆå§‹åŒ–
-    const TAPITradingStateType        TAPI_TRADE_STATE_INITIALIZE            = 'I';
-    //! å‡†å¤‡å°±ç»ª
-    const TAPITradingStateType        TAPI_TRADE_STATE_READY                = 'R';
+    //! Íø¹ØÎ´Á¬
+    const TAPITradingStateType		TAPI_TRADE_STATE_GWDISCONNECT		= '0';
+    //! Î´Öª×´Ì¬
+    const TAPITradingStateType		TAPI_TRADE_STATE_UNKNOWN			= 'N';
+    //! Õý³õÊ¼»¯
+    const TAPITradingStateType		TAPI_TRADE_STATE_INITIALIZE			= 'I';
+    //! ×¼±¸¾ÍÐ÷
+    const TAPITradingStateType		TAPI_TRADE_STATE_READY				= 'R';
     /** @}*/
 
 
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPINOTICEIGNOREFLAGTYPE    å¿½ç•¥åŽå°æŽ¨é€é€šçŸ¥æ ‡è®°
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPINOTICEIGNOREFLAGTYPE	ºöÂÔºóÌ¨ÍÆËÍÍ¨Öª±ê¼Ç
+     *	@{
      */
     //=============================================================================
-    //! å¿½ç•¥åŽå°æŽ¨é€é€šçŸ¥æ ‡è®°
+    //! ºöÂÔºóÌ¨ÍÆËÍÍ¨Öª±ê¼Ç
     typedef TAPIUINT32              TAPINoticeIgnoreFlagType;
-    //! æŽ¨é€æ‰€æœ‰ä¿¡æ¯
-    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_NONE                = 0x00000000;
-    //! å¿½ç•¥æ‰€æœ‰æŽ¨é€
-    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_ALL                = 0xFFFFFFFF;
-    //! å¿½ç•¥èµ„é‡‘æŽ¨é€:OnRtnFund
-    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_FUND                = 0x00000001;
-    //! å¿½ç•¥å§”æ‰˜æŽ¨é€:OnRtnOrder
-    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_ORDER                = 0x00000002;
-    //! å¿½ç•¥æˆäº¤æŽ¨é€:OnRtnFill
-    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_FILL                = 0x00000004;
-    //! å¿½ç•¥æŒä»“æŽ¨é€:OnRtnPosition
-    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_POSITION            = 0x00000008;
-    //! å¿½ç•¥å¹³ä»“æŽ¨é€:OnRtnClose
-    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_CLOSE                = 0x00000010;
-    //! å¿½ç•¥æŒä»“ç›ˆäºæŽ¨é€:OnRtnPositionProfit
-    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_POSITIONPROFIT    = 0x00000020;
+    //! ÍÆËÍËùÓÐÐÅÏ¢
+    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_NONE				= 0x00000000;
+    //! ºöÂÔËùÓÐÍÆËÍ
+    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_ALL				= 0xFFFFFFFF;
+    //! ºöÂÔ×Ê½ðÍÆËÍ:OnRtnFund
+    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_FUND				= 0x00000001;
+    //! ºöÂÔÎ¯ÍÐÍÆËÍ:OnRtnOrder
+    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_ORDER				= 0x00000002;
+    //! ºöÂÔ³É½»ÍÆËÍ:OnRtnFill
+    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_FILL				= 0x00000004;
+    //! ºöÂÔ³Ö²ÖÍÆËÍ:OnRtnPosition
+    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_POSITION			= 0x00000008;
+    //! ºöÂÔÆ½²ÖÍÆËÍ:OnRtnClose
+    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_CLOSE				= 0x00000010;
+    //! ºöÂÔ³Ö²ÖÓ¯¿÷ÍÆËÍ:OnRtnPositionProfit
+    const TAPINoticeIgnoreFlagType TAPI_NOTICE_IGNORE_POSITIONPROFIT	= 0x00000020;
     /** @}*/
 
 
     //=============================================================================
     /**
-     *    \addtogroup G_DATATYPE_T_TAPIORDERQRYTYPETYPE    å§”æ‰˜æŸ¥è¯¢ç±»åž‹
-     *    @{
+     *	\addtogroup G_DATATYPE_T_TAPIORDERQRYTYPETYPE	Î¯ÍÐ²éÑ¯ÀàÐÍ
+     *	@{
      */
     //=============================================================================
-    //! å§”æ‰˜æŸ¥è¯¢ç±»åž‹
+    //! Î¯ÍÐ²éÑ¯ÀàÐÍ
     typedef TAPICHAR              TAPIOrderQryTypeType;
-    //! è¿”å›žæ‰€æœ‰å§”æ‰˜
-    const TAPIOrderQryTypeType TAPI_ORDER_QRY_TYPE_ALL                = 'A';
-    //! åªè¿”å›žæœªç»“æŸçš„å§”æ‰˜
-    const TAPIOrderQryTypeType TAPI_ORDER_QRY_TYPE_UNENDED            = 'U';
+    //! ·µ»ØËùÓÐÎ¯ÍÐ
+    const TAPIOrderQryTypeType TAPI_ORDER_QRY_TYPE_ALL				= 'A';
+    //! Ö»·µ»ØÎ´½áÊøµÄÎ¯ÍÐ
+    const TAPIOrderQryTypeType TAPI_ORDER_QRY_TYPE_UNENDED			= 'U';
     /** @}*/
 
-
-
+	//=============================================================================
+	/**
+	 *	\addtogroup G_DATATYPE_T_CONTACTINFO	¶þ´ÎÈÏÖ¤µÇÂ¼ÀàÐÍ
+	 *	@{
+	 */
+	 //=============================================================================
+	//! ¶þ´ÎÈÏÖ¤µÇÂ¼ÀàÐÍ
+	typedef TAPICHAR					TAPILoginTypeType;
+	//! Õý³£µÇÂ¼£¨ÐÅÈÎ¸ÃÉè±¸£©
+	const TAPILoginTypeType				TAPI_LOGINTYPE_NORMAL		= 'N';
+	//! ÁÙÊ±µÇÂ¼
+	const TAPILoginTypeType				TAPI_LOGINTYPE_TEMPORARY	= 'T';
+	/** @}*/
     //! ------------------------------------------------------------------------------------------
 
-    //! ç™»å½•è®¤è¯ä¿¡æ¯
+    //! µÇÂ¼ÈÏÖ¤ÐÅÏ¢
     struct TapAPITradeLoginAuth
     {
-            TAPISTR_20                    UserNo;                    ///< ç”¨æˆ·å
-            TAPIYNFLAG                    ISModifyPassword;        ///< æ˜¯å¦ä¿®æ”¹å¯†ç     
-            TAPISTR_20                    Password;                ///< å¯†ç 
-            TAPISTR_20                    NewPassword;            ///< æ–°å¯†ç 
+            TAPISTR_20					UserNo;					///< ÓÃ»§Ãû
+            TAPIYNFLAG					ISModifyPassword;		///< ÊÇ·ñÐÞ¸ÄÃÜÂë	
+            TAPISTR_20					Password;				///< ÃÜÂë
+            TAPISTR_20					NewPassword;			///< ÐÂÃÜÂë
+			TAPISTR_40					LoginIP;				///< µÇÂ¼IP£¨Ê¹ÓÃ´Ë×Ö¶ÎÐèÒ×Ê¢ÊÚÈ¨£©
+			TAPISTR_50					LoginMac;				///< µÇÂ¼MAC,¸ñÊ½12-34-56-78-90-11£¨Ê¹ÓÃ´Ë×Ö¶ÎÐèÒ×Ê¢ÊÚÈ¨£©
+			TAPISTR_50					DeviceName;				///< µÇÂ¼Éè±¸Ãû³Æ£¨Ê¹ÓÃ´Ë×Ö¶ÎÐèÒ×Ê¢ÊÚÈ¨£©
     };
 
-    //! ç™»å½•åé¦ˆä¿¡æ¯
+    //! µÇÂ¼·´À¡ÐÅÏ¢
     struct TapAPITradeLoginRspInfo
     {
-            TAPISTR_20                    UserNo;                            ///< ç”¨æˆ·ç¼–å·
-            TAPIUserTypeType            UserType;                        ///< ç”¨æˆ·ç±»åž‹
-            TAPISTR_20                    UserName;                        ///< ç”¨æˆ·å
-            TAPISTR_50                    ReservedInfo;                    ///< é¢„ç•™ä¿¡æ¯
-            TAPISTR_40                    LastLoginIP;                    ///< ä¸Šæ¬¡ç™»å½•IP
-            TAPIUINT32                    LastLoginProt;                    ///< ä¸Šæ¬¡ç™»å½•ç«¯å£
-            TAPIDATETIME                LastLoginTime;                    ///< ä¸Šæ¬¡ç™»å½•æ—¶é—´
-            TAPIDATETIME                LastLogoutTime;                    ///< ä¸Šæ¬¡é€€å‡ºæ—¶é—´
-            TAPIDATE                    TradeDate;                        ///< å½“å‰äº¤æ˜“æ—¥æœŸ
-            TAPIDATETIME                LastSettleTime;                    ///< ä¸Šæ¬¡ç»“ç®—æ—¶é—´
-            TAPIDATETIME                StartTime;                        ///< ç³»ç»Ÿå¯åŠ¨æ—¶é—´
-            TAPIDATETIME                InitTime;                        ///< ç³»ç»Ÿåˆå§‹åŒ–æ—¶é—´
+            TAPISTR_20					UserNo;							///< ÓÃ»§±àºÅ
+            TAPIUserTypeType			UserType;						///< ÓÃ»§ÀàÐÍ
+            TAPISTR_20					UserName;						///< ÓÃ»§Ãû
+            TAPISTR_50					ReservedInfo;					///< ½»Ò×ÖÐÐÄºÍºóÌ¨°æ±¾ºÅ
+            TAPISTR_40					LastLoginIP;					///< ÉÏ´ÎµÇÂ¼IP
+            TAPIUINT32					LastLoginProt;					///< ÉÏ´ÎµÇÂ¼¶Ë¿Ú
+            TAPIDATETIME				LastLoginTime;					///< ÉÏ´ÎµÇÂ¼Ê±¼ä
+            TAPIDATETIME				LastLogoutTime;					///< ÉÏ´ÎÍË³öÊ±¼ä
+            TAPIDATE					TradeDate;						///< µ±Ç°½»Ò×ÈÕÆÚ
+            TAPIDATETIME				LastSettleTime;					///< ÉÏ´Î½áËãÊ±¼ä
+            TAPIDATETIME				StartTime;						///< ÏµÍ³Æô¶¯Ê±¼ä
+            TAPIDATETIME				NextSecondDate;					///< ÏÂ´Î¶þ´ÎÈÏÖ¤ÈÕÆÚ
+			TAPISTR_300					LastLoginInfo;					///< µÇÂ¼¸½¼ÓÐÅÏ¢
     };
-    //!è¯·æ±‚äºŒæ¬¡è®¤è¯æŽˆæƒç åº”ç­”
-    struct  TapAPIRequestVertificateCodeRsp
-    {
-        TAPISecondSerialIDType SecondSerialID;                            ///< äºŒæ¬¡è®¤è¯æŽˆæƒç åºå·
-        TAPIINT32 Effective;                                            ///< äºŒæ¬¡è®¤è¯æŽˆæƒç æœ‰æ•ˆæœŸï¼ˆåˆ†ï¼‰ã€‚
-    };
+	//!ÇëÇó¶þ´ÎÈÏÖ¤ÊÚÈ¨ÂëÓ¦´ð
+	struct  TapAPIRequestVertificateCodeRsp
+	{
+		TAPISecondSerialIDType SecondSerialID;							///< ¶þ´ÎÈÏÖ¤ÊÚÈ¨ÂëÐòºÅ
+		TAPIINT32 Effective;											///< ¶þ´ÎÈÏÖ¤ÊÚÈ¨ÂëÓÐÐ§ÆÚ£¨·Ö£©¡£
+	};
 
-    //! è´¦å·ç›¸å…³ä¿¡æ¯æŸ¥è¯¢è¯·æ±‚
+	//!ÑéÖ¤¶þ´ÎÈÏÖ¤ÂëÇëÇó½á¹¹
+	struct TapAPISecondCertificationReq
+	{
+		TAPISTR_10							VertificateCode;		///<¶þ´ÎÈÏÖ¤Âë
+		TAPILoginTypeType					LoginType;				///<¶þ´ÎÈÏÖ¤µÇÂ¼ÀàÐÍ
+	};
+
+    //! ÕËºÅÏà¹ØÐÅÏ¢²éÑ¯ÇëÇó
     struct TapAPIAccQryReq
     {
     };
 
-    //! èµ„é‡‘è´¦å·ä¿¡æ¯
+    //! ×Ê½ðÕËºÅÐÅÏ¢
     struct TapAPIAccountInfo
     {
-            TAPISTR_20              AccountNo;                              ///< èµ„é‡‘è´¦å·
-            TAPIAccountType            AccountType;                            ///< è´¦å·ç±»åž‹
-            TAPIAccountState        AccountState;                           ///< è´¦å·çŠ¶æ€
-            TAPIAccountRightType        AccountTradeRight;                    ///<äº¤æ˜“çŠ¶æ€
-            TAPISTR_10                CommodityGroupNo;                        ///<å¯äº¤æ˜“å“ç§ç»„.
-            TAPISTR_20                AccountShortName;                       ///< è´¦å·ç®€ç§°
-            TAPISTR_20                AccountEnShortName;                        ///<è´¦å·è‹±æ–‡ç®€ç§°
+            TAPISTR_20              AccountNo;                              ///< ×Ê½ðÕËºÅ
+            TAPIAccountType			AccountType;                            ///< ÕËºÅÀàÐÍ
+            TAPIAccountState		AccountState;                           ///< ÕËºÅ×´Ì¬
+            TAPIAccountRightType		AccountTradeRight;					///<½»Ò××´Ì¬
+            TAPISTR_10				CommodityGroupNo;						///<¿É½»Ò×Æ·ÖÖ×é.
+            TAPISTR_20				AccountShortName;                       ///< ÕËºÅ¼ò³Æ
+            TAPISTR_20				AccountEnShortName;						///<ÕËºÅÓ¢ÎÄ¼ò³Æ
     };
 
-    //! å®¢æˆ·ä¸‹å•è¯·æ±‚ç»“æž„
+    //! ¿Í»§ÏÂµ¥ÇëÇó½á¹¹
     struct TapAPINewOrder
     {
-            TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·ï¼Œå¿…å¡«
+            TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ£¬±ØÌî
 
-            TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·ï¼Œå¿…å¡«
-            TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹ï¼Œå¿…å¡«
-            TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹ï¼Œå¿…å¡«
-            TAPISTR_10                    ContractNo;                        ///< åˆçº¦1ï¼Œå¿…å¡«
-            TAPISTR_10                    StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼1ï¼ŒæœŸæƒå¡«å†™
-            TAPICallOrPutFlagType        CallOrPutFlag;                    ///< çœ‹å¼ çœ‹è·Œ1 é»˜è®¤N
-            TAPISTR_10                    ContractNo2;                    ///< åˆçº¦2ï¼Œé»˜è®¤ç©º
-            TAPISTR_10                    StrikePrice2;                    ///< æ‰§è¡Œä»·æ ¼2ï¼Œé»˜è®¤ç©º
-            TAPICallOrPutFlagType        CallOrPutFlag2;                    ///< çœ‹å¼ çœ‹è·Œ2 é»˜è®¤N
+            TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ£¬±ØÌî
+            TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ£¬±ØÌî
+            TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ£¬±ØÌî
+            TAPISTR_10					ContractNo;						///< ºÏÔ¼1£¬±ØÌî
+            TAPISTR_10					StrikePrice;					///< Ö´ÐÐ¼Û¸ñ1£¬ÆÚÈ¨ÌîÐ´
+            TAPICallOrPutFlagType		CallOrPutFlag;					///< ¿´ÕÅ¿´µø1 Ä¬ÈÏN
+            TAPISTR_10					ContractNo2;					///< ºÏÔ¼2£¬Ä¬ÈÏ¿Õ
+            TAPISTR_10					StrikePrice2;					///< Ö´ÐÐ¼Û¸ñ2£¬Ä¬ÈÏ¿Õ
+            TAPICallOrPutFlagType		CallOrPutFlag2;					///< ¿´ÕÅ¿´µø2 Ä¬ÈÏN
 
-            TAPIOrderTypeType            OrderType;                        ///< å§”æ‰˜ç±»åž‹ å¿…å¡«
-            TAPIOrderSourceType            OrderSource;                    ///< å§”æ‰˜æ¥æºï¼Œé»˜è®¤ç¨‹åºå•ã€‚
-            TAPITimeInForceType            TimeInForce;                    ///< å§”æ‰˜æœ‰æ•ˆç±»åž‹,é»˜è®¤å½“æ—¥æœ‰æ•ˆ
-            TAPIDATETIME                ExpireTime;                        ///< æœ‰æ•ˆæ—¥æœŸ(GTDæƒ…å†µä¸‹ä½¿ç”¨)
+            TAPIOrderTypeType			OrderType;						///< Î¯ÍÐÀàÐÍ ±ØÌî
+            TAPIOrderSourceType			OrderSource;					///< Î¯ÍÐÀ´Ô´£¬Ä¬ÈÏ³ÌÐòµ¥¡£
+            TAPITimeInForceType			TimeInForce;					///< Î¯ÍÐÓÐÐ§ÀàÐÍ,Ä¬ÈÏµ±ÈÕÓÐÐ§
+            TAPIDATETIME				ExpireTime;						///< ÓÐÐ§ÈÕÆÚ(GTDÇé¿öÏÂÊ¹ÓÃ)
 
-            TAPIYNFLAG                    IsRiskOrder;                    ///< æ˜¯å¦é£Žé™©æŠ¥å•ï¼Œé»˜è®¤éžé£Žé™©ä¿å•
-            TAPISideType                OrderSide;                        ///< ä¹°å…¥å–å‡º
-            TAPIPositionEffectType        PositionEffect;                    ///< å¼€å¹³æ ‡å¿—1,é»˜è®¤N
-            TAPIPositionEffectType        PositionEffect2;                ///< å¼€å¹³æ ‡å¿—2ï¼Œé»˜è®¤N
-            TAPISTR_50                    InquiryNo;                        ///< è¯¢ä»·å·
-            TAPIHedgeFlagType            HedgeFlag;                        ///< æŠ•æœºä¿å€¼ï¼Œé»˜è®¤N
-            TAPIREAL64                    OrderPrice;                        ///< å§”æ‰˜ä»·æ ¼1
-            TAPIREAL64                    OrderPrice2;                    ///< å§”æ‰˜ä»·æ ¼2ï¼Œåšå¸‚å•†åº”ä»·ä½¿ç”¨
-            TAPIREAL64                    StopPrice;                        ///< è§¦å‘ä»·æ ¼
-            TAPIUINT32                    OrderQty;                        ///< å§”æ‰˜æ•°é‡ï¼Œå¿…å¡«
-            TAPIUINT32                    OrderMinQty;                    ///< æœ€å°æˆäº¤é‡ï¼Œé»˜è®¤1
+            TAPIYNFLAG					IsRiskOrder;					///< ÊÇ·ñ·çÏÕ±¨µ¥£¬Ä¬ÈÏ·Ç·çÏÕ±£µ¥
+            TAPISideType				OrderSide;						///< ÂòÈëÂô³ö
+            TAPIPositionEffectType		PositionEffect;					///< ¿ªÆ½±êÖ¾1,Ä¬ÈÏN
+            TAPIPositionEffectType		PositionEffect2;				///< ¿ªÆ½±êÖ¾2£¬Ä¬ÈÏN
+            TAPISTR_50					InquiryNo;						///< Ñ¯¼ÛºÅ
+            TAPIHedgeFlagType			HedgeFlag;						///< Í¶»ú±£Öµ£¬Ä¬ÈÏN
+            TAPIREAL64					OrderPrice;						///< Î¯ÍÐ¼Û¸ñ1
+            TAPIREAL64					OrderPrice2;					///< Î¯ÍÐ¼Û¸ñ2£¬×öÊÐÉÌÓ¦¼ÛÊ¹ÓÃ
+            TAPIREAL64					StopPrice;						///< ´¥·¢¼Û¸ñ
+            TAPIUINT32					OrderQty;						///< Î¯ÍÐÊýÁ¿£¬±ØÌî
+            TAPIUINT32					OrderMinQty;					///< ×îÐ¡³É½»Á¿£¬Ä¬ÈÏ1
 
-            TAPIUINT32                    MinClipSize;                    ///< å†°å±±å•æœ€å°éšæœºé‡
-            TAPIUINT32                    MaxClipSize;                    ///< å†°å±±å•æœ€å¤§éšæœºé‡
+            TAPIUINT32					MinClipSize;					///< ±ùÉ½µ¥×îÐ¡Ëæ»úÁ¿
+            TAPIUINT32					MaxClipSize;					///< ±ùÉ½µ¥×î´óËæ»úÁ¿
 
-            TAPIINT32                    RefInt;                            ///< æ•´åž‹å‚è€ƒå€¼
-            TAPIREAL64                    RefDouble;                        ///<æµ®ç‚¹å‚è€ƒå€¼
-            TAPISTR_50                    RefString;                        ///< å­—ç¬¦ä¸²å‚è€ƒå€¼
+            TAPIINT32					RefInt;							///< ÕûÐÍ²Î¿¼Öµ
+            TAPIREAL64					RefDouble;						///< ¸¡µã²Î¿¼Öµ
+            TAPISTR_50					RefString;						///< ×Ö·û´®²Î¿¼Öµ
 
-            TAPIClientIDType            ClientID;                        ///<å®¢æˆ·å­è´¦å·ï¼Œå¦‚æžœå­˜åœ¨å­è´¦å·ï¼Œåˆ™è‡ªè¡Œä¸ŠæŠ¥å­è´¦å·
-            TAPITacticsTypeType            TacticsType;                    ///< ç­–ç•¥å•ç±»åž‹ï¼Œé»˜è®¤N
-            TAPITriggerConditionType    TriggerCondition;                ///< è§¦å‘æ¡ä»¶ï¼Œé»˜è®¤N
-            TAPITriggerPriceTypeType    TriggerPriceType;                ///< è§¦å‘ä»·æ ¼ç±»åž‹ï¼Œé»˜è®¤N
-            TAPIYNFLAG                    AddOneIsValid;                    ///< æ˜¯å¦T+1æœ‰æ•ˆ,é»˜è®¤T+1æœ‰æ•ˆã€‚
-    public:
-        TapAPINewOrder()
-        {
-            memset(this, 0, sizeof(TapAPINewOrder));
-            CallOrPutFlag = TAPI_CALLPUT_FLAG_NONE;
-            CallOrPutFlag2 = TAPI_CALLPUT_FLAG_NONE;
-            OrderSource = TAPI_ORDER_SOURCE_PROGRAM;
-            TimeInForce=TAPI_ORDER_TIMEINFORCE_GFD;
-            IsRiskOrder = APIYNFLAG_NO;
-            PositionEffect = TAPI_PositionEffect_NONE;
-            PositionEffect2 = TAPI_PositionEffect_NONE;
-            HedgeFlag = TAPI_HEDGEFLAG_NONE;
-            OrderMinQty = 1;
-            TacticsType = TAPI_TACTICS_TYPE_NONE;
-            TriggerCondition = TAPI_TRIGGER_CONDITION_NONE;
-            TriggerPriceType = TAPI_TRIGGER_PRICE_NONE;
-            AddOneIsValid = APIYNFLAG_YES;
-        }
+			TAPIClientIDType			ClientID;						///< ¿Í»§×ÓÕËºÅ£¬Èç¹û´æÔÚ×ÓÕËºÅ£¬Ôò×ÔÐÐÉÏ±¨×ÓÕËºÅ
+            TAPITacticsTypeType			TacticsType;					///< ²ßÂÔµ¥ÀàÐÍ£¬Ä¬ÈÏN
+            TAPITriggerConditionType	TriggerCondition;				///< ´¥·¢Ìõ¼þ£¬Ä¬ÈÏN
+            TAPITriggerPriceTypeType	TriggerPriceType;				///< ´¥·¢¼Û¸ñÀàÐÍ£¬Ä¬ÈÏN
+            TAPIYNFLAG					AddOneIsValid;					///< ÊÇ·ñT+1ÓÐÐ§,Ä¬ÈÏT+1ÓÐÐ§¡£
+			TAPIClientLocationIDType	ClientLocationID;				///< ÏÂµ¥ÈËÇøÓò
+	public:
+		TapAPINewOrder()
+		{
+			memset(this, 0, sizeof(TapAPINewOrder));
+			CallOrPutFlag = TAPI_CALLPUT_FLAG_NONE;
+			CallOrPutFlag2 = TAPI_CALLPUT_FLAG_NONE;
+			OrderSource = TAPI_ORDER_SOURCE_PROGRAM;
+			TimeInForce=TAPI_ORDER_TIMEINFORCE_GFD;
+			IsRiskOrder = APIYNFLAG_NO;
+			PositionEffect = TAPI_PositionEffect_NONE;
+			PositionEffect2 = TAPI_PositionEffect_NONE;
+			HedgeFlag = TAPI_HEDGEFLAG_NONE;
+			OrderMinQty = 1;
+			TacticsType = TAPI_TACTICS_TYPE_NONE;
+			TriggerCondition = TAPI_TRIGGER_CONDITION_NONE;
+			TriggerPriceType = TAPI_TRIGGER_PRICE_NONE;
+			AddOneIsValid = APIYNFLAG_YES;
+		}
     };
 
 
-    //! å§”æ‰˜å®Œæ•´ä¿¡æ¯
+    //! Î¯ÍÐÍêÕûÐÅÏ¢
     struct TapAPIOrderInfo
     {
-            TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
+            TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
 
-            TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-            TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹
-            TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
-            TAPISTR_10                    ContractNo;                        ///< åˆçº¦1
-            TAPISTR_10                    StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼1
-            TAPICallOrPutFlagType        CallOrPutFlag;                    ///< çœ‹å¼ çœ‹è·Œ1
-            TAPISTR_10                    ContractNo2;                    ///< åˆçº¦2
-            TAPISTR_10                    StrikePrice2;                    ///< æ‰§è¡Œä»·æ ¼2
-            TAPICallOrPutFlagType        CallOrPutFlag2;                    ///< çœ‹å¼ çœ‹è·Œ2
+            TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+            TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+            TAPISTR_10					ContractNo;						///< ºÏÔ¼1
+            TAPISTR_10					StrikePrice;					///< Ö´ÐÐ¼Û¸ñ1
+            TAPICallOrPutFlagType		CallOrPutFlag;					///< ¿´ÕÅ¿´µø1
+            TAPISTR_10					ContractNo2;					///< ºÏÔ¼2
+            TAPISTR_10					StrikePrice2;					///< Ö´ÐÐ¼Û¸ñ2
+            TAPICallOrPutFlagType		CallOrPutFlag2;					///< ¿´ÕÅ¿´µø2
 
-            TAPIOrderTypeType            OrderType;                        ///< å§”æ‰˜ç±»åž‹
-            TAPIOrderSourceType            OrderSource;                    ///< å§”æ‰˜æ¥æº
-            TAPITimeInForceType            TimeInForce;                    ///< å§”æ‰˜æœ‰æ•ˆç±»åž‹
-            TAPIDATETIME                ExpireTime;                        ///< æœ‰æ•ˆæ—¥æœŸ(GTDæƒ…å†µä¸‹ä½¿ç”¨)
+            TAPIOrderTypeType			OrderType;						///< Î¯ÍÐÀàÐÍ
+            TAPIOrderSourceType			OrderSource;					///< Î¯ÍÐÀ´Ô´
+            TAPITimeInForceType			TimeInForce;					///< Î¯ÍÐÓÐÐ§ÀàÐÍ
+            TAPIDATETIME				ExpireTime;						///< ÓÐÐ§ÈÕÆÚ(GTDÇé¿öÏÂÊ¹ÓÃ)
 
-            TAPIYNFLAG                    IsRiskOrder;                    ///< æ˜¯å¦é£Žé™©æŠ¥å•
-            TAPISideType                OrderSide;                        ///< ä¹°å…¥å–å‡º
-            TAPIPositionEffectType        PositionEffect;                    ///< å¼€å¹³æ ‡å¿—1
-            TAPIPositionEffectType        PositionEffect2;                ///< å¼€å¹³æ ‡å¿—2
-            TAPISTR_50                    InquiryNo;                        ///< è¯¢ä»·å·
-            TAPIHedgeFlagType            HedgeFlag;                        ///< æŠ•æœºä¿å€¼
-            TAPIREAL64                    OrderPrice;                        ///< å§”æ‰˜ä»·æ ¼1
-            TAPIREAL64                    OrderPrice2;                    ///< å§”æ‰˜ä»·æ ¼2ï¼Œåšå¸‚å•†åº”ä»·ä½¿ç”¨
-            TAPIREAL64                    StopPrice;                        ///< è§¦å‘ä»·æ ¼
-            TAPIUINT32                    OrderQty;                        ///< å§”æ‰˜æ•°é‡
-            TAPIUINT32                    OrderMinQty;                    ///< æœ€å°æˆäº¤é‡
+            TAPIYNFLAG					IsRiskOrder;					///< ÊÇ·ñ·çÏÕ±¨µ¥
+            TAPISideType				OrderSide;						///< ÂòÈëÂô³ö
+            TAPIPositionEffectType		PositionEffect;					///< ¿ªÆ½±êÖ¾1
+            TAPIPositionEffectType		PositionEffect2;				///< ¿ªÆ½±êÖ¾2
+            TAPISTR_50					InquiryNo;						///< Ñ¯¼ÛºÅ
+            TAPIHedgeFlagType			HedgeFlag;						///< Í¶»ú±£Öµ
+            TAPIREAL64					OrderPrice;						///< Î¯ÍÐ¼Û¸ñ1
+            TAPIREAL64					OrderPrice2;					///< Î¯ÍÐ¼Û¸ñ2£¬×öÊÐÉÌÓ¦¼ÛÊ¹ÓÃ
+            TAPIREAL64					StopPrice;						///< ´¥·¢¼Û¸ñ
+            TAPIUINT32					OrderQty;						///< Î¯ÍÐÊýÁ¿
+            TAPIUINT32					OrderMinQty;					///< ×îÐ¡³É½»Á¿
 
-            TAPIINT32                    RefInt;                            ///< æ•´åž‹å‚è€ƒå€¼
-            TAPIREAL64                    RefDouble;                        ///< æµ®ç‚¹å‚è€ƒå€¼
-            TAPISTR_50                    RefString;                                      ///< å­—ç¬¦ä¸²å‚è€ƒå€¼
+            TAPIINT32					RefInt;							///< ÕûÐÍ²Î¿¼Öµ
+            TAPIREAL64					RefDouble;						///< ¸¡µã²Î¿¼Öµ
+            TAPISTR_50					RefString;						///< ×Ö·û´®²Î¿¼Öµ
 
-            TAPIUINT32                    MinClipSize;                    ///< å†°å±±å•æœ€å°éšæœºé‡
-            TAPIUINT32                    MaxClipSize;                    ///< å†°å±±å•æœ€å¤§éšæœºé‡
-            TAPISTR_50                    LicenseNo;                        ///< è½¯ä»¶æŽˆæƒå·
+            TAPIUINT32					MinClipSize;					///< ±ùÉ½µ¥×îÐ¡Ëæ»úÁ¿
+            TAPIUINT32					MaxClipSize;					///< ±ùÉ½µ¥×î´óËæ»úÁ¿
+            TAPISTR_50					LicenseNo;						///< Èí¼þÊÚÈ¨ºÅ
 
+            TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+            TAPISTR_20					OrderNo;						///< Î¯ÍÐ±àÂë
+            TAPISTR_50                  ClientOrderNo;					///< ¿Í»§¶Ë±¾µØÎ¯ÍÐ±àºÅ
+			TAPIClientIDType            ClientID;						///< ¿Í»§×ÓÕËºÅ
+            TAPITacticsTypeType			TacticsType;					///< ²ßÂÔµ¥ÀàÐÍ
+            TAPITriggerConditionType	TriggerCondition;				///< ´¥·¢Ìõ¼þ
+            TAPITriggerPriceTypeType	TriggerPriceType;				///< ´¥·¢¼Û¸ñÀàÐÍ
+            TAPIYNFLAG					AddOneIsValid;					///< ÊÇ·ñT+1ÓÐÐ§
 
+            TAPISTR_40					ClientLocalIP;					///< ÖÕ¶Ë±¾µØIP
+            TAPIMACTYPE					ClientMac;						///< ÖÕ¶Ë±¾µØMacµØÖ·
+            TAPISTR_40					ClientIP;						///< ÖÕ¶ËÍøÂçµØÖ·.
 
-            TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-            TAPISTR_20                    OrderNo;                        ///< å§”æ‰˜ç¼–ç 
-            TAPISTR_50                  ClientOrderNo;                    ///< å®¢æˆ·ç«¯æœ¬åœ°å§”æ‰˜ç¼–å·
-            TAPIClientIDType            ClientID;                                           ///< å®¢æˆ·å­è´¦å·.
-            TAPITacticsTypeType            TacticsType;                    ///< ç­–ç•¥å•ç±»åž‹
-            TAPITriggerConditionType    TriggerCondition;                ///< è§¦å‘æ¡ä»¶
-            TAPITriggerPriceTypeType    TriggerPriceType;                ///< è§¦å‘ä»·æ ¼ç±»åž‹
-            TAPIYNFLAG                    AddOneIsValid;                    ///< æ˜¯å¦T+1æœ‰æ•ˆ
+            TAPIUINT32					OrderStreamID;					///< Î¯ÍÐÁ÷Ë®ºÅ
+            TAPISTR_10					UpperNo;						///< ÉÏÊÖºÅ
+            TAPISTR_10					UpperChannelNo;					///< ÉÏÊÖÍ¨µÀºÅ
 
-            TAPISTR_40                    ClientLocalIP;                    ///< ç»ˆç«¯æœ¬åœ°IP
-            TAPIMACTYPE                    ClientMac;                        ///< ç»ˆç«¯æœ¬åœ°Macåœ°å€
-            TAPISTR_40                    ClientIP;                        ///< ç»ˆç«¯ç½‘ç»œåœ°å€.
+            TAPISTR_20					OrderLocalNo;					///< ±¾µØºÅ
+            TAPIUINT32					UpperStreamID;					///< ÉÏÊÖÁ÷ºÅ
 
-            TAPIUINT32                    OrderStreamID;                    ///< å§”æ‰˜æµæ°´å·
-            TAPISTR_10                    UpperNo;                        ///< ä¸Šæ‰‹å·
-            TAPISTR_10                    UpperChannelNo;                    ///< ä¸Šæ‰‹é€šé“å·
+            TAPISTR_50					OrderSystemNo;					///< ÏµÍ³ºÅ
+            TAPISTR_50					OrderExchangeSystemNo;			///< ½»Ò×ËùÏµÍ³ºÅ 
+            TAPISTR_50					OrderParentSystemNo;			///< ¸¸µ¥ÏµÍ³ºÅ
 
-            TAPISTR_20                    OrderLocalNo;                    ///< æœ¬åœ°å·
-            TAPIUINT32                    UpperStreamID;                    ///< ä¸Šæ‰‹æµå·
+            TAPISTR_20					OrderInsertUserNo;				///< ÏÂµ¥ÈË
+            TAPIDATETIME				OrderInsertTime;				///< ÏÂµ¥Ê±¼ä
+            TAPISTR_20					OrderCommandUserNo;				///< Â¼µ¥²Ù×÷ÈË
+            TAPISTR_20					OrderUpdateUserNo;				///< Î¯ÍÐ¸üÐÂÈË
+            TAPIDATETIME				OrderUpdateTime;				///< Î¯ÍÐ¸üÐÂÊ±¼ä
 
-            TAPISTR_50                    OrderSystemNo;                    ///< ç³»ç»Ÿå·
-            TAPISTR_50                    OrderExchangeSystemNo;            ///< äº¤æ˜“æ‰€ç³»ç»Ÿå· 
-            TAPISTR_50                    OrderParentSystemNo;            ///< çˆ¶å•ç³»ç»Ÿå·
+            TAPIOrderStateType			OrderState;						///< Î¯ÍÐ×´Ì¬
 
-            TAPISTR_20                    OrderInsertUserNo;                ///< ä¸‹å•äºº
-            TAPIDATETIME                OrderInsertTime;                ///< ä¸‹å•æ—¶é—´
-            TAPISTR_20                    OrderCommandUserNo;                ///< å½•å•æ“ä½œäºº
-            TAPISTR_20                    OrderUpdateUserNo;                ///< å§”æ‰˜æ›´æ–°äºº
-            TAPIDATETIME                OrderUpdateTime;                ///< å§”æ‰˜æ›´æ–°æ—¶é—´
+            TAPIREAL64					OrderMatchPrice;				///< ³É½»¼Û1
+            TAPIREAL64					OrderMatchPrice2;				///< ³É½»¼Û2
+            TAPIUINT32					OrderMatchQty;					///< ³É½»Á¿1
+            TAPIUINT32					OrderMatchQty2;					///< ³É½»Á¿2
 
-            TAPIOrderStateType            OrderState;                        ///< å§”æ‰˜çŠ¶æ€
+            TAPIUINT32					ErrorCode;						///< ×îºóÒ»´Î²Ù×÷´íÎóÐÅÏ¢Âë
+            TAPISTR_50					ErrorText;						///< ´íÎóÐÅÏ¢
 
-            TAPIREAL64                    OrderMatchPrice;                ///< æˆäº¤ä»·1
-            TAPIREAL64                    OrderMatchPrice2;                ///< æˆäº¤ä»·2
-            TAPIUINT32                    OrderMatchQty;                    ///< æˆäº¤é‡1
-            TAPIUINT32                    OrderMatchQty2;                    ///< æˆäº¤é‡2
-
-            TAPIUINT32                    ErrorCode;                        ///< æœ€åŽä¸€æ¬¡æ“ä½œé”™è¯¯ä¿¡æ¯ç 
-            TAPISTR_50                    ErrorText;                        ///< é”™è¯¯ä¿¡æ¯
-
-            TAPIYNFLAG                    IsBackInput;                    ///< æ˜¯å¦ä¸ºå½•å…¥å§”æ‰˜å•
-            TAPIYNFLAG                    IsDeleted;                        ///< å§”æ‰˜æˆäº¤åˆ é™¤æ ‡
-            TAPIYNFLAG                    IsAddOne;                        ///< æ˜¯å¦ä¸ºT+1å•
+            TAPIYNFLAG					IsBackInput;					///< ÊÇ·ñÎªÂ¼ÈëÎ¯ÍÐµ¥
+            TAPIYNFLAG					IsDeleted;						///< Î¯ÍÐ³É½»É¾³ý±ê
+            TAPIYNFLAG					IsAddOne;						///< ÊÇ·ñÎªT+1µ¥
+			TAPIClientLocationIDType	ClientLocationID;				///< ÏÂµ¥ÈËÇøÓò
 
     };
 
-    //! æŠ¥å•é€šçŸ¥ç»“æž„
+    //! ±¨µ¥Í¨Öª½á¹¹
     struct TapAPIOrderInfoNotice
     {
-            TAPIUINT32                    SessionID;                        ///< ä¼šè¯ID
-            TAPIUINT32                    ErrorCode;                         ///< é”™è¯¯ç 
-            TapAPIOrderInfo*            OrderInfo;                        ///< å§”æ‰˜å®Œæ•´ä¿¡æ¯
+            TAPIUINT32					SessionID;						///< »á»°ID
+            TAPIUINT32					ErrorCode; 						///< ´íÎóÂë
+            TapAPIOrderInfo*			OrderInfo;						///< Î¯ÍÐÍêÕûÐÅÏ¢
     };
 
-    //! æŠ¥å•æ“ä½œåº”ç­”ç»“æž„
+    //! ±¨µ¥²Ù×÷Ó¦´ð½á¹¹
     struct TapAPIOrderActionRsp
     {
-            TAPIORDERACT                ActionType;                        ///< æ“ä½œç±»åž‹
-            TapAPIOrderInfo*            OrderInfo;                        ///< å§”æ‰˜ä¿¡æ¯
+            TAPIORDERACT				ActionType;						///< ²Ù×÷ÀàÐÍ
+            TapAPIOrderInfo*			OrderInfo;						///< Î¯ÍÐÐÅÏ¢
     };
 
 
-    //! å®¢æˆ·æ”¹å•è¯·æ±‚
-    //!å¿…å¡«é¡¹æœ‰ServerFlagï¼ŒOrderNo,ä»¥åŠå§”æ‰˜ä»·å’Œå§”æ‰˜é‡ï¼Œæ­¢æŸä»·ã€‚å…¶ä»–å­—æ®µå’±ä»¬æ²¡æœ‰ç”¨ã€‚
+    //! ¿Í»§¸Äµ¥ÇëÇó
+	//!±ØÌîÏîÓÐOrderNo,ÒÔ¼°Î¯ÍÐ¼ÛºÍÎ¯ÍÐÁ¿£¬Ö¹Ëð¼Û¡£ÆäËû×Ö¶ÎÔÝÃ»ÓÐÓÃ¡£
     struct TapAPIAmendOrder
     {
-        TapAPINewOrder              ReqData;                        ///< æŠ¥å•è¯·æ±‚æ•°æ®
-        TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-        TAPISTR_20                  OrderNo;                        ///< å§”æ‰˜ç¼–å·
-    public:
-        TapAPIAmendOrder()
-        {
-            memset(this, 0, sizeof(TapAPIAmendOrder));
-        }
+        TapAPINewOrder              ReqData;                        ///< ±¨µ¥ÇëÇóÊý¾Ý
+        TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+        TAPISTR_20                  OrderNo;                        ///< Î¯ÍÐ±àºÅ
+	public:
+		TapAPIAmendOrder()
+		{
+			memset(this, 0, sizeof(TapAPIAmendOrder));
+		}
     };
 
-    //! å®¢æˆ·æ’¤å•è¯·æ±‚ç»“æž„
-    //!å¿…å¡«é¡¹æ˜¯ServerFlagå’ŒOrderNo.
+    //! ¿Í»§³·µ¥ÇëÇó½á¹¹
+	//!±ØÌîÏîÊÇOrderNo.
     struct TapAPIOrderCancelReq
     {
-            TAPIINT32                    RefInt;                            ///< æ•´åž‹å‚è€ƒå€¼
-            TAPIREAL64                    RefDouble;                        ///< æµ®ç‚¹å‚è€ƒå€¼
-            TAPISTR_50                    RefString;                        ///< å­—ç¬¦ä¸²å‚è€ƒå€¼
-            TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-            TAPISTR_20                    OrderNo;                        ///< å§”æ‰˜ç¼–ç 
+            TAPIINT32					RefInt;							///< ÕûÐÍ²Î¿¼Öµ
+            TAPIREAL64					RefDouble;						///< ¸¡µã²Î¿¼Öµ
+            TAPISTR_50					RefString;						///< ×Ö·û´®²Î¿¼Öµ
+            TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+            TAPISTR_20					OrderNo;						///< Î¯ÍÐ±àÂë
     };
 
-    //! æŒ‚èµ·å§”æ‰˜è¯·æ±‚ç»“æž„
+    //! ¹ÒÆðÎ¯ÍÐÇëÇó½á¹¹
     typedef TapAPIOrderCancelReq TapAPIOrderDeactivateReq;
 
-    //! æ¿€æ´»å§”æ‰˜è¯·æ±‚ç»“æž„
+    //! ¼¤»îÎ¯ÍÐÇëÇó½á¹¹
     typedef TapAPIOrderCancelReq TapAPIOrderActivateReq;
 
-    //! åˆ é™¤å§”æ‰˜è¯·æ±‚ç»“æž„
+    //! É¾³ýÎ¯ÍÐÇëÇó½á¹¹
     typedef TapAPIOrderCancelReq TapAPIOrderDeleteReq;
 
-    //! å§”æ‰˜æŸ¥è¯¢è¯·æ±‚ç»“æž„
+    //! Î¯ÍÐ²éÑ¯ÇëÇó½á¹¹
     struct TapAPIOrderQryReq
     {
-            TAPISTR_20                    AccountNo;                        ///< èµ„é‡‘è´¦å·
+            TAPISTR_20					AccountNo;						///< ×Ê½ðÕËºÅ
 
-            TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-            TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹
-            TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
-            TAPIOrderTypeType            OrderType;                        ///< å§”æ‰˜ç±»åž‹
-            TAPIOrderSourceType            OrderSource;                    ///< å§”æ‰˜æ¥æº
-            TAPITimeInForceType            TimeInForce;                    ///< å§”æ‰˜æœ‰æ•ˆç±»åž‹
-            TAPIDATETIME                ExpireTime;                        ///< æœ‰æ•ˆæ—¥æœŸ(GTDæƒ…å†µä¸‹ä½¿ç”¨)
+            TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+            TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+            TAPIOrderTypeType			OrderType;						///< Î¯ÍÐÀàÐÍ
+            TAPIOrderSourceType			OrderSource;					///< Î¯ÍÐÀ´Ô´
+            TAPITimeInForceType			TimeInForce;					///< Î¯ÍÐÓÐÐ§ÀàÐÍ
+            TAPIDATETIME				ExpireTime;						///< ÓÐÐ§ÈÕÆÚ(GTDÇé¿öÏÂÊ¹ÓÃ)
 
-            TAPIYNFLAG                    IsRiskOrder;                    ///< æ˜¯å¦é£Žé™©æŠ¥å•
+            TAPIYNFLAG					IsRiskOrder;					///< ÊÇ·ñ·çÏÕ±¨µ¥
 
-            TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-            TAPISTR_20                  OrderNo;                        ///< å§”æ‰˜ç¼–å·
+            TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+            TAPISTR_20                  OrderNo;                        ///< Î¯ÍÐ±àºÅ
 
-            TAPIYNFLAG                    IsBackInput;                    ///< æ˜¯å¦ä¸ºå½•å…¥å§”æ‰˜å•
-            TAPIYNFLAG                    IsDeleted;                        ///< å§”æ‰˜æˆäº¤åˆ é™¤æ ‡
-            TAPIYNFLAG                    IsAddOne;                        ///< æ˜¯å¦ä¸ºT+1å•
+            TAPIYNFLAG					IsBackInput;					///< ÊÇ·ñÎªÂ¼ÈëÎ¯ÍÐµ¥
+            TAPIYNFLAG					IsDeleted;						///< Î¯ÍÐ³É½»É¾³ý±ê
+            TAPIYNFLAG					IsAddOne;						///< ÊÇ·ñÎªT+1µ¥
+			TAPIOrderQryTypeType		OrderQryType;					///< ÊÇ·ñÖ»²éÑ¯Î´Íê³ÉÎ¯ÍÐ
     };
 
-    //! å§”æ‰˜æµç¨‹æŸ¥è¯¢
+    //! Î¯ÍÐÁ÷³Ì²éÑ¯
     struct TapAPIOrderProcessQryReq
     {
-            TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-            TAPISTR_20                    OrderNo;                        ///< å§”æ‰˜ç¼–ç 
+            TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+            TAPISTR_20					OrderNo;						///< Î¯ÍÐ±àÂë
     };
 
-    //! æˆäº¤æŸ¥è¯¢è¯·æ±‚ç»“æž„
-    struct TapAPIFillQryReq
-    {
-        TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
+    //! ³É½»²éÑ¯ÇëÇó½á¹¹
+	struct TapAPIFillQryReq
+	{
+		TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
 
-        TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-        TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹
-        TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
-        TAPISTR_10                    ContractNo;                        ///< åˆçº¦1
-        TAPISTR_10                    StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼
-        TAPICallOrPutFlagType        CallOrPutFlag;                    ///< çœ‹å¼ çœ‹è·Œ
+		TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+		TAPISTR_10					ContractNo;						///< ºÏÔ¼1
+		TAPISTR_10					StrikePrice;					///< Ö´ÐÐ¼Û¸ñ
+		TAPICallOrPutFlagType		CallOrPutFlag;					///< ¿´ÕÅ¿´µø
 
-        TAPIMatchSourceType            MatchSource;                    ///< å§”æ‰˜æ¥æº
-        TAPISideType                MatchSide;                        ///< ä¹°å…¥å–å‡º
-        TAPIPositionEffectType              PositionEffect;                    ///< å¼€å¹³æ ‡å¿—1
+		TAPIMatchSourceType			MatchSource;					///< Î¯ÍÐÀ´Ô´
+		TAPISideType				MatchSide;						///< ÂòÈëÂô³ö
+		TAPIPositionEffectType      PositionEffect;					///< ¿ªÆ½±êÖ¾1
 
-        TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-        TAPISTR_20                    OrderNo;                        ///< å§”æ‰˜ç¼–ç 
-        TAPISTR_10                    UpperNo;                        ///< ä¸Šæ‰‹å·
-        TAPIYNFLAG                    IsDeleted;                        ///< å§”æ‰˜æˆäº¤åˆ é™¤æ ‡
-        TAPIYNFLAG                    IsAddOne;                        ///< æ˜¯å¦ä¸ºT+1å•
-    };
+		TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+		TAPISTR_20					OrderNo;						///< Î¯ÍÐ±àÂë
+		TAPISTR_10					UpperNo;						///< ÉÏÊÖºÅ
+		TAPIYNFLAG					IsDeleted;						///< Î¯ÍÐ³É½»É¾³ý±ê
+		TAPIYNFLAG					IsAddOne;						///< ÊÇ·ñÎªT+1µ¥
+	};
 
-    //! æˆäº¤ä¿¡æ¯
+    //! ³É½»ÐÅÏ¢
     struct TapAPIFillInfo
     {
-            TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
+            TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
 
-            TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-            TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹
-            TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
-            TAPISTR_10                    ContractNo;                        ///< åˆçº¦1
-            TAPISTR_10                    StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼
-            TAPICallOrPutFlagType        CallOrPutFlag;                    ///< çœ‹å¼ çœ‹è·Œ
+            TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+            TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+            TAPISTR_10					ContractNo;						///< ºÏÔ¼1
+            TAPISTR_10					StrikePrice;					///< Ö´ÐÐ¼Û¸ñ
+            TAPICallOrPutFlagType		CallOrPutFlag;					///< ¿´ÕÅ¿´µø
 
-            TAPIMatchSourceType            MatchSource;                    ///< å§”æ‰˜æ¥æº
-            TAPISideType                MatchSide;                        ///< ä¹°å…¥å–å‡º
-            TAPIPositionEffectType              PositionEffect;                    ///< å¼€å¹³æ ‡å¿—1
+            TAPIMatchSourceType			MatchSource;					///< Î¯ÍÐÀ´Ô´
+            TAPISideType				MatchSide;						///< ÂòÈëÂô³ö
+            TAPIPositionEffectType      PositionEffect;					///< ¿ªÆ½±êÖ¾1
 
-            TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-            TAPISTR_20                    OrderNo;                        ///< å§”æ‰˜ç¼–ç 
-            TAPISTR_50                    OrderSystemNo;                    ///< ç³»ç»Ÿå·
+            TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+            TAPISTR_20					OrderNo;						///< Î¯ÍÐ±àÂë
+            TAPISTR_50					OrderSystemNo;					///< ÏµÍ³ºÅ
 
-            TAPISTR_20                    MatchNo;                        ///< æœ¬åœ°æˆäº¤å·
-            TAPISTR_70                    UpperMatchNo;                    ///< ä¸Šæ‰‹æˆäº¤å·
-            TAPISTR_70                    ExchangeMatchNo;                ///< äº¤æ˜“æ‰€æˆäº¤å·
+            TAPISTR_20					MatchNo;						///< ±¾µØ³É½»ºÅ
+            TAPISTR_70					UpperMatchNo;					///< ÉÏÊÖ³É½»ºÅ
+            TAPISTR_70					ExchangeMatchNo;				///< ½»Ò×Ëù³É½»ºÅ
 
-            TAPIDATETIME                MatchDateTime;                    ///< æˆäº¤æ—¶é—´
-            TAPIDATETIME                UpperMatchDateTime;                ///< ä¸Šæ‰‹æˆäº¤æ—¶é—´
+            TAPIDATETIME				MatchDateTime;					///< ³É½»Ê±¼ä
+            TAPIDATETIME				UpperMatchDateTime;				///< ÉÏÊÖ³É½»Ê±¼ä
 
-            TAPISTR_10                    UpperNo;                        ///< ä¸Šæ‰‹å·
+            TAPISTR_10					UpperNo;						///< ÉÏÊÖºÅ
 
-            TAPIREAL64                    MatchPrice;                        ///< æˆäº¤ä»·
-            TAPIUINT32                    MatchQty;                        ///< æˆäº¤é‡
+            TAPIREAL64					MatchPrice;						///< ³É½»¼Û
+            TAPIUINT32					MatchQty;						///< ³É½»Á¿
 
-            TAPIYNFLAG                    IsDeleted;                        ///< å§”æ‰˜æˆäº¤åˆ é™¤æ ‡
-            TAPIYNFLAG                    IsAddOne;                        ///< æ˜¯å¦ä¸ºT+1å•
+            TAPIYNFLAG					IsDeleted;						///< Î¯ÍÐ³É½»É¾³ý±ê
+            TAPIYNFLAG					IsAddOne;						///< ÊÇ·ñÎªT+1µ¥
 
-            TAPISTR_10                    FeeCurrencyGroup;                ///< å®¢æˆ·æ‰‹ç»­è´¹å¸ç§ç»„
-            TAPISTR_10                    FeeCurrency;                    ///< å®¢æˆ·æ‰‹ç»­è´¹å¸ç§
-            TAPIREAL64                    FeeValue;                        ///< æ‰‹ç»­è´¹
-            TAPIYNFLAG                    IsManualFee;                    ///< äººå·¥å®¢æˆ·æ‰‹ç»­è´¹æ ‡è®°
+            TAPISTR_10					FeeCurrencyGroup;				///< ¿Í»§ÊÖÐø·Ñ±ÒÖÖ×é
+            TAPISTR_10					FeeCurrency;					///< ¿Í»§ÊÖÐø·Ñ±ÒÖÖ
+            TAPIREAL64					FeeValue;						///< ÊÖÐø·Ñ
+            TAPIYNFLAG					IsManualFee;					///< ÈË¹¤¿Í»§ÊÖÐø·Ñ±ê¼Ç
 
-            TAPIREAL64                    ClosePrositionPrice;                    ///< æŒ‡å®šä»·æ ¼å¹³ä»“
+            TAPIREAL64					ClosePrositionPrice;			///< Ö¸¶¨¼Û¸ñÆ½²Ö
+			TAPIREAL64					CloseProfit;					///< Æ½²ÖÓ¯¿÷
     };
 
-    //! å¹³ä»“æŸ¥è¯¢è¯·æ±‚ç»“æž„
+    //! Æ½²Ö²éÑ¯ÇëÇó½á¹¹
     struct TapAPICloseQryReq
     {
-            TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
+            TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
 
-            TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-            TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹
-            TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
+            TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+            TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
     };
 
-    //! å¹³ä»“ä¿¡æ¯
+    //! Æ½²ÖÐÅÏ¢
     struct TapAPICloseInfo
     {
-            TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
+            TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
 
-            TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-            TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹
-            TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
-            TAPISTR_10                    ContractNo;                        ///< åˆçº¦
-            TAPISTR_10                    StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼
-            TAPICallOrPutFlagType        CallOrPutFlag;                    ///< çœ‹å¼ çœ‹è·Œ
+            TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+            TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+            TAPISTR_10					ContractNo;						///< ºÏÔ¼
+            TAPISTR_10					StrikePrice;					///< Ö´ÐÐ¼Û¸ñ
+            TAPICallOrPutFlagType		CallOrPutFlag;					///< ¿´ÕÅ¿´µø
 
-            TAPISideType                CloseSide;                        ///< å¹³ä»“ä¸€è¾¹çš„ä¹°å…¥å–å‡º
-            TAPIUINT32                    CloseQty;                        ///< å¹³ä»“æˆäº¤é‡
-            TAPIREAL64                    OpenPrice;                        ///< å¼€ä»“æˆäº¤ä»·
-            TAPIREAL64                    ClosePrice;                        ///< å¹³ä»“æˆäº¤ä»·
+            TAPISideType				CloseSide;						///< Æ½²ÖÒ»±ßµÄÂòÈëÂô³ö
+            TAPIUINT32					CloseQty;						///< Æ½²Ö³É½»Á¿
+            TAPIREAL64					OpenPrice;						///< ¿ª²Ö³É½»¼Û
+            TAPIREAL64					ClosePrice;						///< Æ½²Ö³É½»¼Û
 
-            TAPISTR_20                    OpenMatchNo;                    ///< æœ¬åœ°æˆäº¤å·
-            TAPIDATETIME                OpenMatchDateTime;                ///< æˆäº¤æ—¶é—´
-            TAPISTR_20                    CloseMatchNo;                    ///< æœ¬åœ°æˆäº¤å·
-            TAPIDATETIME                CloseMatchDateTime;                ///< æˆäº¤æ—¶é—´
+            TAPISTR_20					OpenMatchNo;					///< ±¾µØ³É½»ºÅ
+            TAPIDATETIME				OpenMatchDateTime;				///< ³É½»Ê±¼ä
+            TAPISTR_20					CloseMatchNo;					///< ±¾µØ³É½»ºÅ
+            TAPIDATETIME				CloseMatchDateTime;				///< ³É½»Ê±¼ä
 
-            TAPIUINT32                  CloseStreamId;                    ///< å¹³ä»“æµå·
+            TAPIUINT32                  CloseStreamId;					///< Æ½²ÖÁ÷ºÅ
 
-            TAPISTR_10                    CommodityCurrencyGroup;            ///< å“ç§å¸ç§ç»„
-            TAPISTR_10                    CommodityCurrency;                ///< å“ç§å¸ç§
+            TAPISTR_10					CommodityCurrencyGroup;			///< Æ·ÖÖ±ÒÖÖ×é
+            TAPISTR_10					CommodityCurrency;				///< Æ·ÖÖ±ÒÖÖ
 
-            TAPIREAL64                    CloseProfit;                    ///< å¹³ä»“ç›ˆäº
+            TAPIREAL64					CloseProfit;					///< Æ½²ÖÓ¯¿÷
     };
 
-    //! æŒä»“æŸ¥è¯¢è¯·æ±‚ç»“æž„
+    //! ³Ö²Ö²éÑ¯ÇëÇó½á¹¹
     struct TapAPIPositionQryReq
     {
             TAPISTR_20 AccountNo;
@@ -1064,967 +1103,1392 @@ namespace ITapTrade
 
 
 
-    //! æŒä»“ä¿¡æ¯
+    //! ³Ö²ÖÐÅÏ¢
     struct TapAPIPositionInfo
     {
-            TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
+            TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
 
-            TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-            TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹
-            TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
-            TAPISTR_10                    ContractNo;                        ///< åˆçº¦1
-            TAPISTR_10                    StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼
-            TAPICallOrPutFlagType        CallOrPutFlag;                    ///< çœ‹å¼ çœ‹è·Œ
+            TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+            TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+            TAPISTR_10					ContractNo;						///< ºÏÔ¼1
+            TAPISTR_10					StrikePrice;					///< Ö´ÐÐ¼Û¸ñ
+            TAPICallOrPutFlagType		CallOrPutFlag;					///< ¿´ÕÅ¿´µø
 
-            TAPISideType                MatchSide;                        ///< ä¹°å…¥å–å‡º
-            TAPIHedgeFlagType            HedgeFlag;                        ///< æŠ•æœºä¿å€¼
+            TAPISideType				MatchSide;						///< ÂòÈëÂô³ö
+            TAPIHedgeFlagType			HedgeFlag;						///< Í¶»ú±£Öµ
 
-            TAPISTR_70                    PositionNo;                        ///< æœ¬åœ°æŒä»“å·ï¼ŒæœåŠ¡å™¨ç¼–å†™
+            TAPISTR_70					PositionNo;						///< ±¾µØ³Ö²ÖºÅ£¬·þÎñÆ÷±àÐ´
 
-            TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-            TAPISTR_20                    OrderNo;                        ///< å§”æ‰˜ç¼–ç 
-            TAPISTR_20                    MatchNo;                        ///< æœ¬åœ°æˆäº¤å·
-            TAPISTR_10                    UpperNo;                        ///< ä¸Šæ‰‹å·
+            TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+            TAPISTR_20					OrderNo;						///< Î¯ÍÐ±àÂë
+            TAPISTR_20					MatchNo;						///< ±¾µØ³É½»ºÅ
+            TAPISTR_10					UpperNo;						///< ÉÏÊÖºÅ
 
 
-            TAPIREAL64                    PositionPrice;                    ///< æŒä»“ä»·
-            TAPIUINT32                    PositionQty;                    ///< æŒä»“é‡
+            TAPIREAL64					PositionPrice;					///< ³Ö²Ö¼Û
+            TAPIUINT32					PositionQty;					///< ³Ö²ÖÁ¿
 
-        TAPIUINT32                  PositionStreamId;                ///< æŒä»“æµå·
+			TAPIUINT32                  PositionStreamId;				///< ³Ö²ÖÁ÷ºÅ
 
-            TAPISTR_10                    CommodityCurrencyGroup;            ///< å“ç§å¸ç§ç»„
-            TAPISTR_10                    CommodityCurrency;                ///< å“ç§å¸ç§
+            TAPISTR_10					CommodityCurrencyGroup;			///< Æ·ÖÖ±ÒÖÖ×é
+            TAPISTR_10					CommodityCurrency;				///< Æ·ÖÖ±ÒÖÖ
 
-            TAPIREAL64                    CalculatePrice;                    ///< å½“å‰è®¡ç®—ä»·æ ¼
+            TAPIREAL64					CalculatePrice;					///< µ±Ç°¼ÆËã¼Û¸ñ
 
-            TAPIREAL64                    AccountInitialMargin;            ///< å®¢æˆ·åˆå§‹ä¿è¯é‡‘
-            TAPIREAL64                    AccountMaintenanceMargin;        ///< å®¢æˆ·ç»´æŒä¿è¯é‡‘
-            TAPIREAL64                    UpperInitialMargin;                ///< ä¸Šæ‰‹åˆå§‹ä¿è¯é‡‘
-            TAPIREAL64                    UpperMaintenanceMargin;            ///< ä¸Šæ‰‹ç»´æŒä¿è¯é‡‘
+            TAPIREAL64					AccountInitialMargin;			///< ¿Í»§³õÊ¼±£Ö¤½ð
+            TAPIREAL64					AccountMaintenanceMargin;		///< ¿Í»§Î¬³Ö±£Ö¤½ð
+            TAPIREAL64					UpperInitialMargin;				///< ÉÏÊÖ³õÊ¼±£Ö¤½ð
+            TAPIREAL64					UpperMaintenanceMargin;			///< ÉÏÊÖÎ¬³Ö±£Ö¤½ð
 
-            TAPIREAL64                    PositionProfit;                    ///< æŒä»“ç›ˆäº
-            TAPIREAL64                    LMEPositionProfit;                ///< LMEæŒä»“ç›ˆäº
-            TAPIREAL64                    OptionMarketValue;                ///< æœŸæƒå¸‚å€¼
-            TAPIYNFLAG                    IsHistory;                        ///< æ˜¯å¦ä¸ºæ˜¨ä»“ã€‚
+            TAPIREAL64					PositionProfit;					///< ³Ö²ÖÓ¯¿÷
+            TAPIREAL64					LMEPositionProfit;				///< LME³Ö²ÖÓ¯¿÷
+            TAPIREAL64					OptionMarketValue;				///< ÆÚÈ¨ÊÐÖµ
+			TAPIYNFLAG					IsHistory;						///< ÊÇ·ñÎª×ò²Ö¡£
     };
 
-    //! å®¢æˆ·æŒä»“ç›ˆäº
+    //! ¿Í»§³Ö²ÖÓ¯¿÷
     struct TapAPIPositionProfit
     {
-            TAPISTR_70                    PositionNo;                        ///< æœ¬åœ°æŒä»“å·ï¼ŒæœåŠ¡å™¨ç¼–å†™
-            TAPIUINT32                    PositionStreamId;                ///< æŒä»“æµå·
-            TAPIREAL64                    PositionProfit;                    ///< æŒä»“ç›ˆäº
-            TAPIREAL64                    LMEPositionProfit;                ///< LMEæŒä»“ç›ˆäº
-            TAPIREAL64                    OptionMarketValue;                ///< æœŸæƒå¸‚å€¼
-            TAPIREAL64                    CalculatePrice;                    ///< è®¡ç®—ä»·æ ¼
+            TAPISTR_70					PositionNo;						///< ±¾µØ³Ö²ÖºÅ£¬·þÎñÆ÷±àÐ´
+            TAPIUINT32					PositionStreamId;				///< ³Ö²ÖÁ÷ºÅ
+            TAPIREAL64					PositionProfit;					///< ³Ö²ÖÓ¯¿÷
+            TAPIREAL64					LMEPositionProfit;				///< LME³Ö²ÖÓ¯¿÷
+            TAPIREAL64					OptionMarketValue;				///< ÆÚÈ¨ÊÐÖµ
+            TAPIREAL64					CalculatePrice;					///< ¼ÆËã¼Û¸ñ
     };
 
-    //! å®¢æˆ·æŒä»“ç›ˆäºé€šçŸ¥
+    //! ¿Í»§³Ö²ÖÓ¯¿÷Í¨Öª
     struct TapAPIPositionProfitNotice
     {
-            TAPIYNFLAG                    IsLast;                            ///< æ˜¯å¦æœ€åŽä¸€åŒ…
-            TapAPIPositionProfit*        Data;                            ///< å®¢æˆ·æŒä»“ç›ˆäºä¿¡æ¯
+            TAPIYNFLAG					IsLast;							///< ÊÇ·ñ×îºóÒ»°ü
+            TapAPIPositionProfit*		Data;							///< ¿Í»§³Ö²ÖÓ¯¿÷ÐÅÏ¢
     };
 
-    struct TapAPIPositionSummary
-    {
-        TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
+	struct TapAPIPositionSummary
+	{
+		TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
 
-        TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-        TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹
-        TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
-        TAPISTR_10                    ContractNo;                        ///< åˆçº¦1
-        TAPISTR_10                    StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼
-        TAPICallOrPutFlagType        CallOrPutFlag;                    ///< çœ‹å¼ çœ‹è·Œ
+		TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+		TAPISTR_10					ContractNo;						///< ºÏÔ¼1
+		TAPISTR_10					StrikePrice;					///< Ö´ÐÐ¼Û¸ñ
+		TAPICallOrPutFlagType		CallOrPutFlag;					///< ¿´ÕÅ¿´µø
 
-        TAPISideType                MatchSide;                        ///< ä¹°å…¥å–å‡º
-        TAPIREAL64                    PositionPrice;                    ///< æŒä»“å‡ä»·ã€‚
-        TAPIUINT32                    PositionQty;                    ///< æŒä»“é‡
-        TAPIUINT32                    HisPositionQty;                    ///< åŽ†å²æŒä»“é‡
-    };
+		TAPISideType				MatchSide;						///< ÂòÈëÂô³ö
+		TAPIREAL64					PositionPrice;					///< ³Ö²Ö¾ù¼Û¡£
+		TAPIUINT32					PositionQty;					///< ³Ö²ÖÁ¿
+		TAPIUINT32					HisPositionQty;					///< ÀúÊ·³Ö²ÖÁ¿
+	};
 
 
 
-    //! èµ„é‡‘æŸ¥è¯¢è¯·æ±‚
+    //! ×Ê½ð²éÑ¯ÇëÇó
     struct TapAPIFundReq
     {
-            TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
+            TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
     };
-    //! èµ„é‡‘è´¦å·èµ„é‡‘ä¿¡æ¯
+    //! ×Ê½ðÕËºÅ×Ê½ðÐÅÏ¢
     struct TapAPIFundData
     {
-            TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘è´¦å·
+            TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕËºÅ
 
-            TAPISTR_10                    CurrencyGroupNo;                ///< å¸ç§ç»„å·
-            TAPISTR_10                    CurrencyNo;                        ///< å¸ç§å·(ä¸ºç©ºè¡¨ç¤ºå¸ç§ç»„åŸºå¸èµ„é‡‘)
-            TAPIREAL64                    TradeRate;                        ///< äº¤æ˜“æ±‡çŽ‡
-            TAPIFutureAlgType            FutureAlg;                      ///< æœŸè´§ç®—æ³•
-            TAPIOptionAlgType            OptionAlg;                      ///< æœŸæƒç®—æ³•
+            TAPISTR_10					CurrencyGroupNo;				///< ±ÒÖÖ×éºÅ
+            TAPISTR_10					CurrencyNo;						///< ±ÒÖÖºÅ(Îª¿Õ±íÊ¾±ÒÖÖ×é»ù±Ò×Ê½ð)
+            TAPIREAL64					TradeRate;						///< ½»Ò×»ãÂÊ
+            TAPIFutureAlgType			FutureAlg;                      ///< ÆÚ»õËã·¨
+            TAPIOptionAlgType			OptionAlg;                      ///< ÆÚÈ¨Ëã·¨
 
-            TAPIREAL64                    PreBalance;                        ///< ä¸Šæ—¥ç»“å­˜
-            TAPIREAL64                    PreUnExpProfit;                    ///< ä¸Šæ—¥æœªåˆ°æœŸå¹³ç›ˆ
-            TAPIREAL64                    PreLMEPositionProfit;            ///< ä¸Šæ—¥LMEæŒä»“å¹³ç›ˆ
-            TAPIREAL64                    PreEquity;                        ///< ä¸Šæ—¥æƒç›Š
-            TAPIREAL64                    PreAvailable1;                    ///< ä¸Šæ—¥å¯ç”¨
-            TAPIREAL64                    PreMarketEquity;                ///< ä¸Šæ—¥å¸‚å€¼æƒç›Š
+            TAPIREAL64					PreBalance;						///< ÉÏÈÕ½á´æ
+            TAPIREAL64					PreUnExpProfit;					///< ÉÏÈÕÎ´µ½ÆÚÆ½Ó¯
+            TAPIREAL64					PreLMEPositionProfit;			///< ÉÏÈÕLME³Ö²ÖÆ½Ó¯
+            TAPIREAL64					PreEquity;						///< ÉÏÈÕÈ¨Òæ
+            TAPIREAL64					PreAvailable1;					///< ÉÏÈÕ¿ÉÓÃ
+            TAPIREAL64					PreMarketEquity;				///< ÉÏÈÕÊÐÖµÈ¨Òæ
 
-            TAPIREAL64                    CashInValue;                    ///< å…¥é‡‘
-            TAPIREAL64                    CashOutValue;                    ///< å‡ºé‡‘
-            TAPIREAL64                    CashAdjustValue;                ///< èµ„é‡‘è°ƒæ•´
-            TAPIREAL64                    CashPledged;                    ///< è´¨æŠ¼èµ„é‡‘
-            TAPIREAL64                    FrozenFee;                        ///< å†»ç»“æ‰‹ç»­è´¹
-            TAPIREAL64                    FrozenDeposit;                    ///< å†»ç»“ä¿è¯é‡‘
-            TAPIREAL64                    AccountFee;                        ///< å®¢æˆ·æ‰‹ç»­è´¹åŒ…å«äº¤å‰²æ‰‹ç»­è´¹
-            TAPIREAL64                    SwapInValue;                    ///< æ±‡å…¥èµ„é‡‘
-            TAPIREAL64                    SwapOutValue;                    ///< æ±‡å‡ºèµ„é‡‘
-            TAPIREAL64                    PremiumIncome;                    ///< æƒåˆ©é‡‘æ”¶å–
-            TAPIREAL64                    PremiumPay;                        ///< æƒåˆ©é‡‘æ”¯ä»˜
-            TAPIREAL64                    CloseProfit;                    ///< å¹³ä»“ç›ˆäº
-            TAPIREAL64                    FrozenFund;                        ///< å†»ç»“èµ„é‡‘
-            TAPIREAL64                    UnExpProfit;                    ///< æœªåˆ°æœŸå¹³ç›ˆ
-            TAPIREAL64                    ExpProfit;                        ///< åˆ°æœŸå¹³ä»“ç›ˆäº
-            TAPIREAL64                    PositionProfit;                    ///< ä¸å«LMEæŒä»“ç›ˆäº
-            TAPIREAL64                    LmePositionProfit;                ///< LMEæŒä»“ç›ˆäº
-            TAPIREAL64                    OptionMarketValue;                ///< æœŸæƒå¸‚å€¼
-            TAPIREAL64                    AccountIntialMargin;            ///< å®¢æˆ·åˆå§‹ä¿è¯é‡‘
-            TAPIREAL64                    AccountMaintenanceMargin;        ///< å®¢æˆ·ç»´æŒä¿è¯é‡‘
-            TAPIREAL64                    UpperInitalMargin;                ///< ä¸Šæ‰‹åˆå§‹ä¿è¯é‡‘
-            TAPIREAL64                    UpperMaintenanceMargin;            ///< ä¸Šæ‰‹ç»´æŒä¿è¯é‡‘
-            TAPIREAL64                    Discount;                        ///< LMEè´´çŽ°
+            TAPIREAL64					CashInValue;					///< Èë½ð
+            TAPIREAL64					CashOutValue;					///< ³ö½ð
+            TAPIREAL64					CashAdjustValue;				///< ×Ê½ðµ÷Õû
+            TAPIREAL64					CashPledged;					///< ÖÊÑº×Ê½ð
+            TAPIREAL64					FrozenFee;						///< ¶³½áÊÖÐø·Ñ
+            TAPIREAL64					FrozenDeposit;					///< ¶³½á±£Ö¤½ð
+            TAPIREAL64					AccountFee;						///< ¿Í»§ÊÖÐø·Ñ°üº¬½»¸îÊÖÐø·Ñ
+            TAPIREAL64					SwapInValue;					///< »ãÈë×Ê½ð
+            TAPIREAL64					SwapOutValue;					///< »ã³ö×Ê½ð
+            TAPIREAL64					PremiumIncome;					///< È¨Àû½ðÊÕÈ¡
+            TAPIREAL64					PremiumPay;						///< È¨Àû½ðÖ§¸¶
+            TAPIREAL64					CloseProfit;					///< Æ½²ÖÓ¯¿÷
+            TAPIREAL64					FrozenFund;						///< ¶³½á×Ê½ð
+            TAPIREAL64					UnExpProfit;					///< Î´µ½ÆÚÆ½Ó¯
+            TAPIREAL64					ExpProfit;						///< µ½ÆÚÆ½²ÖÓ¯¿÷
+            TAPIREAL64					PositionProfit;					///< ²»º¬LME³Ö²ÖÓ¯¿÷
+            TAPIREAL64					LmePositionProfit;				///< LME³Ö²ÖÓ¯¿÷
+            TAPIREAL64					OptionMarketValue;				///< ÆÚÈ¨ÊÐÖµ
+            TAPIREAL64					AccountIntialMargin;			///< ¿Í»§³õÊ¼±£Ö¤½ð
+            TAPIREAL64					AccountMaintenanceMargin;		///< ¿Í»§Î¬³Ö±£Ö¤½ð
+            TAPIREAL64					UpperInitalMargin;				///< ÉÏÊÖ³õÊ¼±£Ö¤½ð
+            TAPIREAL64					UpperMaintenanceMargin;			///< ÉÏÊÖÎ¬³Ö±£Ö¤½ð
+            TAPIREAL64					Discount;						///< LMEÌùÏÖ
 
-            TAPIREAL64                    Balance;                        ///< å½“æ—¥ç»“å­˜
-            TAPIREAL64                    Equity;                            ///< å½“æ—¥æƒç›Š
-            TAPIREAL64                    Available;                        ///< å½“æ—¥å¯ç”¨
-            TAPIREAL64                    CanDraw;                        ///< å¯æå–
-            TAPIREAL64                    MarketEquity;                    ///< è´¦æˆ·å¸‚å€¼
-            TAPIREAL64                    AuthMoney;                      ///< æŽˆä¿¡èµ„é‡‘
+            TAPIREAL64					Balance;						///< µ±ÈÕ½á´æ
+            TAPIREAL64					Equity;							///< µ±ÈÕÈ¨Òæ
+            TAPIREAL64					Available;						///< µ±ÈÕ¿ÉÓÃ
+            TAPIREAL64					CanDraw;						///< ¿ÉÌáÈ¡
+            TAPIREAL64					MarketEquity;					///< ÕË»§ÊÐÖµ
+            TAPIREAL64					AuthMoney;                      ///< ÊÚÐÅ×Ê½ð
     };
 
-    //! äº¤æ˜“å“ç§ä¿¡æ¯
+    //! ½»Ò×Æ·ÖÖÐÅÏ¢
     struct TapAPICommodityInfo
     {
-            TAPISTR_10                            ExchangeNo;                        //äº¤æ˜“æ‰€ç¼–ç 
-            TAPICommodityType                    CommodityType;                    //å“ç§ç±»åž‹
-            TAPISTR_10                            CommodityNo;                    //å“ç§ç¼–å·
+			TAPISTR_10							ExchangeNo;						//½»Ò×Ëù±àÂë
+			TAPICommodityType					CommodityType;					//Æ·ÖÖÀàÐÍ
+			TAPISTR_10							CommodityNo;					//Æ·ÖÖ±àºÅ
 
-            TAPISTR_20                            CommodityName;                    //å“ç§åç§°
-            TAPISTR_30                            CommodityEngName;                //å“ç§è‹±æ–‡åç§°
+			TAPISTR_20							CommodityName;					//Æ·ÖÖÃû³Æ
+			TAPISTR_30							CommodityEngName;				//Æ·ÖÖÓ¢ÎÄÃû³Æ
 
-            TAPISTR_10                            RelateExchangeNo;
-            TAPICommodityType                    RelateCommodityType;
-            TAPISTR_10                            RelateCommodityNo;
+			TAPISTR_10							RelateExchangeNo;
+			TAPICommodityType					RelateCommodityType;
+			TAPISTR_10							RelateCommodityNo;
 
-            TAPISTR_10                            RelateExchangeNo2;
-            TAPICommodityType                    RelateCommodityType2;
-            TAPISTR_10                            RelateCommodityNo2;
+			TAPISTR_10							RelateExchangeNo2;
+			TAPICommodityType					RelateCommodityType2;
+			TAPISTR_10							RelateCommodityNo2;
 
-            TAPISTR_10                            CurrencyGroupNo;
-            TAPISTR_10                            TradeCurrency;                    //äº¤æ˜“å¸ç§
-            TAPIREAL64                            ContractSize;                    //æ¯æ‰‹ä¹˜æ•°
-            TAPIOpenCloseModeType                OpenCloseMode;                    //å¼€å¹³æ–¹å¼
-            TAPIREAL64                            StrikePriceTimes;                //æ‰§è¡Œä»·æ ¼å€æ•°
+			TAPISTR_10							CurrencyGroupNo;
+			TAPISTR_10							TradeCurrency;					//½»Ò×±ÒÖÖ
+			TAPIREAL64							ContractSize;					//Ã¿ÊÖ³ËÊý
+			TAPIOpenCloseModeType				OpenCloseMode;					//¿ªÆ½·½Ê½
+			TAPIREAL64							StrikePriceTimes;				//Ö´ÐÐ¼Û¸ñ±¶Êý
 
-            TAPIREAL64                            CommodityTickSize;                //æœ€å°å˜åŠ¨ä»·ä½
-            TAPIINT32                            CommodityDenominator;            //æŠ¥ä»·åˆ†æ¯
-            TAPICmbDirectType                    CmbDirect;                        //ç»„åˆæ–¹å‘
-            TAPIDeliveryModeType                DeliveryMode;                    //äº¤å‰²è¡Œæƒæ–¹å¼
-            TAPIINT32                            DeliveryDays;                    //äº¤å‰²æ—¥åç§»
-            TAPITIME                            AddOneTime;                        //T+1åˆ†å‰²æ—¶é—´
-            TAPIINT32                            CommodityTimeZone;                //å“ç§æ—¶åŒº
-            TAPIYNFLAG                            IsAddOne;                        //æ˜¯å¦å¤„äºŽT+1æ—¶æ®µã€‚
+			TAPIREAL64							CommodityTickSize;				//×îÐ¡±ä¶¯¼ÛÎ»
+			TAPIINT32							CommodityDenominator;			//±¨¼Û·ÖÄ¸
+			TAPICmbDirectType					CmbDirect;						//×éºÏ·½Ïò
+			TAPIDeliveryModeType				DeliveryMode;					//½»¸îÐÐÈ¨·½Ê½
+			TAPIINT32							DeliveryDays;					//½»¸îÈÕÆ«ÒÆ
+			TAPITIME							AddOneTime;						//T+1·Ö¸îÊ±¼ä
+			TAPIINT32							CommodityTimeZone;				//Æ·ÖÖÊ±Çø
+			TAPIYNFLAG							IsAddOne;						//ÊÇ·ñ´¦ÓÚT+1Ê±¶Î¡£
+			TAPIOptionType						OptionType;						//ÆÚÈ¨ÀàÐÍ
 
 
     };
 
-    //! äº¤æ˜“åˆçº¦ä¿¡æ¯
+    //! ½»Ò×ºÏÔ¼ÐÅÏ¢
     struct TapAPITradeContractInfo
     {
-            TAPISTR_10              ExchangeNo;                             ///< äº¤æ˜“æ‰€ç¼–ç 
-            TAPICommodityType        CommodityType;                          ///< å“ç§ç±»åž‹
-            TAPISTR_10              CommodityNo;                            ///< å“ç§ç¼–å·
-            TAPISTR_10              ContractNo1;                            ///< åˆçº¦ä»£ç 1
-            TAPISTR_10              StrikePrice1;                           ///< æ‰§è¡Œä»·1
-            TAPICallOrPutFlagType    CallOrPutFlag1;                         ///< çœ‹æ¶¨çœ‹è·Œæ ‡ç¤º1
-            TAPISTR_10              ContractNo2;                            ///< åˆçº¦ä»£ç 2
-            TAPISTR_10              StrikePrice2;                           ///< æ‰§è¡Œä»·2
-            TAPICallOrPutFlagType    CallOrPutFlag2;                         ///< çœ‹æ¶¨çœ‹è·Œæ ‡ç¤º2
-            TAPIContractTypeType    ContractType;                           ///< åˆçº¦ç±»åž‹
-            TAPISTR_10                QuoteUnderlyingContract;                ///< è¡Œæƒ…çœŸå®žåˆçº¦
-            TAPISTR_70              ContractName;                           ///< åˆçº¦åç§°
-            TAPIDATE                ContractExpDate;                        ///< åˆçº¦åˆ°æœŸæ—¥    
-            TAPIDATE                LastTradeDate;                          ///< æœ€åŽäº¤æ˜“æ—¥
-            TAPIDATE                FirstNoticeDate;                        ///< é¦–æ¬¡é€šçŸ¥æ—¥
+            TAPISTR_10              ExchangeNo;                             ///< ½»Ò×Ëù±àÂë
+            TAPICommodityType		CommodityType;                          ///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10              CommodityNo;                            ///< Æ·ÖÖ±àºÅ
+            TAPISTR_10              ContractNo1;                            ///< ºÏÔ¼´úÂë1
+            TAPISTR_10              StrikePrice1;                           ///< Ö´ÐÐ¼Û1
+            TAPICallOrPutFlagType	CallOrPutFlag1;                         ///< ¿´ÕÇ¿´µø±êÊ¾1
+            TAPISTR_10              ContractNo2;                            ///< ºÏÔ¼´úÂë2
+            TAPISTR_10              StrikePrice2;                           ///< Ö´ÐÐ¼Û2
+            TAPICallOrPutFlagType	CallOrPutFlag2;                         ///< ¿´ÕÇ¿´µø±êÊ¾2
+            TAPIContractTypeType	ContractType;                           ///< ºÏÔ¼ÀàÐÍ
+            TAPISTR_10				QuoteUnderlyingContract;				///< ÐÐÇéÕæÊµºÏÔ¼
+            TAPISTR_70              ContractName;                           ///< ºÏÔ¼Ãû³Æ
+            TAPIDATE                ContractExpDate;                        ///< ºÏÔ¼µ½ÆÚÈÕ	
+            TAPIDATE                LastTradeDate;                          ///< ×îºó½»Ò×ÈÕ
+            TAPIDATE                FirstNoticeDate;                        ///< Ê×´ÎÍ¨ÖªÈÕ
+			TAPIREAL64				ContractSize;							///< ÌØÊâºÏÔ¼²ãÃ¿ÊÖ³ËÊý
     };
 
 
-    //! äº¤æ˜“å¸ç§ä¿¡æ¯
+    //! ½»Ò×±ÒÖÖÐÅÏ¢
     struct TapAPICurrencyInfo
     {
-            TAPISTR_10                    CurrencyNo;                        ///< å¸ç§ç¼–å·
-            TAPISTR_10                    CurrencyGroupNo;                ///< å¸ç§ç»„ç¼–å·
-            TAPIREAL64                    TradeRate;                        ///< äº¤æ˜“æ±‡çŽ‡
-            TAPIREAL64                    TradeRate2;                        ///< äº¤æ˜“æ±‡çŽ‡2
+            TAPISTR_10					CurrencyNo;						///< ±ÒÖÖ±àºÅ
+            TAPISTR_10					CurrencyGroupNo;				///< ±ÒÖÖ×é±àºÅ
+            TAPIREAL64					TradeRate;						///< ½»Ò×»ãÂÊ
+            TAPIREAL64					TradeRate2;						///< ½»Ò×»ãÂÊ2
 
-            TAPIFutureAlgType            FutureAlg;                        ///< é€ç¬”'1',ç›¯å¸‚ '2'
-            TAPIOptionAlgType            OptionAlg;                        ///< æœŸæƒç®—æ³•,æœŸè´§æ–¹å¼'1',æœŸæƒæ–¹å¼'2'
-    };
+            TAPIFutureAlgType			FutureAlg;						///< ±ÒÖÖ×é¶ÀÁ¢±êÖ¾
+            TAPIOptionAlgType			OptionAlg;						///< ÊÇ·ñÊÇ»ù±Ò
+    
+	};
     //=============================================================================
     /**
-    *    \addtogroup G_DATATYPE_T_TAPIMSGRECEIVERTYPE    æ¶ˆæ¯æŽ¥æ”¶è€…ç±»åž‹
-    *    @{
+    *	 G_DATATYPE_T_TAPIMSGRECEIVERTYPE	ÏûÏ¢½ÓÊÕÕßÀàÐÍ
+    *	
     */
     //=============================================================================
-    //! æ¶ˆæ¯æŽ¥æ”¶è€…ç±»åž‹
-    typedef TAPICHAR                TAPIMsgReceiverType;
-    //! å•èµ„é‡‘è´¦å·å®¢æˆ·
-    const TAPIMsgReceiverType        TAPI_MSG_RECEIVER_ACCOUNTNO = '1';
-    //! èµ„é‡‘è´¦å·åˆ†ç»„
-    const TAPIMsgReceiverType        TAPI_MSG_RECEIVER_ACCOUNTGROUPNO = '2';
-    //! ç¬¦åˆå±žæ€§çš„èµ„é‡‘è´¦å·
-    const TAPIMsgReceiverType        TAPI_MSG_RECEIVER_ATTRIBUTE = '3';
-    //! æŒ‡å®šç™»å½•ç”¨æˆ·
-    const TAPIMsgReceiverType        TAPI_MSG_RECEIVER_USERNO = '4';
-    /** @}*/
-
-    //=============================================================================
-    /**
-    *    \addtogroup G_DATATYPE_T_TAPIMSGLEVELTYPE    æ¶ˆæ¯çº§åˆ«
-    *    @{
-    */
-    //=============================================================================
-    //! æ¶ˆæ¯çº§åˆ«
-    typedef TAPICHAR                TAPIMsgLevelType;
-    //! æ™®é€š
-    const TAPIMsgLevelType            TAPI_MSG_LEVEL_NORMAL = '1';
-    //! é‡è¦
-    const TAPIMsgLevelType            TAPI_MSG_LEVEL_IMPORTANT = '2';
-    //! ç´§æ€¥
-    const TAPIMsgLevelType            TAPI_MSG_LEVEL_IMERGENCY = '3';
-    /** @}*/
-
+    //! ÏûÏ¢½ÓÊÕÕßÀàÐÍ
+    typedef TAPICHAR				TAPIMsgReceiverType;
+    //! µ¥×Ê½ðÕËºÅ¿Í»§
+    const TAPIMsgReceiverType		TAPI_MSG_RECEIVER_ACCOUNTNO = '1';
+    //! ×Ê½ðÕËºÅ·Ö×é
+    const TAPIMsgReceiverType		TAPI_MSG_RECEIVER_ACCOUNTGROUPNO = '2';
+    //! ·ûºÏÊôÐÔµÄ×Ê½ðÕËºÅ
+    const TAPIMsgReceiverType		TAPI_MSG_RECEIVER_ATTRIBUTE = '3';
+    //! Ö¸¶¨µÇÂ¼ÓÃ»§
+    const TAPIMsgReceiverType		TAPI_MSG_RECEIVER_USERNO = '4';
+    
 
     //=============================================================================
     /**
-    *    \addtogroup G_DATATYPE_T_TAPIMSGTYPETYPE    æ¶ˆæ¯ç±»åž‹
-    *    @{
+    *	 G_DATATYPE_T_TAPIMSGLEVELTYPE	ÏûÏ¢¼¶±ð
+    *	
     */
     //=============================================================================
-    //! æ¶ˆæ¯ç±»åž‹
-    typedef TAPICHAR                TAPIMsgTypeType;
-    //! ç®¡ç†
-    const TAPIMsgTypeType            TAPI_Msg_TYPE_MANAGER = '1';
-    //! é£Žé™©
-    const TAPIMsgTypeType            TAPI_Msg_TYPE_RISKCONTROL = '2';
-    /** @}*/
+    //! ÏûÏ¢¼¶±ð
+    typedef TAPICHAR				TAPIMsgLevelType;
+    //! ÆÕÍ¨
+    const TAPIMsgLevelType			TAPI_MSG_LEVEL_NORMAL = '1';
+    //! ÖØÒª
+    const TAPIMsgLevelType			TAPI_MSG_LEVEL_IMPORTANT = '2';
+    //! ½ô¼±
+    const TAPIMsgLevelType			TAPI_MSG_LEVEL_IMERGENCY = '3';
+    
 
 
     //=============================================================================
     /**
-    *    \addtogroup G_DATATYPE_T_TAPIBILLTYPETYPE    è´¦å•ç±»åž‹
-    *    @{
+    *	 G_DATATYPE_T_TAPIMSGTYPETYPE	ÏûÏ¢ÀàÐÍ
+    *	
     */
     //=============================================================================
-    //! è´¦å•ç±»åž‹
-    typedef TAPICHAR                        TAPIBillTypeType;
-    //! æ—¥è´¦å•
-    const TAPIBillTypeType                    TAPI_BILL_DATE = 'D';
-    //! æœˆè´¦å•
-    const TAPIBillTypeType                    TAPI_BILL_MONTH = 'M';
-    /** @}*/
+    //! ÏûÏ¢ÀàÐÍ
+    typedef TAPICHAR				TAPIMsgTypeType;
+    //! ¹ÜÀí
+    const TAPIMsgTypeType			TAPI_Msg_TYPE_MANAGER = '1';
+    //! ·çÏÕ
+    const TAPIMsgTypeType			TAPI_Msg_TYPE_RISKCONTROL = '2';
+    
+
 
     //=============================================================================
     /**
-    *    \addtogroup G_DATATYPE_T_TAPIBILLFILETYPETYPE    å¸å•æ–‡ä»¶ç±»åž‹
-    *    @{
+    *	 G_DATATYPE_T_TAPIBILLTYPETYPE	ÕËµ¥ÀàÐÍ
+    *	
     */
     //=============================================================================
-    //! å¸å•æ–‡ä»¶ç±»åž‹
-    typedef TAPICHAR                        TAPIBillFileTypeType;
-    //! txtæ ¼å¼æ–‡ä»¶
-    const TAPIBillFileTypeType                TAPI_BILL_FILE_TXT = 'T';
-    //! pdfæ ¼å¼æ–‡ä»¶
-    const TAPIBillFileTypeType                TAPI_BILL_FILE_PDF = 'F';
-    /** @}*/
+    //! ÕËµ¥ÀàÐÍ
+    typedef TAPICHAR						TAPIBillTypeType;
+    //! ÈÕÕËµ¥
+    const TAPIBillTypeType					TAPI_BILL_DATE = 'D';
+    //! ÔÂÕËµ¥
+    const TAPIBillTypeType					TAPI_BILL_MONTH = 'M';
+    
+
+    //=============================================================================
+    /**
+    *	 G_DATATYPE_T_TAPIBILLFILETYPETYPE	ÕÊµ¥ÎÄ¼þÀàÐÍ
+    *	
+    */
+    //=============================================================================
+    //! ÕÊµ¥ÎÄ¼þÀàÐÍ
+    typedef TAPICHAR						TAPIBillFileTypeType;
+    //! txt¸ñÊ½ÎÄ¼þ
+    const TAPIBillFileTypeType				TAPI_BILL_FILE_TXT = 'T';
+    //! pdf¸ñÊ½ÎÄ¼þ
+    const TAPIBillFileTypeType				TAPI_BILL_FILE_PDF = 'F';
+    
 
 
 
-    //! äº¤æ˜“æˆ–é£ŽæŽ§æ¶ˆæ¯æŸ¥è¯¢è¯·æ±‚ç»“æž„
+    //! ½»Ò×»ò·ç¿ØÏûÏ¢²éÑ¯ÇëÇó½á¹¹
     struct TapAPITradeMessageReq
     {
-            TAPISTR_20                    AccountNo;
-            TAPISTR_20                    AccountAttributeNo;
-            TAPIDATETIME                BenginSendDateTime;
-            TAPIDATETIME                EndSendDateTime;
+            TAPISTR_20					AccountNo;
+            TAPIDATETIME				BenginSendDateTime;
+            TAPIDATETIME				EndSendDateTime;
     };
 
 
 
 
 
-    //! äº¤æ˜“æ¶ˆæ¯å‘é€åº”ç­”ç»“æž„
+    //! ½»Ò×ÏûÏ¢·¢ËÍÓ¦´ð½á¹¹
     struct TapAPITradeMessage
     {
-            TAPIUINT32                SerialID;                        ///< æµå·
+            TAPIUINT32				SerialID;						///< Á÷ºÅ
 
-            TAPISTR_20                AccountNo;                        ///< å®¢æˆ·èµ„é‡‘è´¦å·
+            TAPISTR_20				AccountNo;						///< ¿Í»§×Ê½ðÕËºÅ
 
-            TAPIDATETIME            TMsgValidDateTime;                ///< æ¶ˆæ¯æœ‰æ•ˆæ—¶é—´
-            TAPISTR_50                TMsgTitle;                        ///< æ¶ˆæ¯æ ‡é¢˜
-            TAPISTR_500                TMsgContent;                    ///< æ¶ˆæ¯å†…å®¹
-            TAPIMsgTypeType            TMsgType;                        ///< æ¶ˆæ¯ç±»åž‹
-            TAPIMsgLevelType        TMsgLevel;                        ///< æ¶ˆæ¯çº§åˆ«
+            TAPIDATETIME			TMsgValidDateTime;				///< ÏûÏ¢ÓÐÐ§Ê±¼ä
+            TAPISTR_50				TMsgTitle;						///< ÏûÏ¢±êÌâ
+            TAPISTR_500				TMsgContent;					///< ÏûÏ¢ÄÚÈÝ
+            TAPIMsgTypeType			TMsgType;						///< ÏûÏ¢ÀàÐÍ
+            TAPIMsgLevelType		TMsgLevel;						///< ÏûÏ¢¼¶±ð
 
-            TAPIYNFLAG                IsSendBySMS;                    ///< æ˜¯å¦å‘é€çŸ­ä¿¡
-            TAPIYNFLAG                IsSendByEMail;                    ///< æ˜¯å¦å‘é€é‚®ä»¶
-            TAPISTR_20                Sender;                            ///<å‘é€è€…
-            TAPIDATETIME            SendDateTime;                    ///< å‘é€æ—¶é—´
+            TAPIYNFLAG				IsSendBySMS;					///< ÊÇ·ñ·¢ËÍ¶ÌÐÅ
+            TAPIYNFLAG				IsSendByEMail;					///< ÊÇ·ñ·¢ËÍÓÊ¼þ
+            TAPISTR_20				Sender;							///< ·¢ËÍÕß
+            TAPIDATETIME			SendDateTime;					///< ·¢ËÍÊ±¼ä
     };
 
-    //! å®¢æˆ·è´¦å•æŸ¥è¯¢è¯·æ±‚ç»“æž„
+    //! ¿Í»§ÕËµ¥²éÑ¯ÇëÇó½á¹¹
     struct TapAPIBillQryReq
     {
-            TAPISTR_20                UserNo;
-            TAPIBillTypeType        BillType;
-            TAPIDATE                BillDate;
-            TAPIBillFileTypeType    BillFileType;
+            TAPISTR_20				UserNo;
+            TAPIBillTypeType		BillType;
+            TAPIDATE				BillDate;
+            TAPIBillFileTypeType	BillFileType;
     };
 
-    //! å®¢æˆ·è´¦å•æŸ¥è¯¢åº”ç­”ç»“æž„
+    //! ¿Í»§ÕËµ¥²éÑ¯Ó¦´ð½á¹¹
     struct TapAPIBillQryRsp
     {
-            TapAPIBillQryReq        Reqdata;
-            TAPIINT32                BillLen;
-            TAPICHAR                BillText[1];    ///< å˜é•¿è´¦å•å†…å®¹ï¼Œé•¿åº¦ç”±BillLenæŒ‡å®š
+            TapAPIBillQryReq		Reqdata;
+            TAPIINT32				BillLen;
+            TAPICHAR				BillText[1];	///< ±ä³¤ÕËµ¥ÄÚÈÝ£¬³¤¶ÈÓÉBillLenÖ¸¶¨
     };
 
-    //! åŽ†å²å§”æ‰˜æŸ¥è¯¢è¯·æ±‚ç»“æž„
+    //! ÀúÊ·Î¯ÍÐ²éÑ¯ÇëÇó½á¹¹
     struct TapAPIHisOrderQryReq
     {
-            TAPISTR_20            AccountNo;                            ///< å®¢æˆ·èµ„é‡‘è´¦å·
-            TAPISTR_20            AccountAttributeNo;                    ///< å®¢æˆ·å±žæ€§å·
-            TAPIDATE            BeginDate;                            ///< å¼€å§‹æ—¶é—´ (å¿…å¡«)
-            TAPIDATE            EndDate;                            ///< ç»“æŸæ—¶é—´ (å¿…å¡«)
+            TAPISTR_20			AccountNo;							///< ¿Í»§×Ê½ðÕËºÅ
+            TAPIDATE			BeginDate;							///< ¿ªÊ¼Ê±¼ä (±ØÌî)
+            TAPIDATE			EndDate;							///< ½áÊøÊ±¼ä (±ØÌî)
     };
 
     struct TapAPIHisOrderQryRsp
     {
-            TAPIDATE                    Date;                                ///< æ—¥æœŸ
-            TAPISTR_20                    AccountNo;                            ///< å®¢æˆ·èµ„é‡‘è´¦å·
+            TAPIDATE					Date;								///< ÈÕÆÚ
+            TAPISTR_20					AccountNo;							///< ¿Í»§×Ê½ðÕËºÅ
 
-            TAPISTR_10                    ExchangeNo;                            ///< äº¤æ˜“æ‰€ç¼–å·
-            TAPICommodityType            CommodityType;                        ///< å“ç§ç±»åž‹
-            TAPISTR_10                    CommodityNo;                        ///< å“ç§ç¼–ç ç±»åž‹
-            TAPISTR_10                    ContractNo;                            ///< åˆçº¦
-            TAPISTR_10                    StrikePrice;                        ///< æ‰§è¡Œä»·æ ¼
-            TAPICallOrPutFlagType        CallOrPutFlag;                        ///< çœ‹å¼ çœ‹è·Œ
-            TAPISTR_10                    ContractNo2;                        ///< åˆçº¦2
-            TAPISTR_10                    StrikePrice2;                        ///< æ‰§è¡Œä»·æ ¼2
-            TAPICallOrPutFlagType        CallOrPutFlag2;                        ///< çœ‹å¼ çœ‹è·Œ2
+            TAPISTR_10					ExchangeNo;							///< ½»Ò×Ëù±àºÅ
+            TAPICommodityType			CommodityType;						///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10					CommodityNo;						///< Æ·ÖÖ±àÂëÀàÐÍ
+            TAPISTR_10					ContractNo;							///< ºÏÔ¼
+            TAPISTR_10					StrikePrice;						///< Ö´ÐÐ¼Û¸ñ
+            TAPICallOrPutFlagType		CallOrPutFlag;						///< ¿´ÕÅ¿´µø
+            TAPISTR_10					ContractNo2;						///< ºÏÔ¼2
+            TAPISTR_10					StrikePrice2;						///< Ö´ÐÐ¼Û¸ñ2
+            TAPICallOrPutFlagType		CallOrPutFlag2;						///< ¿´ÕÅ¿´µø2
 
-            TAPIOrderTypeType            OrderType;                            ///< å§”æ‰˜ç±»åž‹
-            TAPIOrderSourceType            OrderSource;                        ///< å§”æ‰˜æ¥æº
-            TAPITimeInForceType            TimeInForce;                        ///< å§”æ‰˜æœ‰æ•ˆç±»åž‹
-            TAPIDATETIME                ExpireTime;                            ///< æœ‰æ•ˆæ—¥æœŸ(GTDæƒ…å†µä¸‹ä½¿ç”¨)
-            TAPIYNFLAG                    IsRiskOrder;                        ///< æ˜¯å¦é£Žé™©æŠ¥å•
-            TAPISideType                OrderSide;                            ///< ä¹°å…¥å–å‡º
-            TAPIPositionEffectType        PositionEffect;                        ///< å¼€å¹³æ ‡å¿—
-            TAPIPositionEffectType        PositionEffect2;                    ///< å¼€å¹³æ ‡å¿—2
-            TAPISTR_50                    InquiryNo;                            ///< è¯¢ä»·å·
-            TAPIHedgeFlagType            HedgeFlag;                            ///< æŠ•æœºä¿å€¼
-            TAPIREAL64                    OrderPrice;                            ///< å§”æ‰˜ä»·æ ¼
-            TAPIREAL64                    OrderPrice2;                        ///< å§”æ‰˜ä»·æ ¼2ï¼Œåšå¸‚å•†åº”ä»·ä½¿ç”¨
-            TAPIREAL64                    StopPrice;                            ///< è§¦å‘ä»·æ ¼
-            TAPIUINT32                    OrderQty;                            ///< å§”æ‰˜æ•°é‡
-            TAPIUINT32                    OrderMinQty;                        ///< æœ€å°æˆäº¤é‡
-            TAPIUINT32                    OrderCanceledQty;                    ///< æ’¤å•æ•°é‡
+            TAPIOrderTypeType			OrderType;							///< Î¯ÍÐÀàÐÍ
+            TAPIOrderSourceType			OrderSource;						///< Î¯ÍÐÀ´Ô´
+            TAPITimeInForceType			TimeInForce;						///< Î¯ÍÐÓÐÐ§ÀàÐÍ
+            TAPIDATETIME				ExpireTime;							///< ÓÐÐ§ÈÕÆÚ(GTDÇé¿öÏÂÊ¹ÓÃ)
+            TAPIYNFLAG					IsRiskOrder;						///< ÊÇ·ñ·çÏÕ±¨µ¥
+            TAPISideType				OrderSide;							///< ÂòÈëÂô³ö
+            TAPIPositionEffectType		PositionEffect;						///< ¿ªÆ½±êÖ¾
+            TAPIPositionEffectType		PositionEffect2;					///< ¿ªÆ½±êÖ¾2
+            TAPISTR_50					InquiryNo;							///< Ñ¯¼ÛºÅ
+            TAPIHedgeFlagType			HedgeFlag;							///< Í¶»ú±£Öµ
+            TAPIREAL64					OrderPrice;							///< Î¯ÍÐ¼Û¸ñ
+            TAPIREAL64					OrderPrice2;						///< Î¯ÍÐ¼Û¸ñ2£¬×öÊÐÉÌÓ¦¼ÛÊ¹ÓÃ
+            TAPIREAL64					StopPrice;							///< ´¥·¢¼Û¸ñ
+            TAPIUINT32					OrderQty;							///< Î¯ÍÐÊýÁ¿
+            TAPIUINT32					OrderMinQty;						///< ×îÐ¡³É½»Á¿
+            TAPIUINT32					OrderCanceledQty;					///< ³·µ¥ÊýÁ¿
 
-            TAPIINT32                    RefInt;                                ///< æ•´åž‹å‚è€ƒå€¼
-            TAPIREAL64                    RefDouble;                            ///<æµ®ç‚¹å‚è€ƒåž‹ã€‚
-            TAPISTR_50                    RefString;                            ///< å­—ç¬¦ä¸²å‚è€ƒå€¼
+            TAPIINT32					RefInt;								///< ÕûÐÍ²Î¿¼Öµ
+            TAPIREAL64					RefDouble;							///<¸¡µã²Î¿¼ÐÍ¡£
+            TAPISTR_50					RefString;							///< ×Ö·û´®²Î¿¼Öµ
 
-            TAPICHAR                    ServerFlag;                            ///< æœåŠ¡å™¨æ ‡è¯†
-            TAPISTR_20                    OrderNo;                                            ///< å§”æ‰˜ç¼–ç 
-            TAPIUINT32                    OrderStreamID;                        ///< å§”æ‰˜æµæ°´å·
+            TAPICHAR					ServerFlag;							///< ·þÎñÆ÷±êÊ¶
+            TAPISTR_20					OrderNo;                                            ///< Î¯ÍÐ±àÂë
+            TAPIUINT32					OrderStreamID;						///< Î¯ÍÐÁ÷Ë®ºÅ
 
-            TAPISTR_10                    UpperNo;                            ///< ä¸Šæ‰‹å·
-            TAPISTR_10                    UpperChannelNo;                        ///< ä¸Šæ‰‹é€šé“ç¼–å·
-            TAPISTR_20                    OrderLocalNo;                        ///< æœ¬åœ°å·
-            TAPIUINT32                    UpperStreamID;                        ///< ä¸Šæ‰‹æµå·
+            TAPISTR_10					UpperNo;							///< ÉÏÊÖºÅ
+            TAPISTR_10					UpperChannelNo;						///< ÉÏÊÖÍ¨µÀ±àºÅ
+            TAPISTR_20					OrderLocalNo;						///< ±¾µØºÅ
+            TAPIUINT32					UpperStreamID;						///< ÉÏÊÖÁ÷ºÅ
 
-            TAPISTR_50                    OrderSystemNo;                        ///< ç³»ç»Ÿå·
-            TAPISTR_50                    OrderExchangeSystemNo;                ///< äº¤æ˜“æ‰€ç³»ç»Ÿå·
-            TAPISTR_50                    OrderParentSystemNo;                ///< çˆ¶å•ç³»ç»Ÿå· 
+            TAPISTR_50					OrderSystemNo;						///< ÏµÍ³ºÅ
+            TAPISTR_50					OrderExchangeSystemNo;				///< ½»Ò×ËùÏµÍ³ºÅ
+            TAPISTR_50					OrderParentSystemNo;				///< ¸¸µ¥ÏµÍ³ºÅ 
 
-            TAPISTR_20                    OrderInsertUserNo;                    ///< ä¸‹å•äºº
-            TAPIDATETIME                OrderInsertTime;                    ///< ä¸‹å•æ—¶é—´
-            TAPISTR_20                    OrderCommandUserNo;                    ///< æŒ‡ä»¤ä¸‹è¾¾äºº
-            TAPISTR_20                    OrderUpdateUserNo;                    ///< å§”æ‰˜æ›´æ–°äºº
-            TAPIDATETIME                OrderUpdateTime;                    ///< å§”æ‰˜æ›´æ–°æ—¶é—´
+            TAPISTR_20					OrderInsertUserNo;					///< ÏÂµ¥ÈË
+            TAPIDATETIME				OrderInsertTime;					///< ÏÂµ¥Ê±¼ä
+            TAPISTR_20					OrderCommandUserNo;					///< Ö¸ÁîÏÂ´ïÈË
+            TAPISTR_20					OrderUpdateUserNo;					///< Î¯ÍÐ¸üÐÂÈË
+            TAPIDATETIME				OrderUpdateTime;					///< Î¯ÍÐ¸üÐÂÊ±¼ä
 
-            TAPIOrderStateType            OrderState;                            ///< å§”æ‰˜çŠ¶æ€
+            TAPIOrderStateType			OrderState;							///< Î¯ÍÐ×´Ì¬
 
-            TAPIREAL64                    OrderMatchPrice;                    ///< æˆäº¤ä»·
-            TAPIREAL64                    OrderMatchPrice2;                    ///< æˆäº¤ä»·2
-            TAPIUINT32                    OrderMatchQty;                        ///< æˆäº¤é‡
-            TAPIUINT32                    OrderMatchQty2;                        ///< æˆäº¤é‡2
+            TAPIREAL64					OrderMatchPrice;					///< ³É½»¼Û
+            TAPIREAL64					OrderMatchPrice2;					///< ³É½»¼Û2
+            TAPIUINT32					OrderMatchQty;						///< ³É½»Á¿
+            TAPIUINT32					OrderMatchQty2;						///< ³É½»Á¿2
 
-            TAPIUINT32                    ErrorCode;                            ///< æœ€åŽä¸€æ¬¡æ“ä½œé”™è¯¯ä¿¡æ¯ç 
-            TAPISTR_50                    ErrorText;                            ///< é”™è¯¯ä¿¡æ¯
+            TAPIUINT32					ErrorCode;							///< ×îºóÒ»´Î²Ù×÷´íÎóÐÅÏ¢Âë
+            TAPISTR_50					ErrorText;							///< ´íÎóÐÅÏ¢
 
-            TAPIYNFLAG                    IsBackInput;                        ///< æ˜¯å¦ä¸ºå½•å…¥å§”æ‰˜å•
-            TAPIYNFLAG                    IsDeleted;                            ///< å§”æ‰˜æˆäº¤åˆ é™¤æ ‡è®°
-            TAPIYNFLAG                    IsAddOne;                            ///< æ˜¯å¦ä¸ºT+1å•
-            TAPIYNFLAG                    AddOneIsValid;                        ///< æ˜¯å¦T+1æœ‰æ•ˆ
+            TAPIYNFLAG					IsBackInput;						///< ÊÇ·ñÎªÂ¼ÈëÎ¯ÍÐµ¥
+            TAPIYNFLAG					IsDeleted;							///< Î¯ÍÐ³É½»É¾³ý±ê¼Ç
+            TAPIYNFLAG					IsAddOne;							///< ÊÇ·ñÎªT+1µ¥
+            TAPIYNFLAG					AddOneIsValid;						///< ÊÇ·ñT+1ÓÐÐ§
 
-            TAPIUINT32                    MinClipSize;                        ///< å†°å±±å•æœ€å°éšæœºé‡
-            TAPIUINT32                    MaxClipSize;                        ///< å†°å±±å•æœ€å¤§éšæœºé‡
-            TAPISTR_50                    LicenseNo;                            ///< è½¯ä»¶æŽˆæƒå·
+            TAPIUINT32					MinClipSize;						///< ±ùÉ½µ¥×îÐ¡Ëæ»úÁ¿
+            TAPIUINT32					MaxClipSize;						///< ±ùÉ½µ¥×î´óËæ»úÁ¿
+            TAPISTR_50					LicenseNo;							///< Èí¼þÊÚÈ¨ºÅ
 
-            TAPITacticsTypeType            TacticsType;                        ///< ç­–ç•¥å•ç±»åž‹    
-            TAPITriggerConditionType    TriggerCondition;                    ///< è§¦å‘æ¡ä»¶
-            TAPITriggerPriceTypeType    TriggerPriceType;                    ///< è§¦å‘ä»·æ ¼ç±»åž‹
+            TAPITacticsTypeType			TacticsType;						///< ²ßÂÔµ¥ÀàÐÍ	
+            TAPITriggerConditionType	TriggerCondition;					///< ´¥·¢Ìõ¼þ
+            TAPITriggerPriceTypeType	TriggerPriceType;					///< ´¥·¢¼Û¸ñÀàÐÍ
+
     };
-
-    //! åŽ†å²æˆäº¤æŸ¥è¯¢è¯·æ±‚ç»“æž„
+	  //! ÀúÊ·³É½»²éÑ¯ÇëÇó½á¹¹
     struct TapAPIHisMatchQryReq
     {
-            TAPISTR_20                AccountNo;                            ///< å®¢æˆ·èµ„é‡‘è´¦å·
-            TAPISTR_20                AccountAttributeNo;                    ///< å®¢æˆ·å±žæ€§å·
-            TAPIDATE                BeginDate;                            ///< å¼€å§‹æ—¥æœŸï¼Œå¿…å¡«
-            TAPIDATE                EndDate;                            ///< ç»“æŸæ—¥æœŸï¼Œå¿…å¡«
-            TAPICHAR                CountType;                            ///< ç»Ÿè®¡ç±»åž‹
+            TAPISTR_20				AccountNo;							///< ¿Í»§×Ê½ðÕËºÅ
+            TAPIDATE				BeginDate;							///< ¿ªÊ¼ÈÕÆÚ£¬±ØÌî
+            TAPIDATE				EndDate;							///< ½áÊøÈÕÆÚ£¬±ØÌî
     };
 
-    //! åŽ†å²æˆäº¤æŸ¥è¯¢åº”ç­”ç»“æž„
+    //! ÀúÊ·³É½»²éÑ¯Ó¦´ð½á¹¹
     //! key1=SerialID
     //! key2=ExchangeNo+MatchCmbNo+MatchNo+MatchSide
     struct TapAPIHisMatchQryRsp
     {
 
-            TAPIDATE                SettleDate;                            ///< ç»“ç®—æ—¥æœŸ
-            TAPIDATE                TradeDate;                            ///<äº¤æ˜“æ—¥æœŸ
-            TAPISTR_20                AccountNo;                            ///< å®¢æˆ·èµ„é‡‘è´¦å·
+            TAPIDATE				SettleDate;							///< ½áËãÈÕÆÚ
+            TAPIDATE				TradeDate;							///<½»Ò×ÈÕÆÚ
+            TAPISTR_20				AccountNo;							///< ¿Í»§×Ê½ðÕËºÅ
 
-            TAPISTR_10                ExchangeNo;                            ///< å¸‚åœºæˆ–è€…äº¤æ˜“æ‰€ä»£ç 
-            TAPICommodityType        CommodityType;                        ///< å“ç§ç±»åž‹
-            TAPISTR_10                CommodityNo;                        ///< å“ç§å·
-            TAPISTR_10                ContractNo;                            ///< åˆçº¦å·
-            TAPISTR_10                StrikePrice;                        ///< æ‰§è¡Œä»·
-            TAPICallOrPutFlagType    CallOrPutFlag;                        ///< çœ‹æ¶¨çœ‹è·Œæ ‡å¿—
+            TAPISTR_10				ExchangeNo;							///< ÊÐ³¡»òÕß½»Ò×Ëù´úÂë
+            TAPICommodityType		CommodityType;						///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10				CommodityNo;						///< Æ·ÖÖºÅ
+            TAPISTR_10				ContractNo;							///< ºÏÔ¼ºÅ
+            TAPISTR_10				StrikePrice;						///< Ö´ÐÐ¼Û
+            TAPICallOrPutFlagType	CallOrPutFlag;						///< ¿´ÕÇ¿´µø±êÖ¾
 
-            TAPIMatchSourceType        MatchSource;                        ///< æˆäº¤æ¥æº    
-            TAPISideType            MatchSide;                            ///< ä¹°å–æ–¹å‘
-            TAPIPositionEffectType    PositionEffect;                        ///< å¼€å¹³æ ‡å¿—
-            TAPIHedgeFlagType        HedgeFlag;                            ///< æŠ•æœºä¿å€¼
-            TAPIREAL64                MatchPrice;                            ///< æˆäº¤ä»·
-            TAPIUINT32                MatchQty;                            ///< æˆäº¤é‡
+            TAPIMatchSourceType		MatchSource;						///< ³É½»À´Ô´	
+            TAPISideType			MatchSide;							///< ÂòÂô·½Ïò
+            TAPIPositionEffectType	PositionEffect;						///< ¿ªÆ½±êÖ¾
+            TAPIHedgeFlagType		HedgeFlag;							///< Í¶»ú±£Öµ
+            TAPIREAL64				MatchPrice;							///< ³É½»¼Û
+            TAPIUINT32				MatchQty;							///< ³É½»Á¿
 
-            TAPISTR_20                OrderNo;                            ///< å§”æ‰˜å·
-            TAPISTR_20                MatchNo;                            ///< æˆäº¤åºå·
-            TAPIUINT32                MatchStreamID;                        ///< æˆäº¤æµæ°´å·
+            TAPISTR_20				OrderNo;							///< Î¯ÍÐºÅ
+            TAPISTR_20				MatchNo;							///< ³É½»ÐòºÅ
+            TAPIUINT32				MatchStreamID;						///< ³É½»Á÷Ë®ºÅ
 
-            TAPISTR_10                UpperNo;                            ///< ä¸Šæ‰‹å·
-            TAPISTR_20                MatchCmbNo;                            ///< ç»„åˆå·
-            TAPISTR_70                ExchangeMatchNo;                    ///< æˆäº¤ç¼–å·(äº¤æ˜“æ‰€æˆäº¤å·)
-            TAPIUINT32                MatchUpperStreamID;                    ///< ä¸Šæ‰‹æµæ°´å·
+            TAPISTR_10				UpperNo;							///< ÉÏÊÖºÅ
+            TAPISTR_20				MatchCmbNo;							///< ×éºÏºÅ
+            TAPISTR_70				ExchangeMatchNo;					///< ³É½»±àºÅ(½»Ò×Ëù³É½»ºÅ)
+            TAPIUINT32				MatchUpperStreamID;					///< ÉÏÊÖÁ÷Ë®ºÅ
 
-            TAPISTR_10                CommodityCurrencyGroup;
-            TAPISTR_10                CommodityCurrency;                    //å“ç§å¸ç§        
+            TAPISTR_10				CommodityCurrencyGroup;
+            TAPISTR_10				CommodityCurrency;					//Æ·ÖÖ±ÒÖÖ		
 
-            TAPIREAL64                Turnover;                            ///< æˆäº¤é‡‘é¢
-            TAPIREAL64                PremiumIncome;                        ///< æƒåˆ©é‡‘æ”¶å…¥
-            TAPIREAL64                PremiumPay;                            ///< æƒåˆ©é‡‘æ”¯å‡º
+            TAPIREAL64				Turnover;							///< ³É½»½ð¶î
+            TAPIREAL64				PremiumIncome;						///< È¨Àû½ðÊÕÈë
+            TAPIREAL64				PremiumPay;							///< È¨Àû½ðÖ§³ö
 
-            TAPIREAL64                AccountFee;                            ///< å®¢æˆ·æ‰‹ç»­è´¹
-            TAPISTR_10                AccountFeeCurrencyGroup;
-            TAPISTR_10                AccountFeeCurrency;                    ///< å®¢æˆ·æ‰‹ç»­è´¹å¸ç§
-            TAPIYNFLAG                IsManualFee;                        ///< äººå·¥å®¢æˆ·æ‰‹ç»­è´¹æ ‡è®°
-            TAPIREAL64                AccountOtherFee;                    //å®¢æˆ·å…¶ä»–è´¹ç”¨
+            TAPIREAL64				AccountFee;							///< ¿Í»§ÊÖÐø·Ñ
+            TAPISTR_10				AccountFeeCurrencyGroup;
+            TAPISTR_10				AccountFeeCurrency;					///< ¿Í»§ÊÖÐø·Ñ±ÒÖÖ
+            TAPIYNFLAG				IsManualFee;						///< ÈË¹¤¿Í»§ÊÖÐø·Ñ±ê¼Ç
+            TAPIREAL64				AccountOtherFee;					//¿Í»§ÆäËû·ÑÓÃ
 
-            TAPIREAL64                UpperFee;                            ///< ä¸Šæ‰‹æ‰‹ç»­è´¹
-            TAPISTR_10                UpperFeeCurrencyGroup;
-            TAPISTR_10                UpperFeeCurrency;                    ///< ä¸Šæ‰‹æ‰‹ç»­è´¹å¸ç§
-            TAPIYNFLAG                IsUpperManualFee;                    ///< äººå·¥ä¸Šæ‰‹æ‰‹ç»­è´¹æ ‡è®°
-            TAPIREAL64                UpperOtherFee;                        //ä¸Šæ‰‹å…¶ä»–è´¹ç”¨
+            TAPIREAL64				UpperFee;							///< ÉÏÊÖÊÖÐø·Ñ
+            TAPISTR_10				UpperFeeCurrencyGroup;
+            TAPISTR_10				UpperFeeCurrency;					///< ÉÏÊÖÊÖÐø·Ñ±ÒÖÖ
+            TAPIYNFLAG				IsUpperManualFee;					///< ÈË¹¤ÉÏÊÖÊÖÐø·Ñ±ê¼Ç
+            TAPIREAL64				UpperOtherFee;						//ÉÏÊÖÆäËû·ÑÓÃ
 
-            TAPIDATETIME            MatchDateTime;                        ///< æˆäº¤æ—¶é—´
-            TAPIDATETIME            UpperMatchDateTime;                    ///< ä¸Šæ‰‹æˆäº¤æ—¶é—´
+            TAPIDATETIME			MatchDateTime;						///< ³É½»Ê±¼ä
+            TAPIDATETIME			UpperMatchDateTime;					///< ÉÏÊÖ³É½»Ê±¼ä
 
-            TAPIREAL64                CloseProfit;                        ///< å¹³ä»“ç›ˆäº
-            TAPIREAL64                ClosePrice;                            ///< æŒ‡å®šå¹³ä»“ä»·æ ¼ï¼›
+            TAPIREAL64				CloseProfit;						///< Æ½²ÖÓ¯¿÷
+            TAPIREAL64				ClosePrice;							///< Ö¸¶¨Æ½²Ö¼Û¸ñ£»
 
-            TAPIUINT32                CloseQty;                            ///< å¹³ä»“é‡
+            TAPIUINT32				CloseQty;							///< Æ½²ÖÁ¿
 
-            TAPISTR_10                SettleGroupNo;                        ///<ç»“ç®—åˆ†ç»„
-            TAPISTR_20                OperatorNo;                            ///< æ“ä½œå‘˜
-            TAPIDATETIME            OperateTime;                        ///< æ“ä½œæ—¶é—´
+            TAPISTR_10				SettleGroupNo;						///<½áËã·Ö×é
+            TAPISTR_20				OperatorNo;							///< ²Ù×÷Ô±
+            TAPIDATETIME			OperateTime;						///< ²Ù×÷Ê±¼ä
 
 
     };
 
-    //! åŽ†å²å§”æ‰˜æµç¨‹æŸ¥è¯¢è¯·æ±‚ç»“æž„
+    //! ÀúÊ·Î¯ÍÐÁ÷³Ì²éÑ¯ÇëÇó½á¹¹
     struct TapAPIHisOrderProcessQryReq
     {
-            TAPIDATE                Date;
-            TAPISTR_20                OrderNo;
+            TAPIDATE				Date;
+            TAPISTR_20				OrderNo;
     };
 
-    //! åŽ†å²å§”æ‰˜æµç¨‹æŸ¥è¯¢åº”ç­”æ•°æ®ç»“æž„
-    typedef TapAPIHisOrderQryRsp        TapAPIHisOrderProcessQryRsp;
+    //! ÀúÊ·Î¯ÍÐÁ÷³Ì²éÑ¯Ó¦´ðÊý¾Ý½á¹¹
+    typedef TapAPIHisOrderQryRsp		TapAPIHisOrderProcessQryRsp;
 
  
     //=============================================================================
     /**
-    *    \addtogroup G_DATATYPE_SETTLEFLAG    ç»“ç®—ç±»åž‹
-    *    @{
+    *	 G_DATATYPE_SETTLEFLAG	½áËãÀàÐÍ
+    *	
     */
     //=============================================================================
-    //! è´¦å•ç±»åž‹
-    typedef TAPICHAR                        TAPISettleFlagType;
-    //! è‡ªåŠ¨ç»“ç®—
-    const TAPISettleFlagType                    SettleFlag_AutoSettle = '0';
-    //! äººå·¥ç»“ç®—
-    const TAPISettleFlagType                    SettleFlagh_Manual= '2';
-    /** @}*/   
+    //! ½áËãÀàÐÍ
+    typedef TAPICHAR						TAPISettleFlagType;
+    //! ×Ô¶¯½áËã
+    const TAPISettleFlagType					SettleFlag_AutoSettle = '0';
+    //! ÈË¹¤½áËã
+    const TAPISettleFlagType					SettleFlagh_Manual= '2';
+       
     
-    //! åŽ†å²æŒä»“æŸ¥è¯¢è¯·æ±‚ç»“æž„
+    //! ÀúÊ·³Ö²Ö²éÑ¯ÇëÇó½á¹¹
     struct TapAPIHisPositionQryReq
     {
-            TAPISTR_20                AccountNo;                        ///< å®¢æˆ·èµ„é‡‘è´¦å·
-            //TAPISTR_20                AccountAttributeNo;                ///< å®¢æˆ·å±žæ€§å·
-            TAPIDATE                Date;                            ///< æ—¥æœŸ
-            //TAPICHAR                CountType;                        ///< ç»Ÿè®¡ç±»åž‹
-            TAPISettleFlagType                  SettleFlag;                                             ///<æ•°æ®ç±»åž‹
+            TAPISTR_20				AccountNo;						///< ¿Í»§×Ê½ðÕËºÅ
+            TAPIDATE				Date;							///< ÈÕÆÚ
+            TAPISettleFlagType                  SettleFlag;                                             ///<Êý¾ÝÀàÐÍ
     };
 
-    //! åŽ†å²æŒä»“æŸ¥è¯¢æ•°æ®åº”ç­”ç»“æž„
+    //! ÀúÊ·³Ö²Ö²éÑ¯Êý¾ÝÓ¦´ð½á¹¹
     //! key1=SerialID
-    //! key2=ç»“ç®—æ—¥æœŸ+äº¤æ˜“æ‰€+ç»„å·ç¼–å·+æŒä»“ç¼–å·+ä¹°å–æ–¹å‘
+    //! key2=½áËãÈÕÆÚ+½»Ò×Ëù+×éºÅ±àºÅ+³Ö²Ö±àºÅ+ÂòÂô·½Ïò
     struct TapAPIHisPositionQryRsp
     {
-            TAPIDATE                SettleDate;                            ///< ç»“ç®—æ—¥æœŸ
-            TAPIDATE                OpenDate;                            ///< å¼€ä»“æ—¥æœŸ
+            TAPIDATE				SettleDate;							///< ½áËãÈÕÆÚ
+            TAPIDATE				OpenDate;							///< ¿ª²ÖÈÕÆÚ
 
-            TAPISTR_20                AccountNo;                            ///< å®¢æˆ·èµ„é‡‘è´¦å·
+            TAPISTR_20				AccountNo;							///< ¿Í»§×Ê½ðÕËºÅ
 
-            TAPISTR_10                ExchangeNo;                            ///< å¸‚åœºæˆ–è€…äº¤æ˜“æ‰€ä»£ç 
-            TAPICommodityType        CommodityType;                        ///< å“ç§ç±»åž‹
-            TAPISTR_10                CommodityNo;                        ///< å“ç§ç¼–ç 
-            TAPISTR_10                ContractNo;                            ///< åˆçº¦å·
-            TAPISTR_10                StrikePrice;                        ///< æ‰§è¡Œä»·
-            TAPICallOrPutFlagType    CallOrPutFlag;                        ///< çœ‹æ¶¨çœ‹è·Œæ ‡å¿—
+            TAPISTR_10				ExchangeNo;							///< ÊÐ³¡»òÕß½»Ò×Ëù´úÂë
+            TAPICommodityType		CommodityType;						///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10				CommodityNo;						///< Æ·ÖÖ±àÂë
+            TAPISTR_10				ContractNo;							///< ºÏÔ¼ºÅ
+            TAPISTR_10				StrikePrice;						///< Ö´ÐÐ¼Û
+            TAPICallOrPutFlagType	CallOrPutFlag;						///< ¿´ÕÇ¿´µø±êÖ¾
 
-            TAPISideType            MatchSide;                            ///< ä¹°å–æ–¹å‘
-            TAPIHedgeFlagType        HedgeFlag;                            ///< æŠ•æœºä¿å€¼
-            TAPIREAL64                PositionPrice;                        ///< æŒä»“ä»·æ ¼
-            TAPIUINT32                PositionQty;                        ///< æŒä»“é‡
+            TAPISideType			MatchSide;							///< ÂòÂô·½Ïò
+            TAPIHedgeFlagType		HedgeFlag;							///< Í¶»ú±£Öµ
+            TAPIREAL64				PositionPrice;						///< ³Ö²Ö¼Û¸ñ
+            TAPIUINT32				PositionQty;						///< ³Ö²ÖÁ¿
 
-            TAPISTR_20                OrderNo;                            ///< 
-            TAPISTR_70                PositionNo;                            ///< æŒä»“ç¼–å·
+            TAPISTR_20				OrderNo;							///< 
+            TAPISTR_20				PositionNo;							///< ³Ö²Ö±àºÅ
 
-            TAPISTR_10                UpperNo;                            ///< ä¸Šæ‰‹å·    
+            TAPISTR_10				UpperNo;							///< ÉÏÊÖºÅ	
 
-            TAPISTR_10                CurrencyGroup;                        ///< å“ç§å¸ç§ç»„
-            TAPISTR_10                Currency;                            ///< å“ç§å¸ç§
+            TAPISTR_10				CurrencyGroup;						///< Æ·ÖÖ±ÒÖÖ×é
+            TAPISTR_10				Currency;							///< Æ·ÖÖ±ÒÖÖ
 
-            TAPIREAL64                PreSettlePrice;                        ///< ä¸Šæ—¥ç»“ç®—ä»·æ ¼
-            TAPIREAL64                SettlePrice;                        ///< ç»“ç®—ä»·æ ¼
-            TAPIREAL64                PositionDProfit;                    ///< æŒä»“ç›ˆäº(ç›¯å¸‚)
-            TAPIREAL64                LMEPositionProfit;                    ///< LMEæŒä»“ç›ˆäº
-            TAPIREAL64                OptionMarketValue;                    ///< æœŸæƒå¸‚å€¼
+            TAPIREAL64				PreSettlePrice;						///< ÉÏÈÕ½áËã¼Û¸ñ
+            TAPIREAL64				SettlePrice;						///< ½áËã¼Û¸ñ
+            TAPIREAL64				PositionDProfit;					///< ³Ö²ÖÓ¯¿÷(¶¢ÊÐ)
+            TAPIREAL64				LMEPositionProfit;					///< LME³Ö²ÖÓ¯¿÷
+            TAPIREAL64				OptionMarketValue;					///< ÆÚÈ¨ÊÐÖµ
 
-            TAPIREAL64                AccountInitialMargin;                ///< å®¢æˆ·åˆå§‹ä¿è¯é‡‘
-            TAPIREAL64                AccountMaintenanceMargin;            ///< å®¢æˆ·ç»´æŒä¿è¯é‡‘
-            TAPIREAL64                UpperInitialMargin;                    ///< ä¸Šæ‰‹åˆå§‹ä¿è¯é‡‘
-            TAPIREAL64                UpperMaintenanceMargin;                ///< ä¸Šæ‰‹ç»´æŒä¿è¯é‡‘
+            TAPIREAL64				AccountInitialMargin;				///< ¿Í»§³õÊ¼±£Ö¤½ð
+            TAPIREAL64				AccountMaintenanceMargin;			///< ¿Í»§Î¬³Ö±£Ö¤½ð
+            TAPIREAL64				UpperInitialMargin;					///< ÉÏÊÖ³õÊ¼±£Ö¤½ð
+            TAPIREAL64				UpperMaintenanceMargin;				///< ÉÏÊÖÎ¬³Ö±£Ö¤½ð
 
-            TAPISTR_10                SettleGroupNo;                        ///< ç»“ç®—åˆ†ç»„
+            TAPISTR_10				SettleGroupNo;						///< ½áËã·Ö×é
+			TAPICHAR				ServerFlag;							///< ·þÎñÆ÷±êÊ¶
+			TAPISTR_20				SuperiorAccount;					///< ÉÏ¼¶ÕËºÅ
     };
 
-    //! äº¤å‰²æŸ¥è¯¢è¯·æ±‚ç»“æž„
+    //! ½»¸î²éÑ¯ÇëÇó½á¹¹
     struct TapAPIHisDeliveryQryReq
     {
-            TAPISTR_20                AccountNo;                            ///< å®¢æˆ·èµ„é‡‘è´¦å·
-            TAPISTR_20                AccountAttributeNo;                    ///< å®¢æˆ·å±žæ€§å·
-            TAPIDATE                BeginDate;                            ///< å¼€å§‹æ—¥æœŸï¼ˆå¿…å¡«ï¼‰
-            TAPIDATE                EndDate;                            ///< ç»“æŸæ—¥æœŸï¼ˆå¿…å¡«ï¼‰
-            TAPICHAR                CountType;                            ///< ç»Ÿè®¡ç±»åž‹
+            TAPISTR_20				AccountNo;							///< ¿Í»§×Ê½ðÕËºÅ
+            TAPIDATE				BeginDate;							///< ¿ªÊ¼ÈÕÆÚ£¨±ØÌî£©
+            TAPIDATE				EndDate;							///< ½áÊøÈÕÆÚ£¨±ØÌî£©
+            TAPISettleFlagType      SettleFlag;                         ///< ½áËãÀàÐÍ
     };
 
-    //! äº¤å‰²æŸ¥è¯¢åº”ç­”æ•°æ®ç»“æž„
+    //! ½»¸î²éÑ¯Ó¦´ðÊý¾Ý½á¹¹
     //! key1=SerialID
     struct TapAPIHisDeliveryQryRsp
     {
-            TAPIDATE                DeliveryDate;                        ///< äº¤å‰²æ—¥æœŸ
-            TAPIDATE                OpenDate;                            ///< å¼€ä»“æ—¥æœŸ
-            TAPISTR_20                AccountNo;                            ///< å®¢æˆ·èµ„é‡‘è´¦å·
+            TAPIDATE				DeliveryDate;						///< ½»¸îÈÕÆÚ
+            TAPIDATE				OpenDate;							///< ¿ª²ÖÈÕÆÚ
+            TAPISTR_20				AccountNo;							///< ¿Í»§×Ê½ðÕËºÅ
 
-            TAPISTR_10                ExchangeNo;                            ///< å¸‚åœºå·æˆ–äº¤æ˜“æ‰€ä»£ç 
-            TAPICommodityType       CommodityType;                        ///< å“ç§ç±»åž‹
-            TAPISTR_10                CommodityNo;                        ///< å“ç§ç¼–ç 
-            TAPISTR_10                ContractNo;                            ///< åˆçº¦ç¼–ç 
-            TAPISTR_10                StrikePrice;                        ///< æ‰§è¡Œä»·
-            TAPICallOrPutFlagType    CallOrPutFlag;                        ///< çœ‹æ¶¨çœ‹è·Œæ ‡å¿—
+            TAPISTR_10				ExchangeNo;							///< ÊÐ³¡ºÅ»ò½»Ò×Ëù´úÂë
+            TAPICommodityType       CommodityType;						///< Æ·ÖÖÀàÐÍ
+            TAPISTR_10				CommodityNo;						///< Æ·ÖÖ±àÂë
+            TAPISTR_10				ContractNo;							///< ºÏÔ¼±àÂë
+            TAPISTR_10				StrikePrice;						///< Ö´ÐÐ¼Û
+            TAPICallOrPutFlagType	CallOrPutFlag;						///< ¿´ÕÇ¿´µø±êÖ¾
 
-            TAPIMatchSourceType        MatchSource;                        ///< æˆäº¤æ¥æº
-            TAPISideType            OpenSide;                            ///< å¼€ä»“æ–¹å‘
-            TAPIREAL64                OpenPrice;                            ///< å¼€ä»“ä»·æ ¼
-            TAPIREAL64                DeliveryPrice;                        ///< äº¤å‰²ä»·æ ¼
-            TAPIUINT32                DeliveryQty;                        ///< äº¤å‰²é‡
-            TAPIUINT32                FrozenQty;                            ///< å†»ç»“é‡
+            TAPIMatchSourceType		MatchSource;						///< ³É½»À´Ô´
+            TAPISideType			OpenSide;							///< ¿ª²Ö·½Ïò
+            TAPIREAL64				OpenPrice;							///< ¿ª²Ö¼Û¸ñ
+            TAPIREAL64				DeliveryPrice;						///< ½»¸î¼Û¸ñ
+            TAPIUINT32				DeliveryQty;						///< ½»¸îÁ¿
+            TAPIUINT32				FrozenQty;							///< ¶³½áÁ¿
 
-            TAPISTR_20                OpenNo;                                ///< å¼€ä»“æˆäº¤å·
-            TAPISTR_10                UpperNo;                            ///< ä¸Šæ‰‹ç¼–å·
+            TAPISTR_20				OpenNo;								///< ¿ª²Ö³É½»ºÅ
+            TAPISTR_10				UpperNo;							///< ÉÏÊÖ±àºÅ
 
-            TAPISTR_10                CommodityCurrencyGroupy;            ///< å“ç§å¸ç§
-            TAPISTR_10                CommodityCurrency;                    ///< å“ç§å¸ç§
-            TAPIREAL64                PreSettlePrice;                        ///< ä¸Šæ—¥ç»“ç®—ä»·
-            TAPIREAL64                DeliveryProfit;                        ///< äº¤å‰²ç›ˆäº
+            TAPISTR_10				CommodityCurrencyGroupy;			///< Æ·ÖÖ±ÒÖÖ
+            TAPISTR_10				CommodityCurrency;					///< Æ·ÖÖ±ÒÖÖ
+            TAPIREAL64				PreSettlePrice;						///< ÉÏÈÕ½áËã¼Û
+            TAPIREAL64				DeliveryProfit;						///< ½»¸îÓ¯¿÷
 
-            TAPIREAL64                AccountFrozenInitialMargin;            ///< å®¢æˆ·åˆå§‹å†»ç»“ä¿è¯é‡‘
-            TAPIREAL64                AccountFrozenMaintenanceMargin;        ///< å®¢æˆ·ç»´æŒå†»ç»“ä¿è¯é‡‘
-            TAPIREAL64                UpperFrozenInitialMargin;            ///< ä¸Šæ‰‹åˆå§‹å†»ç»“ä¿è¯é‡‘
-            TAPIREAL64                UpperFrozenMaintenanceMargin;        ///< ä¸Šæ‰‹ç»´æŒå†»ç»“ä¿è¯é‡‘
+            TAPIREAL64				AccountFrozenInitialMargin;			///< ¿Í»§³õÊ¼¶³½á±£Ö¤½ð
+            TAPIREAL64				AccountFrozenMaintenanceMargin;		///< ¿Í»§Î¬³Ö¶³½á±£Ö¤½ð
+            TAPIREAL64				UpperFrozenInitialMargin;			///< ÉÏÊÖ³õÊ¼¶³½á±£Ö¤½ð
+            TAPIREAL64				UpperFrozenMaintenanceMargin;		///< ÉÏÊÖÎ¬³Ö¶³½á±£Ö¤½ð
 
-            TAPISTR_10                AccountFeeCurrencyGroup;
-            TAPISTR_10                AccountFeeCurrency;                    ///< å®¢æˆ·æ‰‹ç»­è´¹å¸ç§
-            TAPIREAL64                AccountDeliveryFee;                    ///< å®¢æˆ·äº¤å‰²æ‰‹ç»­è´¹ 
-            TAPISTR_10                UpperFeeCurrencyGroup;
-            TAPISTR_10                UpperFeeCurrency;                    ///< ä¸Šæ‰‹æ‰‹ç»­è´¹å¸ç§
-            TAPIREAL64                UpperDeliveryFee;                    ///< ä¸Šæ‰‹äº¤å‰²æ‰‹ç»­è´¹
+            TAPISTR_10				AccountFeeCurrencyGroup;
+            TAPISTR_10				AccountFeeCurrency;					///< ¿Í»§ÊÖÐø·Ñ±ÒÖÖ
+            TAPIREAL64				AccountDeliveryFee;					///< ¿Í»§½»¸îÊÖÐø·Ñ 
+            TAPISTR_10				UpperFeeCurrencyGroup;
+            TAPISTR_10				UpperFeeCurrency;					///< ÉÏÊÖÊÖÐø·Ñ±ÒÖÖ
+            TAPIREAL64				UpperDeliveryFee;					///< ÉÏÊÖ½»¸îÊÖÐø·Ñ
 
-            TAPIDeliveryModeType    DeliveryMode;                        ///< äº¤å‰²è¡Œæƒæ–¹å¼
-            TAPISTR_20                OperatorNo;                            ///< æ“ä½œå‘˜
-            TAPIDATETIME            OperateTime;                        ///< æ“ä½œæ—¶é—´
-            TAPISTR_20                SettleGourpNo;                        ///< ç»“ç®—åˆ†ç»„
+            TAPIDeliveryModeType	DeliveryMode;						///< ½»¸îÐÐÈ¨·½Ê½
+            TAPISTR_20				OperatorNo;							///< ²Ù×÷Ô±
+            TAPIDATETIME			OperateTime;						///< ²Ù×÷Ê±¼ä
+            TAPISTR_20				SettleGourpNo;						///< ½áËã·Ö×é
+			TAPISTR_10              FutureContractNo;                   ///< ÌØÊâÆÚÈ¨±êµÄºÏÔ¼
+			TAPISTR_10              OptionStrikePrice;                  ///< ÆÚÈ¨ÕæÊµÖ´ÐÐ¼Û
+			TAPISTR_20				SuperiorAccount;					///< ÉÏ¼¶ÕËºÅ
     };
 
-    //! å®¢æˆ·èµ„é‡‘è°ƒæ•´æŸ¥è¯¢è¯·æ±‚ç»“æž„
+    //! ¿Í»§×Ê½ðµ÷Õû²éÑ¯ÇëÇó½á¹¹
     struct TapAPIAccountCashAdjustQryReq
     {
-            TAPIUINT32                SerialID;
-            TAPISTR_20                AccountNo;
-            TAPISTR_20                AccountAttributeNo;                ///< å®¢æˆ·å±žæ€§
-            TAPIDATE                BeginDate;                        ///< å¿…å¡«
-            TAPIDATE                EndDate;                        ///< å¿…å¡«
+            TAPIUINT32				SerialID;
+            TAPISTR_20				AccountNo;
+            TAPIDATE				BeginDate;						///< ±ØÌî
+            TAPIDATE				EndDate;						///< ±ØÌî
     };
 
-    //! å®¢æˆ·èµ„é‡‘è°ƒæ•´æŸ¥è¯¢åº”ç­”ç»“æž„
+    //! ¿Í»§×Ê½ðµ÷Õû²éÑ¯Ó¦´ð½á¹¹
     struct TapAPIAccountCashAdjustQryRsp
     {
-            TAPIDATE                    Date;                            ///< æ—¥æœŸ
-            TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘è´¦å·
+            TAPIDATE					Date;							///< ÈÕÆÚ
+            TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕËºÅ
 
-            TAPICashAdjustTypeType        CashAdjustType;                    ///< èµ„é‡‘è°ƒæ•´ç±»åž‹
-            TAPISTR_10                    CurrencyGroupNo;                    //å¸ç§ç»„å·
-            TAPISTR_10                    CurrencyNo;                        ///< å¸ç§å·
-            TAPIREAL64                    CashAdjustValue;                ///< èµ„é‡‘è°ƒæ•´é‡‘é¢
-            TAPISTR_100                    CashAdjustRemark;                ///< èµ„é‡‘è°ƒæ•´å¤‡æ³¨
+            TAPICashAdjustTypeType		CashAdjustType;					///< ×Ê½ðµ÷ÕûÀàÐÍ
+            TAPISTR_10					CurrencyGroupNo;				///< ±ÒÖÖ×éºÅ
+            TAPISTR_10					CurrencyNo;						///< ±ÒÖÖºÅ
+            TAPIREAL64					CashAdjustValue;				///< ×Ê½ðµ÷Õû½ð¶î
+            TAPISTR_100					CashAdjustRemark;				///< ×Ê½ðµ÷Õû±¸×¢
 
-            TAPIDATETIME                OperateTime;                    ///< æ“ä½œæ—¶é—´
-            TAPISTR_20                    OperatorNo;                        ///< æ“ä½œå‘˜
+            TAPIDATETIME				OperateTime;					///< ²Ù×÷Ê±¼ä
+            TAPISTR_20					OperatorNo;						///< ²Ù×÷Ô±
 
-            TAPISTR_10                    AccountBank;                    ///< å®¢æˆ·é“¶è¡Œ
-            TAPISTR_20                    BankAccount;                    ///< å®¢æˆ·é“¶è¡Œè´¦å·
-            TAPIBankAccountLWFlagType    AccountLWFlag;                    ///< å®¢æˆ·æœ¬å¤–å¸æ ‡è¯†
-            TAPISTR_10                    CompanyBank;                    ///< å…¬å¸é“¶è¡Œ
-            TAPISTR_20                    InternalBankAccount;            ///< å…¬å¸é“¶è¡Œè´¦æˆ·
-            TAPIBankAccountLWFlagType    CompanyLWFlag;                    ///< å…¬å¸æœ¬å¤–å¸æ ‡è¯†
+            TAPISTR_10					AccountBank;					///< ¿Í»§ÒøÐÐ
+            TAPISTR_20					BankAccount;					///< ¿Í»§ÒøÐÐÕËºÅ
+            TAPIBankAccountLWFlagType	AccountLWFlag;					///< ¿Í»§±¾Íâ±Ò±êÊ¶
+            TAPISTR_10					CompanyBank;					///< ¹«Ë¾ÒøÐÐ
+            TAPISTR_20					InternalBankAccount;			///< ¹«Ë¾ÒøÐÐÕË»§
+            TAPIBankAccountLWFlagType	CompanyLWFlag;					///< ¹«Ë¾±¾Íâ±Ò±êÊ¶
     };
-    //! å®¢æˆ·è´¦æˆ·æ‰‹ç»­è´¹è®¡ç®—å‚æ•°æŸ¥è¯¢è¯·æ±‚ç»“æž„
-    struct TapAPIAccountFeeRentQryReq
-    {
-        TAPISTR_20                        AccountNo;
-    };
-    //! å®¢æˆ·è´¦æˆ·æ‰‹ç»­è´¹è®¡ç®—å‚æ•°æŸ¥è¯¢åº”ç­”ç»“æž„
-    struct TapAPIAccountFeeRentQryRsp
-    {
-        TAPISTR_20                        AccountNo;
-        TAPISTR_10                        ExchangeNo;
-        TAPICommodityType                CommodityType;
-        TAPISTR_10                        CommodityNo;
-        TAPIMatchSourceType                MatchSource;
-        TAPICalculateModeType            CalculateMode;
-        TAPISTR_10                        CurrencyGroupNo;                
-        TAPISTR_10                        CurrencyNo;                        
-        TAPIREAL64                        OpenCloseFee;
-        TAPIREAL64                        CloseTodayFee;
-    };
-    //! å®¢æˆ·è´¦æˆ·ä¿è¯é‡‘è®¡ç®—å‚æ•°æŸ¥è¯¢ç»“æž„
-    struct TapAPIAccountMarginRentQryReq
-    {
-        TAPISTR_20                        AccountNo;
-        TAPISTR_10                        ExchangeNo;
-        TAPICommodityType                CommodityType;
-        TAPISTR_10                        CommodityNo;
-        //TAPISTR_10                        ContractNo;//æš‚æ—¶å…ˆä¸å¯¹å¤–å¼€æ”¾ã€‚
-    };
+	//! ¿Í»§ÕË»§ÊÖÐø·Ñ¼ÆËã²ÎÊý²éÑ¯ÇëÇó½á¹¹
+	struct TapAPIAccountFeeRentQryReq
+	{
+		TAPISTR_20						AccountNo;
+	};
+	//! ¿Í»§ÕË»§ÊÖÐø·Ñ¼ÆËã²ÎÊý²éÑ¯Ó¦´ð½á¹¹
+	struct TapAPIAccountFeeRentQryRsp
+	{
+		TAPISTR_20						AccountNo;
+		TAPISTR_10						ExchangeNo;
+		TAPICommodityType				CommodityType;
+		TAPISTR_10						CommodityNo;
+		TAPIMatchSourceType				MatchSource;
+		TAPICalculateModeType			CalculateMode;
+		TAPISTR_10						CurrencyGroupNo;				
+		TAPISTR_10						CurrencyNo;						
+		TAPIREAL64						OpenCloseFee;
+		TAPIREAL64						CloseTodayFee;
+	};
+	//! ¿Í»§ÕË»§±£Ö¤½ð¼ÆËã²ÎÊý²éÑ¯½á¹¹
+	struct TapAPIAccountMarginRentQryReq
+	{
+		TAPISTR_20						AccountNo;
+		TAPISTR_10						ExchangeNo;
+		TAPICommodityType				CommodityType;
+		TAPISTR_10						CommodityNo;
+		//TAPISTR_10						ContractNo;//ÔÝÊ±ÏÈ²»¶ÔÍâ¿ª·Å¡£
+	};
 
-    //! å®¢æˆ·è´¦æˆ·ä¿è¯é‡‘è®¡ç®—å‚æ•°æŸ¥è¯¢åº”ç­”
-    struct  TapAPIAccountMarginRentQryRsp
-    {
-        TAPISTR_20                        AccountNo;
-        TAPISTR_10                        ExchangeNo;
-        TAPICommodityType                CommodityType;
-        TAPISTR_10                        CommodityNo;
-        TAPISTR_10                        ContractNo;
-        TAPISTR_10                        StrikePrice;
-        TAPICallOrPutFlagType            CallOrPutFlag;
-        TAPICalculateModeType            CalculateMode;
-        TAPISTR_10                        CurrencyGroupNo;
-        TAPISTR_10                        CurrencyNo;
-        TAPIREAL64                        InitialMargin;
-        TAPIREAL64                        MaintenanceMargin;
-        TAPIREAL64                        SellInitialMargin;
-        TAPIREAL64                        SellMaintenanceMargin;
-        TAPIREAL64                        LockMargin;
-    };
-    //! æ¸¯äº¤æ‰€åšå¸‚å•†è¯¢ä»·é€šçŸ¥ã€‚
-    struct TapAPIOrderQuoteMarketNotice
-    {
-        TAPISTR_10                        ExchangeNo;                ///< äº¤æ˜“æ‰€ç¼–å·
-        TAPICommodityType                CommodityType;            ///< å“ç§ç±»åž‹
-        TAPISTR_10                        CommodityNo;            ///< å“ç§ç¼–å·
-        TAPISTR_10                        ContractNo;                ///< åˆçº¦
-        TAPISTR_10                        StrikePrice;            ///< æ‰§è¡Œä»·
-        TAPICallOrPutFlagType            CallOrPutFlag;            ///< çœ‹æ¶¨çœ‹è·Œ
-        TAPISideType                    OrderSide;                ///< ä¹°å–æ–¹å‘
-        TAPIUINT32                        OrderQty;                ///< å§”æ‰˜é‡
-    };
+	//! ¿Í»§ÕË»§±£Ö¤½ð¼ÆËã²ÎÊý²éÑ¯Ó¦´ð
+	struct  TapAPIAccountMarginRentQryRsp
+	{
+		TAPISTR_20						AccountNo;
+		TAPISTR_10						ExchangeNo;
+		TAPICommodityType				CommodityType;
+		TAPISTR_10						CommodityNo;
+		TAPISTR_10						ContractNo;
+		TAPISTR_10						StrikePrice;
+		TAPICallOrPutFlagType			CallOrPutFlag;
+		TAPICalculateModeType			CalculateMode;
+		TAPISTR_10						CurrencyGroupNo;
+		TAPISTR_10						CurrencyNo;
+		TAPIREAL64						InitialMargin;
+		TAPIREAL64						MaintenanceMargin;
+		TAPIREAL64						SellInitialMargin;
+		TAPIREAL64						SellMaintenanceMargin;
+		TAPIREAL64						LockMargin;
+	};
+	//! ¸Û½»Ëù×öÊÐÉÌÑ¯¼ÛÍ¨Öª¡£
+	struct TapAPIOrderQuoteMarketNotice
+	{
+		TAPISTR_10						ExchangeNo;				///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType				CommodityType;			///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10						CommodityNo;			///< Æ·ÖÖ±àºÅ
+		TAPISTR_10						ContractNo;				///< ºÏÔ¼
+		TAPISTR_10						StrikePrice;			///< Ö´ÐÐ¼Û
+		TAPICallOrPutFlagType			CallOrPutFlag;			///< ¿´ÕÇ¿´µø
+		TAPISideType					OrderSide;				///< ÂòÂô·½Ïò
+		TAPIUINT32						OrderQty;				///< Î¯ÍÐÁ¿
+	};
 
-    //! åšå¸‚å•†ä¸‹å•è¯·æ±‚ç»“æž„
-    struct TapAPIOrderMarketInsertReq
-    {
-        TAPISTR_20                AccountNo;                    ///< å®¢æˆ·èµ„é‡‘å¸å·
-        TAPISTR_10                ExchangeNo;                    ///< äº¤æ˜“æ‰€ç¼–å·
-        TAPICommodityType        CommodityType;                ///< å“ç§ç±»åž‹
-        TAPISTR_10                CommodityNo;                ///< å“ç§ç¼–ç ç±»åž‹
-        TAPISTR_10                ContractNo;                    ///< åˆçº¦
-        TAPISTR_10                StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼
-        TAPICallOrPutFlagType        CallOrPutFlag;                ///< çœ‹å¼ çœ‹è·Œ
-        TAPIOrderTypeType        OrderType;                    ///< å§”æ‰˜ç±»åž‹
-        TAPITimeInForceType        TimeInForce;                    ///< æœ‰æ•ˆç±»åž‹
-        TAPIDATETIME            ExpireTime;                        ///< æœ‰æ•ˆæœŸ
-        TAPIOrderSourceType        OrderSource;                    ///< å§”æ‰˜æ¥æº    
-        TAPIPositionEffectType    BuyPositionEffect;                ///< ä¹°å¼€å¹³æ ‡å¿—
-        TAPIPositionEffectType    SellPositionEffect;                ///< å–å¼€å¹³æ ‡å¿—
+	//! ×öÊÐÉÌÏÂµ¥ÇëÇó½á¹¹
+	struct TapAPIOrderMarketInsertReq
+	{
+		TAPISTR_20				AccountNo;					///< ¿Í»§×Ê½ðÕÊºÅ
+		TAPISTR_10				ExchangeNo;					///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType		CommodityType;				///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10				CommodityNo;				///< Æ·ÖÖ±àÂëÀàÐÍ
+		TAPISTR_10				ContractNo;					///< ºÏÔ¼
+		TAPISTR_10				StrikePrice;					///< Ö´ÐÐ¼Û¸ñ
+		TAPICallOrPutFlagType		CallOrPutFlag;				///< ¿´ÕÅ¿´µø
+		TAPIOrderTypeType		OrderType;					///< Î¯ÍÐÀàÐÍ
+		TAPITimeInForceType		TimeInForce;					///< ÓÐÐ§ÀàÐÍ
+		TAPIDATETIME			ExpireTime;						///< ÓÐÐ§ÆÚ
+		TAPIOrderSourceType		OrderSource;					///< Î¯ÍÐÀ´Ô´	
+		TAPIPositionEffectType	BuyPositionEffect;				///< Âò¿ªÆ½±êÖ¾
+		TAPIPositionEffectType	SellPositionEffect;				///< Âô¿ªÆ½±êÖ¾
 
-        TAPIYNFLAG                AddOneIsValid;                    ///< æ˜¯å¦T+1æœ‰æ•ˆ
-        TAPIREAL64                OrderBuyPrice;                ///< ä¹°å§”æ‰˜ä»·
-        TAPIREAL64                OrderSellPrice;                ///< å–å§”æ‰˜ä»·    
-        TAPIUINT32                OrderBuyQty;                    ///< ä¹°å§”æ‰˜é‡
-        TAPIUINT32                OrderSellQty;                    ///< å–å§”æ‰˜é‡
-        TAPISTR_50                ClientBuyOrderNo;            ///< æœ¬åœ°å§”æ‰˜ç¼–å·
-        TAPISTR_50                ClientSellOrderNo;                ///< æœ¬åœ°å§”æ‰˜ç¼–å·
-        TAPIINT32                RefInt;                        ///< æ•´åž‹å‚è€ƒå€¼
-        TAPIREAL64                RefDouble;                    ///< æµ®ç‚¹å‚è€ƒå€¼
-        TAPISTR_50                RefString;                    ///< å­—ç¬¦ä¸²å‚è€ƒå€¼
-        TAPISTR_100                Remark;                        ///< å¤‡æ³¨
-    };
+		TAPIYNFLAG				AddOneIsValid;					///< ÊÇ·ñT+1ÓÐÐ§
+		TAPIREAL64				OrderBuyPrice;				///< ÂòÎ¯ÍÐ¼Û
+		TAPIREAL64				OrderSellPrice;				///< ÂôÎ¯ÍÐ¼Û	
+		TAPIUINT32				OrderBuyQty;					///< ÂòÎ¯ÍÐÁ¿
+		TAPIUINT32				OrderSellQty;					///< ÂôÎ¯ÍÐÁ¿
+		TAPISTR_50				ClientBuyOrderNo;			///< ±¾µØÎ¯ÍÐ±àºÅ
+		TAPISTR_50				ClientSellOrderNo;				///< ±¾µØÎ¯ÍÐ±àºÅ
+		TAPIINT32				RefInt;						///< ÕûÐÍ²Î¿¼Öµ
+		TAPIREAL64				RefDouble;					///< ¸¡µã²Î¿¼Öµ
+		TAPISTR_50				RefString;					///< ×Ö·û´®²Î¿¼Öµ
+		TAPISTR_100				Remark;						///< ±¸×¢
+	};
 
-    //! å®¢æˆ·åšå¸‚å•†åº”ç­”è¯·æ±‚ç»“æž„
-    struct TapAPIOrderMarketInsertRsp
-    {
-        TAPISTR_20                            AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
+	//! ¿Í»§×öÊÐÉÌÓ¦´ðÇëÇó½á¹¹
+	struct TapAPIOrderMarketInsertRsp
+	{
+		TAPISTR_20							AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
 
-        TAPISTR_10                            ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-        TAPICommodityType                    CommodityType;                    ///< å“ç§ç±»åž‹
-        TAPISTR_10                            CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
-        TAPISTR_10                            ContractNo;                        ///< åˆçº¦
-        TAPISTR_10                            StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼
-        TAPICallOrPutFlagType                CallOrPutFlag;                    ///< çœ‹å¼ çœ‹è·Œ
+		TAPISTR_10							ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType					CommodityType;					///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10							CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+		TAPISTR_10							ContractNo;						///< ºÏÔ¼
+		TAPISTR_10							StrikePrice;					///< Ö´ÐÐ¼Û¸ñ
+		TAPICallOrPutFlagType				CallOrPutFlag;					///< ¿´ÕÅ¿´µø
 
-        TAPIOrderTypeType                    OrderType;                        ///< å§”æ‰˜ç±»åž‹
-        TAPITimeInForceType                    TimeInForce;                    ///< å§”æ‰˜æœ‰æ•ˆç±»åž‹
-        TAPIDATETIME                        ExpireTime;                        ///< æœ‰æ•ˆæ—¥æœŸ(GTDæƒ…å†µä¸‹ä½¿ç”¨)
-        TAPIOrderSourceType                    OrderSource;                    ///< å§”æ‰˜æ¥æº
+		TAPIOrderTypeType					OrderType;						///< Î¯ÍÐÀàÐÍ
+		TAPITimeInForceType					TimeInForce;					///< Î¯ÍÐÓÐÐ§ÀàÐÍ
+		TAPIDATETIME						ExpireTime;						///< ÓÐÐ§ÈÕÆÚ(GTDÇé¿öÏÂÊ¹ÓÃ)
+		TAPIOrderSourceType					OrderSource;					///< Î¯ÍÐÀ´Ô´
 
-        TAPIPositionEffectType                BuyPositionEffect;                ///< ä¹°å¼€å¹³æ ‡å¿—
-        TAPIPositionEffectType                SellPositionEffect;                ///< å–å¼€å¹³æ ‡å¿—
+		TAPIPositionEffectType				BuyPositionEffect;				///< Âò¿ªÆ½±êÖ¾
+		TAPIPositionEffectType				SellPositionEffect;				///< Âô¿ªÆ½±êÖ¾
 
-        TAPIREAL64                            OrderBuyPrice;                    ///< ä¹°å§”æ‰˜ä»·
-        TAPIREAL64                            OrderSellPrice;                    ///< å–å§”æ‰˜ä»·
+		TAPIREAL64							OrderBuyPrice;					///< ÂòÎ¯ÍÐ¼Û
+		TAPIREAL64							OrderSellPrice;					///< ÂôÎ¯ÍÐ¼Û
 
-        TAPIUINT32                            OrderBuyQty;                    ///< ä¹°å§”æ‰˜é‡
-        TAPIUINT32                            OrderSellQty;                    ///< å–å§”æ‰˜é‡
+		TAPIUINT32							OrderBuyQty;					///< ÂòÎ¯ÍÐÁ¿
+		TAPIUINT32							OrderSellQty;					///< ÂôÎ¯ÍÐÁ¿
 
-        TAPICHAR                            ServerFlag;                        ///< äº¤æ˜“æœåŠ¡æ ‡è¯†
-        TAPISTR_20                            OrderBuyNo;                        ///< ä¹°å§”æ‰˜å·
-        TAPISTR_20                            OrderSellNo;                    ///< å–å§”æ‰˜å·
+		TAPICHAR							ServerFlag;						///< ½»Ò×·þÎñ±êÊ¶
+		TAPISTR_20							OrderBuyNo;						///< ÂòÎ¯ÍÐºÅ
+		TAPISTR_20							OrderSellNo;					///< ÂôÎ¯ÍÐºÅ
 
-        TAPIYNFLAG                            AddOneIsValid;                    ///< æ˜¯å¦T+1æœ‰æ•ˆ
+		TAPIYNFLAG							AddOneIsValid;					///< ÊÇ·ñT+1ÓÐÐ§
 
-        TAPISTR_20                            OrderMarketUserNo;                ///< ä¸‹å•äºº
-        TAPIDATETIME                        OrderMarketTime;                ///< ä¸‹å•æ—¶é—´
+		TAPISTR_20							OrderMarketUserNo;				///< ÏÂµ¥ÈË
+		TAPIDATETIME						OrderMarketTime;				///< ÏÂµ¥Ê±¼ä
 
-        TAPIINT32                            RefInt;                            ///< æ•´åž‹å‚è€ƒå€¼
-        TAPIREAL64                            RefDouble;                        ///< æµ®ç‚¹å‚è€ƒå€¼
-        TAPISTR_50                            RefString;                        ///< å­—ç¬¦ä¸²å‚è€ƒå€¼
+		TAPIINT32							RefInt;							///< ÕûÐÍ²Î¿¼Öµ
+		TAPIREAL64							RefDouble;						///< ¸¡µã²Î¿¼Öµ
+		TAPISTR_50							RefString;						///< ×Ö·û´®²Î¿¼Öµ
 
-        TAPISTR_50                            ClientBuyOrderNo;                ///< ä¹°æœ¬åœ°å§”æ‰˜ç¼–å·
-        TAPISTR_50                            ClientSellOrderNo;                ///< å–æœ¬åœ°å§”æ‰˜ç¼–å·
+		TAPISTR_50							ClientBuyOrderNo;				///< Âò±¾µØÎ¯ÍÐ±àºÅ
+		TAPISTR_50							ClientSellOrderNo;				///< Âô±¾µØÎ¯ÍÐ±àºÅ
 
-        TAPIUINT32                            ErrorCode;                        ///< é”™è¯¯ä¿¡æ¯ç 
-        TAPISTR_50                            ErrorText;                        ///< é”™è¯¯ä¿¡æ¯
-            
-        TAPISTR_40                            ClientLocalIP;                    ///< ç»ˆç«¯æœ¬åœ°IPåœ°å€ï¼ˆå®¢æˆ·ç«¯å¡«å†™ï¼‰
-        TAPIMACTYPE                            ClientMac;                        ///< ç»ˆç«¯æœ¬åœ°Macåœ°å€ï¼ˆå®¢æˆ·ç«¯å¡«å†™ï¼‰
+		TAPIUINT32							ErrorCode;						///< ´íÎóÐÅÏ¢Âë
+		TAPISTR_50							ErrorText;						///< ´íÎóÐÅÏ¢
+			
+		TAPISTR_40							ClientLocalIP;					///< ÖÕ¶Ë±¾µØIPµØÖ·£¨¿Í»§¶ËÌîÐ´£©
+		TAPIMACTYPE							ClientMac;						///< ÖÕ¶Ë±¾µØMacµØÖ·£¨¿Í»§¶ËÌîÐ´£©
 
-        TAPISTR_40                            ClientIP;                        ///< å‰ç½®è®°å½•çš„ç»ˆç«¯IPåœ°å€ï¼ˆå‰ç½®å¡«å†™ï¼‰
+		TAPISTR_40							ClientIP;						///< Ç°ÖÃ¼ÇÂ¼µÄÖÕ¶ËIPµØÖ·£¨Ç°ÖÃÌîÐ´£©
 
-        TAPISTR_100                            Remark;                            ///< å¤‡æ³¨
-    };
-    //! æ¸¯äº¤æ‰€åšå¸‚å•†åŒè¾¹æ’¤å•è¯·æ±‚
-    struct TapAPIOrderMarketDeleteReq
-    {
-        TAPICHAR                ServerFlag;
-        TAPISTR_20                OrderBuyNo;                    ///< ä¹°å§”æ‰˜å·
-        TAPISTR_20                OrderSellNo;                    ///< å–å§”æ‰˜å·
-    };
-    typedef TapAPIOrderMarketInsertRsp TapAPIOrderMarketDeleteRsp;
-
-
-    //! è®¢å•åˆ é™¤è¯·æ±‚ç»“æž„
-
-    struct TapAPIOrderLocalRemoveReq
-    {
-        TAPICHAR                ServerFlag;
-        TAPISTR_20                OrderNo;                    
-    };
-
-    //! è®¢å•åˆ é™¤åº”ç­”ç»“æž„
-    struct TapAPIOrderLocalRemoveRsp
-    {
-        TapAPIOrderLocalRemoveReq req;
-        TAPISTR_40                            ClientLocalIP;                    //ç»ˆç«¯æœ¬åœ°IPåœ°å€ï¼ˆå®¢æˆ·ç«¯å¡«å†™ï¼‰
-        TAPIMACTYPE                            ClientMac;                        //ç»ˆç«¯æœ¬åœ°Macåœ°å€ï¼ˆå®¢æˆ·ç«¯å¡«å†™ï¼‰
-
-        TAPISTR_40                            ClientIP;                        //å‰ç½®è®°å½•çš„ç»ˆç«¯IPåœ°å€ï¼ˆå‰ç½®å¡«å†™ï¼‰
-    };
-
-    //! è®¢å•å½•å…¥è¯·æ±‚ç»“æž„
-    struct TapAPIOrderLocalInputReq
-    {
-        TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
-
-        TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-        TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹
-        TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
-        TAPISTR_10                    ContractNo;                        ///< åˆçº¦1
-        TAPISTR_10                    StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼1
-        TAPICallOrPutFlagType        CallOrPutFlag;                    ///< çœ‹å¼ çœ‹è·Œ1
-        TAPISTR_10                    ContractNo2;                    ///< åˆçº¦2
-        TAPISTR_10                    StrikePrice2;                    ///< æ‰§è¡Œä»·æ ¼2
-        TAPICallOrPutFlagType        CallOrPutFlag2;                    ///< çœ‹å¼ çœ‹è·Œ2
-
-        TAPIOrderTypeType            OrderType;                        ///< å§”æ‰˜ç±»åž‹
-        TAPIOrderSourceType            OrderSource;                    ///< å§”æ‰˜æ¥æº
-        TAPITimeInForceType            TimeInForce;                    ///< å§”æ‰˜æœ‰æ•ˆç±»åž‹
-        TAPIDATETIME                ExpireTime;                        ///< æœ‰æ•ˆæ—¥æœŸ(GTDæƒ…å†µä¸‹ä½¿ç”¨)
-
-        TAPIYNFLAG                    IsRiskOrder;                    ///< æ˜¯å¦é£Žé™©æŠ¥å•
-        TAPISideType                OrderSide;                        ///< ä¹°å…¥å–å‡º
-        TAPIPositionEffectType        PositionEffect;                    ///< å¼€å¹³æ ‡å¿—1
-        TAPIPositionEffectType        PositionEffect2;                ///< å¼€å¹³æ ‡å¿—2
-        TAPISTR_50                    InquiryNo;                        ///< è¯¢ä»·å·
-        TAPIHedgeFlagType            HedgeFlag;                        ///< æŠ•æœºä¿å€¼
-        TAPIREAL64                    OrderPrice;                        ///< å§”æ‰˜ä»·æ ¼1
-        TAPIREAL64                    OrderPrice2;                    ///< å§”æ‰˜ä»·æ ¼2ï¼Œåšå¸‚å•†åº”ä»·ä½¿ç”¨
-        TAPIREAL64                    StopPrice;                        ///< è§¦å‘ä»·æ ¼
-        TAPIUINT32                    OrderQty;                        ///< å§”æ‰˜æ•°é‡
-        TAPIUINT32                    OrderMinQty;                    ///< æœ€å°æˆäº¤é‡
-        TAPISTR_50                    OrderSystemNo;                    ///< ç³»ç»Ÿå·
-        TAPISTR_50                    OrderExchangeSystemNo;            ///< äº¤æ˜“æ‰€ç³»ç»Ÿå·
-
-        TAPISTR_10                    UpperNo;                        ///< ä¸Šæ‰‹å·
-        TAPIREAL64                    OrderMatchPrice;                ///< æˆäº¤ä»·1
-        TAPIREAL64                    OrderMatchPrice2;                ///< æˆäº¤ä»·2
-        TAPIUINT32                    OrderMatchQty;                    ///< æˆäº¤é‡1
-        TAPIUINT32                    OrderMatchQty2;                    ///< æˆäº¤é‡2
-
-        TAPIOrderStateType            OrderState;                        ///< å§”æ‰˜çŠ¶æ€
-
-        TAPIYNFLAG                    IsAddOne;                        ///< æ˜¯å¦ä¸ºT+1å•
-    };
-    typedef TapAPIOrderInfo TapAPIOrderLocalInputRsp;
-
-    struct TapAPIOrderLocalModifyReq
-    {
-        TapAPIOrderLocalInputReq    req;
-        TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-        TAPISTR_20                    OrderNo;                        ///< å§”æ‰˜ç¼–ç 
-    };
-
-    typedef TapAPIOrderInfo TapAPIOrderLocalModifyRsp;
-
-    struct TapAPIOrderLocalTransferReq
-    {
-        TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
-        TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-        TAPISTR_20                    OrderNo;                        ///< å§”æ‰˜ç¼–ç 
-    };
-
-    typedef TapAPIOrderInfo TapAPIOrderLocalTransferRsp;
+		TAPISTR_100							Remark;							///< ±¸×¢
+	};
+	//! ¸Û½»Ëù×öÊÐÉÌË«±ß³·µ¥ÇëÇó
+	struct TapAPIOrderMarketDeleteReq
+	{
+		TAPICHAR				ServerFlag;
+		TAPISTR_20				OrderBuyNo;					///< ÂòÎ¯ÍÐºÅ
+		TAPISTR_20				OrderSellNo;					///< ÂôÎ¯ÍÐºÅ
+	};
+	typedef TapAPIOrderMarketInsertRsp TapAPIOrderMarketDeleteRsp;
 
 
-    struct TapAPIFillLocalInputReq
-    {
-        TAPISTR_20                    AccountNo;                        ///< å®¢æˆ·èµ„é‡‘å¸å·
+	//! ¶©µ¥É¾³ýÇëÇó½á¹¹
 
-        TAPISTR_10                    ExchangeNo;                        ///< äº¤æ˜“æ‰€ç¼–å·
-        TAPICommodityType            CommodityType;                    ///< å“ç§ç±»åž‹
-        TAPISTR_10                    CommodityNo;                    ///< å“ç§ç¼–ç ç±»åž‹
-        TAPISTR_10                    ContractNo;                        ///< åˆçº¦1
-        TAPISTR_10                    StrikePrice;                    ///< æ‰§è¡Œä»·æ ¼
-        TAPICallOrPutFlagType        CallOrPutFlag;                    ///< çœ‹å¼ çœ‹è·Œ
+	struct TapAPIOrderLocalRemoveReq
+	{
+		TAPICHAR				ServerFlag;
+		TAPISTR_20				OrderNo;					
+	};
 
-    
-        TAPISideType                MatchSide;                        ///< ä¹°å…¥å–å‡º
-        TAPIPositionEffectType      PositionEffect;                    ///< å¼€å¹³æ ‡å¿—1
-        TAPIHedgeFlagType            HedgeFlag;                        ///< æŠ•æœºä¿å€¼
-        TAPIREAL64                    MatchPrice;                        ///< æˆäº¤ä»·
-        TAPIUINT32                    MatchQty;                        ///< æˆäº¤é‡
+	//! ¶©µ¥É¾³ýÓ¦´ð½á¹¹
+	struct TapAPIOrderLocalRemoveRsp
+	{
+		TapAPIOrderLocalRemoveReq req;
+		TAPISTR_40							ClientLocalIP;					//ÖÕ¶Ë±¾µØIPµØÖ·£¨¿Í»§¶ËÌîÐ´£©
+		TAPIMACTYPE							ClientMac;						//ÖÕ¶Ë±¾µØMacµØÖ·£¨¿Í»§¶ËÌîÐ´£©
 
-        TAPISTR_50                    OrderSystemNo;                    ///< ç³»ç»Ÿå·
+		TAPISTR_40							ClientIP;						//Ç°ÖÃ¼ÇÂ¼µÄÖÕ¶ËIPµØÖ·£¨Ç°ÖÃÌîÐ´£©
+	};
+
+	//! ¶©µ¥Â¼ÈëÇëÇó½á¹¹
+	struct TapAPIOrderLocalInputReq
+	{
+		TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
+
+		TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+		TAPISTR_10					ContractNo;						///< ºÏÔ¼1
+		TAPISTR_10					StrikePrice;					///< Ö´ÐÐ¼Û¸ñ1
+		TAPICallOrPutFlagType		CallOrPutFlag;					///< ¿´ÕÅ¿´µø1
+		TAPISTR_10					ContractNo2;					///< ºÏÔ¼2
+		TAPISTR_10					StrikePrice2;					///< Ö´ÐÐ¼Û¸ñ2
+		TAPICallOrPutFlagType		CallOrPutFlag2;					///< ¿´ÕÅ¿´µø2
+
+		TAPIOrderTypeType			OrderType;						///< Î¯ÍÐÀàÐÍ
+		TAPIOrderSourceType			OrderSource;					///< Î¯ÍÐÀ´Ô´
+		TAPITimeInForceType			TimeInForce;					///< Î¯ÍÐÓÐÐ§ÀàÐÍ
+		TAPIDATETIME				ExpireTime;						///< ÓÐÐ§ÈÕÆÚ(GTDÇé¿öÏÂÊ¹ÓÃ)
+
+		TAPIYNFLAG					IsRiskOrder;					///< ÊÇ·ñ·çÏÕ±¨µ¥
+		TAPISideType				OrderSide;						///< ÂòÈëÂô³ö
+		TAPIPositionEffectType		PositionEffect;					///< ¿ªÆ½±êÖ¾1
+		TAPIPositionEffectType		PositionEffect2;				///< ¿ªÆ½±êÖ¾2
+		TAPISTR_50					InquiryNo;						///< Ñ¯¼ÛºÅ
+		TAPIHedgeFlagType			HedgeFlag;						///< Í¶»ú±£Öµ
+		TAPIREAL64					OrderPrice;						///< Î¯ÍÐ¼Û¸ñ1
+		TAPIREAL64					OrderPrice2;					///< Î¯ÍÐ¼Û¸ñ2£¬×öÊÐÉÌÓ¦¼ÛÊ¹ÓÃ
+		TAPIREAL64					StopPrice;						///< ´¥·¢¼Û¸ñ
+		TAPIUINT32					OrderQty;						///< Î¯ÍÐÊýÁ¿
+		TAPIUINT32					OrderMinQty;					///< ×îÐ¡³É½»Á¿
+		TAPISTR_50					OrderSystemNo;					///< ÏµÍ³ºÅ
+		TAPISTR_50					OrderExchangeSystemNo;			///< ½»Ò×ËùÏµÍ³ºÅ
+
+		TAPISTR_10					UpperNo;						///< ÉÏÊÖºÅ
+		TAPIREAL64					OrderMatchPrice;				///< ³É½»¼Û1
+		TAPIREAL64					OrderMatchPrice2;				///< ³É½»¼Û2
+		TAPIUINT32					OrderMatchQty;					///< ³É½»Á¿1
+		TAPIUINT32					OrderMatchQty2;					///< ³É½»Á¿2
+
+		TAPIOrderStateType			OrderState;						///< Î¯ÍÐ×´Ì¬
+
+		TAPIYNFLAG					IsAddOne;						///< ÊÇ·ñÎªT+1µ¥
+
+        TAPISTR_20					LowerAccount;					///< ÏÂ¼¶×Ê½ðÕÊºÅ
+	};
+	typedef TapAPIOrderInfo TapAPIOrderLocalInputRsp;
+
+	struct TapAPIOrderLocalModifyReq
+	{
+		TapAPIOrderLocalInputReq	req;
+		TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+		TAPISTR_20					OrderNo;						///< Î¯ÍÐ±àÂë
+	};
+
+	typedef TapAPIOrderInfo TapAPIOrderLocalModifyRsp;
+
+	struct TapAPIOrderLocalTransferReq
+	{
+		TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
+		TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+		TAPISTR_20					OrderNo;						///< Î¯ÍÐ±àÂë
+	};
+
+	typedef TapAPIOrderInfo TapAPIOrderLocalTransferRsp;
 
 
-        
-        TAPISTR_70                    UpperMatchNo;                    ///< ä¸Šæ‰‹æˆäº¤å·
-        TAPIDATETIME                MatchDateTime;                    ///< æˆäº¤æ—¶é—´
-        TAPIDATETIME                UpperMatchDateTime;                ///< ä¸Šæ‰‹æˆäº¤æ—¶é—´
-        TAPISTR_10                    UpperNo;                        ///< ä¸Šæ‰‹å·
+	struct TapAPIFillLocalInputReq
+	{
+		TAPISTR_20					AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
 
-        TAPIYNFLAG                    IsAddOne;                        ///< æ˜¯å¦ä¸ºT+1å•
+		TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+		TAPISTR_10					ContractNo;						///< ºÏÔ¼1
+		TAPISTR_10					StrikePrice;					///< Ö´ÐÐ¼Û¸ñ
+		TAPICallOrPutFlagType		CallOrPutFlag;					///< ¿´ÕÅ¿´µø
+	
+		TAPISideType				MatchSide;						///< ÂòÈëÂô³ö
+		TAPIPositionEffectType      PositionEffect;					///< ¿ªÆ½±êÖ¾1
+		TAPIHedgeFlagType			HedgeFlag;						///< Í¶»ú±£Öµ
+		TAPIREAL64					MatchPrice;						///< ³É½»¼Û
+		TAPIUINT32					MatchQty;						///< ³É½»Á¿
 
-        TAPISTR_10                    FeeCurrencyGroup;                ///< å®¢æˆ·æ‰‹ç»­è´¹å¸ç§ç»„
-        TAPISTR_10                    FeeCurrency;                    ///< å®¢æˆ·æ‰‹ç»­è´¹å¸ç§
-        TAPIREAL64                    FeeValue;                        ///< æ‰‹ç»­è´¹
-        TAPIYNFLAG                    IsManualFee;                    ///< äººå·¥å®¢æˆ·æ‰‹ç»­è´¹æ ‡è®°
+		TAPISTR_50					OrderSystemNo;					///< ÏµÍ³ºÅ
+		TAPISTR_70					UpperMatchNo;					///< ÉÏÊÖ³É½»ºÅ
+		TAPIDATETIME				MatchDateTime;					///< ³É½»Ê±¼ä
+		TAPIDATETIME				UpperMatchDateTime;				///< ÉÏÊÖ³É½»Ê±¼ä
+		TAPISTR_10					UpperNo;						///< ÉÏÊÖºÅ
 
-        TAPIREAL64                    ClosePositionPrice;                    ///< æŒ‡å®šä»·æ ¼å¹³ä»“
-    };
-    typedef  TapAPIFillLocalInputReq TapAPIFillLocalInputRsp;
+		TAPIYNFLAG					IsAddOne;						///< ÊÇ·ñÎªT+1µ¥
 
+		TAPISTR_10					FeeCurrencyGroup;				///< ¿Í»§ÊÖÐø·Ñ±ÒÖÖ×é
+		TAPISTR_10					FeeCurrency;					///< ¿Í»§ÊÖÐø·Ñ±ÒÖÖ
+		TAPIREAL64					FeeValue;						///< ÊÖÐø·Ñ
+		TAPIYNFLAG					IsManualFee;					///< ÈË¹¤¿Í»§ÊÖÐø·Ñ±ê¼Ç
 
-    //! å®¢æˆ·å½•å•æˆäº¤åˆ é™¤è¯·æ±‚ç»“æž„
-    struct    TapAPIFillLocalRemoveReq
-    {
-        TAPICHAR                    ServerFlag;                        ///< æœåŠ¡å™¨æ ‡è¯†
-        TAPISTR_20                    MatchNo;                        ///< æœ¬åœ°æˆäº¤å·
-    };
-    //! å®¢æˆ·å½•å•æˆäº¤åˆ é™¤åº”ç­”ç»“æž„
-    typedef TapAPIFillLocalRemoveReq    TapAPIFillLocalRemoveRsp;
-
-    //! ç³»ç»Ÿäº¤æ˜“æ—¥æŸ¥è¯¢åº”ç­”
-    struct TapAPITradingCalendarQryRsp
-    {
-        TAPIDATE CurrTradeDate;                                        ///< å½“å‰äº¤æ˜“æ—¥
-        TAPIDATE LastSettlementDate;                                ///< ä¸Šæ¬¡ç»“ç®—æ—¥
-        TAPIDATE PromptDate;                                        ///< LMEåˆ°æœŸæ—¥
-        TAPIDATE LastPromptDate;                                    ///< ä¸Šæ—¥LMEåˆ°æœŸæ—¥
-    };
+		TAPIREAL64					ClosePositionPrice;				///< Ö¸¶¨¼Û¸ñÆ½²Ö
+	};
+	typedef  TapAPIFillLocalInputReq TapAPIFillLocalInputRsp;
 
 
+	//! ¿Í»§Â¼µ¥³É½»É¾³ýÇëÇó½á¹¹
+	struct	TapAPIFillLocalRemoveReq
+	{
+		TAPICHAR					ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+		TAPISTR_20					MatchNo;						///< ±¾µØ³É½»ºÅ
+	};
+	//! ¿Í»§Â¼µ¥³É½»É¾³ýÓ¦´ð½á¹¹
+	typedef TapAPIFillLocalRemoveReq	TapAPIFillLocalRemoveRsp;
+
+	//! ÏµÍ³½»Ò×ÈÕ²éÑ¯Ó¦´ð
+	struct TapAPITradingCalendarQryRsp
+	{
+		TAPIDATE CurrTradeDate;										///< µ±Ç°½»Ò×ÈÕ
+		TAPIDATE LastSettlementDate;								///< ÉÏ´Î½áËãÈÕ
+		TAPIDATE PromptDate;										///< LMEµ½ÆÚÈÕ
+		TAPIDATE LastPromptDate;									///< ÉÏÈÕLMEµ½ÆÚÈÕ
+	};
+
+	//! ¿Í»§ÏÖ»õËø¶¨Á¿²éÑ¯ÇëÇó½á¹¹
+	struct TapAPISpotLockQryReq
+	{
+		TAPISTR_20					AccountNo;						///<¿Í»§×Ê½ðÕÊºÅ
+	};
+	//! ¿Í»§ÏÖ»õËø¶¨Á¿²éÑ¯Ó¦´ð½á¹¹
+	typedef TapAPISpotLockQryReq				TapAPISpotLockQryRsp;
+	//! ¿Í»§ÏÖ»õËø¶¨Á¿²éÑ¯Êý¾ÝÓ¦´ð½á¹¹
+	struct TapAPISpotLockDataRsp
+	{
+		TAPISTR_20					AccountNo;						///<¿Í»§×Ê½ðÕËºÅ
+
+		TAPISTR_10					ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType			CommodityType;					///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10					CommodityNo;					///< Æ·ÖÖ±àÂëÀàÐÍ
+
+		TAPIUINT32					LockQty;						///<Ëø¶¨Á¿
+		TAPIUINT32					FrozenQty;						///<¶³½áÁ¿
+		TAPIUINT32					CanUnLockQty;					///<¿É½âËøÁ¿
+	};
+	//! ¿Í»§ÏÖ»õËø¶¨Á¿±ä¸üÍ¨Öª
+	typedef TapAPISpotLockDataRsp				TapAPISpotLockDataNotice;
+
+	//=============================================================================
+	/**
+	*	\addtogroup G_DATATYPE_SETTLEFLAG	²É¼¯ÐÅÏ¢Òì³£±êÊ¶
+	*/
+	//=============================================================================
+	typedef TAPICHAR						TapAPIAbnormalFalgType;
+	//!Õý³£
+	const	TapAPIAbnormalFalgType			TAPI_ABNORMAL_NORMAL				= '0';
+	//!ÖÕ¶ËÐÅÏ¢²É¼¯Îª¿Õ
+	const	TapAPIAbnormalFalgType			TAPI_ABNORMAL_GATHERINFO_NONE		= '1';
+	//!ÖÕ¶Ë²É¼¯Êý¾Ý¼ÓÃÜÃÜÔ¿°æ±¾Òì³£
+	const	TapAPIAbnormalFalgType			TAPI_ABNORMAL_AUTHKEYVERSION		= '2';
+	//!ÖÕ¶ËÐÅÏ¢Êý¾ÝÒì³£
+	const	TapAPIAbnormalFalgType			TAPI_ABNORMAL_GATHERINFO_WRONG		= '3';
+
+
+	//! ¿´´©Ê½¼à¹Ü²É¼¯ÐÅÏ¢_ÖÐ¼Ì·½Ê½ÉÏ±¨
+	struct TapAPISubmitUserLoginInfo
+	{
+		TAPISTR_20					UserNo;								///< ÓÃ»§Ãû
+		TAPISTR_500					GatherInfo;							///< ÓÃ»§ÖÕ¶Ë²É¼¯ÐÅÏ¢
+		TAPISTR_40					ClientLoginIP;						///< ÓÃ»§¹«ÍøIP
+		TAPIUINT32					ClientLoginPort;					///< ÓÃ»§¹«ÍøPort
+		TAPIDATETIME				ClientLoginDateTime;				///< ÓÃ»§µÇÂ¼Ê±¼ä
+		TAPISTR_30					ClientAppID;						///< ÓÃ»§AppID
+		TAPIUINT32					AuthKeyVersion;						///< ÓÃ»§ÖÕ¶ËÐÅÏ¢¼ÓÃÜÃÜÔ¿°æ±¾ºÅ
+		TapAPIAbnormalFalgType		AbnormalNo;							///< ÓÃ»§²É¼¯ÐÅÏ¢Òì³£±êÊ¶
+	};
+
+	//! ¿´´©Ê½¼à¹Ü²É¼¯ÐÅÏ¢Ó¦´ð
+	struct TapAPISubmitUserLoginRspInfo
+	{
+		TAPISTR_20					UserNo;								///< ÓÃ»§Ãû
+	};
+
+
+
+
+	//=============================================================================
+	/**
+	*	\addtogroup G_DATATYPE_SETTLEFLAG	×éºÏ²ßÂÔ´úÂë
+	*/
+	//=============================================================================
+	typedef TAPICHAR					TapAPICombineStrategyType[10];
+	//!ÈÏ¹ºÅ£ÊÐ¼Û²î²ßÂÔ
+	const TapAPICombineStrategyType		TAPI_STRATEGY_C_BULL						= "CNSJC";
+	//!ÈÏ¹ÁÐÜÊÐ¼Û²î²ßÂÔ
+	const TapAPICombineStrategyType		TAPI_STRATEGY_P_BEAR						= "PXSJC";
+	//!ÈÏ¹ÁÅ£ÊÐ¼Û²î²ßÂÔ
+	const TapAPICombineStrategyType		TAPI_STRATEGY_P_BULL						= "PNSJC";
+	//!ÈÏ¹ºÐÜÊÐ¼Û²î²ßÂÔ
+	const TapAPICombineStrategyType		TAPI_STRATEGY_C_BEAR						= "CXSJC";
+	//!¿çÊ½¿ÕÍ·²ßÂÔ
+	const TapAPICombineStrategyType		TAPI_STRATEGY_S_STRADDLE					= "KS";
+	//!¿í¿çÊ½¿ÕÍ·²ßÂÔ
+	const TapAPICombineStrategyType		TAPI_STRATEGY_S_STRANGLE					= "KKS";
+	//!ÆÕÍ¨²Ö×ª±¸¶Ò²Ö
+	const TapAPICombineStrategyType		TAPI_STRATEGY_ZBD							= "ZBD";
+	//!±¸¶Ò²Ö×ªÆÕÍ¨²Ö
+	const TapAPICombineStrategyType		TAPI_STRATEGY_ZXJ							= "ZXJ";
+
+	//=============================================================================
+	/**
+	*ÌØÊâÒµÎñÎ¯ÍÐÀàÐÍ
+	*/
+	//=============================================================================
+	typedef TAPICHAR					TapAPISpecialOrderTypeType;
+	//!×éºÏ²ßÂÔÉêÇë
+	const TapAPISpecialOrderTypeType		TAPI_STRATEGY_COMBINE					= '1';
+	//!×éºÏ²ßÂÔ²ð·Ö
+	const TapAPISpecialOrderTypeType		TAPI_STRATEGY_SPLIT						= '2';
+	//!Ö¤È¯Ëø¶¨
+	const TapAPISpecialOrderTypeType		TAPI_SPOT_LOCK							= '3';
+	//!Ö¤È¯½âËø
+	const TapAPISpecialOrderTypeType		TAPI_SPOT_UNLOCK						= '4';
+	//!ÆÚÈ¨ÐÐÈ¨
+	const TapAPISpecialOrderTypeType		TAPI_OPTION_EXERCISE					= '5';
+	//!ÆÚÈ¨×éºÏÐÐÈ¨
+	const TapAPISpecialOrderTypeType		TAPI_OPTION_EXERCISE_COMBINE			= '6';
+
+
+	//!¿Í»§ÌØÊâÒµÎñÎ¯ÍÐÇëÇó½á¹¹
+	struct TapAPISpecialOrderInsertReq
+	{
+		TAPISTR_20						AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
+		TapAPISpecialOrderTypeType		SpecialOrderType;				///< ÌØÊâÒµÎñÀàÐÍ
+		TAPIOrderSourceType				OrderSource;					///< Î¯ÍÐÀ´Ô´
+		TAPISTR_50						CombineNo;						///< ×éºÏ±àÂë
+		TAPIUINT32						OrderQty;						///< Î¯ÍÐÊýÁ¿
+		TAPISTR_10						ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType				CommodityType;					///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10						CommodityNo;					///< Æ·ÖÖ±àÂë
+		TAPISTR_10						ContractNo;						///< ºÏÔ¼1
+		TAPISTR_10						StrikePrice;					///< Ö´ÐÐ¼Û¸ñ1
+		TAPICallOrPutFlagType			CallOrPutFlag;					///< ¿´ÕÅ¿´µø1
+		TAPISideType					OrderSide1;						///< ÂòÂô·½Ïò1
+		TAPIHedgeFlagType				HedgeFlag1;						///< Í¶»ú±¸¶Ò1
+		TAPISTR_10						ContractNo2;					///< ºÏÔ¼2
+		TAPISTR_10						StrikePrice2;					///< Ö´ÐÐ¼Û¸ñ2
+		TAPICallOrPutFlagType			CallOrPutFlag2;					///< ¿´ÕÅ¿´µø2
+	};
+
+	//!²éÑ¯ÌØÊâÒµÎñÎ¯ÍÐÇëÇó½á¹¹
+	struct TapAPISpecialOrderQryReq
+	{
+		TAPISTR_20						AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ	
+		TAPISTR_20						OrderNo;						///< ÌØÊâÒµÎñÎ¯ÍÐ±àºÅ
+	};
+	//!¿Í»§ÌØÊâÒµÎñÎ¯ÍÐÐÅÏ¢
+	struct TapAPISpecialOrderInfo
+	{
+		TAPIUINT32						SessionID;						///< »á»°ID
+		TAPIUINT32						ErrorCode; 						///< ´íÎóÂë
+		TAPISTR_50						ErrorText;						///< ´íÎóÐÅÏ¢
+		TAPISTR_20						AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
+		TAPICHAR						ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+		TAPISTR_20						OrderNo;						///< ÌØÊâÒµÎñÎ¯ÍÐ±àºÅ
+		TAPISTR_50						ClientOrderNo;					///< ¿Í»§¶Ë±¾µØÎ¯ÍÐ±àºÅ
+		TapAPISpecialOrderTypeType		SpecialOrderType;				///< ÌØÊâÒµÎñÀàÐÍ
+		TAPIOrderSourceType				OrderSource;					///< Î¯ÍÐÀ´Ô´£¬Ä¬ÈÏ³ÌÐòµ¥¡£
+		TapAPICombineStrategyType       CombineStrategy;				///< ×éºÏ²ßÂÔ´úÂë
+		TAPISTR_50						CombineNo;						///< ×éºÏ±àÂë
+		TAPIUINT32						OrderQty;						///< Î¯ÍÐÊýÁ¿
+		TAPISTR_10						ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType				CommodityType;					///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10						CommodityNo;					///< Æ·ÖÖ±àÂë
+		TAPISTR_10						ContractNo;						///< ºÏÔ¼1
+		TAPISTR_10						StrikePrice;					///< Ö´ÐÐ¼Û¸ñ1
+		TAPICallOrPutFlagType			CallOrPutFlag;					///< ¿´ÕÅ¿´µø1
+		TAPISideType					OrderSide1;						///< ÂòÂô·½Ïò1
+		TAPIUINT32						CombineQty1;					///< ×éºÏÊýÁ¿1
+		TAPIHedgeFlagType				HedgeFlag1;						///< Í¶»ú±¸¶Ò1
+		TAPISTR_10						ContractNo2;					///< ºÏÔ¼2
+		TAPISTR_10						StrikePrice2;					///< Ö´ÐÐ¼Û¸ñ2
+		TAPICallOrPutFlagType			CallOrPutFlag2;					///< ¿´ÕÅ¿´µø2
+		TAPISideType					OrderSide2;						///< ÂòÂô·½Ïò2
+		TAPIUINT32						CombineQty2;					///< ×éºÏÊýÁ¿2
+		TAPIHedgeFlagType				HedgeFlag2;						///< Í¶»ú±¸¶Ò2
+
+		TAPISTR_50		 				LicenseNo;						///< Èí¼þÊÚÈ¨ºÅ
+		TAPISTR_40						ClientLocalIP;					///< ÖÕ¶Ë±¾µØIP
+		TAPIMACTYPE						ClientMac;						///< ÖÕ¶Ë±¾µØMacµØÖ·
+		TAPISTR_40						ClientIP;						///< ÖÕ¶ËÍøÂçµØÖ·.
+		TAPIUINT32						OrderStreamID;					///< Î¯ÍÐÁ÷Ë®ºÅ
+		TAPISTR_10						UpperNo;						///< ÉÏÊÖºÅ
+		TAPISTR_10						UpperChannelNo;					///< ÉÏÊÖÍ¨µÀºÅ
+		TAPISTR_20						OrderLocalNo;					///< Íø¹Ø±¾µØºÅ
+		TAPISTR_50						OrderSystemNo;					///< ÏµÍ³ºÅ
+		TAPISTR_50						OrderExchangeSystemNo;			///< ½»Ò×ËùÏµÍ³ºÅ
+		TAPISTR_20						OrderInsertUserNo;				///< ÏÂµ¥ÈË
+		TAPIDATETIME					OrderInsertTime;				///< ÏÂµ¥Ê±¼ä
+		TAPIOrderStateType				OrderState;						///< Î¯ÍÐ×´Ì¬
+		
+	};
+
+	//!¿Í»§×éºÏ³Ö²Ö²éÑ¯ÇëÇó½á¹¹
+	struct TapAPICombinePositionQryReq
+	{
+		TAPISTR_20						AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
+	};
+	//!¿Í»§×éºÏ³Ö²ÖÐÅÏ¢
+	struct TapAPICombinePositionInfo
+	{
+		TAPISTR_20						AccountNo;						///< ¿Í»§×Ê½ðÕÊºÅ
+
+		TAPIUINT32						PositionStreamID;				///< ×éºÏ³Ö²ÖÁ÷ºÅ
+		TAPICHAR						ServerFlag;						///< ·þÎñÆ÷±êÊ¶
+		TAPISTR_10						UpperNo;						///< ÉÏÊÖºÅ
+		TapAPICombineStrategyType       CombineStrategy;				///< ×éºÏ²ßÂÔ´úÂë
+		TAPISTR_50						CombineNo;						///< ×éºÏ±àÂë
+		TAPIUINT32						PositionQty;					///< Î¯ÍÐÊýÁ¿
+
+		TAPISTR_10						ExchangeNo;						///< ½»Ò×Ëù±àºÅ
+		TAPICommodityType				CommodityType;					///< Æ·ÖÖÀàÐÍ
+		TAPISTR_10						CommodityNo;					///< Æ·ÖÖ±àÂë
+
+		TAPISTR_10						ContractNo;						///< ºÏÔ¼1
+		TAPISTR_10						StrikePrice;					///< Ö´ÐÐ¼Û¸ñ1
+		TAPICallOrPutFlagType			CallOrPutFlag;					///< ¿´ÕÅ¿´µø1
+		TAPISideType					OrderSide1;						///< ÂòÂô·½Ïò1
+		TAPIUINT32						CombineQty1;					///< ×éºÏÊýÁ¿1
+		TAPIHedgeFlagType				HedgeFlag1;						///< Í¶»ú±¸¶Ò1
+		TAPISTR_10						ContractNo2;					///< ºÏÔ¼2
+		TAPISTR_10						StrikePrice2;					///< Ö´ÐÐ¼Û¸ñ2
+		TAPICallOrPutFlagType			CallOrPutFlag2;					///< ¿´ÕÅ¿´µø2
+		TAPISideType					OrderSide2;						///< ÂòÂô·½Ïò2
+		TAPIUINT32						CombineQty2;					///< ×éºÏÊýÁ¿2
+		TAPIHedgeFlagType				HedgeFlag2;						///< Í¶»ú±¸¶Ò2
+
+		TAPISTR_10						CommodityCurrencyGroup;			///< Æ·ÖÖ±ÒÖÖ×é
+		TAPISTR_10						CommodityCurrency;				///< Æ·ÖÖ±ÒÖÖ
+
+		TAPIREAL64						AccountInitialMargin;			///< ³õÊ¼×éºÏ±£Ö¤½ð
+		TAPIREAL64						AccountMaintenanceMargin;		///< Î¬³Ö×éºÏ±£Ö¤½ð
+		TAPIREAL64						UpperInitialMargin;				///< ÉÏÊÖ³õÊ¼×éºÏ±£Ö¤½ð
+		TAPIREAL64						UpperMaintenanceMargin;			///< ÉÏÊÖÎ¬³Ö×éºÏ±£Ö¤½ð
+	};
+
+	//=============================================================================
+	//!ÓÃ»§ÐÅÈÎÉè±¸²éÑ¯ÇëÇó½á¹¹
+	struct TapAPIUserTrustDeviceQryReq
+	{
+	};
+	//ÓÃ»§ÐÅÈÎÉè±¸²éÑ¯Ó¦´ð½á¹¹
+	struct TapAPIUserTrustDeviceQryRsp
+	{
+		TAPISTR_20						UserNo;							///< µÇÂ¼ÕËºÅ
+		TAPISTR_50						LicenseNo;						///< Èí¼þÊÚÈ¨Âë
+		TAPISTR_50						Mac;							///< MAC
+		TAPISTR_50						DeviceName;						///< Éè±¸Ãû³Æ
+		TAPISTR_20						OperatorNo;						///< ²Ù×÷Ô±
+		TAPIDATETIME					OperateTime;					///< ²Ù×÷Ê±¼ä
+	};
+
+	//ÓÃ»§ÐÅÈÎÉè±¸Ôö¼ÓÇëÇó½á¹¹
+	struct TapAPIUserTrustDeviceAddReq
+	{
+
+	};
+	typedef TapAPIUserTrustDeviceQryRsp TapAPIUserTrustDeviceAddRsp;
+
+	//ÓÃ»§ÐÅÈÎÉè±¸Ôö¼ÓÉ¾³ý½á¹¹
+	struct TapAPIUserTrustDeviceDelReq
+	{
+		TAPISTR_50						LicenseNo;						///< Èí¼þÊÚÈ¨Âë
+		TAPISTR_50						Mac;							///< MAC
+	};
+	typedef TapAPIUserTrustDeviceDelReq TapAPIUserTrustDeviceDelRsp;
+
+	//=============================================================================
+	//»ù´¡IPOÐÅÏ¢²éÑ¯ÇëÇó½á¹¹
+	struct TapAPIIPOInfoQryReq
+	{
+	};
+	//»ù´¡IPOÐÅÏ¢²éÑ¯Ó¦´ð½á¹¹
+	struct TapAPIIPOInfoQryRsp
+	{
+		TAPISTR_10							ExchangeNo;							///<ÊÐ³¡»òÕß½»Ò×Ëù´úÂë
+		TAPICommodityType					CommodityType;						///<Æ·ÖÖÀàÐÍ
+		TAPISTR_10							CommodityNo;						///<Æ·ÖÖºÅ
+		TAPISTR_10							CurrencyGroupNo;					///<±ÒÖÖ×é
+		TAPISTR_10							CurrencyNo;							///<±ÒÖÖ
+		TAPIDATETIME                        BeginDate;                          ///<Éê¹º¿ªÊ¼ÈÕÆÚ
+		TAPIDATETIME                        EndDate;                            ///<Éê¹º½áÊøÈÕÆÚ
+		TAPIDATETIME                        IPODate;                            ///<IPODate
+		TAPIDATETIME                        ResultDate;                         ///<ÖÐÇ©ÈÕ
+		TAPIREAL64							IPOFee;                             ///<IPOÊÖÐø·Ñ
+		TAPIREAL64							FinancingFee;                       ///<ÈÚ×ÊÊÖÐø·Ñ
+		TAPIREAL64							LoanRatio;                          ///<ÈÚ×ÊÀûÂÊ
+		TAPIUINT32							FinancingDays;                      ///<ÈÚ×ÊÌìÊý
+		TAPIREAL64							MaxLoanRatio;                       ///<×î¸ßÈÚ×Ê±ÈÀý
+		TAPIREAL64							MaxLoanValue;                       ///<×î¸ßÈÚ×Ê½ð¶î
+		TAPIREAL64							Price;                              ///<ÈÏ¹º/ÅäÊÛ¼Û
+		TAPISTR_20							OperatorNo;
+		TAPIDATETIME						OperateTime;
+	};
+
+	//=============================================================================
+	//¿ÉÉê¹º¹ÉÊý²éÑ¯ÇëÇó½á¹¹
+	struct TapAPIAvailableApplyQryReq
+	{
+
+		TAPISTR_10							ExchangeNo;							///<ÊÐ³¡»òÕß½»Ò×Ëù´úÂë
+		TAPICommodityType					CommodityType;						///<Æ·ÖÖÀàÐÍ
+		TAPISTR_10							CommodityNo;						///<Æ·ÖÖºÅ
+	};
+	//¿ÉÉê¹º¹ÉÊý²éÑ¯Ó¦´ð½á¹¹
+	struct TapAPIAvailableApplyQryRsp
+	{
+		TAPISTR_10							ExchangeNo;							///<ÊÐ³¡»òÕß½»Ò×Ëù´úÂë
+		TAPICommodityType					CommodityType;						///<Æ·ÖÖÀàÐÍ
+		TAPISTR_10							CommodityNo;						///<Æ·ÖÖºÅ
+		TAPIUINT32							StockQty;                           ///<¿ÉÉê¹º¹ÉÊý
+	};
+
+	//=============================================================================
+	//Éê¹º·½Ê½
+	typedef TAPICHAR					TapAPIApplyTypeType;
+	//ÏÖ½ðÉê¹º
+	const TapAPIApplyTypeType              TAPI_APPLYTYPE_CASH = '1';
+	//ÈÚ×ÊÉê¹º
+	const TapAPIApplyTypeType              TAPI_APPLYTYPE_LOAN = '2';
+
+	//Éê¹º×´Ì¬
+	typedef TAPICHAR					TapAPIApplyStatusType;	
+	//ÒÑ·¢ËÍ
+	const TapAPIApplyStatusType            TAPI_APPLYSTAUTS_APPLY = '0';
+	//Éê¹ºÊ§°Ü
+	const TapAPIApplyStatusType            TAPI_APPLYSTAUTS_FAIL = '1';
+	//´ýÉê±¨
+	const TapAPIApplyStatusType            TAPI_APPLYSTAUTS_WAIT = '2';
+	//ÒÑ³·Ïú
+	const TapAPIApplyStatusType            TAPI_APPLYSTAUTS_CANCEL = '3';
+	//ÒÑÉê±¨
+	const TapAPIApplyStatusType            TAPI_APPLYSTAUTS_DONE = '4';
+	//Î´ÖÐÇ©
+	const TapAPIApplyStatusType            TAPI_APPLYSTAUTS_NOLUCKY = '5';
+	//ÖÐÇ©
+	const TapAPIApplyStatusType            TAPI_APPLYSTAUTS_LUCKY = '6';
+	//´ý³·Ïú
+	const TapAPIApplyStatusType            TAPI_APPLYSTAUTS_WAITCANCEL	= '7';
+	//=============================================================================
+
+	//¿Í»§IPO²éÑ¯ÇëÇó
+	struct TapAPIAccountIPOQryReq
+	{
+		TAPISTR_20                    AccountNo;
+	};
+	//¿Í»§IPO²éÑ¯Ó¦´ð
+	struct TapAPIAccountIPOQryRsp
+	{
+		TAPIDATETIME                        EndDate;                            ///<Éê¹º½áÊøÈÕÆÚ
+		TAPIDATETIME                        ResultDate;                         ///<ÖÐÇ©ÈÕ
+		TAPIDATETIME                        IPODate;
+		TAPISTR_20							AccountNo;
+		TAPISTR_10							ExchangeNo;							///<ÊÐ³¡»òÕß½»Ò×Ëù´úÂë
+		TAPICommodityType					CommodityType;						///<Æ·ÖÖÀàÐÍ
+		TAPISTR_10							CommodityNo;						///<Æ·ÖÖºÅ
+
+		TapAPIApplyTypeType                 ApplyType;                          ///<Éê¹ºÀàÐÍ
+		TAPIUINT32							ApplyQty;                           ///<Éê¹ºÊýÁ¿
+		TAPIREAL64							ApplyCash;                          ///<Éê¹º½ð¶î
+		TAPIREAL64							LoanRatio;                          ///<ÈÚ×Ê±ÈÀý
+		TAPIREAL64							LoanInterest;                       ///<ÈÚ×ÊÀûÏ¢
+		TAPIREAL64							ApplyFee;                           ///<Éê¹ºÊÖÐø·Ñ
+		TapAPIApplyStatusType               ApplyStatus;                        ///<Éê¹º×´Ì¬
+		TAPIUINT32							ResultQty;							///<ÖÐÇ©Á¿
+		TAPISTR_20							OperatorNo;
+		TAPIDATETIME						OperateTime;
+	};
+
+	//¿Í»§IPOÔö¼ÓÇëÇó
+	struct TapAPIAccountIPOAddReq
+	{
+		TAPISTR_20							AccountNo;
+		TAPISTR_10							ExchangeNo;							///<ÊÐ³¡»òÕß½»Ò×Ëù´úÂë
+		TAPICommodityType					CommodityType;						///<Æ·ÖÖÀàÐÍ
+		TAPISTR_10							CommodityNo;						///<Æ·ÖÖºÅ
+
+		TapAPIApplyTypeType                 ApplyType;                          ///<Éê¹ºÀàÐÍ
+		TAPIUINT32							ApplyQty;                           ///<Éê¹ºÊýÁ¿
+		TAPIREAL64							LoanRatio;                          ///<ÈÚ×Ê±ÈÀý
+	};
+	//¿Í»§IPOÔö¼ÓÓ¦´ð
+	typedef TapAPIAccountIPOQryRsp TapAPIAccountIPOAddRsp;
+
+	//¿Í»§IPO³·ÏúÇëÇó
+	struct TapAPIAccountIPOCancelReq
+	{
+		TAPISTR_20							AccountNo;
+		TAPISTR_10							ExchangeNo;							///<ÊÐ³¡»òÕß½»Ò×Ëù´úÂë
+		TAPICommodityType					CommodityType;						///<Æ·ÖÖÀàÐÍ
+		TAPISTR_10							CommodityNo;						///<Æ·ÖÖºÅ
+	};
+	//¿Í»§IPO³·ÏúÓ¦´ð
+	typedef TapAPIAccountIPOQryRsp TapAPIAccountIPOCancelRsp;
+	//¿Í»§IPOÔö¼ÓÍ¨Öª
+	typedef TapAPIAccountIPOQryRsp TapAPIAccountIPOAddNotice;
+	//¿Í»§IPO³·ÏúÍ¨Öª
+	typedef TapAPIAccountIPOQryRsp TapAPIAccountIPOCancelNotice;
+
+	//=============================================================================
+
+	//Ö¤¼þÀàÐÍ
+	typedef char					TapAPICertificateTypeType;
+	//ÄÚµØÉí·ÝÖ¤
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_MAINLANDID = '1';
+	//¾ü¹ÙÖ¤
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_MILITARYCARD = '2';
+	//¾¯¹ÙÖ¤
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_POLICECARD = '3';
+	//Ê¿±øÖ¤
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_SOLDIERID = '4';
+	//»§¿Ú²¾
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_ACCOUNTBOOK = '5';
+	//ÖÐ¹ú»¤ÕÕ/ÄÚµØ¸Û°ÄÍ¨ÐÐÖ¤
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_PASSPORT_CHINESE = '6';
+	//Ì¨°ûÖ¤
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_MTPS = '7';
+	//»ØÏçÖ¤
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_HOMERETURN = '8';
+	//ÓªÒµÖ´ÕÕ
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_BUSINESSLICENSE = '9';
+	//ÆóÒµ·¨ÈË´úÂëÖ¤Êé
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_ENTERPRISELEGALPESON = 'A';
+	//ÆäËûÉí·ÝÖ¤
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_OTHERID = 'B';
+	//ÆäËû¹ú¼Ò/µØÇø»¤ÕÕ
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_PASSPORT_OTHER = 'C';
+	//ÆäËûÖ¤¼þ
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_OTHER = 'x';
+	//ÉÌÒµµÇ¼ÇÖ¤
+	const TapAPICertificateTypeType		TAPI_CERTIFICATE_BUSINESSREGISTRATION = 'R';
+
+	typedef char	TapAPIContactContentType[201];
+	//Éí·ÝÑéÖ¤ÇëÇó
+	struct TapAPIVerifyIdentityReq
+	{
+		TAPISTR_20								UserNo;
+		TapAPICertificateTypeType				CertificateType;					//Ö¤¼þÀàÐÍ
+		TAPISTR_50								CertificateNo;						//Ö¤¼þºÅÂë
+		TapAPIContactContentType				EMail;								//µç×ÓÓÊÏäÕËºÅ
+		TapAPIContactContentType				PhoneNo;							//ÊÖ»úºÅ
+	};
+	
 #pragma pack(pop)
 }
 #endif //TAP_TRADE_API_DATA_TYPE_H

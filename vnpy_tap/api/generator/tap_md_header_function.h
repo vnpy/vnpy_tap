@@ -1,4 +1,4 @@
-int qryCommodity(unsigned int session);
+int qryCommodity();
 
-int qryContract(unsigned int session, const dict &data);
+int qryContract(const dict &data);
 

@@ -12,7 +12,7 @@ class ErrorTypeGenerator:
 
     def run(self) -> None:
         """主函数"""
-        self.f_cpp = open(self.filename, "r", encoding="UTF-8")
+        self.f_cpp = open(self.filename, "r")
         self.f_define = open(f"{self.prefix}_{self.name}_error_constant.py", "w", encoding="UTF-8")
 
         for line in self.f_cpp:
@@ -34,11 +34,12 @@ class ErrorTypeGenerator:
                 self.process_int(line)
         # TD
         elif self.name == "td":
-            if line.startswith("    const int"):
+            if "const int" in line:
                 self.process_int(line)
 
     def process_int(self, line: str) -> None:
         """处理类型定义"""
+        line = line.replace("\t", " ")
         sectors = line.split("=")
         value = sectors[1].strip()
 

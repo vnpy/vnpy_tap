@@ -1,6 +1,10 @@
 TapAPIApplicationInfo = {
     "AuthCode": "string",
     "KeyOperationLogPath": "string",
+    "LogLevel": "char",
+    "APPID": "string",
+    "ReConnectCount": "int",
+    "ReConnectSeconds": "int",
 }
 
 TapAPICommodity = {
@@ -35,3 +39,4 @@ TapAPIAuthPasswordReq = {
     "PasswordType": "char",
     "Password": "string",
 }
+

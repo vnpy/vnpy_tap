@@ -1,4 +1,4 @@
-virtual void onConnect() {};
+virtual void onConnect(string HostAddress) {};
 
 virtual void onRspLogin(int error, const dict &data) {};
 
@@ -20,7 +20,7 @@ virtual void onRspQryTradingDate(unsigned int session, int error, const dict &da
 
 virtual void onRspSetReservedInfo(unsigned int session, int error, string info) {};
 
-virtual void onRspQryAccount(unsigned int session, unsigned int session, char last, const dict &data) {};
+virtual void onRspQryAccount(unsigned int session, unsigned int error, char last, const dict &data) {};
 
 virtual void onRspQryFund(unsigned int session, int error, char last, const dict &data) {};
 
@@ -97,4 +97,46 @@ virtual void onRspOrderLocalTransfer(unsigned int session, int error, const dict
 virtual void onRspFillLocalInput(unsigned int session, int error, const dict &data) {};
 
 virtual void onRspFillLocalRemove(unsigned int session, int error, const dict &data) {};
+
+virtual void onRspQrySpotLock(unsigned int session, int error, char last, const dict &data) {};
+
+virtual void onRtnSpotLock(const dict &data) {};
+
+virtual void onRspSubmitUserLoginInfo(unsigned int session, int error, char last, const dict &data) {};
+
+virtual void onRspSpecialOrderAction(unsigned int session, int error, const dict &data) {};
+
+virtual void onRtnSpecialOrder(const dict &data) {};
+
+virtual void onRspQrySpecialOrder(unsigned int session, int error, char last, const dict &data) {};
+
+virtual void onRspQryCombinePosition(unsigned int session, int error, char last, const dict &data) {};
+
+virtual void onRtnCombinePosition(const dict &data) {};
+
+virtual void onRspQryUserTrustDevice(unsigned int session, int error, char last, const dict &data) {};
+
+virtual void onRspAddUserTrustDevice(unsigned int session, int error, const dict &data) {};
+
+virtual void onRspDelUserTrustDevice(unsigned int session, int error, const dict &data) {};
+
+virtual void onRtnAddUserTrustDevice(const dict &data) {};
+
+virtual void onRtnDelUserTrustDevice(const dict &data) {};
+
+virtual void onRspQryIPOInfo(unsigned int session, int error, char last, const dict &data) {};
+
+virtual void onRspQryIPOStockQty(unsigned int session, int error, char last, const dict &data) {};
+
+virtual void onRspQryAccountIPO(unsigned int session, int error, char last, const dict &data) {};
+
+virtual void onRspAddAccountIPO(unsigned int session, int error, const dict &data) {};
+
+virtual void onRspCancelAccountIPO(unsigned int session, int error, const dict &data) {};
+
+virtual void onRtnAddAccountIPO(const dict &data) {};
+
+virtual void onRtnCancelAccountIPO(const dict &data) {};
+
+virtual void onRspUnFreezeVerificate(unsigned int session, int error) {};
 

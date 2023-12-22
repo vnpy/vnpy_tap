@@ -24,7 +24,7 @@ class DataTypeGenerator:
 
     def run(self) -> None:
         """主函数"""
-        self.f_cpp = open(self.filename, "r", encoding="UTF-8")
+        self.f_cpp = open(self.filename, "r")
         if self.name == "td":
             self.f_define = open(f"{self.prefix}_{self.name}_data_constant.py", "w", encoding="UTF-8")
         self.f_typedef = open(f"{self.prefix}_{self.name}_data_typedef.py", "w", encoding="UTF-8")
@@ -45,8 +45,8 @@ class DataTypeGenerator:
 
     def process_line(self, line: str) -> None:
         """处理每行"""
-        line = line.replace("\n", "")
-        line = line.replace(";", "")
+        line_ = line.replace("\n", "")
+        line = line_.replace(";", "")
 
         # MD
         if self.name == "md":
@@ -62,35 +62,30 @@ class DataTypeGenerator:
                 self.process_member(line)
         # TD
         elif self.name == "td":
-            if line.startswith("    typedef"):
+            if "typedef" in line:
                 self.process_typedef_td(line)
-            elif line.startswith("    const"):
+            elif "const" in line:
                 self.process_const(line)
             elif "struct" in line:
                 self.process_declare(line)
             elif line.startswith("    {"):
                 self.process_start(line)
-            elif line.startswith("    }"):
+            elif "};" in line_:
                 self.process_end(line)
-            elif "///<" in line:
-                self.process_member(line)
-            elif "#" not in line and "!" not in line and "=" not in line and "*" not in line and "(" not in line and "namespace" not in line and "TapTradeAPI" not in line and len(line) != 0:
+            elif "=" not in line and "//" in line:
+                if "!" not in line and "！" not in line and "#" not in line and "TapTradeAPI" not in line:
+                    self.process_member(line)
+            elif "#" not in line and "!" not in line and "=" not in line and "*" not in line and "(" not in line and "namespace" not in line and len(line) != 0:
                 self.process_special(line)
 
     def process_special(self, line: str) -> None:
+        line = line.replace("\t", " ")
         words = line.split(" ")
         words = [word for word in words if word != ""]
 
         if len(words) == 2 or len(words) == 3:
             name = words[1]
-            if "//" in name:
-                name = name.split("//")[0]
-            if "[" in name:
-                name = name.split("[")[0]
-
             type_ = words[0]
-            if "//" in type_:
-                type_ = type_.split("//")[1]
             py_type = self.typedefs.get(type_, "dict")
 
             new_line = f"    \"{name}\": \"{py_type}\",\n"
@@ -98,6 +93,7 @@ class DataTypeGenerator:
 
     def process_declare(self, line: str) -> None:
         """处理声明"""
+        line = line.replace("\t", " ")
         words = line.split(" ")
         name = words[-1]
         end = "{"
@@ -123,7 +119,16 @@ class DataTypeGenerator:
             words = words[0].split(" ")
             words = [word for word in words if word != ""]
 
+        if len(words) == 1:
+            return
+
         name = words[1].strip()
+        if "//" in name:
+            return
+
+        if not name:
+            name = words[-1]
+
         if "[" in name:
             name = name.split("[")[0]
         py_type = self.typedefs.get(words[0].strip(), "dict")
@@ -142,27 +147,31 @@ class DataTypeGenerator:
         self.f_typedef.write(new_line)
         self.typedefs[name] = py_type
 
-        if py_type == "dict":
-            short2full = f"{name} = {words[-2]}\n"
-            self.f_struct.write(short2full)
-
     def process_typedef_td(self, line: str) -> None:
         """处理类型定义"""
+        line = line.replace("\t", " ")
         words = line.split(" ")
         words = [word for word in words if word != ""]
 
         name = words[-1]
         py_type = self.typedefs.get(words[1], "dict")
-        new_line = f"{name} = \"{py_type}\"\n"
 
-        self.f_typedef.write(new_line)
+        if "[" in name:
+            name = name.split("[")[0]
+            py_type = "string"
+
         self.typedefs[name] = py_type
+        new_line = f"{name} = \"{py_type}\"\n"
+        self.f_typedef.write(new_line)
 
         if py_type == "dict":
             short2full = f"{name} = {words[-2]}\n"
+            if words[-2] == "char":
+                return
             self.f_struct.write(short2full)
 
     def process_const(self, line: str) -> None:
+        line = line.replace("\t", " ")
         sectors = line.split("=")
         value = sectors[1].replace("\'", "\"").strip()
 

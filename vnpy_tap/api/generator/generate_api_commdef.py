@@ -23,10 +23,10 @@ class CommenTypeGenerator:
 
     def run(self) -> None:
         """主函数"""
-        self.f_cpp = open(self.filename, "r", encoding="UTF-8")
-        self.f_define = open(f"{self.prefix}_{self.name}_commen_constant.py", "w", encoding="UTF-8")
-        self.f_typedef = open(f"{self.prefix}_{self.name}_commen_typedef.py", "w", encoding="UTF-8")
-        self.f_struct = open(f"{self.prefix}_{self.name}_commen_struct.py", "w", encoding="UTF-8")
+        self.f_cpp = open(self.filename, "r")
+        self.f_define = open(f"{self.prefix}_{self.name}_commen_constant.py", "w")
+        self.f_typedef = open(f"{self.prefix}_{self.name}_commen_typedef.py", "w")
+        self.f_struct = open(f"{self.prefix}_{self.name}_commen_struct.py", "w")
 
         self.add_supplement()
 
@@ -46,10 +46,10 @@ class CommenTypeGenerator:
         print(f"{self.name}_CommenType生成完毕")
 
     def process_struct(self) -> None:
-        f_cpp_struct = open(self.filename, "r", encoding="UTF-8")
+        f_cpp_struct = open(self.filename, "r")
         for line in f_cpp_struct:
-            line = line.replace(";", "")
-            line = line.replace("\n", "")
+            line_ = line.replace("\n", "")
+            line = line_.replace(";", "")
 
             if "struct" in line:
                 self.process_declare(line)
@@ -57,7 +57,7 @@ class CommenTypeGenerator:
                 self.process_start(line)
             elif line.startswith("}") and self.name == "md":
                 self.process_end(line)
-            elif line.startswith("    }") and self.name == "td":
+            elif "};" in line_ and self.name == "td":
                 self.process_end(line)
             elif "///<" in line:
                 self.process_member(line)
@@ -109,9 +109,9 @@ class CommenTypeGenerator:
                 self.process_const_md(line)
         # TD
         elif self.name == "td":
-            if line.startswith("    typedef char"):
+            if "typedef char" in line:
                 self.process_char_td(line)
-            elif line.startswith("    const"):
+            elif "const" in line and "=" in line:
                 self.process_const_td(line)
 
     def process_char_md(self, line: str) -> None:
@@ -126,6 +126,7 @@ class CommenTypeGenerator:
         self.f_typedef.write(new_line)
 
     def process_char_td(self, line: str) -> None:
+        line = line.replace("\t", " ")
         words = line.split(" ")
         words = [word for word in words if word != ""]
 
@@ -152,6 +153,8 @@ class CommenTypeGenerator:
         self.f_define.write(new_line)
 
     def process_const_td(self, line: str):
+        """"""
+        line = line.replace("\t", " ")
         sectors = line.split("=")
         value = sectors[1].replace("\'", "\"").strip()
 

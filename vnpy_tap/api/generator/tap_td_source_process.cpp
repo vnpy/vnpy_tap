@@ -1,6 +1,7 @@
 void TdApi::processConnect(Task *task)
 {
-	this->onConnect();
+	gil_scoped_acquire acquire;
+	this->onConnect(task->task_string);
 };
 
 void TdApi::processRspLogin(Task *task)
@@ -21,7 +22,8 @@ void TdApi::processRspLogin(Task *task)
 		data["TradeDate"] = toUtf(task_data->TradeDate);
 		data["LastSettleTime"] = toUtf(task_data->LastSettleTime);
 		data["StartTime"] = toUtf(task_data->StartTime);
-		data["InitTime"] = toUtf(task_data->InitTime);
+		data["NextSecondDate"] = toUtf(task_data->NextSecondDate);
+		data["LastLoginInfo"] = toUtf(task_data->LastLoginInfo);
 		delete task_data;
 	}
 	this->onRspLogin(task->task_int, data);
@@ -269,6 +271,7 @@ void TdApi::processRspQryCommodity(Task *task)
 		data["AddOneTime"] = toUtf(task_data->AddOneTime);
 		data["CommodityTimeZone"] = task_data->CommodityTimeZone;
 		data["IsAddOne"] = task_data->IsAddOne;
+		data["OptionType"] = task_data->OptionType;
 		delete task_data;
 	}
 	this->onRspQryCommodity(task->task_id, task->task_int, task->task_last, data);
@@ -296,6 +299,7 @@ void TdApi::processRspQryContract(Task *task)
 		data["ContractExpDate"] = toUtf(task_data->ContractExpDate);
 		data["LastTradeDate"] = toUtf(task_data->LastTradeDate);
 		data["FirstNoticeDate"] = toUtf(task_data->FirstNoticeDate);
+		data["ContractSize"] = task_data->ContractSize;
 		delete task_data;
 	}
 	this->onRspQryContract(task->task_id, task->task_int, task->task_last, data);
@@ -323,6 +327,7 @@ void TdApi::processRtnContract(Task *task)
 		data["ContractExpDate"] = toUtf(task_data->ContractExpDate);
 		data["LastTradeDate"] = toUtf(task_data->LastTradeDate);
 		data["FirstNoticeDate"] = toUtf(task_data->FirstNoticeDate);
+		data["ContractSize"] = task_data->ContractSize;
 		delete task_data;
 	}
 	this->onRtnContract(data);
@@ -429,6 +434,7 @@ void TdApi::processRspQryOrder(Task *task)
 		data["IsBackInput"] = task_data->IsBackInput;
 		data["IsDeleted"] = task_data->IsDeleted;
 		data["IsAddOne"] = task_data->IsAddOne;
+		data["ClientLocationID"] = toUtf(task_data->ClientLocationID);
 		delete task_data;
 	}
 	this->onRspQryOrder(task->task_id, task->task_int, task->task_last, data);
@@ -506,6 +512,7 @@ void TdApi::processRspQryOrderProcess(Task *task)
 		data["IsBackInput"] = task_data->IsBackInput;
 		data["IsDeleted"] = task_data->IsDeleted;
 		data["IsAddOne"] = task_data->IsAddOne;
+		data["ClientLocationID"] = toUtf(task_data->ClientLocationID);
 		delete task_data;
 	}
 	this->onRspQryOrderProcess(task->task_id, task->task_int, task->task_last, data);
@@ -546,6 +553,7 @@ void TdApi::processRspQryFill(Task *task)
 		data["FeeValue"] = task_data->FeeValue;
 		data["IsManualFee"] = task_data->IsManualFee;
 		data["ClosePrositionPrice"] = task_data->ClosePrositionPrice;
+		data["CloseProfit"] = task_data->CloseProfit;
 		delete task_data;
 	}
 	this->onRspQryFill(task->task_id, task->task_int, task->task_last, data);
@@ -586,6 +594,7 @@ void TdApi::processRtnFill(Task *task)
 		data["FeeValue"] = task_data->FeeValue;
 		data["IsManualFee"] = task_data->IsManualFee;
 		data["ClosePrositionPrice"] = task_data->ClosePrositionPrice;
+		data["CloseProfit"] = task_data->CloseProfit;
 		delete task_data;
 	}
 	this->onRtnFill(data);
@@ -1035,6 +1044,8 @@ void TdApi::processRspQryHisPosition(Task *task)
 		data["UpperInitialMargin"] = task_data->UpperInitialMargin;
 		data["UpperMaintenanceMargin"] = task_data->UpperMaintenanceMargin;
 		data["SettleGroupNo"] = toUtf(task_data->SettleGroupNo);
+		data["ServerFlag"] = task_data->ServerFlag;
+		data["SuperiorAccount"] = toUtf(task_data->SuperiorAccount);
 		delete task_data;
 	}
 	this->onRspQryHisPosition(task->task_id, task->task_int, task->task_last, data);
@@ -1082,6 +1093,9 @@ void TdApi::processRspQryHisDelivery(Task *task)
 		data["OperatorNo"] = toUtf(task_data->OperatorNo);
 		data["OperateTime"] = toUtf(task_data->OperateTime);
 		data["SettleGourpNo"] = toUtf(task_data->SettleGourpNo);
+		data["FutureContractNo"] = toUtf(task_data->FutureContractNo);
+		data["OptionStrikePrice"] = toUtf(task_data->OptionStrikePrice);
+		data["SuperiorAccount"] = toUtf(task_data->SuperiorAccount);
 		delete task_data;
 	}
 	this->onRspQryHisDelivery(task->task_id, task->task_int, task->task_last, data);
@@ -1378,6 +1392,7 @@ void TdApi::processRspOrderLocalInput(Task *task)
 		data["IsBackInput"] = task_data->IsBackInput;
 		data["IsDeleted"] = task_data->IsDeleted;
 		data["IsAddOne"] = task_data->IsAddOne;
+		data["ClientLocationID"] = toUtf(task_data->ClientLocationID);
 		delete task_data;
 	}
 	this->onRspOrderLocalInput(task->task_id, task->task_int, data);
@@ -1455,6 +1470,7 @@ void TdApi::processRspOrderLocalModify(Task *task)
 		data["IsBackInput"] = task_data->IsBackInput;
 		data["IsDeleted"] = task_data->IsDeleted;
 		data["IsAddOne"] = task_data->IsAddOne;
+		data["ClientLocationID"] = toUtf(task_data->ClientLocationID);
 		delete task_data;
 	}
 	this->onRspOrderLocalModify(task->task_id, task->task_int, data);
@@ -1532,6 +1548,7 @@ void TdApi::processRspOrderLocalTransfer(Task *task)
 		data["IsBackInput"] = task_data->IsBackInput;
 		data["IsDeleted"] = task_data->IsDeleted;
 		data["IsAddOne"] = task_data->IsAddOne;
+		data["ClientLocationID"] = toUtf(task_data->ClientLocationID);
 		delete task_data;
 	}
 	this->onRspOrderLocalTransfer(task->task_id, task->task_int, data);
@@ -1584,5 +1601,571 @@ void TdApi::processRspFillLocalRemove(Task *task)
 		delete task_data;
 	}
 	this->onRspFillLocalRemove(task->task_id, task->task_int, data);
+};
+
+void TdApi::processRspQrySpotLock(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPISpotLockDataRsp *task_data = (TapAPISpotLockDataRsp*)task->task_data;
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["LockQty"] = task_data->LockQty;
+		data["FrozenQty"] = task_data->FrozenQty;
+		data["CanUnLockQty"] = task_data->CanUnLockQty;
+		delete task_data;
+	}
+	this->onRspQrySpotLock(task->task_id, task->task_int, task->task_last, data);
+};
+
+void TdApi::processRtnSpotLock(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPISpotLockDataRsp *task_data = (TapAPISpotLockDataRsp*)task->task_data;
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["LockQty"] = task_data->LockQty;
+		data["FrozenQty"] = task_data->FrozenQty;
+		data["CanUnLockQty"] = task_data->CanUnLockQty;
+		delete task_data;
+	}
+	this->onRtnSpotLock(data);
+};
+
+void TdApi::processRspSubmitUserLoginInfo(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPISubmitUserLoginRspInfo *task_data = (TapAPISubmitUserLoginRspInfo*)task->task_data;
+		data["UserNo"] = toUtf(task_data->UserNo);
+		delete task_data;
+	}
+	this->onRspSubmitUserLoginInfo(task->task_id, task->task_int, task->task_last, data);
+};
+
+void TdApi::processRspSpecialOrderAction(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPISpecialOrderInfo *task_data = (TapAPISpecialOrderInfo*)task->task_data;
+		data["SessionID"] = task_data->SessionID;
+		data["ErrorCode"] = task_data->ErrorCode;
+		data["ErrorText"] = toUtf(task_data->ErrorText);
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["ServerFlag"] = task_data->ServerFlag;
+		data["OrderNo"] = toUtf(task_data->OrderNo);
+		data["ClientOrderNo"] = toUtf(task_data->ClientOrderNo);
+		data["SpecialOrderType"] = task_data->SpecialOrderType;
+		data["OrderSource"] = task_data->OrderSource;
+		data["CombineStrategy"] = toUtf(task_data->CombineStrategy);
+		data["CombineNo"] = toUtf(task_data->CombineNo);
+		data["OrderQty"] = task_data->OrderQty;
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["ContractNo"] = toUtf(task_data->ContractNo);
+		data["StrikePrice"] = toUtf(task_data->StrikePrice);
+		data["CallOrPutFlag"] = task_data->CallOrPutFlag;
+		data["OrderSide1"] = task_data->OrderSide1;
+		data["CombineQty1"] = task_data->CombineQty1;
+		data["HedgeFlag1"] = task_data->HedgeFlag1;
+		data["ContractNo2"] = toUtf(task_data->ContractNo2);
+		data["StrikePrice2"] = toUtf(task_data->StrikePrice2);
+		data["CallOrPutFlag2"] = task_data->CallOrPutFlag2;
+		data["OrderSide2"] = task_data->OrderSide2;
+		data["CombineQty2"] = task_data->CombineQty2;
+		data["HedgeFlag2"] = task_data->HedgeFlag2;
+		data["LicenseNo"] = toUtf(task_data->LicenseNo);
+		data["ClientLocalIP"] = toUtf(task_data->ClientLocalIP);
+		data["ClientMac"] = toUtf(task_data->ClientMac);
+		data["ClientIP"] = toUtf(task_data->ClientIP);
+		data["OrderStreamID"] = task_data->OrderStreamID;
+		data["UpperNo"] = toUtf(task_data->UpperNo);
+		data["UpperChannelNo"] = toUtf(task_data->UpperChannelNo);
+		data["OrderLocalNo"] = toUtf(task_data->OrderLocalNo);
+		data["OrderSystemNo"] = toUtf(task_data->OrderSystemNo);
+		data["OrderExchangeSystemNo"] = toUtf(task_data->OrderExchangeSystemNo);
+		data["OrderInsertUserNo"] = toUtf(task_data->OrderInsertUserNo);
+		data["OrderInsertTime"] = toUtf(task_data->OrderInsertTime);
+		data["OrderState"] = task_data->OrderState;
+		delete task_data;
+	}
+	this->onRspSpecialOrderAction(task->task_id, task->task_int, data);
+};
+
+void TdApi::processRtnSpecialOrder(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPISpecialOrderInfo *task_data = (TapAPISpecialOrderInfo*)task->task_data;
+		data["SessionID"] = task_data->SessionID;
+		data["ErrorCode"] = task_data->ErrorCode;
+		data["ErrorText"] = toUtf(task_data->ErrorText);
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["ServerFlag"] = task_data->ServerFlag;
+		data["OrderNo"] = toUtf(task_data->OrderNo);
+		data["ClientOrderNo"] = toUtf(task_data->ClientOrderNo);
+		data["SpecialOrderType"] = task_data->SpecialOrderType;
+		data["OrderSource"] = task_data->OrderSource;
+		data["CombineStrategy"] = toUtf(task_data->CombineStrategy);
+		data["CombineNo"] = toUtf(task_data->CombineNo);
+		data["OrderQty"] = task_data->OrderQty;
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["ContractNo"] = toUtf(task_data->ContractNo);
+		data["StrikePrice"] = toUtf(task_data->StrikePrice);
+		data["CallOrPutFlag"] = task_data->CallOrPutFlag;
+		data["OrderSide1"] = task_data->OrderSide1;
+		data["CombineQty1"] = task_data->CombineQty1;
+		data["HedgeFlag1"] = task_data->HedgeFlag1;
+		data["ContractNo2"] = toUtf(task_data->ContractNo2);
+		data["StrikePrice2"] = toUtf(task_data->StrikePrice2);
+		data["CallOrPutFlag2"] = task_data->CallOrPutFlag2;
+		data["OrderSide2"] = task_data->OrderSide2;
+		data["CombineQty2"] = task_data->CombineQty2;
+		data["HedgeFlag2"] = task_data->HedgeFlag2;
+		data["LicenseNo"] = toUtf(task_data->LicenseNo);
+		data["ClientLocalIP"] = toUtf(task_data->ClientLocalIP);
+		data["ClientMac"] = toUtf(task_data->ClientMac);
+		data["ClientIP"] = toUtf(task_data->ClientIP);
+		data["OrderStreamID"] = task_data->OrderStreamID;
+		data["UpperNo"] = toUtf(task_data->UpperNo);
+		data["UpperChannelNo"] = toUtf(task_data->UpperChannelNo);
+		data["OrderLocalNo"] = toUtf(task_data->OrderLocalNo);
+		data["OrderSystemNo"] = toUtf(task_data->OrderSystemNo);
+		data["OrderExchangeSystemNo"] = toUtf(task_data->OrderExchangeSystemNo);
+		data["OrderInsertUserNo"] = toUtf(task_data->OrderInsertUserNo);
+		data["OrderInsertTime"] = toUtf(task_data->OrderInsertTime);
+		data["OrderState"] = task_data->OrderState;
+		delete task_data;
+	}
+	this->onRtnSpecialOrder(data);
+};
+
+void TdApi::processRspQrySpecialOrder(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPISpecialOrderInfo *task_data = (TapAPISpecialOrderInfo*)task->task_data;
+		data["SessionID"] = task_data->SessionID;
+		data["ErrorCode"] = task_data->ErrorCode;
+		data["ErrorText"] = toUtf(task_data->ErrorText);
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["ServerFlag"] = task_data->ServerFlag;
+		data["OrderNo"] = toUtf(task_data->OrderNo);
+		data["ClientOrderNo"] = toUtf(task_data->ClientOrderNo);
+		data["SpecialOrderType"] = task_data->SpecialOrderType;
+		data["OrderSource"] = task_data->OrderSource;
+		data["CombineStrategy"] = toUtf(task_data->CombineStrategy);
+		data["CombineNo"] = toUtf(task_data->CombineNo);
+		data["OrderQty"] = task_data->OrderQty;
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["ContractNo"] = toUtf(task_data->ContractNo);
+		data["StrikePrice"] = toUtf(task_data->StrikePrice);
+		data["CallOrPutFlag"] = task_data->CallOrPutFlag;
+		data["OrderSide1"] = task_data->OrderSide1;
+		data["CombineQty1"] = task_data->CombineQty1;
+		data["HedgeFlag1"] = task_data->HedgeFlag1;
+		data["ContractNo2"] = toUtf(task_data->ContractNo2);
+		data["StrikePrice2"] = toUtf(task_data->StrikePrice2);
+		data["CallOrPutFlag2"] = task_data->CallOrPutFlag2;
+		data["OrderSide2"] = task_data->OrderSide2;
+		data["CombineQty2"] = task_data->CombineQty2;
+		data["HedgeFlag2"] = task_data->HedgeFlag2;
+		data["LicenseNo"] = toUtf(task_data->LicenseNo);
+		data["ClientLocalIP"] = toUtf(task_data->ClientLocalIP);
+		data["ClientMac"] = toUtf(task_data->ClientMac);
+		data["ClientIP"] = toUtf(task_data->ClientIP);
+		data["OrderStreamID"] = task_data->OrderStreamID;
+		data["UpperNo"] = toUtf(task_data->UpperNo);
+		data["UpperChannelNo"] = toUtf(task_data->UpperChannelNo);
+		data["OrderLocalNo"] = toUtf(task_data->OrderLocalNo);
+		data["OrderSystemNo"] = toUtf(task_data->OrderSystemNo);
+		data["OrderExchangeSystemNo"] = toUtf(task_data->OrderExchangeSystemNo);
+		data["OrderInsertUserNo"] = toUtf(task_data->OrderInsertUserNo);
+		data["OrderInsertTime"] = toUtf(task_data->OrderInsertTime);
+		data["OrderState"] = task_data->OrderState;
+		delete task_data;
+	}
+	this->onRspQrySpecialOrder(task->task_id, task->task_int, task->task_last, data);
+};
+
+void TdApi::processRspQryCombinePosition(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPICombinePositionInfo *task_data = (TapAPICombinePositionInfo*)task->task_data;
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["PositionStreamID"] = task_data->PositionStreamID;
+		data["ServerFlag"] = task_data->ServerFlag;
+		data["UpperNo"] = toUtf(task_data->UpperNo);
+		data["CombineStrategy"] = toUtf(task_data->CombineStrategy);
+		data["CombineNo"] = toUtf(task_data->CombineNo);
+		data["PositionQty"] = task_data->PositionQty;
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["ContractNo"] = toUtf(task_data->ContractNo);
+		data["StrikePrice"] = toUtf(task_data->StrikePrice);
+		data["CallOrPutFlag"] = task_data->CallOrPutFlag;
+		data["OrderSide1"] = task_data->OrderSide1;
+		data["CombineQty1"] = task_data->CombineQty1;
+		data["HedgeFlag1"] = task_data->HedgeFlag1;
+		data["ContractNo2"] = toUtf(task_data->ContractNo2);
+		data["StrikePrice2"] = toUtf(task_data->StrikePrice2);
+		data["CallOrPutFlag2"] = task_data->CallOrPutFlag2;
+		data["OrderSide2"] = task_data->OrderSide2;
+		data["CombineQty2"] = task_data->CombineQty2;
+		data["HedgeFlag2"] = task_data->HedgeFlag2;
+		data["CommodityCurrencyGroup"] = toUtf(task_data->CommodityCurrencyGroup);
+		data["CommodityCurrency"] = toUtf(task_data->CommodityCurrency);
+		data["AccountInitialMargin"] = task_data->AccountInitialMargin;
+		data["AccountMaintenanceMargin"] = task_data->AccountMaintenanceMargin;
+		data["UpperInitialMargin"] = task_data->UpperInitialMargin;
+		data["UpperMaintenanceMargin"] = task_data->UpperMaintenanceMargin;
+		delete task_data;
+	}
+	this->onRspQryCombinePosition(task->task_id, task->task_int, task->task_last, data);
+};
+
+void TdApi::processRtnCombinePosition(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPICombinePositionInfo *task_data = (TapAPICombinePositionInfo*)task->task_data;
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["PositionStreamID"] = task_data->PositionStreamID;
+		data["ServerFlag"] = task_data->ServerFlag;
+		data["UpperNo"] = toUtf(task_data->UpperNo);
+		data["CombineStrategy"] = toUtf(task_data->CombineStrategy);
+		data["CombineNo"] = toUtf(task_data->CombineNo);
+		data["PositionQty"] = task_data->PositionQty;
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["ContractNo"] = toUtf(task_data->ContractNo);
+		data["StrikePrice"] = toUtf(task_data->StrikePrice);
+		data["CallOrPutFlag"] = task_data->CallOrPutFlag;
+		data["OrderSide1"] = task_data->OrderSide1;
+		data["CombineQty1"] = task_data->CombineQty1;
+		data["HedgeFlag1"] = task_data->HedgeFlag1;
+		data["ContractNo2"] = toUtf(task_data->ContractNo2);
+		data["StrikePrice2"] = toUtf(task_data->StrikePrice2);
+		data["CallOrPutFlag2"] = task_data->CallOrPutFlag2;
+		data["OrderSide2"] = task_data->OrderSide2;
+		data["CombineQty2"] = task_data->CombineQty2;
+		data["HedgeFlag2"] = task_data->HedgeFlag2;
+		data["CommodityCurrencyGroup"] = toUtf(task_data->CommodityCurrencyGroup);
+		data["CommodityCurrency"] = toUtf(task_data->CommodityCurrency);
+		data["AccountInitialMargin"] = task_data->AccountInitialMargin;
+		data["AccountMaintenanceMargin"] = task_data->AccountMaintenanceMargin;
+		data["UpperInitialMargin"] = task_data->UpperInitialMargin;
+		data["UpperMaintenanceMargin"] = task_data->UpperMaintenanceMargin;
+		delete task_data;
+	}
+	this->onRtnCombinePosition(data);
+};
+
+void TdApi::processRspQryUserTrustDevice(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIUserTrustDeviceQryRsp *task_data = (TapAPIUserTrustDeviceQryRsp*)task->task_data;
+		data["UserNo"] = toUtf(task_data->UserNo);
+		data["LicenseNo"] = toUtf(task_data->LicenseNo);
+		data["Mac"] = toUtf(task_data->Mac);
+		data["DeviceName"] = toUtf(task_data->DeviceName);
+		data["OperatorNo"] = toUtf(task_data->OperatorNo);
+		data["OperateTime"] = toUtf(task_data->OperateTime);
+		delete task_data;
+	}
+	this->onRspQryUserTrustDevice(task->task_id, task->task_int, task->task_last, data);
+};
+
+void TdApi::processRspAddUserTrustDevice(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIUserTrustDeviceAddRsp *task_data = (TapAPIUserTrustDeviceAddRsp*)task->task_data;
+		data["UserNo"] = toUtf(task_data->UserNo);
+		data["LicenseNo"] = toUtf(task_data->LicenseNo);
+		data["Mac"] = toUtf(task_data->Mac);
+		data["DeviceName"] = toUtf(task_data->DeviceName);
+		data["OperatorNo"] = toUtf(task_data->OperatorNo);
+		data["OperateTime"] = toUtf(task_data->OperateTime);
+		delete task_data;
+	}
+	this->onRspAddUserTrustDevice(task->task_id, task->task_int, data);
+};
+
+void TdApi::processRspDelUserTrustDevice(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIUserTrustDeviceDelRsp *task_data = (TapAPIUserTrustDeviceDelRsp*)task->task_data;
+		data["LicenseNo"] = toUtf(task_data->LicenseNo);
+		data["Mac"] = toUtf(task_data->Mac);
+		delete task_data;
+	}
+	this->onRspDelUserTrustDevice(task->task_id, task->task_int, data);
+};
+
+void TdApi::processRtnAddUserTrustDevice(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIUserTrustDeviceAddRsp *task_data = (TapAPIUserTrustDeviceAddRsp*)task->task_data;
+		data["UserNo"] = toUtf(task_data->UserNo);
+		data["LicenseNo"] = toUtf(task_data->LicenseNo);
+		data["Mac"] = toUtf(task_data->Mac);
+		data["DeviceName"] = toUtf(task_data->DeviceName);
+		data["OperatorNo"] = toUtf(task_data->OperatorNo);
+		data["OperateTime"] = toUtf(task_data->OperateTime);
+		delete task_data;
+	}
+	this->onRtnAddUserTrustDevice(data);
+};
+
+void TdApi::processRtnDelUserTrustDevice(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIUserTrustDeviceDelRsp *task_data = (TapAPIUserTrustDeviceDelRsp*)task->task_data;
+		data["LicenseNo"] = toUtf(task_data->LicenseNo);
+		data["Mac"] = toUtf(task_data->Mac);
+		delete task_data;
+	}
+	this->onRtnDelUserTrustDevice(data);
+};
+
+void TdApi::processRspQryIPOInfo(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIIPOInfoQryRsp *task_data = (TapAPIIPOInfoQryRsp*)task->task_data;
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["CurrencyGroupNo"] = toUtf(task_data->CurrencyGroupNo);
+		data["CurrencyNo"] = toUtf(task_data->CurrencyNo);
+		data["BeginDate"] = toUtf(task_data->BeginDate);
+		data["EndDate"] = toUtf(task_data->EndDate);
+		data["IPODate"] = toUtf(task_data->IPODate);
+		data["ResultDate"] = toUtf(task_data->ResultDate);
+		data["IPOFee"] = task_data->IPOFee;
+		data["FinancingFee"] = task_data->FinancingFee;
+		data["LoanRatio"] = task_data->LoanRatio;
+		data["FinancingDays"] = task_data->FinancingDays;
+		data["MaxLoanRatio"] = task_data->MaxLoanRatio;
+		data["MaxLoanValue"] = task_data->MaxLoanValue;
+		data["Price"] = task_data->Price;
+		data["OperatorNo"] = toUtf(task_data->OperatorNo);
+		data["OperateTime"] = toUtf(task_data->OperateTime);
+		delete task_data;
+	}
+	this->onRspQryIPOInfo(task->task_id, task->task_int, task->task_last, data);
+};
+
+void TdApi::processRspQryIPOStockQty(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIAvailableApplyQryRsp *task_data = (TapAPIAvailableApplyQryRsp*)task->task_data;
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["StockQty"] = task_data->StockQty;
+		delete task_data;
+	}
+	this->onRspQryIPOStockQty(task->task_id, task->task_int, task->task_last, data);
+};
+
+void TdApi::processRspQryAccountIPO(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIAccountIPOQryRsp *task_data = (TapAPIAccountIPOQryRsp*)task->task_data;
+		data["EndDate"] = toUtf(task_data->EndDate);
+		data["ResultDate"] = toUtf(task_data->ResultDate);
+		data["IPODate"] = toUtf(task_data->IPODate);
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["ApplyType"] = task_data->ApplyType;
+		data["ApplyQty"] = task_data->ApplyQty;
+		data["ApplyCash"] = task_data->ApplyCash;
+		data["LoanRatio"] = task_data->LoanRatio;
+		data["LoanInterest"] = task_data->LoanInterest;
+		data["ApplyFee"] = task_data->ApplyFee;
+		data["ApplyStatus"] = task_data->ApplyStatus;
+		data["ResultQty"] = task_data->ResultQty;
+		data["OperatorNo"] = toUtf(task_data->OperatorNo);
+		data["OperateTime"] = toUtf(task_data->OperateTime);
+		delete task_data;
+	}
+	this->onRspQryAccountIPO(task->task_id, task->task_int, task->task_last, data);
+};
+
+void TdApi::processRspAddAccountIPO(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIAccountIPOAddRsp *task_data = (TapAPIAccountIPOAddRsp*)task->task_data;
+		data["EndDate"] = toUtf(task_data->EndDate);
+		data["ResultDate"] = toUtf(task_data->ResultDate);
+		data["IPODate"] = toUtf(task_data->IPODate);
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["ApplyType"] = task_data->ApplyType;
+		data["ApplyQty"] = task_data->ApplyQty;
+		data["ApplyCash"] = task_data->ApplyCash;
+		data["LoanRatio"] = task_data->LoanRatio;
+		data["LoanInterest"] = task_data->LoanInterest;
+		data["ApplyFee"] = task_data->ApplyFee;
+		data["ApplyStatus"] = task_data->ApplyStatus;
+		data["ResultQty"] = task_data->ResultQty;
+		data["OperatorNo"] = toUtf(task_data->OperatorNo);
+		data["OperateTime"] = toUtf(task_data->OperateTime);
+		delete task_data;
+	}
+	this->onRspAddAccountIPO(task->task_id, task->task_int, data);
+};
+
+void TdApi::processRspCancelAccountIPO(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIAccountIPOCancelRsp *task_data = (TapAPIAccountIPOCancelRsp*)task->task_data;
+		data["EndDate"] = toUtf(task_data->EndDate);
+		data["ResultDate"] = toUtf(task_data->ResultDate);
+		data["IPODate"] = toUtf(task_data->IPODate);
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["ApplyType"] = task_data->ApplyType;
+		data["ApplyQty"] = task_data->ApplyQty;
+		data["ApplyCash"] = task_data->ApplyCash;
+		data["LoanRatio"] = task_data->LoanRatio;
+		data["LoanInterest"] = task_data->LoanInterest;
+		data["ApplyFee"] = task_data->ApplyFee;
+		data["ApplyStatus"] = task_data->ApplyStatus;
+		data["ResultQty"] = task_data->ResultQty;
+		data["OperatorNo"] = toUtf(task_data->OperatorNo);
+		data["OperateTime"] = toUtf(task_data->OperateTime);
+		delete task_data;
+	}
+	this->onRspCancelAccountIPO(task->task_id, task->task_int, data);
+};
+
+void TdApi::processRtnAddAccountIPO(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIAccountIPOAddNotice *task_data = (TapAPIAccountIPOAddNotice*)task->task_data;
+		data["EndDate"] = toUtf(task_data->EndDate);
+		data["ResultDate"] = toUtf(task_data->ResultDate);
+		data["IPODate"] = toUtf(task_data->IPODate);
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["ApplyType"] = task_data->ApplyType;
+		data["ApplyQty"] = task_data->ApplyQty;
+		data["ApplyCash"] = task_data->ApplyCash;
+		data["LoanRatio"] = task_data->LoanRatio;
+		data["LoanInterest"] = task_data->LoanInterest;
+		data["ApplyFee"] = task_data->ApplyFee;
+		data["ApplyStatus"] = task_data->ApplyStatus;
+		data["ResultQty"] = task_data->ResultQty;
+		data["OperatorNo"] = toUtf(task_data->OperatorNo);
+		data["OperateTime"] = toUtf(task_data->OperateTime);
+		delete task_data;
+	}
+	this->onRtnAddAccountIPO(data);
+};
+
+void TdApi::processRtnCancelAccountIPO(Task *task)
+{
+	gil_scoped_acquire acquire;
+	dict data;
+	if (task->task_data)
+	{
+		TapAPIAccountIPOCancelNotice *task_data = (TapAPIAccountIPOCancelNotice*)task->task_data;
+		data["EndDate"] = toUtf(task_data->EndDate);
+		data["ResultDate"] = toUtf(task_data->ResultDate);
+		data["IPODate"] = toUtf(task_data->IPODate);
+		data["AccountNo"] = toUtf(task_data->AccountNo);
+		data["ExchangeNo"] = toUtf(task_data->ExchangeNo);
+		data["CommodityType"] = task_data->CommodityType;
+		data["CommodityNo"] = toUtf(task_data->CommodityNo);
+		data["ApplyType"] = task_data->ApplyType;
+		data["ApplyQty"] = task_data->ApplyQty;
+		data["ApplyCash"] = task_data->ApplyCash;
+		data["LoanRatio"] = task_data->LoanRatio;
+		data["LoanInterest"] = task_data->LoanInterest;
+		data["ApplyFee"] = task_data->ApplyFee;
+		data["ApplyStatus"] = task_data->ApplyStatus;
+		data["ResultQty"] = task_data->ResultQty;
+		data["OperatorNo"] = toUtf(task_data->OperatorNo);
+		data["OperateTime"] = toUtf(task_data->OperateTime);
+		delete task_data;
+	}
+	this->onRtnCancelAccountIPO(data);
+};
+
+void TdApi::processRspUnFreezeVerificate(Task *task)
+{
+	gil_scoped_acquire acquire;
+	this->onRspUnFreezeVerificate(task->task_id, task->task_int);
 };
 

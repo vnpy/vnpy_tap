@@ -363,7 +363,7 @@ class QuoteApi(MdApi):
         if contract_info.commodity_type == "O":
             option_contract: ContractData = option_contract_map[req.symbol]
 
-            tap_contract["StrikePrice1"] = str(option_contract.option_strike)
+            tap_contract["StrikePrice1"] = option_contract.option_index
             tap_contract["CallOrPutFlag1"] = OPTIONTYPE_VT2TAP.get(option_contract.option_type, "N")
 
         else:
@@ -783,7 +783,7 @@ class TradeApi(TdApi):
         if contract_info.commodity_type == "O":
             option_contract: ContractData = option_contract_map[req.symbol]
             
-            order_req["StrikePrice"] = str(option_contract.option_strike)
+            order_req["StrikePrice"] = option_contract.option_index
             order_req["CallOrPutFlag"] = OPTIONTYPE_VT2TAP.get(option_contract.option_type, "N")
 
         error_id, session, order_id = self.insertOrder(order_req)

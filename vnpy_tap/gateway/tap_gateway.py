@@ -454,12 +454,12 @@ class TradeApi(TdApi):
         key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
         commodity_info: CommodityInfo = commodity_infos.get(key, None)
 
-        if not data or not exchange or not commodity_info:
+        if not data or not commodity_info:
             return
 
         product: Product = Product_TAP2VT.get(data["CommodityType"], None)
 
-        if product:
+        if product and exchange:
             if product == Product.FUTURES:
                 symbol: str = data["CommodityNo"] + data["ContractNo1"]
             else:

@@ -67,8 +67,6 @@ EXCHANGE_TAP2VT: Dict[str, Exchange] = {
     "CBOT": Exchange.CBOT,
     "HKEX": Exchange.HKFE,
     "CME": Exchange.CME,
-    "ZCE": Exchange.CZCE,
-    "DCE": Exchange.DCE,
     "TOCOM": Exchange.TOCOM,
     "KRX": Exchange.KRX,
     "ICUS": Exchange.ICE,

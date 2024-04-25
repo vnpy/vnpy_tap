@@ -741,8 +741,6 @@ class TradeApi(TdApi):
 
         # API基本设置
         path: Path = get_folder_path(self.gateway_name.lower())
-        self.setITapTradeAPIDataPath(str(path).encode("GBK"))
-        self.setITapTradeAPILogLevel(APILOGLEVEL_NONE)
 
         # 创建API
         req: dict = {

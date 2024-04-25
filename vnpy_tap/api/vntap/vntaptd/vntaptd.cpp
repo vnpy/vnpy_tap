@@ -3846,6 +3846,11 @@ void TdApi::createITapTradeAPI(const dict &req, int iResult)
 	memset(&myreq, 0, sizeof(myreq));
 	getString(req, "AuthCode", myreq.AuthCode);
 	getString(req, "KeyOperationLogPath", myreq.KeyOperationLogPath);
+
+	char loglevel;
+	getChar(req, "LogLevel", &loglevel);
+	myreq.LogLevel = TAPILOGLEVEL(loglevel);
+
 	this->api = (ITapTradeAPI*)CreateITapTradeAPI(&myreq, iResult); // 创建API接口对象
 	this->api->SetAPINotify(this);  //注册回调函数对象
 };
@@ -3885,20 +3890,6 @@ string TdApi::getITapErrorDescribe(int error)
 	string i = GetITapErrorDescribe(error);
 	return toUtf(i);
 };
-
-int TdApi::setITapTradeAPIDataPath(string path)
-{
-	// int i = SetITapTradeAPIDataPath(path.c_str());
-	// return i;
-	return 0;
-};
-
-int TdApi::setITapTradeAPILogLevel(string level)
-{
-	// int i = SetITapTradeAPILogLevel((char*)level.c_str());
-	// return i;
-	return 0;
-}
 
 int TdApi::setHostAddress(string IP, int port)
 {
@@ -5014,8 +5005,6 @@ PYBIND11_MODULE(vntaptd, m)
 		.def("exit", &TdApi::exit)
 		.def("getITapTradeAPIVersion", &TdApi::getITapTradeAPIVersion)
 		.def("getITapErrorDescribe", &TdApi::getITapErrorDescribe)
-		.def("setITapTradeAPIDataPath", &TdApi::setITapTradeAPIDataPath)
-		.def("setITapTradeAPILogLevel", &TdApi::setITapTradeAPILogLevel)
 		.def("setHostAddress", &TdApi::setHostAddress)
 		.def("login", &TdApi::login)
 		.def("requestVertificateCode", &TdApi::requestVertificateCode)

@@ -745,7 +745,8 @@ class TradeApi(TdApi):
         # 创建API
         req: dict = {
             "AuthCode": auth_code,
-            "KeyOperationLogPath": str(path).encode("GBK")
+            "KeyOperationLogPath": str(path).encode("GBK"),
+            "LogLevel": APILOGLEVEL_NONE
         }
         self.createITapTradeAPI(req, 0)
 

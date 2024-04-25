@@ -1083,10 +1083,6 @@ public:
 
 	string getITapErrorDescribe(int error);
 
-	int setITapTradeAPIDataPath(string path);
-
-	int setITapTradeAPILogLevel(string level);
-
 	int setHostAddress(string IP, int port);
 
 	int login(const dict &req);

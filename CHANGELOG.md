@@ -1,3 +1,8 @@
+# 9.4.3版本
+
+1. 增加createITapTradeAPI函数的LogLevel支持
+2. 修复setTapQuoteAPILogLevel失效的问题
+
 # 9.4.2版本
 
 1. 解决commit历史冲突问题

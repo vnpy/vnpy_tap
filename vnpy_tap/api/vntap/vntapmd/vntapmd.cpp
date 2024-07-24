@@ -536,7 +536,7 @@ int MdApi::setTapQuoteAPIDataPath(string path)
 
 int MdApi::setTapQuoteAPILogLevel(string level)
 {
-	int i = SetTapQuoteAPILogLevel((char)level.c_str());
+	int i = SetTapQuoteAPILogLevel((TAPILOGLEVEL)*level.c_str());
 	return i;
 }
 

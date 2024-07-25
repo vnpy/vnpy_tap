@@ -1,3 +1,7 @@
+# 9.4.4版本
+
+1. 修复Linux系统上枚举值转换导致的编译失败问题
+
 # 9.4.3版本
 
 1. 增加createITapTradeAPI函数的LogLevel支持

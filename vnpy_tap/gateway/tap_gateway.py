@@ -392,9 +392,12 @@ class TradeApi(TdApi):
         self.gateway_name: str = gateway.gateway_name
 
         self.connect_status: bool = False
-        self.account_no: str = ""        # 委托下单时使用
-        self.client_id: str = ""         # 子账号，没有可不填
-        self.client_location: str = ""     # 投资者所处国家区域
+        self.account_no: str = ""           # 委托下单时使用
+        self.client_id: str = ""            # 子账号，没有可不填
+        self.client_location: str = ""      # 投资者所处国家区域
+
+        self.byte_client_id: bytes = b""    # bytes类型
+        self.byte_client_location: bytes = b""
 
         self.cancel_reqs: Dict[str, CancelRequest] = {}       # 撤单请求缓存
 
@@ -737,6 +740,9 @@ class TradeApi(TdApi):
         self.client_location = client_location
         self.init_query = init_query
 
+        self.byte_client_id = client_id.encode()
+        self.byte_client_location = client_location.encode()
+
         self.init()
 
         # API基本设置
@@ -798,10 +804,14 @@ class TradeApi(TdApi):
                 TAPI_CALLPUT_FLAG_NONE
             )
 
-        error_id, session, order_id = self.insertOrder(order_req)
+        # byte_order_id是bytes类型数据
+        error_id, session, byte_order_id = self.insertOrder(order_req)
 
-        if self.client_id in order_id:
-            order_id = order_id.replace(f"#{self.client_id}#{self.client_location}#", "")
+        if self.byte_client_id in byte_order_id:
+            prefix: bytes = b"#" + self.byte_client_id + b"#" + self.byte_client_location + b"#"
+            byte_order_id = byte_order_id.replace(prefix, "")
+
+        order_id = byte_order_id.decode()
 
         order: OrderData = req.create_order_data(
             order_id,

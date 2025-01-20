@@ -809,7 +809,7 @@ class TradeApi(TdApi):
 
         if self.byte_client_id in byte_order_id:
             prefix: bytes = b"#" + self.byte_client_id + b"#" + self.byte_client_location + b"#"
-            byte_order_id = byte_order_id.replace(prefix, "")
+            byte_order_id = byte_order_id.replace(prefix, b"")
 
         order_id = byte_order_id.decode()
 

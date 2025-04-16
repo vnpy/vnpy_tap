@@ -127,7 +127,8 @@ td_module = py.extension_module(
 python_files = [
   ['vnpy_tap/__init__.py', 'vnpy_tap'],
   ['vnpy_tap/api/__init__.py', 'vnpy_tap/api'],
-  ['vnpy_tap/api/tap_constant.py', 'vnpy_tap/api'],
+  ['vnpy_tap/api/tap_md_constant.py', 'vnpy_tap/api'],
+  ['vnpy_tap/api/tap_td_constant.py', 'vnpy_tap/api'],
   ['vnpy_tap/gateway/__init__.py', 'vnpy_tap/gateway'],
   ['vnpy_tap/gateway/tap_gateway.py', 'vnpy_tap/gateway'],
 ]

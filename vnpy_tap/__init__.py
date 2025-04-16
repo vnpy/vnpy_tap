@@ -25,6 +25,9 @@ import importlib_metadata
 from .gateway import TapGateway
 
 
+__all__ = ["TapGateway"]
+
+
 try:
     __version__ = importlib_metadata.version("vnpy_tap")
 except importlib_metadata.PackageNotFoundError:

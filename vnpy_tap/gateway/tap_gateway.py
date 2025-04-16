@@ -263,7 +263,7 @@ class QuoteApi(MdApi):
         symbol: str = data["CommodityNo"] + data["ContractNo1"]
         exchange: Exchange = EXCHANGE_TAP2VT[data["ExchangeNo"]]
 
-        contract_info: ContractInfo = contract_infos.get((symbol, exchange), None)
+        contract_info: ContractInfo | None = contract_infos.get((symbol, exchange), None)
         if not contract_info:
             self.gateway.write_log(f"行情合约信息无法匹配：{symbol}和{exchange}")
             return
@@ -345,9 +345,9 @@ class QuoteApi(MdApi):
         }
         self.login(data)
 
-    def subscribe(self, req: SubscribeRequest):
+    def subscribe(self, req: SubscribeRequest) -> None:
         """订阅行情"""
-        contract_info: ContractInfo = contract_infos.get((req.symbol, req.exchange), None)
+        contract_info: ContractInfo | None = contract_infos.get((req.symbol, req.exchange), None)
         if not contract_info:
             self.gateway.write_log(
                 f"找不到匹配的合约：{req.symbol}和{req.exchange.value}")
@@ -374,7 +374,7 @@ class QuoteApi(MdApi):
 
         self.subscribeQuote(tap_contract)
 
-    def close(self):
+    def close(self) -> None:
         """关闭连接"""
         if self.connect_status:
             self.disconnect()
@@ -461,7 +461,7 @@ class TradeApi(TdApi):
 
         exchange: Exchange = EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)
         key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
-        commodity_info: CommodityInfo = commodity_infos.get(key, None)
+        commodity_info: CommodityInfo | None = commodity_infos.get(key, None)
 
         if not data or not commodity_info:
             return
@@ -473,15 +473,15 @@ class TradeApi(TdApi):
             if product == Product.FUTURES:
                 symbol: str = data["CommodityNo"] + data["ContractNo1"]
             else:
-                symbol: str = data["CommodityNo"] + data["ContractNo1"] + data["CallOrPutFlag1"] + data["StrikePrice1"]
+                symbol = data["CommodityNo"] + data["ContractNo1"] + data["CallOrPutFlag1"] + data["StrikePrice1"]
 
             # 获取合约名称
             if data["ContractName"]:
-                name = data["ContractName"]
+                name: str = data["ContractName"]
             elif commodity_info.name:
-                name: str = f"{commodity_info.name} {data['ContractNo1']}"
+                name = f"{commodity_info.name} {data['ContractNo1']}"
             else:
-                name: str = symbol
+                name = symbol
 
             # 创建合约对象
             contract: ContractData = ContractData(
@@ -651,7 +651,7 @@ class TradeApi(TdApi):
 
     def update_account(self, data: dict) -> None:
         """更新并推送资金"""
-        self.account_no: str = data["AccountNo"]
+        self.account_no = data["AccountNo"]
 
         account: AccountData = AccountData(
             accountid=data["AccountNo"],
@@ -770,7 +770,7 @@ class TradeApi(TdApi):
 
     def send_order(self, req: OrderRequest) -> str:
         """委托下单"""
-        contract_info: ContractInfo = contract_infos.get((req.symbol, req.exchange), None)
+        contract_info: ContractInfo | None = contract_infos.get((req.symbol, req.exchange), None)
         if not contract_info:
             self.gateway.write_log(f"找不到匹配的合约：{req.symbol}和{req.exchange.value}")
             return ""
@@ -824,7 +824,7 @@ class TradeApi(TdApi):
 
         self.gateway.on_order(order)
 
-        return order.vt_orderid
+        return order.vt_orderid     # type: ignore
 
     def cancel_order(self, req: CancelRequest) -> None:
         """委托撤单"""
@@ -857,7 +857,7 @@ class TradeApi(TdApi):
         """当日成交查询"""
         self.qryFill({})
 
-    def close(self):
+    def close(self) -> None:
         """关闭连接"""
         if self.connect_status:
             self.disconnect()
@@ -870,11 +870,11 @@ def generate_datetime(timestamp: str) -> datetime:
         if "." in timestamp:
             dt: datetime = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S.%f")
         else:
-            dt: datetime = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+            dt= datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
     else:
-        dt: datetime = datetime.strptime(timestamp, "%y%m%d%H%M%S.%f")
+        dt = datetime.strptime(timestamp, "%y%m%d%H%M%S.%f")
 
-    dt: datetime = dt.replace(tzinfo=CHINA_TZ)
+    dt = dt.replace(tzinfo=CHINA_TZ)
     return dt
 
 

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, Tuple, List
+from typing import Any
 
 from vnpy.event import EventEngine
 from vnpy.trader.utility import get_folder_path, ZoneInfo
@@ -54,7 +54,7 @@ from ..api import (
 
 
 # 委托状态映射
-STATUS_TAP2VT: Dict[str, Status] = {
+STATUS_TAP2VT: dict[str, Status] = {
     TAPI_ORDER_STATE_SUBMIT: Status.SUBMITTING,
     TAPI_ORDER_STATE_ACCEPT: Status.SUBMITTING,
     TAPI_ORDER_STATE_QUEUED: Status.NOTTRADED,
@@ -66,22 +66,22 @@ STATUS_TAP2VT: Dict[str, Status] = {
 }
 
 # 多空方向映射
-DIRECTION_TAP2VT: Dict[str, Direction] = {
+DIRECTION_TAP2VT: dict[str, Direction] = {
     TAPI_SIDE_NONE: Direction.NET,
     TAPI_SIDE_BUY: Direction.LONG,
     TAPI_SIDE_SELL: Direction.SHORT,
 }
-DIRECTION_VT2TAP: Dict[Direction, str] = {v: k for k, v in DIRECTION_TAP2VT.items()}
+DIRECTION_VT2TAP: dict[Direction, str] = {v: k for k, v in DIRECTION_TAP2VT.items()}
 
 # 委托类型映射
-ORDERTYPE_TAP2VT: Dict[str, OrderType] = {
+ORDERTYPE_TAP2VT: dict[str, OrderType] = {
     TAPI_ORDER_TYPE_MARKET: OrderType.MARKET,
     TAPI_ORDER_TYPE_LIMIT: OrderType.LIMIT
 }
 ORDERTYPE_VT2TAP = {v: k for k, v in ORDERTYPE_TAP2VT.items()}
 
 # 交易所映射
-EXCHANGE_TAP2VT: Dict[str, Exchange] = {
+EXCHANGE_TAP2VT: dict[str, Exchange] = {
     "SGX": Exchange.SGX,
     "INE": Exchange.INE,
     "APEX": Exchange.APEX,
@@ -96,28 +96,28 @@ EXCHANGE_TAP2VT: Dict[str, Exchange] = {
     "ICUS": Exchange.ICE,
     "ICEU": Exchange.ICE
 }
-EXCHANGE_VT2TAP: Dict[Exchange, str] = {v: k for k, v in EXCHANGE_TAP2VT.items()}
+EXCHANGE_VT2TAP: dict[Exchange, str] = {v: k for k, v in EXCHANGE_TAP2VT.items()}
 
 # 产品类型映射
-Product_TAP2VT: Dict[str, Product] = {
+Product_TAP2VT: dict[str, Product] = {
     TAPI_COMMODITY_TYPE_FUTURES: Product.FUTURES,
     TAPI_COMMODITY_TYPE_OPTION: Product.OPTION
 }
 
 # 期权类型映射
-OPTIONTYPE_TAP2VT: Dict[str, OptionType] = {
+OPTIONTYPE_TAP2VT: dict[str, OptionType] = {
     TAPI_CALLPUT_FLAG_CALL: OptionType.CALL,
     TAPI_CALLPUT_FLAG_PUT: OptionType.PUT
 }
-OPTIONTYPE_VT2TAP: Dict[OptionType, str] = {v: k for k, v in OPTIONTYPE_TAP2VT.items()}
+OPTIONTYPE_VT2TAP: dict[OptionType, str] = {v: k for k, v in OPTIONTYPE_TAP2VT.items()}
 
 # 其他常量
 CHINA_TZ = ZoneInfo("Asia/Shanghai")
 
 # 合约数据全局缓存字典
-commodity_infos: Dict[tuple[str, str, str], "CommodityInfo"] = {}
-contract_infos: Dict[Tuple[str, "Exchange"], "ContractInfo"] = {}
-option_contract_map: Dict[str, ContractData] = {}
+commodity_infos: dict[tuple[str, str, str], "CommodityInfo"] = {}
+contract_infos: dict[tuple[str, "Exchange"], "ContractInfo"] = {}
+option_contract_map: dict[str, ContractData] = {}
 
 
 class TapGateway(BaseGateway):
@@ -127,7 +127,7 @@ class TapGateway(BaseGateway):
 
     default_name: str = "TAP"
 
-    default_setting: Dict[str, Any] = {
+    default_setting: dict[str, Any] = {
         "行情账号": "",
         "行情密码": "",
         "行情服务器": "",
@@ -142,14 +142,14 @@ class TapGateway(BaseGateway):
         "区域代码": "CN"
     }
 
-    exchanges: List[str] = list(EXCHANGE_VT2TAP.keys())
+    exchanges: list[str] = list(EXCHANGE_VT2TAP.keys())
 
     def __init__(self, event_engine: EventEngine, gateway_name: str):
         """构造函数"""
         super().__init__(event_engine, gateway_name)
 
-        self.md_api: "QuoteApi" = QuoteApi(self)
-        self.td_api: "TradeApi" = TradeApi(self)
+        self.md_api: QuoteApi = QuoteApi(self)
+        self.td_api: TradeApi = TradeApi(self)
 
     def connect(self, setting: dict) -> None:
         """连接交易接口"""
@@ -399,11 +399,11 @@ class TradeApi(TdApi):
         self.byte_client_id: bytes = b""    # bytes类型
         self.byte_client_location: bytes = b""
 
-        self.cancel_reqs: Dict[str, CancelRequest] = {}       # 撤单请求缓存
+        self.cancel_reqs: dict[str, CancelRequest] = {}       # 撤单请求缓存
 
-        self.sys_local_map: Dict[str, str] = {}
-        self.local_sys_map: Dict[str, str] = {}
-        self.sys_server_map: Dict[str, str] = {}
+        self.sys_local_map: dict[str, str] = {}
+        self.local_sys_map: dict[str, str] = {}
+        self.sys_server_map: dict[str, str] = {}
 
         self.init_query: bool = True        # 初始化是否查询日内委托和成交
 

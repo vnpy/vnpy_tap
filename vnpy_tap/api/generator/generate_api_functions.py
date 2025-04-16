@@ -48,7 +48,7 @@ class ApiGenerator:
 
     def run(self):
         """运行生成"""
-        self.f_cpp = open(self.filename, "r")
+        self.f_cpp = open(self.filename)
 
         for line in self.f_cpp:
             self.process_line(line)
@@ -187,7 +187,7 @@ class ApiGenerator:
                 function_name = function_name.replace("Qry", "qry")
 
                 args_list = []
-                for name, type_ in d.items():
+                for _name, type_ in d.items():
                     if type_ == "unsigned int":
                         pass
                     else:
@@ -259,7 +259,7 @@ class ApiGenerator:
                 else:
                     f.write("\tgil_scoped_acquire acquire;\n")
                     args = []
-                    for field, type_ in d.items():
+                    for _field, type_ in d.items():
                         if type_ == "unsigned int":
                             args.append("task->task_id")
                         elif type_ == "int":

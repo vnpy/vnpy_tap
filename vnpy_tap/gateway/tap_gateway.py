@@ -459,11 +459,19 @@ class TradeApi(TdApi):
             self.gateway.write_log("查询交易合约信息失败")
             return
 
+        if last == "Y":
+            self.gateway.write_log("查询交易合约信息成功")
+            self.query_account()
+
         exchange: Exchange = EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)
         key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
         commodity_info: CommodityInfo | None = commodity_infos.get(key, None)
 
         if not data or not commodity_info:
+            if not data:
+                self.gateway.write_log("查询交易合约信息无数据")
+            if not commodity_info:
+                self.gateway.write_log(f"查询交易合约信息无匹配品种：{data['CommodityNo']}和{data['CommodityType']}")
             return
 
         product: Product = Product_TAP2VT.get(data["CommodityType"], None)
@@ -518,10 +526,6 @@ class TradeApi(TdApi):
                 commodity_no=data["CommodityNo"],
             )
             contract_infos[(contract.symbol, contract.exchange)] = contract_info
-
-        if last == "Y":
-            self.gateway.write_log("查询交易合约信息成功")
-            self.query_account()
 
     def onRspQryAccount(
         self,

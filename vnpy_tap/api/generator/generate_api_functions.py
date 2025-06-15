@@ -12,12 +12,12 @@ class ApiGenerator:
         self.name = name
         self.class_name = class_name
 
-        self.callbacks = {}
-        self.functions = {}
-        self.lines = {}
+        self.callbacks: dict[str, dict[str, str]] = {}
+        self.functions: dict[str, dict[str, str]] = {}
+        self.lines: dict[str, str] = {}
 
-        self.structs = {}
-        self.typedefs = {}
+        self.structs: dict[str, dict[str, str]] = {}
+        self.typedefs: dict[str, dict[str, str]] = {}
         self.load_constant()
         self.load_struct()
 
@@ -35,7 +35,7 @@ class ApiGenerator:
                 if "__" not in name:
                     self.typedefs[name] = getattr(module, name)
 
-    def load_struct(self):
+    def load_struct(self) -> None:
         """加载Struct"""
         module_names = ["tap_md_data_struct", "tap_md_commen_struct", "tap_td_data_struct", "tap_td_commen_struct"]
 
@@ -46,9 +46,9 @@ class ApiGenerator:
                 if "__" not in name:
                     self.structs[name] = getattr(module, name)
 
-    def run(self):
+    def run(self) -> None:
         """运行生成"""
-        self.f_cpp = open(self.filename, "r")
+        self.f_cpp = open(self.filename)
 
         for line in self.f_cpp:
             self.process_line(line)
@@ -69,7 +69,7 @@ class ApiGenerator:
 
         print(f"{self.name}_API生成成功")
 
-    def process_line(self, line: str):
+    def process_line(self, line: str) -> None:
         """处理每行"""
         line = line.replace(";", "")
         line = line.replace("\n", "")
@@ -83,7 +83,7 @@ class ApiGenerator:
         elif "virtual TAPIINT32 TAP_CDECL Qry" in line:
             self.process_function(line)
 
-    def process_callback(self, line: str):
+    def process_callback(self, line: str) -> None:
         """处理回调函数"""
         name = line[line.index("On"):line.index("(")]
         line = line.replace("        ", "")
@@ -96,14 +96,14 @@ class ApiGenerator:
         d = self.generate_arg_dict(line)
         self.callbacks[name] = d
 
-    def process_function(self, line: str):
+    def process_function(self, line: str) -> None:
         """处理主动函数"""
         name = line[line.index("Qry"):line.index("(")]
 
         d = self.generate_arg_dict(line)
         self.functions[name] = d
 
-    def generate_arg_dict(self, line: str):
+    def generate_arg_dict(self, line: str) -> dict:
         """生成参数字典"""
         args_str = line[line.index("(") + 1:line.index(")")]
         if not args_str:
@@ -129,7 +129,7 @@ class ApiGenerator:
 
         return d
 
-    def generate_header_define(self):
+    def generate_header_define(self) -> None:
         """"""
         filename = f"{self.prefix}_{self.name}_header_define.h"
         with open(filename, "w") as f:
@@ -137,7 +137,7 @@ class ApiGenerator:
                 line = f"#define {name.upper()} {n}\n"
                 f.write(line)
 
-    def generate_header_process(self):
+    def generate_header_process(self) -> None:
         """"""
         filename = f"{self.prefix}_{self.name}_header_process.h"
         with open(filename, "w") as f:
@@ -146,7 +146,7 @@ class ApiGenerator:
                 line = f"void {name}(Task *task);\n\n"
                 f.write(line)
 
-    def generate_header_on(self):
+    def generate_header_on(self) -> None:
         """"""
         filename = f"{self.prefix}_{self.name}_header_on.h"
         with open(filename, "w") as f:
@@ -179,7 +179,7 @@ class ApiGenerator:
 
                 f.write(line)
 
-    def generate_header_function(self):
+    def generate_header_function(self) -> None:
         """"""
         filename = f"{self.prefix}_{self.name}_header_function.h"
         with open(filename, "w") as f:
@@ -187,7 +187,7 @@ class ApiGenerator:
                 function_name = function_name.replace("Qry", "qry")
 
                 args_list = []
-                for name, type_ in d.items():
+                for _name, type_ in d.items():
                     if type_ == "unsigned int":
                         pass
                     else:
@@ -197,7 +197,7 @@ class ApiGenerator:
                 line = f"int {function_name}({args_str});\n\n"
                 f.write(line)
 
-    def generate_source_task(self):
+    def generate_source_task(self) -> None:
         """"""
         filename = f"{self.prefix}_{self.name}_source_task.cpp"
         with open(filename, "w") as f:
@@ -230,7 +230,7 @@ class ApiGenerator:
                 f.write("\tthis->task_queue.push(task);\n")
                 f.write("};\n\n")
 
-    def generate_source_switch(self):
+    def generate_source_switch(self) -> None:
         """"""
         filename = f"{self.prefix}_{self.name}_source_switch.cpp"
         with open(filename, "w") as f:
@@ -242,7 +242,7 @@ class ApiGenerator:
                 f.write("\tbreak;\n")
                 f.write("}\n\n")
 
-    def generate_source_process(self):
+    def generate_source_process(self) -> None:
         """"""
         filename = f"{self.prefix}_{self.name}_source_process.cpp"
         with open(filename, "w") as f:
@@ -259,7 +259,7 @@ class ApiGenerator:
                 else:
                     f.write("\tgil_scoped_acquire acquire;\n")
                     args = []
-                    for field, type_ in d.items():
+                    for _field, type_ in d.items():
                         if type_ == "unsigned int":
                             args.append("task->task_id")
                         elif type_ == "int":
@@ -292,7 +292,7 @@ class ApiGenerator:
                     f.write(f"\tthis->{on_name}({args_str});\n")
                     f.write("};\n\n")
 
-    def generate_source_function(self):
+    def generate_source_function(self) -> None:
         """"""
         filename = f"{self.prefix}_{self.name}_source_function.cpp"
         with open(filename, "w") as f:
@@ -328,7 +328,7 @@ class ApiGenerator:
                     f.write("\treturn i;\n")
                     f.write("};\n\n")
 
-    def generate_source_on(self):
+    def generate_source_on(self) -> None:
         """"""
         filename = f"{self.prefix}_{self.name}_source_on.cpp"
         with open(filename, "w") as f:
@@ -377,7 +377,7 @@ class ApiGenerator:
                 f.write("\t}\n")
                 f.write("};\n\n")
 
-    def generate_source_module(self):
+    def generate_source_module(self) -> None:
         """"""
         filename = f"{self.prefix}_{self.name}_source_module.cpp"
         with open(filename, "w") as f:

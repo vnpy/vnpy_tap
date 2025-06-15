@@ -10,7 +10,7 @@ class DataTypeGenerator:
         self.filename: str = filename
         self.prefix: str = prefix
         self.name: str = name
-        self.typedefs = {}
+        self.typedefs: dict = {}
 
     def load_constant(self) -> None:
         """"""
@@ -24,7 +24,7 @@ class DataTypeGenerator:
 
     def run(self) -> None:
         """主函数"""
-        self.f_cpp = open(self.filename, "r")
+        self.f_cpp = open(self.filename)
         if self.name == "td":
             self.f_define = open(f"{self.prefix}_{self.name}_data_constant.py", "w", encoding="UTF-8")
         self.f_typedef = open(f"{self.prefix}_{self.name}_data_typedef.py", "w", encoding="UTF-8")
@@ -101,7 +101,7 @@ class DataTypeGenerator:
         new_line = f"{name} = {end}\n"
         self.f_struct.write(new_line)
 
-    def process_start(self, line: str):
+    def process_start(self, line: str) -> None:
         """处理开始"""
         pass
 

@@ -5,7 +5,7 @@ from vnpy.trader.ui import MainWindow, create_qapp
 from vnpy_tap import TapGateway
 
 
-def main():
+def main() -> None:
     """主入口函数"""
     qapp = create_qapp()
 

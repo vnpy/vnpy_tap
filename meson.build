@@ -77,7 +77,6 @@ else  # Linux
   
   extra_link_args = [
     '-lstdc++',
-    '-Wl,-rpath,$ORIGIN',  # 添加rpath设置，使库能在运行时找到同目录下的动态库
   ]
   
   # 设置库目录
@@ -104,10 +103,15 @@ md_module = py.extension_module(
   'vntapmd',
   sources: ['vnpy_tap/api/vntap/vntapmd/vntapmd.cpp'],
   include_directories: include_dirs,
-  dependencies: [py_dep, TapQuoteAPI_lib],
+  dependencies: [py_dep],
   cpp_args: extra_cpp_args,
-  link_args: extra_link_args,
+  link_args: extra_link_args + [
+    '-L' + lib_dir,
+    '-lTapQuoteAPI',
+    '-Wl,-rpath,$ORIGIN'
+  ],
   install: true,
+  install_rpath: '$ORIGIN',
   subdir: 'vnpy_tap/api'
 )
 
@@ -116,10 +120,15 @@ td_module = py.extension_module(
   'vntaptd',
   sources: ['vnpy_tap/api/vntap/vntaptd/vntaptd.cpp'],
   include_directories: include_dirs,
-  dependencies: [py_dep, iTapTradeAPI_lib],
+  dependencies: [py_dep],
   cpp_args: extra_cpp_args,
-  link_args: extra_link_args,
+  link_args: extra_link_args + [
+    '-L' + lib_dir,
+    '-l' + (host_machine.system() == 'windows' ? 'iTapTradeAPI_64' : 'iTapTradeAPI'),
+    '-Wl,-rpath,$ORIGIN'
+  ],
   install: true,
+  install_rpath: '$ORIGIN',
   subdir: 'vnpy_tap/api'
 )
 

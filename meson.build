@@ -1,7 +1,7 @@
 project(
   'vnpy_tap',
   'cpp',
-  version: '9.4.10',
+  version: '9.4.11',
   license: 'MIT',
   meson_version: '>=1.7.0',
   default_options: [

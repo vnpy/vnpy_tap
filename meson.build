@@ -177,8 +177,42 @@ else  # Linux
 endif
 
 # 可编辑安装的扩展在构建目录，厂商库仍在源码树。
-# 拷到扩展旁边后，Windows 在 .pyd 所在目录找 DLL，Linux 用 rpath $ORIGIN 找 .so。
-# 这些拷贝不安装；正式安装仍由上面的 install_data 放到 site-packages。
-foreach lib : api_libs
-  fs.copyfile(lib)
-endforeach
+# 这些拷贝不安装。正式 wheel 仍由 install_data 安装源码树里的原文件，
+# 生产环境继续用 ld.so.conf 找 libesssl.so.1.1。
+if host_machine.system() == 'windows'
+  foreach lib : api_libs
+    fs.copyfile(lib)
+  endforeach
+else
+  # libiTapTradeAPI.so 的 DT_RPATH 是字面量 .:/RIGIN。扩展自己的 $ORIGIN
+  # 只能找到直接依赖，找不到 libesssl.so.1.1。libesssl 还要再找 libescrypto。
+  # 只改构建目录里的副本，CI 和可编辑安装在没有 ld.so.conf 时才能导入。
+  patchelf = find_program('patchelf', required: true)
+  python_exe = find_program(python_cmd)
+  rpath_libs = [
+    'vnpy_tap/api/libiTapTradeAPI.so',
+    'vnpy_tap/api/libesssl.so.1.1',
+  ]
+  foreach lib : api_libs
+    if lib in rpath_libs
+      unpatched = fs.copyfile(lib, fs.name(lib) + '.unpatched')
+      custom_target(
+        'rpath-' + fs.stem(lib),
+        input: unpatched,
+        output: fs.name(lib),
+        command: [
+          python_exe,
+          '-c',
+          'import shutil, subprocess, sys; shutil.copy2(sys.argv[1], sys.argv[2]); subprocess.check_call([sys.argv[3], "--force-rpath", "--set-rpath", "$ORIGIN", sys.argv[2]])',
+          '@INPUT@',
+          '@OUTPUT@',
+          patchelf.full_path(),
+        ],
+        build_by_default: true,
+        install: false,
+      )
+    else
+      fs.copyfile(lib)
+    endif
+  endforeach
+endif

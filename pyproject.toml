@@ -38,8 +38,10 @@ requires = [
 ]
 build-backend = "mesonpy"
 
+[tool.meson-python.args]
+setup = ["--vsenv"]
+
 [tool.mesonpy]
-args = ['--vsenv']
 packages = ["vnpy_tap"]
 
 [tool.mesonpy.distribution]

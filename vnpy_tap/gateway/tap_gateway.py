@@ -3,6 +3,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+from typing import cast
 
 from vnpy.event import EventEngine
 from vnpy.trader.utility import get_folder_path, ZoneInfo
@@ -160,18 +161,18 @@ class TapGateway(BaseGateway):
 
     def connect(self, setting: dict[str, str | int | float | bool]) -> None:
         """连接交易接口"""
-        quote_username: str = setting["行情账号"]
-        quote_password: str = setting["行情密码"]
-        quote_host: str = setting["行情服务器"]
-        quote_port: int = setting["行情端口"]
-        md_authcode: str = setting["行情授权码"]
-        trade_username: str = setting["交易账号"]
-        trade_password: str = setting["交易密码"]
-        trade_host: str = setting["交易服务器"]
-        trade_port: int = setting["交易端口"]
-        td_authcode: str = setting["交易授权码"]
-        client_id: str = setting["子账号"]
-        client_location: str = setting["区域代码"]
+        quote_username: str = cast(str, setting["行情账号"])
+        quote_password: str = cast(str, setting["行情密码"])
+        quote_host: str = cast(str, setting["行情服务器"])
+        quote_port: int = cast(int, setting["行情端口"])
+        md_authcode: str = cast(str, setting["行情授权码"])
+        trade_username: str = cast(str, setting["交易账号"])
+        trade_password: str = cast(str, setting["交易密码"])
+        trade_host: str = cast(str, setting["交易服务器"])
+        trade_port: int = cast(int, setting["交易端口"])
+        td_authcode: str = cast(str, setting["交易授权码"])
+        client_id: str = cast(str, setting["子账号"])
+        client_location: str = cast(str, setting["区域代码"])
 
         if quote_host:
             self.md_api.connect(
@@ -387,7 +388,7 @@ class QuoteApi(MdApi):
 
             tap_contract["StrikePrice1"] = option_contract.option_index
             tap_contract["CallOrPutFlag1"] = OPTIONTYPE_VT2TAP.get(
-                option_contract.option_type,
+                cast(OptionType, option_contract.option_type),
                 TAPI_CALLPUT_FLAG_NONE
             )
         else:
@@ -711,9 +712,10 @@ class TradeApi(TdApi):
     def update_position(self, data: dict) -> None:
         """更新并推送持仓"""
         # 持仓代码只拼品种和合约号，不含期权的看涨看跌和行权价。
+        # 未知交易所仍传入 None，不改成直接取键。
         position: PositionData = PositionData(
             symbol=data["CommodityNo"] + data["ContractNo"],
-            exchange=EXCHANGE_TAP2VT.get(data["ExchangeNo"], None),
+            exchange=cast(Exchange, EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)),
             direction=DIRECTION_TAP2VT[data["MatchSide"]],
             volume=data["PositionQty"],
             price=data["PositionPrice"],
@@ -732,9 +734,10 @@ class TradeApi(TdApi):
         self.sys_server_map[data["OrderNo"]] = data["ServerFlag"]
 
         # 委托代码只拼品种和合约号，不含期权的看涨看跌和行权价。
+        # 未知交易所仍传入 None，不改成直接取键。
         order: OrderData = OrderData(
             symbol=data["CommodityNo"] + data["ContractNo"],
-            exchange=EXCHANGE_TAP2VT.get(data["ExchangeNo"], None),
+            exchange=cast(Exchange, EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)),
             orderid=data["ClientOrderNo"],
             type=ORDERTYPE_TAP2VT.get(data["OrderType"], data["OrderType"]),
             direction=DIRECTION_TAP2VT[data["OrderSide"]],
@@ -757,9 +760,10 @@ class TradeApi(TdApi):
         orderid: str = self.sys_local_map[data["OrderNo"]]
 
         # 成交代码只拼品种和合约号，不含期权的看涨看跌和行权价。
+        # 未知交易所仍传入 None，不改成直接取键。
         trade: TradeData = TradeData(
             symbol=data["CommodityNo"] + data["ContractNo"],
-            exchange=EXCHANGE_TAP2VT.get(data["ExchangeNo"], None),
+            exchange=cast(Exchange, EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)),
             orderid=orderid,
             tradeid=data["MatchNo"],
             direction=DIRECTION_TAP2VT[data["MatchSide"]],
@@ -855,7 +859,7 @@ class TradeApi(TdApi):
 
             order_req["StrikePrice"] = option_contract.option_index
             order_req["CallOrPutFlag"] = OPTIONTYPE_VT2TAP.get(
-                option_contract.option_type,
+                cast(OptionType, option_contract.option_type),
                 TAPI_CALLPUT_FLAG_NONE
             )
 
@@ -879,9 +883,7 @@ class TradeApi(TdApi):
             order.status = Status.REJECTED
 
         self.gateway.on_order(order)
-
-        # vt_orderid 在 OrderData.__post_init__ 里赋值，dataclass 字段未声明。
-        return order.vt_orderid  # type: ignore
+        return order.vt_orderid
 
     def cancel_order(self, req: CancelRequest) -> None:
         """委托撤单"""

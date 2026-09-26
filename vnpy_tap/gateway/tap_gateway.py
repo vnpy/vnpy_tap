@@ -1,7 +1,8 @@
+"""易盛 9.0 外盘 gateway。"""
+
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any
 
 from vnpy.event import EventEngine
 from vnpy.trader.utility import get_folder_path, ZoneInfo
@@ -78,7 +79,7 @@ ORDERTYPE_TAP2VT: dict[str, OrderType] = {
     TAPI_ORDER_TYPE_MARKET: OrderType.MARKET,
     TAPI_ORDER_TYPE_LIMIT: OrderType.LIMIT
 }
-ORDERTYPE_VT2TAP = {v: k for k, v in ORDERTYPE_TAP2VT.items()}
+ORDERTYPE_VT2TAP: dict[OrderType, str] = {v: k for k, v in ORDERTYPE_TAP2VT.items()}
 
 # 交易所映射
 EXCHANGE_TAP2VT: dict[str, Exchange] = {
@@ -96,10 +97,12 @@ EXCHANGE_TAP2VT: dict[str, Exchange] = {
     "ICUS": Exchange.ICE,
     "ICEU": Exchange.ICE
 }
+# ICUS 与 ICEU 都对应 Exchange.ICE，反向表只保留后写入的 ICEU。
+# 订阅用这张反向表，下单用合约缓存里的 ExchangeNo。
 EXCHANGE_VT2TAP: dict[Exchange, str] = {v: k for k, v in EXCHANGE_TAP2VT.items()}
 
 # 产品类型映射
-Product_TAP2VT: dict[str, Product] = {
+PRODUCT_TAP2VT: dict[str, Product] = {
     TAPI_COMMODITY_TYPE_FUTURES: Product.FUTURES,
     TAPI_COMMODITY_TYPE_OPTION: Product.OPTION
 }
@@ -122,12 +125,16 @@ option_contract_map: dict[str, ContractData] = {}
 
 class TapGateway(BaseGateway):
     """
-    VeighNa用于对接易盛9.0外盘的交易接口。
+    易盛 9.0 外盘 gateway。
+
+    只处理期货和期权。合约缓存来自交易查询，只连行情时订阅找不到合约。
+    query_account 和 query_position 是空方法。启动时的资金、持仓、委托和成交
+    在交易 API 的回调链里查询一次。
     """
 
     default_name: str = "TAP"
 
-    default_setting: dict[str, Any] = {
+    default_setting: dict[str, str | int | float | bool] = {
         "行情账号": "",
         "行情密码": "",
         "行情服务器": "",
@@ -142,7 +149,7 @@ class TapGateway(BaseGateway):
         "区域代码": "CN"
     }
 
-    exchanges: list[str] = list(EXCHANGE_VT2TAP.keys())
+    exchanges: list[Exchange] = list(EXCHANGE_VT2TAP.keys())
 
     def __init__(self, event_engine: EventEngine, gateway_name: str):
         """构造函数"""
@@ -151,7 +158,7 @@ class TapGateway(BaseGateway):
         self.md_api: QuoteApi = QuoteApi(self)
         self.td_api: TradeApi = TradeApi(self)
 
-    def connect(self, setting: dict) -> None:
+    def connect(self, setting: dict[str, str | int | float | bool]) -> None:
         """连接交易接口"""
         quote_username: str = setting["行情账号"]
         quote_password: str = setting["行情密码"]
@@ -196,7 +203,11 @@ class TapGateway(BaseGateway):
         self.md_api.subscribe(req)
 
     def send_order(self, req: OrderRequest) -> str:
-        """委托下单"""
+        """
+        委托下单。
+
+        找不到合约或不支持的委托类型时返回空字符串。
+        """
         return self.td_api.send_order(req)
 
     def cancel_order(self, req: CancelRequest) -> None:
@@ -204,11 +215,19 @@ class TapGateway(BaseGateway):
         self.td_api.cancel_order(req)
 
     def query_account(self) -> None:
-        """查询资金"""
+        """
+        查询资金。
+
+        这里不发查询。启动时的资金查询在交易 API 就绪后的回调链里完成。
+        """
         pass
 
     def query_position(self) -> None:
-        """查询持仓"""
+        """
+        查询持仓。
+
+        这里不发查询。启动时的持仓查询在资金查询完成之后的回调链里完成。
+        """
         pass
 
 
@@ -260,6 +279,7 @@ class QuoteApi(MdApi):
 
     def update_tick(self, data: dict) -> None:
         """切片数据类型转换"""
+        # 行情代码只拼品种和合约号。期权在合约查询里还会拼看涨看跌和行权价。
         symbol: str = data["CommodityNo"] + data["ContractNo1"]
         exchange: Exchange = EXCHANGE_TAP2VT[data["ExchangeNo"]]
 
@@ -315,7 +335,8 @@ class QuoteApi(MdApi):
         auth_code: str
     ) -> None:
         """连接服务器"""
-        # 禁止重复发起连接，会导致异常崩溃
+        # 登录成功后才把 connect_status 置真。回调回来前标志仍为假，挡不住第二次 init()。
+        # 重复 init 会导致异常崩溃。close() 只在标志为真时断开。
         if self.connect_status:
             return
 
@@ -376,6 +397,7 @@ class QuoteApi(MdApi):
 
     def close(self) -> None:
         """关闭连接"""
+        # 只在 connect_status 为真时断开。登录尚未成功时标志为假，这里不会 exit。
         if self.connect_status:
             self.disconnect()
             self.exit()
@@ -405,7 +427,8 @@ class TradeApi(TdApi):
         self.local_sys_map: dict[str, str] = {}
         self.sys_server_map: dict[str, str] = {}
 
-        self.init_query: bool = True        # 初始化是否查询日内委托和成交
+        # 查完持仓后，当日委托和成交只沿这条启动链查询一次。查完后标志仍为真。
+        self.init_query: bool = True
 
     def onConnect(self, address: str) -> None:
         """服务器连接成功回报"""
@@ -475,17 +498,17 @@ class TradeApi(TdApi):
             self.gateway.write_log("查询交易合约信息成功")
             self.query_account()
 
-        exchange: Exchange = EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)
+        exchange: Exchange | None = EXCHANGE_TAP2VT.get(data["ExchangeNo"], None)
         key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
         commodity_info: CommodityInfo | None = commodity_infos.get(key, None)
 
         if not commodity_info:
             return
 
-        product: Product = Product_TAP2VT.get(data["CommodityType"], None)
+        product: Product | None = PRODUCT_TAP2VT.get(data["CommodityType"], None)
 
         if product and exchange:
-            # 生成合约代码
+            # 期货是品种加合约号。期权再拼看涨看跌和行权价。
             if product == Product.FUTURES:
                 symbol: str = data["CommodityNo"] + data["ContractNo1"]
             else:
@@ -507,14 +530,17 @@ class TradeApi(TdApi):
                 product=product,
                 size=commodity_info.size,
                 pricetick=commodity_info.pricetick,
-                net_position=True,
+                net_position=True,  # 外盘不区分开平
                 gateway_name=self.gateway.gateway_name
             )
 
             # 期权字段处理
             if product == Product.OPTION:
                 contract.option_portfolio = data["CommodityNo"] + "_O"
-                contract.option_type = OPTIONTYPE_TAP2VT.get(data["CallOrPutFlag1"], None)
+                option_type: OptionType | None = OPTIONTYPE_TAP2VT.get(
+                    data["CallOrPutFlag1"], None
+                )
+                contract.option_type = option_type
                 contract.option_strike = float(data["StrikePrice1"])
                 contract.option_index = data["StrikePrice1"]
                 contract.option_expiry = datetime.strptime(data["ContractExpDate"], "%Y-%m-%d")
@@ -684,6 +710,7 @@ class TradeApi(TdApi):
 
     def update_position(self, data: dict) -> None:
         """更新并推送持仓"""
+        # 持仓代码只拼品种和合约号，不含期权的看涨看跌和行权价。
         position: PositionData = PositionData(
             symbol=data["CommodityNo"] + data["ContractNo"],
             exchange=EXCHANGE_TAP2VT.get(data["ExchangeNo"], None),
@@ -696,7 +723,7 @@ class TradeApi(TdApi):
 
     def update_order(self, data: dict) -> None:
         """更新并推送委托"""
-        # 过滤撤销和修改状态中的委托
+        # 7、8 是待撤、待改。这里先返回，委托号映射要等后续状态才写入。
         if data["OrderState"] in {"7", "8"}:
             return
 
@@ -704,6 +731,7 @@ class TradeApi(TdApi):
         self.sys_local_map[data["OrderNo"]] = data["ClientOrderNo"]
         self.sys_server_map[data["OrderNo"]] = data["ServerFlag"]
 
+        # 委托代码只拼品种和合约号，不含期权的看涨看跌和行权价。
         order: OrderData = OrderData(
             symbol=data["CommodityNo"] + data["ContractNo"],
             exchange=EXCHANGE_TAP2VT.get(data["ExchangeNo"], None),
@@ -721,13 +749,14 @@ class TradeApi(TdApi):
 
         # 发送等待撤单请求
         if data["ClientOrderNo"] in self.cancel_reqs:
-            req: str = self.cancel_reqs.pop(data["ClientOrderNo"])
+            req: CancelRequest = self.cancel_reqs.pop(data["ClientOrderNo"])
             self.cancel_order(req)
 
     def update_trade(self, data: dict) -> None:
         """更新并推送成交"""
         orderid: str = self.sys_local_map[data["OrderNo"]]
 
+        # 成交代码只拼品种和合约号，不含期权的看涨看跌和行权价。
         trade: TradeData = TradeData(
             symbol=data["CommodityNo"] + data["ContractNo"],
             exchange=EXCHANGE_TAP2VT.get(data["ExchangeNo"], None),
@@ -753,7 +782,8 @@ class TradeApi(TdApi):
         init_query: bool = True
     ) -> None:
         """连接服务器"""
-        # 禁止重复发起连接，会导致异常崩溃
+        # onConnect 才把 connect_status 置真。回调回来前标志仍为假，挡不住第二次 init()。
+        # 重复 init 会导致异常崩溃。close() 只在标志为真时断开。
         if self.connect_status:
             return
 
@@ -785,12 +815,15 @@ class TradeApi(TdApi):
             "UserNo": username,
             "Password": password,
             "ISModifyPassword": APIYNFLAG_NO,
-            "NoticeIgnoreFlag": "TAPI_NOTICE_IGNORE_POSITIONPROFIT"
         }
         self.login(data)
 
     def send_order(self, req: OrderRequest) -> str:
-        """委托下单"""
+        """
+        委托下单。
+
+        找不到合约或不支持的委托类型时返回空字符串。
+        """
         contract_info: ContractInfo | None = contract_infos.get((req.symbol, req.exchange), None)
         if not contract_info:
             self.gateway.write_log(f"找不到匹配的合约：{req.symbol}和{req.exchange.value}")
@@ -800,6 +833,7 @@ class TradeApi(TdApi):
             self.gateway.write_log(f"不支持的委托类型: {req.type.value}")
             return ""
 
+        # 最小变动价位和委托量由交易 DLL 校验，这里不改价、不改量。
         order_req: dict = {
             "AccountNo": self.account_no,
             "ExchangeNo": contract_info.exchange_no,
@@ -825,7 +859,8 @@ class TradeApi(TdApi):
                 TAPI_CALLPUT_FLAG_NONE
             )
 
-        # byte_order_id是bytes类型数据
+        # 子账号为空时 b"" in byte_order_id 恒为真。
+        # 只有柜台返回的委托号里出现 #子账号#区域# 前缀时，replace 才会改掉它。
         error_id, session, byte_order_id = self.insertOrder(order_req)
 
         if self.byte_client_id in byte_order_id:
@@ -845,7 +880,8 @@ class TradeApi(TdApi):
 
         self.gateway.on_order(order)
 
-        return order.vt_orderid     # type: ignore
+        # vt_orderid 在 OrderData.__post_init__ 里赋值，dataclass 字段未声明。
+        return order.vt_orderid  # type: ignore
 
     def cancel_order(self, req: CancelRequest) -> None:
         """委托撤单"""
@@ -880,18 +916,23 @@ class TradeApi(TdApi):
 
     def close(self) -> None:
         """关闭连接"""
+        # 只在 connect_status 为真时断开。连接回调尚未回来时标志为假，这里不会 exit。
         if self.connect_status:
             self.disconnect()
             self.exit()
 
 
 def generate_datetime(timestamp: str) -> datetime:
-    """生成datetime格式时间"""
+    """
+    生成带时区的时间。
+
+    能解析的时间一律标成 Asia/Shanghai。品种上的 CommodityTimeZone 没有使用。
+    """
     if "-" in timestamp:
         if "." in timestamp:
             dt: datetime = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S.%f")
         else:
-            dt= datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+            dt = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
     else:
         dt = datetime.strptime(timestamp, "%y%m%d%H%M%S.%f")
 
@@ -904,7 +945,7 @@ class ContractInfo:
     """存储合约信息"""
     name: str
     exchange_no: str
-    commodity_type: int
+    commodity_type: str
     commodity_no: str
     contract_no: str
 

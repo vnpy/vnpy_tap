@@ -141,6 +141,14 @@ namespace ITapTrade
 	const TAPIOrderTypeType			TAPI_ORDER_TYPE_SPECIAL				= 'G';
 	//! 竞价限价单
 	const TAPIOrderTypeType			TAPI_ORDER_TYPE_LIMITAUCTION		= 'H';
+    //期权自对冲
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_OPT_PRE_AUTOCLOSE   = 'I';
+    //履约期货自对冲
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_OPT_FUTURE_AUTOCLOSE    = 'J';
+    //期权行权后期货自对冲
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_OPT_EXEC_FUT_AUTOCLOSE  = 'K';
+    //期权行权后期货不对冲
+    const TAPIOrderTypeType			TAPI_ORDER_TYPE_OPT_EXEC_FUT_NOCLOSE    = 'L';
 
     /** @}*/
 
@@ -170,10 +178,34 @@ namespace ITapTrade
     const TAPIOrderSourceType		TAPI_ORDER_SOURCE_ABANDON				= '8';
     //! 通道费
     const TAPIOrderSourceType		TAPI_ORDER_SOURCE_CHANNEL				= '9';
-	//! 临时成交
-	const TAPIOrderSourceType		TAPI_ORDER_SOURCE_TEMPORARY				= 'J';
-	//! 程序化手工单
-	const TAPIOrderSourceType		TAPI_ORDER_SOURCE_PROGRAMMANUAL			= 'K';
+    //! Bloomberg下单
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_BLOOMBERG             = 'B';
+    //! 自助手机单
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_AUTOPHONE             = 'A';
+    //! GiveUp成交
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_GIVEUP                = 'C';
+    //! 行权成交
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_EXERCISE              = 'E';
+    //! TakeUp成交
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_TAKEUP                = 'D';
+    //! 错单调整
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_ERRORADJUST           = 'F';
+    //! 经纪电子单
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_BROKER_ETRADER        = 'G';
+    //! 临时成交
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_TEMPORARY             = 'J';
+    //! 程序化手工单
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_PROGRAMMANUAL         = 'K';
+    //! OTC
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_OTC                   = 'L';
+    //! 期转现
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_EXCHANGEPHYSICALS     = 'M';
+    //! 基金申赎
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_FUNDREDEMPTION        = 'H';
+    //! 持仓维护费
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_POSITIONMAINTFEE      = 'P';
+    //! 下单人电子单
+    const TAPIOrderSourceType		TAPI_ORDER_SOURCE_ORDERER               = 'N';
     /** @}*/
 
     //=============================================================================
@@ -365,6 +397,16 @@ namespace ITapTrade
 	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_TEMPORARY				= 'J';
 	//! 程序化手工单
 	const TAPIMatchSourceType		TAPI_MATCH_SOURCE_PROGRAMMANUAL			= 'K';
+    //! OTC
+    const TAPIMatchSourceType       TAPI_MATCH_SOURCE_OTC                   = 'L';
+    //! 期转现
+    const TAPIMatchSourceType       TAPI_MATCH_SOURCE_EXCHANGEPHYSICALS     = 'M';
+    //! 基金申赎
+    const TAPIMatchSourceType       TAPI_MATCH_SOURCE_FUNDREDEMPTION        = 'H';
+    //! 持仓维护费
+    const TAPIMatchSourceType       TAPI_MATCH_SOURCE_POSITIONMAINTFEE      = 'P';
+    //! 下单人电子单
+    const TAPIMatchSourceType       TAPI_MATCH_SOURCE_ORDERER               = 'N';
 
     /** @}*/
 
@@ -735,6 +777,7 @@ namespace ITapTrade
 	{
 		TAPISTR_10							VertificateCode;		///<二次认证码
 		TAPILoginTypeType					LoginType;				///<二次认证登录类型
+        TAPIYNFLAG					        IsTOTPCode;				///<是否TOTP认证码
 	};
 
     //! 账号相关信息查询请求
@@ -798,7 +841,15 @@ namespace ITapTrade
             TAPITriggerConditionType	TriggerCondition;				///< 触发条件，默认N
             TAPITriggerPriceTypeType	TriggerPriceType;				///< 触发价格类型，默认N
             TAPIYNFLAG					AddOneIsValid;					///< 是否T+1有效,默认T+1有效。
-			TAPIClientLocationIDType	ClientLocationID;				///< 下单人区域
+            
+            /*
+             * 填报ClientID时需要额外填报ClientLocationID字段。
+             * 如果下单人位于美国或加拿大，地址信息需填写到省份，共5个字节，省份信息如下：ftp://ftp.cmegroup.com/fix/coo/country_state.rtf
+             * 如果下单人位于其他地区，地址信息需填写到国家，共2个字节，国家信息如下：ftp://ftp.cmegroup.com/fix/coo/country_codes.rtf
+             */
+            TAPIClientLocationIDType	ClientLocationID;				///< 下单人区域
+
+            TAPISTR_50                  TradeNo;						///< 交易编码
 	public:
 		TapAPINewOrder()
 		{
@@ -905,6 +956,7 @@ namespace ITapTrade
             TAPIYNFLAG					IsAddOne;						///< 是否为T+1单
 			TAPIClientLocationIDType	ClientLocationID;				///< 下单人区域
 
+            TAPISTR_50                  TradeNo;						///< 交易编码
     };
 
     //! 报单通知结构
@@ -1180,6 +1232,9 @@ namespace ITapTrade
 		TAPIREAL64					PositionPrice;					///< 持仓均价。
 		TAPIUINT32					PositionQty;					///< 持仓量
 		TAPIUINT32					HisPositionQty;					///< 历史持仓量
+
+        TAPIREAL64					CalculatePrice;					///< 当前计算价格
+        TAPIREAL64					PositionProfit;					///< 持仓盈亏
 	};
 
 
@@ -1212,24 +1267,24 @@ namespace ITapTrade
             TAPIREAL64					CashAdjustValue;				///< 资金调整
             TAPIREAL64					CashPledged;					///< 质押资金
             TAPIREAL64					FrozenFee;						///< 冻结手续费
-            TAPIREAL64					FrozenDeposit;					///< 冻结保证金
+            TAPIREAL64					FrozenDeposit;					///< 冻结保证金						ETF系统-冻结买现货本金(现货)/冻结保证金(期权)
             TAPIREAL64					AccountFee;						///< 客户手续费包含交割手续费
             TAPIREAL64					SwapInValue;					///< 汇入资金
             TAPIREAL64					SwapOutValue;					///< 汇出资金
-            TAPIREAL64					PremiumIncome;					///< 权利金收取
-            TAPIREAL64					PremiumPay;						///< 权利金支付
+            TAPIREAL64					PremiumIncome;					///< 权利金收取						ETF系统-卖现货收入(现货)/权利金收取(期权)
+            TAPIREAL64					PremiumPay;						///< 权利金支付						ETF系统-买现货支出(现货)/权利金支付(期权)
             TAPIREAL64					CloseProfit;					///< 平仓盈亏
             TAPIREAL64					FrozenFund;						///< 冻结资金
             TAPIREAL64					UnExpProfit;					///< 未到期平盈
             TAPIREAL64					ExpProfit;						///< 到期平仓盈亏
             TAPIREAL64					PositionProfit;					///< 不含LME持仓盈亏
             TAPIREAL64					LmePositionProfit;				///< LME持仓盈亏
-            TAPIREAL64					OptionMarketValue;				///< 期权市值
+            TAPIREAL64					OptionMarketValue;				///< 期权市值						ETF系统-证券市值(现货)/期权市值(期权)
             TAPIREAL64					AccountIntialMargin;			///< 客户初始保证金
             TAPIREAL64					AccountMaintenanceMargin;		///< 客户维持保证金
             TAPIREAL64					UpperInitalMargin;				///< 上手初始保证金
             TAPIREAL64					UpperMaintenanceMargin;			///< 上手维持保证金
-            TAPIREAL64					Discount;						///< LME贴现
+            TAPIREAL64					Discount;						///< 非Span卖出期权市值				ETF系统-卖出期权市值
 
             TAPIREAL64					Balance;						///< 当日结存
             TAPIREAL64					Equity;							///< 当日权益
@@ -1524,6 +1579,12 @@ namespace ITapTrade
             TAPITriggerConditionType	TriggerCondition;					///< 触发条件
             TAPITriggerPriceTypeType	TriggerPriceType;					///< 触发价格类型
 
+            TAPISTR_40                  ClientLocalIP;						///< 终端本地IP地址
+            TAPIMACTYPE                 ClientMac;							///< 终端本地Mac地址
+            TAPISTR_40                  ClientIP;							///< 前置记录的终端IP地址
+            TAPISTR_20                  SuperiorAccount;					///< 上级账号
+            TAPISTR_50                  ClientOrderNo;
+
     };
 	  //! 历史成交查询请求结构
     struct TapAPIHisMatchQryReq
@@ -1567,7 +1628,7 @@ namespace ITapTrade
             TAPIUINT32				MatchUpperStreamID;					///< 上手流水号
 
             TAPISTR_10				CommodityCurrencyGroup;
-            TAPISTR_10				CommodityCurrency;					//品种币种		
+            TAPISTR_10				CommodityCurrency;					///< 品种币种		
 
             TAPIREAL64				Turnover;							///< 成交金额
             TAPIREAL64				PremiumIncome;						///< 权利金收入
@@ -1577,13 +1638,13 @@ namespace ITapTrade
             TAPISTR_10				AccountFeeCurrencyGroup;
             TAPISTR_10				AccountFeeCurrency;					///< 客户手续费币种
             TAPIYNFLAG				IsManualFee;						///< 人工客户手续费标记
-            TAPIREAL64				AccountOtherFee;					//客户其他费用
+            TAPIREAL64				AccountOtherFee;					///< 客户其他费用
 
             TAPIREAL64				UpperFee;							///< 上手手续费
             TAPISTR_10				UpperFeeCurrencyGroup;
             TAPISTR_10				UpperFeeCurrency;					///< 上手手续费币种
             TAPIYNFLAG				IsUpperManualFee;					///< 人工上手手续费标记
-            TAPIREAL64				UpperOtherFee;						//上手其他费用
+            TAPIREAL64				UpperOtherFee;						///< 上手其他费用
 
             TAPIDATETIME			MatchDateTime;						///< 成交时间
             TAPIDATETIME			UpperMatchDateTime;					///< 上手成交时间
@@ -1593,7 +1654,7 @@ namespace ITapTrade
 
             TAPIUINT32				CloseQty;							///< 平仓量
 
-            TAPISTR_10				SettleGroupNo;						///<结算分组
+            TAPISTR_10				SettleGroupNo;						///< 结算分组
             TAPISTR_20				OperatorNo;							///< 操作员
             TAPIDATETIME			OperateTime;						///< 操作时间
 
@@ -1739,6 +1800,89 @@ namespace ITapTrade
 			TAPISTR_20				SuperiorAccount;					///< 上级账号
     };
 
+    //客户历史资金查询请求结构
+    struct TapAPIHisFundQryReq
+    {
+        TAPIDATE						BeginDate;                      ///< 开始日期（必填）
+        TAPIDATE						EndDate;                        ///< 结束日期（必填）
+        TAPISettleFlagType				SettleFlag;                     ///< 结算类型
+    };
+    //客户历史资金查询数据应答结构
+    struct TapAPIHisFundQryRsp
+    {
+        TAPIDATE						Date;								//日期
+        TAPISTR_20						AccountNo;							//客户资金账号
+
+        TAPISTR_10						CurrencyGroupNo;					//币种组号
+        TAPISTR_10						CurrencyNo;							//币种号
+        TAPIREAL64						PreBalance;							//上日结存						股票系统-期初现金结余
+        TAPIREAL64						PreUnExpProfit;						//上日未到期平盈					股票系统-期初未交收金额
+        TAPIREAL64						PreLMEPositionProfit;				//应扣质押利息
+        TAPIREAL64						PreEquity;							//上日权益
+        TAPIREAL64						PreAvailable1;						//上日可用1
+        TAPIREAL64						PreAvailable2;						//上日可用2
+        TAPIREAL64						PreMarketEquity;					//上日市值权益
+
+        TAPIUINT32						FutureMatchQty;						//期货成交量
+        TAPIUINT32						OptionMatchQty;						//期权成交量
+        TAPIUINT32						FuturePositionQty;					//期货持仓量
+        TAPIUINT32						OptionPositionQty;					//期权持仓量
+        TAPIREAL64						FutureTurnover;						//期货成交金额
+        TAPIREAL64						CashInValue;						//入金
+        TAPIREAL64						CashOutValue;						//出金
+        TAPIREAL64						AdjustValue;						//资金调整
+        TAPIREAL64						CashPledged;						//质押资金
+        TAPIREAL64						CashSwapIn;							//汇入资金
+        TAPIREAL64						CashSwapOut;						//汇出资金
+        TAPIREAL64						AccountFee;							//客户手续费包含交割手续费
+        TAPIREAL64						ExchangeFee;						//当日利息
+        TAPIREAL64						AccountDeliveryFee;					//客户交割手续费
+        TAPIREAL64						UpperFee;							//上手手续费
+        TAPIREAL64						UpperDeliveryFee;					//上手交割手续费
+        TAPIREAL64						NetFee;								//净手续费
+        TAPIREAL64						PremiumIncome;						//权利金收取						股票系统-收取贷款
+        TAPIREAL64						PremiumPay;							//权利金支付						股票系统-支付贷款
+
+        TAPIREAL64						CloseProfit;						//平仓盈亏
+        TAPIREAL64						DeliveryProfit;						//交割盈亏
+        TAPIREAL64						UnExpProfit;						//未到期平盈						股票系统-未交收金额
+        TAPIREAL64						ExpProfit;							//到期平仓盈亏(未统计)
+        TAPIREAL64						PositionProfit;						//不含LME持仓盈亏
+        TAPIREAL64						LmePositionProfit;					//LME持仓盈亏
+
+        TAPIREAL64						AccountIntialMargin;				//客户初始保证金
+        TAPIREAL64						AccountMaintenanceMargin;			//客户维持保证金
+        TAPIREAL64						UpperInitalMargin;					//上手初始保证金					股票系统-可按揭总值
+        TAPIREAL64						UpperMaintenanceMargin;				//上手维持保证金
+        TAPIREAL64						AccountFrozenInitialMargin;			//当日质押利息
+        TAPIREAL64						AccountFrozenMaintenanceMargin;		//累计质押利息
+        TAPIREAL64						UpperFrozenInitialMargin;			//买期权市值
+        TAPIREAL64						UpperFrozenMaintenanceMargin;		//上手维持冻结保证金
+
+        TAPIREAL64						Balance;							//当日结存						股票系统-现金结余
+        TAPIREAL64						Equity;								//当日权益						股票系统-净现金结余
+        TAPIREAL64						Frozen;								//冻结资金						股票系统-冻结贷款
+        TAPIREAL64						Available1;							//当日可用1						股票系统-可用资金
+        TAPIREAL64						Available2;							//当日可用2		
+        TAPIREAL64						CanDraw;							//可提取							股票系统-可提资金
+        TAPIREAL64						SettleRate;							//结算汇率
+        TAPIREAL64						Discount;							//卖出期权市值/在非SPAN Total Req模式为非SPAN的卖出期权市值					
+        TAPIREAL64						OptionMarketValue;					//期权市值						股票系统-持仓市值
+        TAPIREAL64						OriginalCashInOut;					//币种原始出入金
+        TAPIREAL64						MarketEquity;						//账户市值
+
+        TAPIREAL64						AccountOtherFee;					//客户其他费用
+        TAPIREAL64						UpperOtherFee;						//上手其他费用
+
+        TAPIREAL64						AccountAuthCash;					//客户授信资金
+
+        TAPIREAL64						Interest;							//累计利息
+        TAPIREAL64						CurInterest;					    //应扣利息
+
+        TAPISTR_10						SettleGroupNo;						//结算分组
+        TAPISTR_20						SuperiorAccount;					//上级账号
+    };
+
     //! 客户资金调整查询请求结构
     struct TapAPIAccountCashAdjustQryReq
     {
@@ -1788,6 +1932,7 @@ namespace ITapTrade
 		TAPISTR_10						CurrencyNo;						
 		TAPIREAL64						OpenCloseFee;
 		TAPIREAL64						CloseTodayFee;
+        TAPISTR_10					    ContractNo;
 	};
 	//! 客户账户保证金计算参数查询结构
 	struct TapAPIAccountMarginRentQryReq
@@ -1853,8 +1998,6 @@ namespace ITapTrade
 		TAPIREAL64				OrderSellPrice;				///< 卖委托价	
 		TAPIUINT32				OrderBuyQty;					///< 买委托量
 		TAPIUINT32				OrderSellQty;					///< 卖委托量
-		TAPISTR_50				ClientBuyOrderNo;			///< 本地委托编号
-		TAPISTR_50				ClientSellOrderNo;				///< 本地委托编号
 		TAPIINT32				RefInt;						///< 整型参考值
 		TAPIREAL64				RefDouble;					///< 浮点参考值
 		TAPISTR_50				RefString;					///< 字符串参考值
@@ -1986,6 +2129,8 @@ namespace ITapTrade
 		TAPIYNFLAG					IsAddOne;						///< 是否为T+1单
 
         TAPISTR_20					LowerAccount;					///< 下级资金帐号
+
+        TAPISTR_50                  TradeNo;						///< 交易编码
 	};
 	typedef TapAPIOrderInfo TapAPIOrderLocalInputRsp;
 
@@ -2446,7 +2591,27 @@ namespace ITapTrade
 	typedef TapAPIAccountIPOQryRsp TapAPIAccountIPOCancelNotice;
 
 	//=============================================================================
+    //密码操作类型
+    typedef char					TapAPIPasswordOpreateTypeType;
+    //自助解冻
+    const TapAPIPasswordOpreateTypeType		TAPI_OPERATE_UNFREEZE = '1';
+    //重置密码
+    const TapAPIPasswordOpreateTypeType		TAPI_OPERATE_RESET = '2';
 
+    //! 自助密码信息处理请求
+    struct TapAPISelfPasswordInfoOperateReq
+    {
+        TAPISTR_20					        UserNo;							    ///< 用户编号
+        TapAPIPasswordOpreateTypeType       OpreateType;                        ///< 密码操作类型
+    };
+
+    //! 重置密码请求
+    struct TapAPIResetPasswordReq
+    {
+        TAPISTR_20						    NewPassword;							///<新密码
+    };
+
+    //=============================================================================
 	//证件类型
 	typedef char					TapAPICertificateTypeType;
 	//内地身份证
@@ -2482,13 +2647,71 @@ namespace ITapTrade
 	//身份验证请求
 	struct TapAPIVerifyIdentityReq
 	{
-		TAPISTR_20								UserNo;
-		TapAPICertificateTypeType				CertificateType;					//证件类型
-		TAPISTR_50								CertificateNo;						//证件号码
-		TapAPIContactContentType				EMail;								//电子邮箱账号
-		TapAPIContactContentType				PhoneNo;							//手机号
+		TapAPICertificateTypeType				CertificateType;					///< 证件类型
+		TAPISTR_50								CertificateNo;						///< 证件号码
+		TapAPIContactContentType				EMail;								///< 电子邮箱账号
+		TapAPIContactContentType				PhoneNo;							///< 手机号
 	};
-	
+    //=============================================================================
+
+    //交易所交易状态
+    typedef char					TapAPITTradingStateType;
+    //集合竞价
+    const TapAPITTradingStateType		TAPI_TRADESTATE_BID = '1';
+    //集合竞价撮合
+    const TapAPITTradingStateType		TAPI_TRADESTATE_MATCH = '2';
+    //连续交易
+    const TapAPITTradingStateType		TAPI_TRADESTATE_CONTINUOUS = '3';
+    //交易暂停
+    const TapAPITTradingStateType		TAPI_TRADESTATE_PAUSED = '4';
+    //闭市
+    const TapAPITTradingStateType		TAPI_TRADESTATE_CLOSE = '5';
+
+   //交易所状态查询请求
+    struct TapAPIExchangeStateInfoQryReq
+    {
+
+    };
+    //交易所状态查询应答
+    struct TapAPIExchangeStateInfoQryRsp
+    {
+        TAPISTR_10							    ExchangeNo;							///<市场或者交易所代码
+        TAPICommodityType					    CommodityType;						///<品种类型
+        TAPISTR_10							    CommodityNo;						///<品种号
+        TAPIDATETIME					        ExchangeTime;	                    ///<交易所时间
+        TapAPITTradingStateType				    TradingState;		                ///<交易所状态
+        TAPISTR_20							    OperatorNo;
+        TAPIDATETIME						    OperateTime;
+
+    };
+
+    //交易所状态增加通知
+    typedef TapAPIExchangeStateInfoQryRsp TapAPIExchangeStateInfoAddNotice;
+
+    //=============================================================================
+    //SPAN保证金查询请求结构
+    struct TapAPISpanMarginQryReq
+    {
+        TAPISTR_20							    AccountNo;                      ///< 客户资金账号
+        TAPIDATE				                BeginDate;						///< 必填
+        TAPIDATE				                EndDate;						///< 必填
+    };
+    //SPAN保证金查询应答结构
+    struct TapAPISpanMarginQryRsp
+    {
+        TAPIUINT32				                SerialID;						///< 流水号
+        TAPIDATE						        Date;							///< 日期
+        TAPISTR_20				                AccountNo;						///< 客户资金账号
+
+        TAPISTR_10					            CurrencyGroupNo;				///< 币种组号
+        TAPISTR_10					            CurrencyNo;						///< 币种号
+        TAPIREAL64				                InitalMargin;					///< 初始保证金
+        TAPIREAL64				                MaintenanceMargin;				///< 维持保证金	
+        TAPIREAL64       			            OriginalMargin;    	  			///< 原始保证金
+        TAPISTR_10				                ExchangeNo;						///< 交易所/清算所
+        TAPISPANGroupNoType				        SPANGroupNo;                    ///< SPAN品种组编号
+    };
+
 #pragma pack(pop)
 }
 #endif //TAP_TRADE_API_DATA_TYPE_H

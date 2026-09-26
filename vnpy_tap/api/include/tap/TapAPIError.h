@@ -59,6 +59,8 @@ const int TAPIERROR_DataCollect                                        = -23;
 const int TAPIERROR_DataLoad                                           = -24;
 //! 非中继模式禁止调用该接口
 const int TAPIERROR_NoRelay                                            = -25;
+//! 心跳参数设置失败
+const int TAPIERROR_HeartBeatParam                                     = -26;
 /** @}*/
 
 

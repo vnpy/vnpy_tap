@@ -43,6 +43,8 @@ namespace ITapTrade
 	typedef char	TAPIClientIDType[16];
 	//下单人地址   
 	typedef char	TAPIClientLocationIDType[6];
+    //SPAN品种组编号类型
+    typedef char	TAPISPANGroupNoType[10];
     /** @}*/
 
 

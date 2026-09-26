@@ -1,3 +1,10 @@
+# 未发布
+
+1. 升级外盘行情API至TapQuoteAPI V9.3.1.11，支持新版行情全文结构和价格保护带字段
+2. 升级北斗星9.0交易API至iTapTradeApi V9.3.9.18。下单和改单的最小变动价位修正、委托量校验由新交易DLL完成，gateway不另做改价
+3. Linux运行库改为libesssl.so.1.1和libescrypto.so.1.1，并继续安装libTapDataCollectAPI.so。9.3.9.18 SDK的Win64包里附带的TapDataCollectAPI.dll也是32位，所以不装进x64的Windows包
+4. 修复品种、合约、资金查询收到空尾包时读取字段抛出KeyError的问题。空尾包仍继续后续查询；账号空包不发起资金查询
+
 # 9.4.11版本
 
 1. 修复在Linux系统上的编译打包问题

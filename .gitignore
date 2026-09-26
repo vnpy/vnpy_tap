@@ -355,3 +355,13 @@ build/
 .vscode/settings.json
 
 *.pyd
+vnpy_tap/api/build.ninja
+vnpy_tap/api/.ninja_deps
+vnpy_tap/api/.ninja_log
+vnpy_tap/api/compile_commands.json
+vnpy_tap/api/meson-python-native-file.ini
+vnpy_tap/api/meson-info/
+vnpy_tap/api/meson-logs/
+vnpy_tap/api/meson-private/
+vnpy_tap/api/*.exp
+vnpy_tap/api/vntap*.lib

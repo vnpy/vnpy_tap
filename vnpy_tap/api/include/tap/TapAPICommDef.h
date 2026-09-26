@@ -206,12 +206,12 @@ const TAPIAuthTypeType			TAPI_AUTHTYPE_DIRECT = '1';
 const TAPIAuthTypeType			TAPI_AUTHTYPE_RELAY  = '2';
 /** @}*/
 
-
 //! Application信息
 struct TapAPIApplicationInfo
 {
 	TAPIAUTHCODE            AuthCode;								///< 授权码
 	TAPISTR_300				KeyOperationLogPath;					///< 关键操作日志路径
+    TAPIYNFLAG              IsLogEncryption;                        ///< 关键操作日志是否加密，默认加密(Y)
 };
 
 

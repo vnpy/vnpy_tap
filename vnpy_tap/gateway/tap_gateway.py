@@ -435,6 +435,12 @@ class TradeApi(TdApi):
             self.gateway.write_log("查询交易品种信息失败")
             return
 
+        if not data:
+            if last == "Y":
+                self.gateway.write_log("查询交易品种信息成功")
+                self.qryContract({})
+            return
+
         commodity_info: CommodityInfo = CommodityInfo(
             name=data["CommodityEngName"],
             size=int(data["ContractSize"]),
@@ -459,6 +465,12 @@ class TradeApi(TdApi):
             self.gateway.write_log("查询交易合约信息失败")
             return
 
+        if not data:
+            if last == "Y":
+                self.gateway.write_log("查询交易合约信息成功")
+                self.query_account()
+            return
+
         if last == "Y":
             self.gateway.write_log("查询交易合约信息成功")
             self.query_account()
@@ -467,7 +479,7 @@ class TradeApi(TdApi):
         key: tuple = (data["ExchangeNo"], data["CommodityNo"], data["CommodityType"])
         commodity_info: CommodityInfo | None = commodity_infos.get(key, None)
 
-        if not data or not commodity_info:
+        if not commodity_info:
             return
 
         product: Product = Product_TAP2VT.get(data["CommodityType"], None)
@@ -535,6 +547,9 @@ class TradeApi(TdApi):
             self.gateway.write_log("查询账号信息失败")
             return
 
+        if not data:
+            return
+
         req: dict = {
             "AccountNo": data["AccountNo"]
         }
@@ -550,6 +565,12 @@ class TradeApi(TdApi):
         """账户资金查询回报"""
         if error != TAPIERROR_SUCCEED:
             self.gateway.write_log("查询资金信息失败")
+            return
+
+        if not data:
+            if last == "Y":
+                self.gateway.write_log("查询资金信息成功")
+                self.query_position()
             return
 
         self.update_account(data)

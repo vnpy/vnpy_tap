@@ -341,15 +341,17 @@ void MdApi::processRspSubscribeQuote(Task *task)
 		data["QSwing"] = task_data->QSwing;
 		data["QTotalBidQty"] = task_data->QTotalBidQty;
 		data["QTotalAskQty"] = task_data->QTotalAskQty;
-		data["UnderlyExchangeNo"] = toUtf(task_data->Contract.Commodity.ExchangeNo);
-		data["UnderlyCommodityType"] = task_data->Contract.Commodity.CommodityType;
-		data["UnderlyCommodityNo"] = toUtf(task_data->Contract.Commodity.CommodityNo);
-		data["UnderlyContractNo1"] = toUtf(task_data->Contract.ContractNo1);
-		data["UnderlyStrikePrice1"] = toUtf(task_data->Contract.StrikePrice1);
-		data["UnderlyCallOrPutFlag1"] = task_data->Contract.CallOrPutFlag1;
-		data["UnderlyContractNo2"] = toUtf(task_data->Contract.ContractNo2);
-		data["UnderlyStrikePrice2"] = toUtf(task_data->Contract.StrikePrice2);
-		data["UnderlyCallOrPutFlag2"] = task_data->Contract.CallOrPutFlag2;
+		data["QBandingUpperPrice"] = task_data->QBandingUpperPrice;
+		data["QBandingLowerPrice"] = task_data->QBandingLowerPrice;
+		data["UnderlyExchangeNo"] = toUtf(task_data->UnderlyContract.Commodity.ExchangeNo);
+		data["UnderlyCommodityType"] = task_data->UnderlyContract.Commodity.CommodityType;
+		data["UnderlyCommodityNo"] = toUtf(task_data->UnderlyContract.Commodity.CommodityNo);
+		data["UnderlyContractNo1"] = toUtf(task_data->UnderlyContract.ContractNo1);
+		data["UnderlyStrikePrice1"] = toUtf(task_data->UnderlyContract.StrikePrice1);
+		data["UnderlyCallOrPutFlag1"] = task_data->UnderlyContract.CallOrPutFlag1;
+		data["UnderlyContractNo2"] = toUtf(task_data->UnderlyContract.ContractNo2);
+		data["UnderlyStrikePrice2"] = toUtf(task_data->UnderlyContract.StrikePrice2);
+		data["UnderlyCallOrPutFlag2"] = task_data->UnderlyContract.CallOrPutFlag2;
 
 		pybind11::list QAskPrice;
 		pybind11::list QBidPrice;
@@ -450,15 +452,17 @@ void MdApi::processRtnQuote(Task *task)
 		data["QSwing"] = task_data->QSwing;
 		data["QTotalBidQty"] = task_data->QTotalBidQty;
 		data["QTotalAskQty"] = task_data->QTotalAskQty;
-		data["UnderlyExchangeNo"] = toUtf(task_data->Contract.Commodity.ExchangeNo);
-		data["UnderlyCommodityType"] = task_data->Contract.Commodity.CommodityType;
-		data["UnderlyCommodityNo"] = toUtf(task_data->Contract.Commodity.CommodityNo);
-		data["UnderlyContractNo1"] = toUtf(task_data->Contract.ContractNo1);
-		data["UnderlyStrikePrice1"] = toUtf(task_data->Contract.StrikePrice1);
-		data["UnderlyCallOrPutFlag1"] = task_data->Contract.CallOrPutFlag1;
-		data["UnderlyContractNo2"] = toUtf(task_data->Contract.ContractNo2);
-		data["UnderlyStrikePrice2"] = toUtf(task_data->Contract.StrikePrice2);
-		data["UnderlyCallOrPutFlag2"] = task_data->Contract.CallOrPutFlag2;
+		data["QBandingUpperPrice"] = task_data->QBandingUpperPrice;
+		data["QBandingLowerPrice"] = task_data->QBandingLowerPrice;
+		data["UnderlyExchangeNo"] = toUtf(task_data->UnderlyContract.Commodity.ExchangeNo);
+		data["UnderlyCommodityType"] = task_data->UnderlyContract.Commodity.CommodityType;
+		data["UnderlyCommodityNo"] = toUtf(task_data->UnderlyContract.Commodity.CommodityNo);
+		data["UnderlyContractNo1"] = toUtf(task_data->UnderlyContract.ContractNo1);
+		data["UnderlyStrikePrice1"] = toUtf(task_data->UnderlyContract.StrikePrice1);
+		data["UnderlyCallOrPutFlag1"] = task_data->UnderlyContract.CallOrPutFlag1;
+		data["UnderlyContractNo2"] = toUtf(task_data->UnderlyContract.ContractNo2);
+		data["UnderlyStrikePrice2"] = toUtf(task_data->UnderlyContract.StrikePrice2);
+		data["UnderlyCallOrPutFlag2"] = task_data->UnderlyContract.CallOrPutFlag2;
 
 		pybind11::list QAskPrice;
 		pybind11::list QBidPrice;
@@ -494,6 +498,7 @@ void MdApi::createTapQuoteAPI(const dict &req, int &iResult)
 	memset(&myreq, 0, sizeof(myreq));
 	getString(req, "AuthCode", myreq.AuthCode);
 	getString(req, "KeyOperationLogPath", myreq.KeyOperationLogPath);
+	myreq.IsLogEncryption = APIYNFLAG_YES;
 	this ->api = (ITapQuoteAPI*) CreateTapQuoteAPI(&myreq, iResult); // 创建API接口对象
 	this->api->SetAPINotify(this);  //注册回调函数对象
 };

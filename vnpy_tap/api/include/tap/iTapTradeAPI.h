@@ -44,8 +44,8 @@ namespace ITapTrade
 		virtual void TAP_CDECL OnRspLogin(ITapTrade::TAPIINT32 errorCode, const ITapTrade::TapAPITradeLoginRspInfo *loginRspInfo) = 0;
 		/**
 		* @brief	二次认证联系方式通知。
-		* @details	登录完成后，如果需要二次认证（9.2.7后台），会收到联系方式的通知，可以选择通知消息的一个联系方式（邮箱或者电话）
-		*			请求发送二次认证授权码（RequestVertificateCode）。
+		* @details	登录完成后，如果需要二次认证，会收到联系方式的通知，可以选择通知消息的一个联系方式（邮箱、电话、微信）请求发送二次认证授权码（RequestVertificateCode）。
+		*			其中微信方式返回的ContactInfo为"WeChat"，TOTP方式返回的ContactInfo为"TOTP"，TOTP方式不需要请求认证码，直接发送二次认证码进行验证即可（SetVertificateCode）
 		* @param[in] errorCode 返回错误码,0表示成功。如果账户没有绑定二次认证联系方式，则返回10016错误。
 		* @param[in] isLast,标识是否是最后一条联系信息。
 		* @param[in] 认证方式信息，如果errorCode!=0，则ContactInfo为空。
@@ -56,7 +56,7 @@ namespace ITapTrade
 
 		/**
 		* @brief	请求发送二次认证码应答。
-		* @details	请求获取二次认证授权码，后台发送邮件或者短信，并给出应答，包含发送序号以及认证码有效期。
+		* @details	请求获取二次认证授权码，后台发送邮件、短信、微信，并给出应答，包含发送序号以及认证码有效期。
 		*
 		* @param[in] sessionID 请求二次认证码会话ID。
 		* @param[in]  errorCode 如果没有绑定联系，返回10016错误.
@@ -385,6 +385,11 @@ namespace ITapTrade
 		*/
 		virtual void TAP_CDECL OnRspQryHisDelivery(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIHisDeliveryQryRsp *info) {};
 		/**
+		* @brief	历史客户资金查询回调
+		* @ingroup G_T_HisInfo
+		*/
+		virtual void TAP_CDECL OnRspQryHisFund(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIHisFundQryRsp* info) {};
+		/**
 		* @brief 资金调整查询应答
 		* @param[in] sessionID 请求的会话ID；
 		* @param[in] errorCode 错误码。0 表示成功。
@@ -675,10 +680,50 @@ namespace ITapTrade
 		virtual  void TAP_CDECL  OnRtnCancelAccountIPO(const ITapTrade::TapAPIAccountIPOCancelNotice *info) {};
 
 		/**
-		* @brief  解冻信息验证应答
-		* @ingroup G_T_UF
+		* @brief  自助操作密码信息应答
+		* @ingroup G_T_PASSWORD
 		*/
-		virtual  void TAP_CDECL  OnRspUnFreezeVerificate(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode) {};
+		virtual  void TAP_CDECL	 OnRspSelfPasswordInfoOperate(ITapTrade::TAPIINT32 errorCode) {};
+		/**
+		* @brief  身份信息验证应答
+		* @ingroup G_T_PASSWORD
+		*/
+		virtual  void TAP_CDECL  OnRspVerificateIdentityInfo(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode) {};
+		/**
+		* @brief  验证码认证应答
+		* @details 客户解冻、密码重置时设置验证码认证的应答，登陆的二次认证过程不会收回到此回调。
+		* @ingroup G_T_PASSWORD
+		*/
+		virtual  void TAP_CDECL  OnRspSetVertificateCode(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode) {};
+		/**
+		* @brief  重置密码应答
+		* @ingroup G_T_PASSWORD
+		*/
+		virtual  void TAP_CDECL  OnRspResetPassword(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode) {};
+		/**
+		* @brief  交易所状态信息查询应答
+		* @param[in] info 指向返回的信息结构体。当errorCode不为0时，info为空。
+		* @attention 不要修改和删除info所指示的数据；函数调用结束，参数不再有效。
+		* @ingroup G_T_TradeSystem
+		*/
+		virtual  void TAP_CDECL  OnRspQryExchangeStateInfo(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPIExchangeStateInfoQryRsp* info) {};
+		/**
+		* @brief  交易所状态信息变动通知
+		* @param[in] info 指向返回的信息结构体。当errorCode不为0时，info为空。
+		* @attention 不要修改和删除info所指示的数据；函数调用结束，参数不再有效。
+		* @ingroup G_T_TradeSystem
+		*/
+		virtual  void TAP_CDECL  OnRtnExchangeStateInfo(const ITapTrade::TapAPIExchangeStateInfoAddNotice* info) {};
+		/**
+		* @brief SPAN保证金查询应答
+		* @param[in] sessionID 请求的会话ID；
+		* @param[in] errorCode 错误码。0 表示成功。
+		* @param[in] isLast 	标示是否是最后一批数据
+		* @param[in] info		指向返回的信息结构体。当errorCode不为0时，info为空。
+		* @attention 不要修改和删除info所指示的数据；函数调用结束，参数不再有效。
+		* @ingroup G_T_SpanMargin
+		*/
+		virtual void TAP_CDECL OnRspQrySpanMargin(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode, ITapTrade::TAPIYNFLAG isLast, const ITapTrade::TapAPISpanMarginQryRsp* info) {};
 	};
 
 
@@ -733,11 +778,11 @@ namespace ITapTrade
 		/**
 		* @brief	请求后台发送二次认证码
 		* @details	登录完成后，如果系统配置需要进行二次认证码输入，则登录后会提示需要进行二次认证。
-		*			此函数需要9.2.7后台，根据回调函数OnRtnContactInfo中的联系方式，选择接收地址（手机或邮箱），请求二次认证码，
+		*			根据回调函数OnRtnContactInfo中的联系方式，选择接收地址（邮箱、手机号、（微信）"WeChat"），请求二次认证码，TOTP方式无需请求认证码
 		*			收到正确应答后可以调用SetVertificateCode 来设置二次认证码完成登录过程。
 		*			认证码有效期内只能请求一次，重新登录后可以重新请求。
 		* @param[out] sessionID本次请求的会话ID。
-		* @param[in]  ContactInfo,要接收二次认证码的联系地址，即邮箱或手机号。
+		* @param[in]  ContactInfo,要接收二次认证码的联系地址，即邮箱、手机号、"WeChat"。
 		* @retval 0 发送认证码成功
 		* @retval 非0 错误码
 		* @note 异步操作
@@ -747,7 +792,8 @@ namespace ITapTrade
 		virtual ITapTrade::TAPIINT32 TAP_CDECL RequestVertificateCode(ITapTrade::TAPIUINT32 *sessionID, ITapTrade::TAPISTR_40 ContactInfo) = 0;
 		/**
 		* @brief	发送二次认证码进行验证
-		* @details	需要先调用RequestVertificateCode请求验证码，（手机或邮箱）收到验证码后，再调用该函数输入验证码来完成登录。
+		* @details	如果非TOTP验证方式，需要先调用RequestVertificateCode请求验证码，（手机、邮箱、"WeChat"）收到验证码后，再调用该函数输入验证码来完成登录。
+		*			TOTP验证则无需调用RequestVertificateCode请求验证码，直接发送TOTP认证码进行验证即可。TOTP方式需后台9.3.8及以上版本支持且需要后台开启此认证方式
 		*			登录完成后不允许再调用此函数。其他原因引起的登录失败也不能调用次函数，否则会返回对应的错误信息。
 		*			调用此接口后，OnRspLogin会返回登录应答成功与否的标记，如果成功表示登录完成，可以等待OnAPIReady完成回调。
 		*			如果验证码错误，则可以再次调用此函数输入正确的验证码进行验证。
@@ -1100,7 +1146,17 @@ namespace ITapTrade
 		* @ingroup G_T_HisInfo
 		*/
 		virtual ITapTrade::TAPIINT32 TAP_CDECL QryHisDelivery(ITapTrade::TAPIUINT32 *sessionID, const ITapTrade::TapAPIHisDeliveryQryReq *qryReq) = 0;
-
+		/**
+		* @brief 历史资金查询请求
+		* @details	相同请求查询间隔为60秒
+		* @param[out] sessionID 返回请求的会话ID;
+		* @param[in]	Req	历史资金查询请求的结构体指针
+		* @retval 0 请求成功
+		* @retval 非0 错误码
+		* @note 异步操作
+		* @ingroup G_T_HisInfo
+		*/
+		virtual ITapTrade::TAPIINT32 TAP_CDECL QryHisFund(ITapTrade::TAPIUINT32* sessionID, const ITapTrade::TapAPIHisFundQryReq* qryReq) = 0;
 		/**
 		* @brief 客户手续费计算参数查询请求
 		* @details	相同请求查询间隔为60秒
@@ -1302,96 +1358,73 @@ namespace ITapTrade
 		virtual  ITapTrade::TAPIINT32 TAP_CDECL DelUserTrustDevice(TAPIUINT32 *sessionID, const TapAPIUserTrustDeviceDelReq *qryReq) = 0;
 
 		/**
-		* @brief 查询IPO基础信息
-		* @details 查询全部IPO基础信息
-		* @param[out] sessionID 返回当前请求的sessionID。
+		* @brief 开始自助申请操作用户登陆密码状态信息，支持申请自助解冻、重置密码
+		* @details 若账户已冻结登陆，则可以自助申请解除冻结。若忘记登陆密码，可以自助申请重置密码。操作流程为:
+		* 1.调用SelfPasswordInfoOperate，填写用户编号和操作类型：自助解冻、重置密码。
+		*		收到自助操作密码信息应答OnRspSelfPasswordInfoOperate，错误码“TAPIERROR_LOGIN_UNFREEZE”：允许自助解冻。
+		*															错误码“TAPIERROR_LOGIN_RESET_PASSWORD”：允许重置密码。
+		*															其他错误码则无法自助解冻或重置密码。
+		* 2.调用VerificateIdentityInfo，填写身份验证信息，其中账号、证件信息、手机号必填，且后续需要该手机号收取验证码进行认证。
+		*		收到身份验证信息应答OnRspVerificateIdentityInfo，错误码为0，则验证成功可以继续进行操作。其他错误码则验证不通过需要重新验证。
+		* 3.调用RequestVertificateCode，联系信息填写步骤2中填写的手机号。
+		*		收到请求二次认证码应答OnRspRequestVertificateCode，成功收到验证码后继续操作，未收到验证码或验证码错误可在验证码有效期后重新申请。
+		* 4.调用SetVertificateCode，填写步骤3中手机收到的验证码，二次认证码登陆类型填写TAPI_LOGINTYPE_NORMAL
+		*		收到二次认证码验证应答OnRspSetVertificateCode，错误码为“TAPIERROR_UNFREEZE_SUCCESS”，则验证码验证成功，账户解冻成功，连接断开。之后可以重新登录操作。
+		*													 错误码为“TAPIERROR_VERTIFICATE_SUCCESS”，则验证码验证成功，可以设置新密码（重置密码操作才会收到）。
+		*													 其他错误码则验证不通过需要重新验证，可以重新执行步骤3申请验证码
+		* 5.调用ResetPassword，填写需要重置的新密码（仅重置密码需要调用，自助解冻在步骤4成功后流程结束）
+		*		收到重置密码应答OnRspResetPassword，错误码为“TAPIERROR_RESETPASSWORD_SUCCESS”，则重置密码成功，连接断开。之后可以使用新密码重新登录操作。
+		*										   其他错误码则新密码修改失败，需要根据具体错误码信息，检查密码复杂度等要求
 		* @param[in]  qryReq
 		* @retval 0 请求成功
 		* @retval 非0 错误码
 		* @note 异步操作
-		* @attention 港股系统使用，北斗星系统不可调用
-		* @ingroup G_T_IPO
+		* @ingroup G_T_PASSWORD
 		*/
-		virtual  ITapTrade::TAPIINT32 TAP_CDECL QryIPOInfo(TAPIUINT32 *sessionID, const TapAPIIPOInfoQryReq *qryReq) = 0;
+		virtual  ITapTrade::TAPIINT32 TAP_CDECL SelfPasswordInfoOperate(const TapAPISelfPasswordInfoOperateReq *qryReq) = 0;
 		/**
-		* @brief 查询IPO可申购股数
-		* @details 查询请求不可填空。申购时，申购数量只能在可申购股数中选择。
+		* @brief 请求身份信息验证
+		* @details 自助解冻、重置密码等操作需要进行身份验证，验证证件、邮箱、手机号。验证全部通过后，可以进行下一步操作。
 		* @param[out] sessionID 返回当前请求的sessionID。
 		* @param[in]  qryReq
 		* @retval 0 请求成功
 		* @retval 非0 错误码
 		* @note 异步操作
-		* @attention 港股系统使用，北斗星系统不可调用
-		* @ingroup G_T_IPO
+		* @ingroup G_T_PASSWORD
 		*/
-		virtual  ITapTrade::TAPIINT32 TAP_CDECL QryIPOStockQty(TAPIUINT32 *sessionID, const TapAPIAvailableApplyQryReq *qryReq) = 0;
+		virtual  ITapTrade::TAPIINT32 TAP_CDECL VerificateIdentityInfo(TAPIUINT32 *sessionID, const TapAPIVerifyIdentityReq *qryReq) = 0;
 		/**
-		* @brief 查询客户已申报IPO信息
-		* @details 查询客户已申报IPO信息，填空查所有。
+		* @brief 申请重置密码
+		* @details 若忘记登陆密码，则可以自助申请重置密码。操作流程参见SelfPasswordInfoOperate注释信息
 		* @param[out] sessionID 返回当前请求的sessionID。
 		* @param[in]  qryReq
 		* @retval 0 请求成功
 		* @retval 非0 错误码
 		* @note 异步操作
-		* @attention 港股系统使用，北斗星系统不可调用
-		* @ingroup G_T_IPO
+		* @ingroup G_T_PASSWORD
 		*/
-		virtual  ITapTrade::TAPIINT32 TAP_CDECL QryAccountIPO(TAPIUINT32 *sessionID, const TapAPIAccountIPOQryReq *qryReq) = 0;
+		virtual  ITapTrade::TAPIINT32 TAP_CDECL ResetPassword(ITapTrade::TAPIUINT32* sessionID, const TapAPIResetPasswordReq *qryReq) = 0;
 		/**
-		* @brief 客户申购IPO
-		* @details 客户申购IPO。需要设置品种、申购类型、申购数量、融资比例；
-		* API自动计算手续费，如果有融资比例，还会自动计算融资利息、融资金额。
-		* 融资金额为 = 配售价*数量*融资比例；申购金额 = 配售价*数量 -融资金额；融资利息 = 融资利率/360*融资天数*融资金额；
-		* 现金申购时，手续费= IPO手续费；融资申购时，手续费 = IPO手续费 + 融资手续费；
-		* 此外，还会检查申购数量是否符合可申购数量，检查IPO品种是否存在，检查融资金额、融资比例是否过高。只有申购类型为融资时融资比例有效。
+		* @brief 查询交易所状态信息
 		* @param[out] sessionID 返回当前请求的sessionID。
 		* @param[in]  qryReq
 		* @retval 0 请求成功
 		* @retval 非0 错误码
 		* @note 异步操作
-		* @attention 港股系统使用，北斗星系统不可调用
-		* @ingroup G_T_IPO
+		* @ingroup G_T_TradeSystem
 		*/
-		virtual  ITapTrade::TAPIINT32 TAP_CDECL AddAccountIPO(TAPIUINT32 *sessionID, const TapAPIAccountIPOAddReq *qryReq) = 0;
+		virtual  ITapTrade::TAPIINT32 TAP_CDECL QryExchangeStateInfo(TAPIUINT32* sessionID, const TapAPIExchangeStateInfoQryReq *qryReq) = 0;
 		/**
-		* @brief 撤销客户申购IPO
-		* @details 撤销客户IPO信息。将客户已提交的IPO申请状态改为“已撤销”,而不是删除记录。
-		* @param[out] sessionID 返回当前请求的sessionID。
-		* @param[in]  qryReq
+		* @brief SPAN保证金查询请求
+		* @details	相同请求查询间隔为60秒
+		* @param[out] sessionID 返回请求的会话ID;
+		* @param[in]	Req	SPAN保证金查询请求的结构体指针
 		* @retval 0 请求成功
 		* @retval 非0 错误码
 		* @note 异步操作
-		* @attention 港股系统使用，北斗星系统不可调用
-		* @ingroup G_T_IPO
+		* @ingroup G_T_SpanMargin
 		*/
-		virtual  ITapTrade::TAPIINT32 TAP_CDECL CancelAccountIPO(TAPIUINT32 *sessionID, const TapAPIAccountIPOCancelReq *qryReq) = 0;
-
-		/**
-		* @brief 开始申请自助解冻
-		* @details 若账户已冻结，则可以自助申请解除冻结。自助解冻操作流程为:
-		* 1.调用UnFreeze，收到登录应答OnRspLogin错误码“TAPIERROR_LOGIN_UNFREEZE”：允许自助解冻。其他错误码则无法自助解冻。
-		* 2.调用VerificateUnFreezeInfo，收到OnRspUnFreezeVerificate错误码为0，验证成功
-		* 3.调用RequestVertificateCode，联系信息填写VerificateUnFreezeInfo中填写的手机号，收到OnRspRequestVertificateCode成功后继续
-		* 4.调用SetVertificateCode，收到OnRspLogin错误码为“TAPIERROR_UNFREEZE_SUCCESS”，则账户解冻成功，连接断开。之后可以重新登录操作。
-		* @param[out] sessionID 返回当前请求的sessionID。
-		* @param[in]  qryReq
-		* @retval 0 请求成功
-		* @retval 非0 错误码
-		* @note 异步操作
-		* @ingroup G_T_UF
-		*/
-		virtual  ITapTrade::TAPIINT32 TAP_CDECL UnFreeze(const TapAPITradeLoginAuth *loginAuth) = 0;
-		/**
-		* @brief 自助解冻信息验证
-		* @details 验证证件、邮箱、手机号。验证全部成功后，可以进行下一步验证码操作。
-		* @param[out] sessionID 返回当前请求的sessionID。
-		* @param[in]  qryReq
-		* @retval 0 请求成功
-		* @retval 非0 错误码
-		* @note 异步操作
-		* @ingroup G_T_UF
-		*/
-		virtual  ITapTrade::TAPIINT32 TAP_CDECL VerificateUnFreezeInfo(TAPIUINT32 *sessionID, const TapAPIVerifyIdentityReq *qryReq) = 0;
+		virtual ITapTrade::TAPIINT32 TAP_CDECL QrySpanMargin(ITapTrade::TAPIUINT32* sessionID, const ITapTrade::TapAPISpanMarginQryReq* qryReq) = 0;
 
 
 	};

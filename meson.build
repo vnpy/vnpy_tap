@@ -166,8 +166,8 @@ else  # Linux
     'vnpy_tap/api/libTapQuoteAPI.so',
     'vnpy_tap/api/libiTapTradeAPI.so',
     'vnpy_tap/api/libTapDataCollectAPI.so',
-    'vnpy_tap/api/libcrypto.so.1.1',
-    'vnpy_tap/api/libssl.so.1.1'
+    'vnpy_tap/api/libescrypto.so.1.1',
+    'vnpy_tap/api/libesssl.so.1.1'
   ]
   
   install_data(

@@ -1046,15 +1046,6 @@ void TdApi::OnRtnCancelAccountIPO(const ITapTrade::TapAPIAccountIPOCancelNotice*
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspUnFreezeVerificate(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode)
-{
-	Task task = Task();
-	task.task_name = ONRSPUNFREEZEVERIFICATE;
-	task.task_id = sessionID;
-	task.task_int = errorCode;
-	this->task_queue.push(task);
-};
-
 ///-------------------------------------------------------------------------------------
 ///工作线程从队列中取出数据，转化为python对象后，进行推送
 ///-------------------------------------------------------------------------------------
@@ -1490,12 +1481,6 @@ void TdApi::processTask()
 				break;
 			}
 
-			case ONRSPUNFREEZEVERIFICATE:
-			{
-				this->processRspUnFreezeVerificate(&task);
-				break;
-			}
-
 			};
 		}
 	}
@@ -1913,6 +1898,7 @@ void TdApi::processRspOrderAction(Task* task)
 		data["IsDeleted"] = task_extra->IsDeleted;
 		data["IsAddOne"] = task_extra->IsAddOne;
 		data["ClientLocationID"] = task_extra->ClientLocationID;
+		data["TradeNo"] = toUtf(task_extra->TradeNo);
 		delete task_extra;
 	}
 
@@ -2001,6 +1987,7 @@ void TdApi::processRtnOrder(Task* task)
 		data["IsDeleted"] = task_extra->IsDeleted;
 		data["IsAddOne"] = task_extra->IsAddOne;
 		data["ClientLocationID"] = task_extra->ClientLocationID;
+		data["TradeNo"] = toUtf(task_extra->TradeNo);
 		delete task_extra;
 	}
 
@@ -2088,6 +2075,7 @@ void TdApi::processRspQryOrder(Task* task)
 		data["IsDeleted"] = task_data->IsDeleted;
 		data["IsAddOne"] = task_data->IsAddOne;
 		data["ClientLocationID"] = toUtf(task_data->ClientLocationID);
+		data["TradeNo"] = toUtf(task_data->TradeNo);
 		delete task_data;
 	}
 	this->onRspQryOrder(task->task_id, task->task_int, task->task_last, data);
@@ -2166,6 +2154,7 @@ void TdApi::processRspQryOrderProcess(Task* task)
 		data["IsDeleted"] = task_data->IsDeleted;
 		data["IsAddOne"] = task_data->IsAddOne;
 		data["ClientLocationID"] = toUtf(task_data->ClientLocationID);
+		data["TradeNo"] = toUtf(task_data->TradeNo);
 		delete task_data;
 	}
 	this->onRspQryOrderProcess(task->task_id, task->task_int, task->task_last, data);
@@ -2351,6 +2340,8 @@ void TdApi::processRspQryPositionSummary(Task* task)
 		data["PositionPrice"] = task_data->PositionPrice;
 		data["PositionQty"] = task_data->PositionQty;
 		data["HisPositionQty"] = task_data->HisPositionQty;
+		data["CalculatePrice"] = task_data->CalculatePrice;
+		data["PositionProfit"] = task_data->PositionProfit;
 		delete task_data;
 	}
 	this->onRspQryPositionSummary(task->task_id, task->task_int, task->task_last, data);
@@ -2374,6 +2365,8 @@ void TdApi::processRtnPositionSummary(Task* task)
 		data["PositionPrice"] = task_data->PositionPrice;
 		data["PositionQty"] = task_data->PositionQty;
 		data["HisPositionQty"] = task_data->HisPositionQty;
+		data["CalculatePrice"] = task_data->CalculatePrice;
+		data["PositionProfit"] = task_data->PositionProfit;
 		delete task_data;
 	}
 	this->onRtnPositionSummary(data);
@@ -2827,6 +2820,7 @@ void TdApi::processRspQryAccountFeeRent(Task* task)
 		data["CurrencyNo"] = toUtf(task_data->CurrencyNo);
 		data["OpenCloseFee"] = task_data->OpenCloseFee;
 		data["CloseTodayFee"] = task_data->CloseTodayFee;
+		data["ContractNo"] = toUtf(task_data->ContractNo);
 		delete task_data;
 	}
 	this->onRspQryAccountFeeRent(task->task_id, task->task_int, task->task_last, data);
@@ -3060,6 +3054,7 @@ void TdApi::processRspOrderLocalInput(Task* task)
 		data["IsDeleted"] = task_data->IsDeleted;
 		data["IsAddOne"] = task_data->IsAddOne;
 		data["ClientLocationID"] = toUtf(task_data->ClientLocationID);
+		data["TradeNo"] = toUtf(task_data->TradeNo);
 		delete task_data;
 	}
 	this->onRspOrderLocalInput(task->task_id, task->task_int, data);
@@ -3138,6 +3133,7 @@ void TdApi::processRspOrderLocalModify(Task* task)
 		data["IsDeleted"] = task_data->IsDeleted;
 		data["IsAddOne"] = task_data->IsAddOne;
 		data["ClientLocationID"] = toUtf(task_data->ClientLocationID);
+		data["TradeNo"] = toUtf(task_data->TradeNo);
 		delete task_data;
 	}
 	this->onRspOrderLocalModify(task->task_id, task->task_int, data);
@@ -3216,6 +3212,7 @@ void TdApi::processRspOrderLocalTransfer(Task* task)
 		data["IsDeleted"] = task_data->IsDeleted;
 		data["IsAddOne"] = task_data->IsAddOne;
 		data["ClientLocationID"] = toUtf(task_data->ClientLocationID);
+		data["TradeNo"] = toUtf(task_data->TradeNo);
 		delete task_data;
 	}
 	this->onRspOrderLocalTransfer(task->task_id, task->task_int, data);
@@ -3830,12 +3827,6 @@ void TdApi::processRtnCancelAccountIPO(Task* task)
 	this->onRtnCancelAccountIPO(data);
 };
 
-void TdApi::processRspUnFreezeVerificate(Task* task)
-{
-	gil_scoped_acquire acquire;
-	this->onRspUnFreezeVerificate(task->task_id, task->task_int);
-};
-
 ///-------------------------------------------------------------------------------------
 ///主动函数
 ///-------------------------------------------------------------------------------------
@@ -3924,8 +3915,10 @@ int TdApi::setVertificateCode(const dict& req)
 	TAPIUINT32 session;
 	TapAPISecondCertificationReq myreq = TapAPISecondCertificationReq();
 	memset(&myreq, 0, sizeof(myreq));
+	myreq.IsTOTPCode = APIYNFLAG_NO;
 	getString(req, "VertificateCode", myreq.VertificateCode);
 	getChar(req, "LoginType", &myreq.LoginType);
+	getChar(req, "IsTOTPCode", &myreq.IsTOTPCode);
 	int i = this->api->SetVertificateCode(&session, &myreq);
 	return i;
 }
@@ -4006,6 +3999,7 @@ pybind11::tuple TdApi::insertOrder(const dict &req)
 	getChar(req, "TriggerPriceType", &myreq.TriggerPriceType);
 	getChar(req, "AddOneIsValid", &myreq.AddOneIsValid);
 	getString(req, "ClientLocationID", myreq.ClientLocationID);
+	getString(req, "TradeNo", myreq.TradeNo);
 
 	int i = this->api->InsertOrder(&session, &ClientOrderNo, &myreq);
 	pybind11::tuple result = pybind11::make_tuple(i, session, pybind11::bytes(ClientOrderNo));
@@ -5108,7 +5102,6 @@ PYBIND11_MODULE(vntaptd, m)
 		.def("onRspCancelAccountIPO", &TdApi::onRspCancelAccountIPO)
 		.def("onRtnAddAccountIPO", &TdApi::onRtnAddAccountIPO)
 		.def("onRtnCancelAccountIPO", &TdApi::onRtnCancelAccountIPO)
-		.def("onRspUnFreezeVerificate", &TdApi::onRspUnFreezeVerificate)
 		;
 
 }

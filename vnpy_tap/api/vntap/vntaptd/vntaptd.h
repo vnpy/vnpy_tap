@@ -82,8 +82,6 @@ using namespace ITapTrade;
 #define ONRSPCANCELACCOUNTIPO 67
 #define ONRTNADDACCOUNTIPO 68
 #define ONRTNCANCELACCOUNTIPO 69
-#define ONRSPUNFREEZEVERIFICATE 70
-
 ///-------------------------------------------------------------------------------------
 ///C++ SPI的回调函数方法实现
 ///-------------------------------------------------------------------------------------
@@ -764,12 +762,6 @@ public:
 	*/
 	virtual  void TAP_CDECL  OnRtnCancelAccountIPO(const ITapTrade::TapAPIAccountIPOCancelNotice* info);
 
-	/**
-	* @brief  解冻信息验证应答
-	* @ingroup G_T_UF
-	*/
-	virtual  void TAP_CDECL  OnRspUnFreezeVerificate(ITapTrade::TAPIUINT32 sessionID, ITapTrade::TAPIINT32 errorCode);
-
     //-------------------------------------------------------------------------------------
     //task：任务
     //-------------------------------------------------------------------------------------
@@ -915,8 +907,6 @@ public:
 	void processRtnAddAccountIPO(Task* task);
 
 	void processRtnCancelAccountIPO(Task* task);
-
-	void processRspUnFreezeVerificate(Task* task);
 
     //-------------------------------------------------------------------------------------
     //data：回调函数的数据字典
@@ -1065,8 +1055,6 @@ public:
 	virtual void onRtnAddAccountIPO(const dict& data) {};
 
 	virtual void onRtnCancelAccountIPO(const dict& data) {};
-
-	virtual void onRspUnFreezeVerificate(unsigned int session, int error) {};
 
     //-------------------------------------------------------------------------------------
     //req:主动函数的请求字典

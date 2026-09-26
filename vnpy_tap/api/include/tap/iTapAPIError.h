@@ -47,50 +47,52 @@ namespace ITapTrade
 	//! 需要进行二次认证
 	const int			TAPIERROR_LOGIN_SECCERTIFI 							= 10015;
 
-	//未绑定二次认证信息
+	//! 未绑定二次认证信息
 	const int			TAPIERROR_LOGIN_NOSECONDSET 						= 10016;
-	//不受信任的计算机登录
+	//! 不受信任的计算机登录
 	const int			TAPIERROR_LOGIN_NOTURSTHOST 						= 10017;
-	//非本交易中心客户
+	//! 非本交易中心客户
 	const int			TAPIERROR_LOGIN_NOTINTRADECENTER 					= 10019;
-	//版本和后台版本不不一致
+	//! 版本和后台版本不不一致
 	const int			TAPIERROR_LOGIN_INCONSISTENT 						= 10020;
-	//客户所属交易中心前置地址未配置
+	//! 客户所属交易中心前置地址未配置
 	const int			TAPIERROR_LOGIN_NOCENTERFRONTADDRESS 				= 10021;
-	//不允许此账号类型登录
+	//! 不允许此账号类型登录
 	const int			TAPIERROR_LOGIN_PROHIBITACCOUNTTYPE 				= 10022;
 
-	//需要信息采集-直连
+	//! 需要信息采集-直连
 	const int			TAPIERROR_LOGIN_GATHERINFO_DIRECT 					= 10023;
-	//需要信息采集-中继
+	//! 需要信息采集-中继
 	const int			TAPIERROR_LOGIN_GATHERINFO_RELAY 					= 10024;
 
-	//允许重置密码
+	//! 允许重置密码
 	const int			TAPIERROR_LOGIN_RESET_PASSWORD						= 10025;
-	//重置密码链接次数超限
+	//! 重置密码链接次数超限
 	const int			TAPIERROR_LOGIN_RESET_PASSWORD_EXCEEDED				= 10026;
-	//不支持操作员重置密码
+	//! 不支持操作员重置密码
 	const int			TAPIERROR_LOGIN_OPERATOR_UNALLOWED_RESET			= 10027;
-	//冻结重置密码
+	//! 冻结重置密码
 	const int			TAPIERROR_LOGIN_RESET_PASSWORD_FROZEN				= 10028;
 
-	//身份验证失败
+	//! 身份验证失败
 	const int			TAPIERROR_LOGIN_VERIFYIDENTITY_FAILED				= 10029;
-	//身份验证次数超限
+	//! 身份验证次数超限
 	const int			TAPIERROR_LOGIN_VERIFYIDENTITY_EXCEED				= 10030;
-	//授权已到期
+	//! 授权已到期
 	const int			TAPIERROR_LOGIN_LICENSE_EXPIRED						= 10031;
 
-	//不允许重置密码-没有设置发送方式
+	//! 不允许重置密码-没有设置发送方式
 	const int			TAPIERROR_LOGIN_PROHIBITRESETPASSWORD				= 10032;
-	//允许冻结状态解冻
+	//! 允许冻结状态解冻
 	const int			TAPIERROR_LOGIN_UNFREEZE							= 10033;
-	//冻结状态解冻结链接数量超限
+	//! 冻结状态解冻结链接数量超限
 	const int			TAPIERROR_LOGIN_UNFREEZE_EXCEEDED					= 10034;
-	//不允许解冻-没有设置发送方式
+	//! 不允许解冻-没有设置发送方式
 	const int			TAPIERROR_LOGIN_PROHIBIT_UNFREEZE					= 10035;
-	//不需要解冻-登录未冻结
+	//! 不需要解冻-登录未冻结
 	const int			TAPIERROR_LOGIN_NONEED_UNFREEZE						= 10036;
+	//! 需要绑定TOTP信息
+	const int			TAPIERROR_LOGIN_TOTP_NEEDBINDING					= 10040;
 
 	//!	二次验证失败
 	const int			TAPIERROR_SECONDCERTIFICATION_FAIL 					= 14001;
@@ -114,21 +116,21 @@ namespace ITapTrade
 	//! 删除分组失败-分组有下属或在操作员下属中
 	const int			TAPIERROR_EXIST_RELATEINFOOFGROUP 					= 11004;
 
-	//审核状态不予许修改
+	//! 审核状态不予许修改
 	const int			TAPIERROR_CHECK_FAILED 								= 11006;
-	//不允许存在重复3.0外部品种编号
+	//! 不允许存在重复3.0外部品种编号
 	const int			TAPIERROR_EXIST_OUTSIDECOMMODITYNO 					= 11007;
-	//客户结算单不存在
+	//! 客户结算单不存在
 	const int			TAPIERROR_NOTEXIST_BILL 							= 11008;
-	//不允许增加此类型账号
+	//! 不允许增加此类型账号
 	const int			TAPIERROR_LOGIN_PROHIBITADDACCOUNTTYPE 				= 11009;
-	//账号类型不允许为空
+	//! 账号类型不允许为空
 	const int			TAPIERROR_ACCOUNTINFO_NOTEXPTY 						= 11010;
-	//主账号不允许为空
+	//! 主账号不允许为空
 	const int			TAPIERROR_ACCOUNTINFO_SuperiorNOTEMPTY 				= 11011;
-	//超过信任设备绑定数量上限
+	//! 超过信任设备绑定数量上限
 	const int			TAPIERROR_USERTRUSTDEVICE_ADDLIMITE					= 11012;
-	//非法映射
+	//! 非法映射
 	const int			TAPIERROR_UPPERACCOUNTMAPPING_NOTALLOW				= 11013;
 
     //! 登录用户密码修改失败-原始密码错误
@@ -160,33 +162,33 @@ namespace ITapTrade
 	const int			TAPIERROR_ORDERINSERT_ACCOUNT_STATE 				= 60002;
 	//! 资金账号交易中心不一致
 	const int			TAPIERROR_ORDERINSERT_TRADECENT_ERROR 				= 60003;
-	//主账号不允许下单
+	//! 主账号不允许下单
 	const int			TAPIERROR_ORDERINT_MAINACCOUNT_ERROR 				= 60004;
-	//主账号信息错误
+	//! 主账号信息错误
 	const int			TAPIERROR_ORDERINT_MAINACCINFO_ERROR 				= 60005;
-	//账号禁止期权市价下单
+	//! 账号禁止期权市价下单
 	const int			TAPIERROR_ORDERINT_NO_OPTMARKET_ERROR 				= 60006;
-	//目前不支持的指令
+	//! 目前不支持的指令
 	const int			TAPIERROR_ORDERINT_UN_SUPPORT_ERROR 				= 60007;
     //! 下单无效的合约
 	const int			TAPIERROR_ORDERINSERT_CONTRACT 						= 60011;
     //! LME未准备就绪
 	const int			TAPIERROR_ORDERINSERT_LME_NOTREADY 					= 60012;
-	//!不支持的下单类型
+	//! 不支持的下单类型
 	const int			TAPIERROR_ORDERINSERT_ERROR_ORDER_TYPE 				= 60013;
-	//!错误的埋单类型
+	//! 错误的埋单类型
 	const int			TAPIERROR_ORDERINSERT_READY_TYPE_ERROR 				= 60014;
-	//!不合法的委托类型
+	//! 不合法的委托类型
 	const int			TAPIERROR_ORDERINSERT_ORDER_TYPE_ERROR 				= 60015;
-	//下单合约标的合约不存在
+	//! 下单合约标的合约不存在
 	const int			TAPIERROR_ORDERINSERT_SUBCONTRACT 					= 60016;
-	//现货下单买入数量错误
+	//! 现货下单买入数量错误
 	const int			TAPIERROR_ORDERINSERT_SPOTBUYQTY 					= 60017;
-	//非认购期权不允许备兑
+	//! 非认购期权不允许备兑
 	const int			TAPIERROR_ORDERINSERT_RESERVE_PUT 					= 60018;
-	//买入开仓不允许备兑
+	//! 买入开仓不允许备兑
 	const int			TAPIERROR_ORDERINSERT_RESERVE_B_OPEN 				= 60019;
-	//卖出平仓不允许备兑
+	//! 卖出平仓不允许备兑
 	const int			TAPIERROR_ORDERINSERT_RESERVE_S_COVER 				= 60020;
     //! 客户权限禁止交易
 	const int			TAPIERROR_ORDER_NOTRADE_ACCOUNT 					= 60021;
@@ -219,29 +221,39 @@ namespace ITapTrade
 	const int			TAPIERROR_ORDER_IN_MOD_PRICE_ERROR 					= 60034;
 	//! 超过GiveUp最大持仓量
 	const int			TAPIERROR_ORDER_IN_GIVEUP_POS_MAX 					= 60035;
-	//持仓量超过ETF总持仓限制
+	//! 持仓量超过ETF总持仓限制
 	const int			TAIERROR_ORDER_ETF_POSITIONMAX 						= 60036;
-	//持仓量超过ETF权利仓限制
+	//! 持仓量超过ETF权利仓限制
 	const int			TAIERROR_ORDER_ETF_BUYPOSITIONMAX 					= 60037;
-	//持仓量超过ETF单日买入开仓限制
+	//! 持仓量超过ETF单日买入开仓限制
 	const int			TAIERROR_ORDER_ETF_BUYONEDAYPOSITIONMAX 			= 60038;
-	//可用锁定现货不足
+	//! 可用锁定现货不足
 	const int			TAIERROR_ORDERINSERT_NOTENOUGHSPOT 					= 60039;
-	//现货不支持备兑
+	//! 现货不支持备兑
 	const int			TAIERROR_ORDERINSERT_RESERVE_SPOT 					= 60040;
 
 
     //! 未登录网关
-	const int          TAPIERROR_UPPERCHANNEL_NOT_LOGIN 					= 60041;
+	const int			TAPIERROR_UPPERCHANNEL_NOT_LOGIN 					= 60041;
 	//! 未找到网关信息
-	const int          TAPIERROR_UPPERCHANNEL_NOT_FOUND 					= 60042;
-	//此品种不支持解锁或锁定
-	const int          TAPIERROR_COMMODITY_LOCK 							= 60043;
-	//现货未设置对应期权品种
-	const int          TAPIERROR_SPOT_ROOT_COMMODITY 						= 60044;
-	//现货对应期权无交易路由
-	const int			TAIERROR_SPOT_ROOTCOM_TRADEROUTE 					= 60045;
+	const int			TAPIERROR_UPPERCHANNEL_NOT_FOUND 					= 60042;
+	//! 此品种不支持解锁或锁定
+	const int			TAPIERROR_COMMODITY_LOCK 							= 60043;
+	//! 现货未设置对应期权品种
+	const int			TAPIERROR_SPOT_ROOT_COMMODITY 						= 60044;
+	//! 现货对应期权无交易路由
+	const int			TAPIERROR_SPOT_ROOTCOM_TRADEROUTE 					= 60045;
+	//! 现货月超过最大持仓量
+	const int			TAPIERROR_ORDERINSERT_SPOT_POSITIONMAX				= 60046;
+	//! 超过最大信息量
+	const int			TAPIERROR_ORDERINSERT_MAX_INFO_IN					= 60047;
+	//! 下单量不能为0
+	const int			TAPIERROR_ORDERINSERT_ORDERQTY_ZERO					= 60048;
+	//! 境内仅平仓
+	const int			TAPIERROR_ORDERINSERT_MAINLAND_NOPEN				= 60049;
 
+	//! 操作员额度不足
+	const int			TAPIERROR_ORDERINSERT_USER_EXCEED_NO				= 60050;
     //! 下单资金不足
 	const int			TAPIERROR_ORDERINSERT_NOTENOUGHFUND 				= 60051;
     //! 手续费参数错误
@@ -259,18 +271,18 @@ namespace ITapTrade
 	const int			TAPIERROR_ORDERINSERT_GROUP_OPENRATIO 				= 60057;
 	//! 风险阵列参数错误
 	const int			TAPIERROR_ORDERINSERT_RISKARRAY 					= 60058;
-	//总基币超过限购额度限制
-	const int			TAIERROR_ORDERINSERT_BUYLIMITE 						= 60059;
-	//独立币种组超过限购额度限制
-	const int			TAIERROR_ORDERINSERT_GROUP_BUYLIMITE 				= 60060;
+	//! 总基币超过限购额度限制
+	const int			TAPIERROR_ORDERINSERT_BUYLIMITE 					= 60059;
+	//! 独立币种组超过限购额度限制
+	const int			TAPIERROR_ORDERINSERT_GROUP_BUYLIMITE 				= 60060;
     //! 撤单无此系统号
-	const int          TAPIERROR_ORDERDELETE_NOT_SYSNO 						= 60061;
+	const int			TAPIERROR_ORDERDELETE_NOT_SYSNO 					= 60061;
     //! 此状态不允许撤单
-	const int          TAPIERROR_ORDERDELETE_NOT_STATE 						= 60062;
+	const int			TAPIERROR_ORDERDELETE_NOT_STATE 					= 60062;
 	//! 录单不允许撤单
-	const int          TAPIERROR_ORDERDELETE_NO_INPUT 						= 60063;
-	//不允许撤销锁定/解锁指令
-	const int          TAPIERROR_ORDERDELETE_NO_TRADE 						= 60064;
+	const int			TAPIERROR_ORDERDELETE_NO_INPUT 						= 60063;
+	//! 不允许撤销锁定/解锁指令
+	const int			TAPIERROR_ORDERDELETE_NO_TRADE 						= 60064;
 
     //! 此状态不允许改单
 	const int			TAPIERROR_ORDERMODIFY_NOT_STATE 					= 60071;
@@ -282,24 +294,56 @@ namespace ITapTrade
 	const int			TAPIERROR_ORDERMODIFY_ERROR_QTY 					= 60074;
 	//! 预埋单不允许改单
 	const int			TAPIERROR_ORDERMODIFY_ERROR_READY 					= 60075;
+	//! 改单不允许为大额订单
+	const int			TAPIERROR_ORDERMODIFY_ERROR_BIGER					= 60076;
+	//! 场外交易不允许改单
+	const int			TAPIERROR_ORDERMODIFY_ERROR_OTC						= 60077;
 
     //! 已删除报单不能转移
 	const int			TAPIERROR_ORDERINPUT_CANNOTMOVE 					= 60081;
+	//! 未开启境外特参模式
+	const int			TAPIERROR_ORDERINSERT_QFII_OFF						= 60082;
+	//! 未填写交易编码
+	const int			TAPIERROR_ORDERINSERT_NO_TRADENO					= 60083;
+	//! 交易编码未设置
+	const int			TAPIERROR_ORDERINSERT_TRADENO_NOSET					= 60084;
+	//! 无需透传交易编码
+	const int			TAPIERROR_ORDERINSERT_TRADENO_NEEDOFF				= 60085;
 
     //! 录单重复
 	const int			TAPIERROR_ORDERINPUT_REPEAT 						= 60091;
 
 	//! 合约行情价格修改失败
 	const int			TAPIERROR_CONTRACT_QUOTE 							= 60101;
+	//! 价格偏离范围，正在获取行情，请重新下单
+	const int			TAPIERROR_ORDER_IN_PRICE_LIMIT_PRICE_ERROR			= 60102;
+	//! 港股下单超过24档范围
+	const int			TAPIERROR_ORDER_INSERT_PRICE24_ERROR				= 60103;
+	//! 策略单港股下单超过24档范围
+	const int			TAPIERROR_ORDER_INSERT_C_PRICE24_ERROR				= 60104;
+	//! 下单确认拒绝
+	const int			TAPIERROR_ORDER_INSERT_CONFIRM_ERROR				= 60105;
+	//! 下单确认无订单
+	const int			TAPIERROR_CONFIRM_NOORDER_ERROR						= 60106;
 
 	//! 下单超过上手单笔最大量
 	const int			TAPIERROR_UPPER_ONCEMAX 							= 60111;
 	//! 下单超过上手最大持仓量
 	const int			TAPIERROR_UPPER_POSITIONMAX 						= 60112;
-	//品种总仓层最大持仓量超限
+	//! 品种总仓层最大持仓量超限
 	const int			TAPIERROR_ORDERINSERT_POSMAX_COM					= 60113;
-	//品种净仓层最大持仓量超限
+	//! 品种净仓层最大持仓量超限
 	const int			TAPIERROR_ORDERINSERT_POSMAX_COM_NET				= 60114;
+	//! 最大持仓量证券市值超限
+	const int			TAPIERROR_ORDERINSERT_POSMAX_MARKET_VAL				= 60115;
+	//! 下单超过最大委托量
+	const int			TAPIERROR_STOCKINSERT_HK_ORDERMAX_QTY				= 60116;
+	//! 关联组合约层持仓量超过最大限制
+	const int			TAPIERROR_ORDERINSERT_G_POSITIONMAX					= 60117;
+	//! 关联组品种总仓层最大持仓量超限
+	const int			TAPIERROR_ORDERINSERT_G_POSMAX_COM					= 60118;
+	//! 关联组品种净仓层最大持仓量超限
+	const int			TAPIERROR_ORDERINSERT_G_POSMAX_COM_NET				= 60119;
 
 	//! 开平方式错误
 	const int			TAPIERROR_ORDERINSERT_CLOSEMODE 					= 60121;
@@ -307,10 +351,12 @@ namespace ITapTrade
 	const int			TAPIERROR_CLOSE_ORDER 								= 60122;
 	//! 成交平仓失败
 	const int			TAPIERROR_CLOSE_MATCH 								= 60123;
-	//现货平仓超过锁定量
+	//! 现货平仓超过锁定量
 	const int			TAPIERROR_CLOSE_SPOT_OUT_LOCK						= 60124;
-	//现货备兑基数为空
+	//! 现货备兑基数为空
 	const int			TAPIERROR_CLOSE_SPOT_OUT_NULL						= 60125;
+	//! 集合账号下属交易编码持仓不足平
+	const int			TAPIERROR_CLOSE_ORDER_QFII_NOEH						= 60126;
 
 	//! 未找到本地委托
 	const int			TAPIERROR_MOD_DEL_NO_ORDER 							= 60131;
@@ -327,7 +373,7 @@ namespace ITapTrade
 	const int			TAPIERROR_MATCHINPUT_PARM_ERROR 					= 60144;
 	//! 录单成交委托状态错误
 	const int			TAPIERROR_MATCHINPUT_OSTATE_ERROR 					= 60145;
-	//录单成交开平标志错误
+	//! 录单成交开平标志错误
 	const int			TAPIERROR_MATCHINPUT_OCMODE_ERROR					= 60146;
 
 	//! 成交删除未找到成交
@@ -364,86 +410,132 @@ namespace ITapTrade
 	const int			TAPIERROR_ORDERMARKET_DEL_SIDE_ERROR 				= 60176;
 	//! 做市商单边检查未通过
 	const int			TAPIERROR_ORDERMARKET_OTHER_SIDE_ERROR 				= 60177;
-	//做市商双边撤单系统号错误
+	//! 做市商双边撤单系统号错误
 	const int			TAPIERROR_ORDERMARKET_DEL_SYSTEMNO_ERROR			= 60178;
 
 	//! 埋单激活失败，订单未找到
 	const int			TAPIERROR_ORDERACTIVATE_NOTFOUND_ERROR 				= 60181;
 	//! 埋单激活失败，非有效状态
 	const int			TAPIERROR_ORDERACTIVATE_STATE_ERROR 				= 60182;
-	//挂起激活失败，网关不支持
+	//! 挂起激活失败，网关不支持
 	const int			TAPIERROR_ORDERACTIVATE_GATEWAY_ERROR				= 60183;
 	
-	//操作员无跨中心下单权限
+	//! 操作员无跨中心下单权限
 	const int			TAPIERROR_TRANSIT_ORDERINSERT_RIGHT 				= 60191;
-	//未连接中转服务
+	//! 未连接中转服务
 	const int			TAPIERROR_TRANSIT_ORDERINSERT_DISCON 				= 60192;
-	//下单未连接目标交易中心
+	//! 下单未连接目标交易中心
 	const int			TAPIERROR_TRANSIT_ORDERINSERT_DISCON_DEST 			= 60193;
-	//撤单未连接目标交易中心
+	//! 撤单未连接目标交易中心
 	const int			TAPIERROR_TRANSIT_ORDERDELETE_DISCON_DEST 			= 60194;
-	//改单未连接目标交易中心
+	//! 改单未连接目标交易中心
 	const int			TAPIERROR_TRANSIT_ORDERMODIFY_DISCON_DEST 			= 60195;
-	//错误的中转订单操作
+	//! 错误的中转订单操作
 	const int			TAPIERROR_TRANSIT_ORDER_OPERATOR 					= 60196;
 
-	//客户权限禁止买入
+	//! 客户权限禁止买入
 	const int			TAPIERROR_ORDER_DISALLOWBUY_ACCOUNT 				= 60201;
-	//客户权限禁止卖出
+	//! 客户权限禁止卖出
 	const int			TAPIERROR_ORDER_DISALLOWSELL_ACCOUNT 				= 60202;
-	//系统权限禁止买入
+	//! 系统权限禁止买入
 	const int			TAPIERROR_ORDER_DISALLOWBUY_SYSTEM 					= 60203;
-	//系统权限禁止卖出
+	//! 系统权限禁止卖出
 	const int			TAPIERROR_ORDER_DISALLOWSELL_SYSTEM 				= 60204;
-	//客户权限禁止卖开仓期权 -仅外盘系统
+	//! 客户权限禁止卖开仓期权 -仅外盘系统
 	const int			TAPIERROR_ORDER_DIS_SELLOPTION_ACCOUNT				= 60205;
-	//系统权限禁止卖开仓期权 -仅外盘系统
+	//! 系统权限禁止卖开仓期权 -仅外盘系统
 	const int			TAPIERROR_ORDER_DIS_SELLOPTION_SYSTEM				= 60206;
-	//非标准合约只可平仓
+	//! 非标准合约只可平仓
 	const int			TAPIERROR_ORDER_CONTRACT_CLOSE						= 60207;
-	//风控权限只可下强平单
+	//! 风控权限只可下强平单
 	const int			TAPIERROR_ORDER_INSERT_RISK_CLOSE					= 60208;
+	//! 未开通板块权限
+	const int			TAPIERROR_ORDER_INSERT_SECTOR_RIGHT_ERROR			= 60209;
+	//! 未开通交易所权限
+	const int			TAPIERROR_ORDER_INSERT_EXCHGRIGHT_ERROR				= 60210;
 
-	//超出贷款限额
+	//! 超出贷款限额
 	const int			TAPIERROR_ORDERINSERT_LOANAMOUNT					= 60211;
-	//此品种不支持组合策略
+	//! 超出股票冻结量限制
+	const int			TAPIERROR_ORDERINSERT_FROZENSTOCK					= 60212;
+	//! 无大额订单权限
+	const int			TAPIERROR_ORDER_INSERT_BIGER_RIGHT					= 60213;
+	//! 无超额订单权限
+	const int			TAPIERROR_ORDER_INSERT_EXCEED_RIGHT					= 60214;
+	//! 超过超额订单限额
+	const int			TAPIERROR_ORDER_INSERT_EXCEED_AMOUNT				= 60215;
+	//! 超过超额审核限额
+	const int			TAPIERROR_ORDER_REVIEW_EXCEED_AMOUNT				= 60216;
+	//! 订单审核失败，订单未找到
+	const int			TAPIERROR_ORDERREVIEW_NOTFOUND_ERROR				= 60217;
+	//! 订单审核不通过
+	const int			TAPIERROR_ORDER_REVIEW_REFUSE_ERROR					= 60218;
+	//! 无审核权限
+	const int			TAPIERROR_ORDER_REVIEW_RIGHT_ERROR					= 60219;
+
+	//! 此品种不支持组合策略
 	const int			TAPIERROR_COMBINE_COMMODITY							= 60220;
-	//组合申报合约期权类型不符合要求
+	//! 组合申报合约期权类型不符合要求
 	const int			TAPIERROR_COMBINE_CALLORPUT							= 60221;
-	//拆分的组合持仓不存在
+	//! 拆分的组合持仓不存在
 	const int			TAPIERROR_COMBINE_COMPOSITION						= 60222;
-	//拆分的组合持仓数量不足
+	//! 拆分的组合持仓数量不足
 	const int			TAPIERROR_COMBINE_COMPOSITION_QTY					= 60223;
-	//组合申报合约备兑标识不符合要求
+	//! 组合申报合约备兑标识不符合要求
 	const int			TAPIERROR_COMBINE_HEDGEFLAG							= 60224;
-	//组合申报合约买卖方向不符合要求
+	//! 组合申报合约买卖方向不符合要求
 	const int			TAPIERROR_COMBINE_ORDERSIDE							= 60225;
-	//组合申报合约大小不符合要求
+	//! 组合申报合约大小不符合要求
 	const int			TAPIERROR_COMBINE_CONTRACTSIZE						= 60226;
-	//组合申报合约到期日不符合要求
+	//! 组合申报合约到期日不符合要求
 	const int			TAPIERROR_COMBINE_CONTRACTDAYS						= 60227;
-	//组合申报合约行权价不符合要求
+	//! 组合申报合约行权价不符合要求
 	const int			TAPIERROR_COMBINE_STRIKEPRICE						= 60228;
-	//相同合约不允许组合
+	//! 相同合约不允许组合
 	const int			TAPIERROR_COMBINE_CONTRACT_SAME						= 60229;
 
-	//备兑解锁量不足
+	//! 备兑解锁量不足
 	const int			TAPIERROR_ORDERINSERT_UNLOCK_NOE					= 60230;
-	//期权开仓备兑量不足	
+	//! 期权开仓备兑量不足	
 	const int			TAPIERROR_ORDEROPEN_OPT_SPOT_NOE					= 60231;
-	//期权平仓备兑量不足
+	//! 期权平仓备兑量不足
 	const int			TAPIERROR_ORDERCLOSE_OPT_SPOT_NOE					= 60232;
-	//无效的备兑订单
+	//! 无效的备兑订单
 	const int			TAPIERROR_ORDERINSERT_COVERED_UNVLD					= 60233;
-	//正在订阅行情，请重试
+	//! 正在订阅行情，请重试
 	const int			TAPIERROR_ORDERINSERT_QUOTE_PRICE					= 60240;
-	//不允许重复申购
+	//! 不允许重复申购
 	const int          	TAPIERROR_ACCOUNTIPO_REPEAT							= 60250;
-	//未找到有效申购信息
+	//! 未找到有效申购信息
 	const int          	TAPIERROR_ACCOUNTIPO_NOT_EXIST						= 60251;
 
-	//主账号保证金参数错误
+	//! 主账号保证金参数错误
 	const int			TAPIERROR_ORDERINSERT_MAIN_MARGIN					= 60261;
+
+	//! 对手席位号不能为空
+	const int			TAPIERROR_ORDERINSERT_OTCT_CBROKERNO_N				= 60270;
+	//! 对手资金号不能为空
+	const int			TAPIERROR_ORDERINSERT_OTCT_CACCOUNTNO_N				= 60271;
+	//! 错误的买方确认请求
+	const int			TAPIERROR_ORDERINSERT_OTCT_BUY_CONFIRM				= 60272;
+
+
+	//! 证券集合账号下单，BCAN不允许为空
+	const int			TAPIERROR_ORDERINSERT_OMNIBUS_TRADENO_N				= 60360;
+	//! 客户BCAN状态不允许下单
+	const int			TAPIERROR_ORDERINSERT_ACCBCANSTATE_ERR				= 60361;
+	//! 客户未申请BCAN
+	const int			TAPIERROR_ORDERINSERT_ACCBCAN_NO_APY				= 60362;
+	//! 客户BCAN未确认
+	const int			TAPIERROR_ORDERINSERT_ACCBCAN_NO_CONFIRM			= 60363;
+	//! 未开启暗盘交易
+	const int			TAPIERROR_ORDERINSERT_GREY_NO_OPEN					= 60364;
+	//! 集合账号BCAN ID不匹配
+	const int			TAPIERROR_ORDERINSERT_OMNIBUS_ID_ERROR				= 60365;
+	//! 集合账号BCAN ID为空
+	const int			TAPIERROR_ORDERINSERT_OMNIBUS_ID_ZERO				= 60366;
+	//! 证券停牌不允许下单
+	const int			TAPIERROR_ORDERINSERT_COMMODITY_SUSP				= 60367;
 	//=============================================================================
 	/**
 	*	\addtogroup G_ERR_GATE_WAY		网关错误代码定义
@@ -473,7 +565,78 @@ namespace ITapTrade
 	const int			TAPIERROR_GW_SEND_FAIL 								= 80010;
     //! 被上手拒绝
 	const int			TAPIERROR_GW_REJ_BYUPPER 							= 80011;
-
+	//! 发送数据失败
+	const int			TAPIERROR_GW_NEW_ORDER_SEND							= 81001;
+	//! 发送报单失败，网关没连接到交易所
+	const int			TAPIERROR_GW_NEW_DLG_NULL							= 81002;
+	//! 报单字段有误
+	const int			TAPIERROR_GW_NEW_ORDER_FIELD						= 81003;
+	//! 被上手拒绝
+	const int			TAPIERROR_GW_NEW_TRADE_REJ_BYUPPER					= 81004;
+	//! 当前时间不允许发送行权申请
+	const int			TAPIERROR_GW_NEW_ORDER_FORBIDEXEC					= 81005;
+	//! 报单合约错误
+	const int			TAPIERROR_GW_NEW_ORDERINSERT_CONTRACT				= 81006;
+	//! 找不到资金账号
+	const int			TAPIERROR_GW_NEW_ORDERINSERT_ACCOUNT				= 81007;
+	//! 一次请求太多数据
+	const int			TAPIERROR_GW_NEW_DEEPQOUTE_TOOMANYDATA				= 81008;
+	//! 上手号错误
+	const int			TAPIERROR_GW_NEW_UPPER_UPPERNO						= 81009;
+	//! 上手通道号错误
+	const int			TAPIERROR_GW_NEW_UPPER_UPPERCHANNELNO				= 81010;
+	//! 上手用户号错误
+	const int			TAPIERROR_GW_NEW_UPPER_UPPERUSERNO					= 81011;
+	//! 服务器标识重复
+	const int			TAPIERROR_GW_NEW_UPPER_DUPLICATE					= 81012;
+	//! 撤单找不到原始委托
+	const int			TAPIERROR_GW_NEW_ORDERNOTFIND						= 81013;
+	//! 超过数据流控
+	const int			TAPIERROR_GW_NEW_ORDERREQ_TOOMANY					= 81014;
+	//! 不支持的订单类型
+	const int			TAPIERROR_GW_NEW_UPPER_ORDERTYPE					= 81015;
+	//! 订单操作找不到原始委托
+	const int			TAPIERROR_GW_NEW_ORDEROPERATE_NOORDER				= 81016;
+	//! 非做市商网关不允许应价
+	const int			TAPIERROR_GW_NEW_UPPER_NOTALLOWRSPQOUTE				= 81017;
+	//! 找不到交易编码
+	const int			TAPIERROR_GW_NEW_UPPER_TRADENO						= 81018;
+	//! 本地编号超过了最大值
+	const int			TAPIERROR_GW_NEW_INVALID_LOCALNO					= 81019;
+	//! 品种错误
+	const int			TAPIERROR_GW_NEW_INVALID_COMMODITY					= 81020;
+	//! 品种类型不支持
+	const int			TAPIERROR_GW_NEW_UNSUPPORT_COMMODITY_TYPE			= 81021;
+	//! 价格不合法
+	const int		    TAPIERROR_GW_NEW_INVALID_PRICE						= 81022;
+	//! 数量不合法
+	const int			TAPIERROR_GW_NEW_INVALID_VOLUME						= 81023;
+	//! 委托模式不合法
+	const int			TAPIERROR_GW_NEW_TIMEINFORCE_MODE					= 81024;
+	//! 买卖方向不合法
+	const int		    TAPIERROR_GW_NEW_INVALID_DIRECTION					= 81025;
+	//! 开平标志不合法
+	const int		    TAPIERROR_GW_NEW_INVALID_POSITIONEFFECT				= 81026;
+	//! 投机套保标志不合法
+	const int		    TAPIERROR_GW_NEW_INVALID_HEDGEFLAG					= 81027;
+	//! 已经存在有效询价
+	const int			TAPIERROR_GW_NEW_REQQUOTE_EXISIT					= 81028;
+	//! 没有查询到相应的设置
+	const int			TAPIERROR_GW_NEW_RRYOFFSET_NODATA					= 81029;
+	//! 改单委托信息没有变化
+	const int			TAPIERROR_GW_NEW_ORDERMODIFY_SAME					= 81030;
+	//! 报价价位查询没有数据
+	const int			TAPIERROR_GW_NEW_DEEPQUOTE_NOQUOTE					= 81031;
+	//! 已经存在有效库存查询
+	const int			TAPIERROR_GW_NEW_STORAGEREQ_EXISIT					= 81032;
+	//! 上次库存查询未结束
+	const int			TAPIERROR_GW_NEW_STORAGEREQ_NOTFINISH				= 81033;
+	//! 到上手查询数据返回失败
+	const int			TAPIERROR_GW_NEW_QRYRSP								= 81034;
+	//! 不支持请求类型
+	const int			TAPIERROR_GW_NEW_INVALID_REQUEST					= 81035;
+	//! 当前时间不支持此类操作
+	const int			TAPIERROR_GW_NEW_INVALID_TIME						= 81036;
 	//=============================================================================
 	/**
 	*	\addtogroup G_ERR_FRONT_SERVICE		前置返回错误
@@ -505,8 +668,12 @@ namespace ITapTrade
 	const int			TAPIERROR_TRADEFRONT_RUFUSE 						= 90024;
 	//! 自成交验证不通过
 	const int			TAPIERROR_TRADEFRONT_SELFMATCH 						= 90025;
-	//单客户不予许撤强平单
+	//! 单客户不予许撤强平单
 	const int			TAPIERROR_TRADEFRONT_DELETEFORCE					= 90026;
+	//! 不允许数字货币交易
+	const int			TAPIERROR_TRADEFRONT_FROBIBITDIGITAL				= 90027;
+	//! 境内仅平仓
+	const int			TAPIERROR_TRADEFRONT_MAINLANDONLYCLOSE				= 90028;
     
     const int TAPIERROR_SUCCEED                                            = 0;
     //! 连接服务失败
@@ -555,7 +722,7 @@ namespace ITapTrade
 	const int TAPIERROR_ORDER_FREQUENCY						 				= -22;
 	//! 查询频率太快。
 	const int TAPIERROR_RENTQRY_TOOFAST										= -23;
-	//! 不符合调用条件。
+	//! 不符合调用条件，需要先请求二次认证验证码
 	const int TAPIERROR_CALL_NOCONDITION									= -24;
 	//! 改单撤单时没有找到对应订单。
 	const int TAPIERROR_ORDER_NOTFOUND										= -25;
@@ -613,6 +780,19 @@ namespace ITapTrade
 	//! 查询历史数据的时间区间最多31天
 	const int TAPIERROR_HISDATA_DAYS										= -59;
 
+	//!	解冻重置仅支持身份验证的手机号
+	const int TAPIERROR_UNFREERESET_ERROR_CONTACT							= -60;
+	//! 验证码认证成功，请设置新密码
+	const int TAPIERROR_VERTIFICATE_SUCCESS									= -61;
+	//! 重置密码成功，请重新登录
+	const int TAPIERROR_RESETPASSWORD_SUCCESS								= -62;
+
+	//! 需要上传交易编码
+	const int TAPIERROR_TRADENO_NEEDED										= -63;
+	//! 禁止填写交易编码
+	const int TAPIERROR_TRADENO_NOTNEEDED									= -64;
+	//! 禁止修改交易编码
+	const int TAPIERROR_TRADENO_ERROR_MODIFY								= -65;
 	//=============================================================================
 	/**
 	 * \addtogroup G_ERR_STOCK_CHECK ETF系统错误号
@@ -765,6 +945,8 @@ namespace ITapTrade
     const int TAPIERROR_INPUTERROR_QryHisQuoteParam                        = -13001;
 	//! 价格和数量中包含NAN或者INF不合法的数值
 	const int TAPIERROR_INPUTERROR_TAPIIncludeNAN							= -13002;
+	//! 价格不符合最小变动价位精度
+	const int TAPIERROR_INPUTERROR_OutOfPriceTick							= -13003;
 	//! 输入错误的到期日
 	const  int TAPIERROR_INPUTERROR_TAPIExpireTime							= -12047;
 	//! 错误的密码类型
@@ -785,7 +967,13 @@ namespace ITapTrade
 	const int TAPIERROR_INPUTERROR_TapAPIApplyTypeType						= -12055;
 	//! 输入错误的:TAPIDATE
 	const int TAPIERROR_INPUTERROR_TAPIDATE									= -12056;
-	
+	//! 输入错误的:TapAPIPasswordOpreateTypeType
+	const int TAPIERROR_INPUTERROR_TapAPIPasswordOpreateTypeType			= -12057; 
+	//! 输入错误的:TapAPIPasswordOpreateTypeType
+	const int TAPIERROR_INPUTERROR_TapAPICertificateTypeType				= -12058;
+	//! 输入错误的委托量
+	const int TAPIERROR_INPUTERROR_OrderQty									= -12059;
+
 	
     /** @}*/
 

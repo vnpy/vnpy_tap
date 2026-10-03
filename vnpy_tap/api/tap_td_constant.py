@@ -1,3 +1,5 @@
+"""易盛外盘交易常量。"""
+
 APIYNFLAG_YES = "Y"
 APIYNFLAG_NO = "N"
 APIPASSWORD_TRADE = "T"

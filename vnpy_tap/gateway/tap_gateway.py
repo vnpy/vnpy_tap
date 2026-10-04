@@ -116,7 +116,7 @@ OPTIONTYPE_TAP2VT: dict[str, OptionType] = {
 OPTIONTYPE_VT2TAP: dict[OptionType, str] = {v: k for k, v in OPTIONTYPE_TAP2VT.items()}
 
 # 其他常量
-CHINA_TZ = ZoneInfo("Asia/Shanghai")
+CHINA_TZ: ZoneInfo = ZoneInfo("Asia/Shanghai")
 
 # 合约数据全局缓存字典
 commodity_infos: dict[tuple[str, str, str], "CommodityInfo"] = {}
@@ -152,7 +152,7 @@ class TapGateway(BaseGateway):
 
     exchanges: list[Exchange] = list(EXCHANGE_VT2TAP.keys())
 
-    def __init__(self, event_engine: EventEngine, gateway_name: str):
+    def __init__(self, event_engine: EventEngine, gateway_name: str) -> None:
         """构造函数"""
         super().__init__(event_engine, gateway_name)
 
@@ -865,13 +865,16 @@ class TradeApi(TdApi):
 
         # 子账号为空时 b"" in byte_order_id 恒为真。
         # 只有柜台返回的委托号里出现 #子账号#区域# 前缀时，replace 才会改掉它。
+        error_id: int
+        session: int
+        byte_order_id: bytes
         error_id, session, byte_order_id = self.insertOrder(order_req)
 
         if self.byte_client_id in byte_order_id:
             prefix: bytes = b"#" + self.byte_client_id + b"#" + self.byte_client_location + b"#"
             byte_order_id = byte_order_id.replace(prefix, b"")
 
-        order_id = byte_order_id.decode()
+        order_id: str = byte_order_id.decode()
 
         order: OrderData = req.create_order_data(
             order_id,

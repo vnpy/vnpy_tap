@@ -365,3 +365,8 @@ vnpy_tap/api/meson-logs/
 vnpy_tap/api/meson-private/
 vnpy_tap/api/*.exp
 vnpy_tap/api/vntap*.lib
+
+# Type checker / linter / test caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/

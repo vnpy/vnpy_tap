@@ -1,6 +1,6 @@
 [project]
 name = "vnpy_tap"
-version = "9.4.12"
+version = "9.4.13"
 description = "TAP gateway for vn.py quant trading framework."
 readme = "README.md"
 license = {text = "MIT"}
